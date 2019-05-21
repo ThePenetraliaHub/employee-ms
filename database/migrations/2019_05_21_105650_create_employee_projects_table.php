@@ -15,22 +15,22 @@ class CreateEmployeeProjectsTable extends Migration
     {
         Schema::create('employee_projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("project_id");
-            $table->integer("employee_id");
-            $table->integer("supervisor_id");
+            $table->integer("project_id")->unsigned();
+            $table->integer("employee_id")->unsigned();
+            $table->integer("supervisor_id")->unsigned();
             $table->timestamps();
 
             $table->foreign('project_id')
-              ->references('id')->on('peojects')
+              ->references('id')->on('projects')
               ->onDelete('cascade')
               ->onUpdate('cascade');
 
-              $table->foreign('employee_id')
+            $table->foreign('employee_id')
               ->references('id')->on('employees')
               ->onDelete('cascade')
               ->onUpdate('cascade');
 
-              $table->foreign('supervisor_id')
+            $table->foreign('supervisor_id')
               ->references('id')->on('employees')
               ->onDelete('cascade')
               ->onUpdate('cascade');
