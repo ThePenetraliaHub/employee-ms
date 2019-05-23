@@ -9,7 +9,6 @@ class DepartmentController extends Controller
 {
     public function index()
     {
-        //
         $departments = Department::orderBy('id', 'desc')->paginate(10);
 
         return view('pages.departments.list', ['departments' => $departments]);
@@ -17,19 +16,18 @@ class DepartmentController extends Controller
 
     public function create()
     {
-        //
         return view('pages.departments.create');
     }
 
     public function store(Request $request)
     {
-        //
         $rules = [
             'name' => 'required|unique:departments,name'
         ];
 
         $customMessages = [
             'name.required' => 'Please provide the department name.',
+            'name.unique' => 'Department name already exist.',
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -38,30 +36,21 @@ class DepartmentController extends Controller
             'name' => $request->input('name'),
         ]);
 
-        return redirect('department');
+        return redirect('department.show');
     }
 
-    public function show($id)
+    public function show(Department $department)
     {
-        //
-        $department = Department::findOrFail($id);
-
         return view('pages.departments.show', ['department' => $department]);
     }
 
-    public function edit($id)
+    public function edit(Department $department)
     {
-        //
-        $department = Department::findOrFail($id);
-
         return view('pages.departments.edit', ['department' => $department]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Department $department)
     {
-        //
-        $department = Department::findOrFail($id);
-
         $rules = [
             'name' => 'required|unique:departments,name,'.$id,
         ];
@@ -72,10 +61,10 @@ class DepartmentController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
-        $department->name = $request->input('name');
-        $department->save();
+        //$department->name = $request->input('name');
+        $department->save($request);
 
-        return redirect('departments/'.$id);
+        return redirect('departments.index');
     }
 
     public function destroy($id)
