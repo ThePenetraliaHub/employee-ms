@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>PenTax | Login</title>
+  <title>Penetralia Hub EMS | Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   @include("partials.style")
@@ -11,7 +11,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ route("home") }}"><b>PenTax</b></a>
+    <a href="{{ route("home") }}"><b>Penetralia Hub EMS</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -54,7 +54,7 @@
         <!-- /.col -->
       </div>
     </form>
-    <a href="{{ route('register') }}" class="text-center">Register a new admin</a>
+    {{-- <a href="{{ route('register') }}" class="text-center">Register a new admin</a> --}}
   </div>
   <!-- /.login-box-body -->
 </div>
