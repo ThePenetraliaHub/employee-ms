@@ -12,12 +12,12 @@ class DepartmentController extends Controller
     {
         $departments = Department::orderBy('id', 'desc')->paginate(10);
 
-        return view('pages.departments.list', ['departments' => $departments]);
+        return view('pages.admin.departments.list', ['departments' => $departments]);
     }
 
     public function create()
     {
-        return view('pages.departments.create');
+        return view('pages.admin.departments.create');
     }
 
     public function store(Request $request)
@@ -35,41 +35,41 @@ class DepartmentController extends Controller
 
         $department = Department::create([
             'name' => $request->input('name'),
-        ]);
+        ]); 
 
-        return redirect('department.show');
+        return redirect('department');
     }
 
-    public function show(Department $department)
-    {
-        return view('pages.departments.show', ['department' => $department]);
-    }
+    // public function show(Department $department)
+    // {
+    //     return view('pages.departments.show', ['department' => $department]);
+    // }
 
-    public function edit(Department $department)
-    {
-        return view('pages.departments.edit', ['department' => $department]);
-    }
+    // public function edit(Department $department)
+    // {
+    //     return view('pages.departments.edit', ['department' => $department]);
+    // }
 
-    public function update(Request $request, Department $department)
-    {
-        $rules = [
-            'name' => 'required|unique:departments,name,'.$department->id,
-        ];
+    // public function update(Request $request, Department $department)
+    // {
+    //     $rules = [
+    //         'name' => 'required|unique:departments,name,'.$department->id,
+    //     ];
 
-        $customMessages = [
-            'name.required' => 'Please provide the department name.',
-        ];
+    //     $customMessages = [
+    //         'name.required' => 'Please provide the department name.',
+    //     ];
 
-        $this->validate($request, $rules, $customMessages);
+    //     $this->validate($request, $rules, $customMessages);
 
-        //$department->name = $request->input('name');
-        $department->save($request);
+    //     //$department->name = $request->input('name');
+    //     $department->save($request);
 
-        return redirect('departments.index');
-    }
+    //     return redirect('departments.index');
+    // }
 
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 }

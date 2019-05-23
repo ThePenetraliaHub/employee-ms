@@ -71,8 +71,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Create Department</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> View Departments</a></li>
+                        <li><a href="{{ route('department.create') }}"><i class="fa fa-circle-o"></i> Create Department</a></li>
+                        <li><a href="{{ route('department.index') }}"><i class="fa fa-circle-o"></i> View Departments</a></li>
                     </ul>
                 </li>
 
