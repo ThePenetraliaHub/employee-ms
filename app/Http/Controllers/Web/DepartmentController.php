@@ -53,7 +53,7 @@ class DepartmentController extends Controller
     public function update(Request $request, Department $department)
     {
         $rules = [
-            'name' => 'required|unique:departments,name,'.$id,
+            'name' => 'required|unique:departments,name,'.$department->id,
         ];
 
         $customMessages = [
