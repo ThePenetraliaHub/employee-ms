@@ -27,11 +27,11 @@
                         <div class="box-body">
 
                             <div class="form-row">
-                                <div class="form-group col-xs-6 ml-1">
+                                <div class="form-group col-xs-6 ml-1{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name">Name: </label>
                                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required placeholder="name">
                                     
-                                        @if ($errors->has('name'))
+                                    @if ($errors->has('name'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('name') }}</strong>
                                         </span>
