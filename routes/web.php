@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes();
-Route::resource('/emps', 'Web\DepartmentController');
+
+//Route::resource('/emps', 'Web\DepartmentController');
 
 Route::get('/home', 'HomeController@index')->name('home');
