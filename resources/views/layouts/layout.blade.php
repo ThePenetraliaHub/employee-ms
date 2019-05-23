@@ -17,9 +17,9 @@
         <!-- Logo -->
         <a href="{{ route("home") }}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>PT</span>
+          <span class="logo-mini"><b>EMS</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>PenTax</b></span>
+          <span class="logo-lg"><b>Penetralia Hub EMS</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         @include("partials.navbar")
@@ -50,36 +50,9 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{ route("user.individual.create") }}"><i class="fa fa-circle-o"></i> Add Tax Payer</a></li>
-                <li><a href="{{ route("user.individual.search") }}"><i class="fa fa-circle-o"></i> Search Tax Payer</a></li>
-                <li><a href="{{ route("user.individual") }}"><i class="fa fa-circle-o"></i> View Tax Payers</a></li>
-              </ul>
-            </li>
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Company</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ route("user.company.create") }}"><i class="fa fa-circle-o"></i> Add Company</a></li>
-                <li><a href="{{ route("user.company.search") }}"><i class="fa fa-circle-o"></i> Search Company</a></li>
-                <li><a href="{{ route("user.company") }}"><i class="fa fa-circle-o"></i> View Companies</a></li>
-              </ul>
-            </li>
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>API Config</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ route("api.create") }}"><i class="fa fa-circle-o"></i> Add new key</a></li>
-                <li><a href="{{ route("api") }}"><i class="fa fa-circle-o"></i> View Keys</a></li>
+                <li><a href="{{-- {{ route("user.individual.create") }} --}}"><i class="fa fa-circle-o"></i> Add Tax Payer</a></li>
+                <li><a href="{{-- {{ route("user.individual.search") }} --}}"><i class="fa fa-circle-o"></i> Search Tax Payer</a></li>
+                <li><a href="{{-- {{ route("user.individual") }} --}}"><i class="fa fa-circle-o"></i> View Tax Payers</a></li>
               </ul>
             </li>
 
