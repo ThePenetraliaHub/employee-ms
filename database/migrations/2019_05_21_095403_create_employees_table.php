@@ -15,7 +15,8 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("supervisor_id")->unsigned();;
+            $table->integer("supervisor_id")->unsigned();
+            $table->integer("department_id")->unsigned();
             $table->string("NIN");
             $table->string("employee_number");
             $table->string("firstname");
@@ -37,6 +38,11 @@ class CreateEmployeesTable extends Migration
 
             $table->foreign('supervisor_id')
               ->references('id')->on('employees')
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
+
+            $table->foreign('department_id')
+              ->references('id')->on('departments')
               ->onDelete('cascade')
               ->onUpdate('cascade');
 
