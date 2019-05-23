@@ -21,13 +21,14 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 	Route::group(['prefix' => 'department'], function () {
-		Route::get('/', 'Web\DeparatmentController@index')->name('department.index');
-		Route::get('create', 'Web\DeparatmentController@create')->name('department.create');
-		Route::post('/', 'Web\DeparatmentController@store')->name('department.store');
-		Route::put('/{department}', 'Web\DeparatmentController@update')->name('department.update');
+		Route::get('/', 'Web\DepartmentController@index')->name('department.index');
+		Route::get('create', 'Web\DepartmentController@create')->name('department.create');
+		Route::post('/', 'Web\DepartmentController@store')->name('department.store');
+		Route::put('/{department}', 'Web\DepartmentController@update')->name('department.update');
 	});
 });
 
 Auth::routes();
+Route::resource('/emps', 'Web\DepartmentController');
 
 Route::get('/home', 'HomeController@index')->name('home');
