@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
 		Route::get('create', 'Web\DeparatmentController@create')->name('department.create');
 		Route::post('/', 'Web\DeparatmentController@store')->name('department.store');
 		Route::put('/{department}', 'Web\DeparatmentController@update')->name('department.update');
+		Route::get('/{department}/edit', 'Web\DeparatmentController@edit')->name('department.edit');
 	});
 });
 
