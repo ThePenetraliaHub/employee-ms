@@ -25,17 +25,17 @@ class DepartmentController extends Controller
     {
         //
         $rules = [
-            'department_name' => 'required|unique:departments,name'
+            'name' => 'required|unique:departments,name'
         ];
 
         $customMessages = [
-            'department_name.required' => 'Please provide the department name.',
+            'name.required' => 'Please provide the department name.',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
         $department = Department::create([
-            'department_name' => $request->input('department_name'),
+            'name' => $request->input('name'),
         ]);
 
         return redirect('department');
@@ -63,16 +63,16 @@ class DepartmentController extends Controller
         $department = Department::findOrFail($id);
 
         $rules = [
-            'department_name' => 'required|unique:departments,name,'.$id,
+            'name' => 'required|unique:departments,name,'.$id,
         ];
 
         $customMessages = [
-            'department_name.required' => 'Please provide the department name.',
+            'name.required' => 'Please provide the department name.',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
-        $department->department_name = $request->input('department_name');
+        $department->name = $request->input('name');
         $department->save();
 
         return redirect('departments/'.$id);
