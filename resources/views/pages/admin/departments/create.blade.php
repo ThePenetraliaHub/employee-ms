@@ -12,20 +12,11 @@
         <div class="row">
             <div class="col-md-8">
               <div class="box box-primary">
-                <div class="box-header with-border text-center">
-                  <h2 class="box-title">Add Department</h2>
-                </div>
-
                 <form {{-- autocomplete="off" --}} novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('department.store') }}">
                   @csrf
                   <div class="box-body">
                     <div class="box">
-                        <div class="box-header with-border">
-                          <h2 class="box-title">ADD DEPARTMENT</h2>
-                        </div>
-
                         <div class="box-body">
-
                             <div class="form-row">
                                 <div class="form-group col-xs-6 ml-1{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name">Name: </label>
