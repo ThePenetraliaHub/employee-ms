@@ -45,7 +45,7 @@ class User extends Authenticatable
     public function user_type()
     {
         if ($this->typeable_type === "App\SuperAdmin") {
-            return "Super Administrator";
+            return "Administrator";
         }
     }
 }
