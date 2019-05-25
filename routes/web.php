@@ -26,11 +26,23 @@ Route::middleware('auth')->group(function () {
 		Route::post('/', 'Web\DepartmentController@store')->name('department.store');
 		Route::put('/{department}', 'Web\DepartmentController@update')->name('department.update');
 		Route::get('/{department}/edit', 'Web\DepartmentController@edit')->name('department.edit');
+		Route::delete('/delete/{department}', 'Web\DepartmentController@destroy')->name('department.destroy');
 	});
 });
 
+
+Route::middleware('auth')->group(function () {
+	Route::group(['prefix' => 'client'], function () {
+		Route::get('/', 'Web\ClientController@index')->name('client.index');
+		Route::get('/create', 'Web\ClientController@create')->name('client.create');
+		Route::post('/', 'Web\ClientController@store')->name('client.store');
+
+	});
+});
+
+
 Auth::routes();
 
-//Route::resource('/emps', 'Web\DepartmentController');
+//Route::resource('/empss', 'Web\ClientController');
 
 Route::get('/home', 'HomeController@index')->name('home');

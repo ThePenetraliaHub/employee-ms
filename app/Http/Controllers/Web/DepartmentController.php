@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Department;
 use App\Http\Controllers\Controller;
+use Session; 
 
 class DepartmentController extends Controller
 {
@@ -68,8 +69,44 @@ class DepartmentController extends Controller
     //     return redirect('departments.index');
     // }
 
-    // public function destroy($id)
-    // {
-    //     //
-    // }
+     public function update(Request $request, $id)
+    {
+
+          $rules = [
+            'name' => 'required|unique:departments,name'
+        ];
+
+        $customMessages = [
+            'name.required' => 'Please provide the department name.',
+            'name.unique' => 'Department name already exist.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+        $department =  Department::find($id);
+        $department->name = $request->input('name');
+        $department->save();
+        Session::flash('success','Successfully Updated!'); 
+        // $request->name = $request->input('name');
+        // $rules = [
+        //     'name' => 'required|unique:departments,name,'.$department->id,
+        // ];
+
+        // $customMessages = [
+        //     'name.required' => 'Please provide the department name.',
+        // ];
+
+        // $this->validate($request, $rules, $customMessages);
+
+        
+        // $department->save($request);
+
+        // return redirect('departments.index');
+    }
+
+    public function destroy(Request $request)
+    {
+     $department =  Department::find($request->id);
+        $department->delete();
+        Session::flash('success','Successfully Deleted!');
+    }
 }
