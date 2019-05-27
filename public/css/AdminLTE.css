@@ -6604,3 +6604,7 @@ textarea {
     transform: rotate(359deg);
   }
 }
+
+.pointer{
+    cursor:pointer;
+}

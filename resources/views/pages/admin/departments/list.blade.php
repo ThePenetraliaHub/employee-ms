@@ -14,10 +14,6 @@
         <div class="row">
             <div class="col-md-12">
               <div class="box box-primary">
-                <div class="box-header with-border text-center">
-                  <h3 class="box-title">View all Departmentsr</h3>
-                </div>
-
                 <div class="box-body">
 
                     @if(count($departments) > 0)
@@ -25,18 +21,28 @@
                            <table id="example" class="table table-striped table-responsive">
                               <thead>
                                 <tr class="table-heading-bg">
-                                    <th scope="col">Id</th>
+                                    <th scope="col">S/N</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                  @foreach($departments as $department)
+                                @foreach($departments as $department)
                                     <tr>
-                                        <td>{{ $department->id}} </td>
+                                        <td>{{ $department->id }} </td>
                                         <td>{{ $department->name}}</td>
-                                        
-                                    </tr>
-                                   @endforeach
+                                        <td>
+                                            <span data-toggle="modal" data-target="#edit{{ $department->id }}">
+                                                 <a data-toggle="tooltip" data-placement="top" title="Edit Department Information" class="fa fa-edit fa-2x pointer ml-3">
+                                                 </a>
+                                            </span>   
+                                            <span data-toggle="modal" data-target="#edit{{ $department->id }}">
+                                                 <a data-toggle="tooltip" data-placement="top" title="Edit Department Information" class="fa fa-remove fa-2x pointer ml-3">
+                                                 </a>
+                                            </span>   
+                                        </td> 
+                                   </tr>
+                                @endforeach
                                </tbody>
                            </table>
                         </div>
