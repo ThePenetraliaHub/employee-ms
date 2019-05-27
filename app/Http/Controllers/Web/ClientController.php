@@ -73,7 +73,34 @@ class ClientController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+           $rules = [
+            'name' => 'required|unique:clients,name',
+            'details' => 'required',
+            'address' => 'required',
+            'contact_number' => 'required',
+            'contact_email' => 'required',
+            //'company_url' => ''
+            'status' => 'required',
+            'first_contact_date' => 'required'
+        ];
+        $customMessages = [
+            'name.required' => 'Please provide the department name.',
+            'name.unique' => 'Department name already exist.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+        $client =  Client::find($id);
+           $client->name =  $request->input('name');
+           $client->details=  $request->input('details');
+           $client->address=  $request->input('address');
+           $client->contact_number=  $request->input('contact_number');
+           $client->contact_email=  $request->input('contact_email');
+           $client->company_url=  $request->input('company_url');
+           $client->status=  $request->input('status');
+           $client->first_contact_date = $request->input('first_contact_date');
+           $client->save();
+        Session::flash('success','Successfully Updated!'); 
+        return redirect('client');
     }
 
     public function destroy($id)

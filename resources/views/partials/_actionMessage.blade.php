@@ -1,3 +1,4 @@
+
 @if(Session::has('success'))
 
 <div class="alert alert-success" role="alert">
@@ -7,7 +8,7 @@
 
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
-  <strong>Errors</strong>
+  <strong>Error(s)</strong>
   @foreach($errors->all() as $error)
 <li>{{$error}}</li>
 @endforeach

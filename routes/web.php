@@ -19,30 +19,17 @@ Route::get('/', function () {
 	}
 });
 
+
 Route::middleware('auth')->group(function () {
-	Route::group(['prefix' => 'department'], function () {
-		Route::get('/', 'Web\DepartmentController@index')->name('department.index');
-		Route::get('create', 'Web\DepartmentController@create')->name('department.create');
-		Route::post('/', 'Web\DepartmentController@store')->name('department.store');
-		Route::put('/{department}', 'Web\DepartmentController@update')->name('department.update');
-		Route::get('/{department}/edit', 'Web\DepartmentController@edit')->name('department.edit');
-		Route::delete('/delete/{department}', 'Web\DepartmentController@destroy')->name('department.destroy');
-	});
+	Route::resource('/department', 'Web\DepartmentController');
 });
 
 
 Route::middleware('auth')->group(function () {
-	Route::group(['prefix' => 'client'], function () {
-		Route::get('/', 'Web\ClientController@index')->name('client.index');
-		Route::get('/create', 'Web\ClientController@create')->name('client.create');
-		Route::post('/', 'Web\ClientController@store')->name('client.store');
-
-	});
+	Route::resource('/client', 'Web\ClientController');
 });
 
 
 Auth::routes();
-
-//Route::resource('/empss', 'Web\ClientController');
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -41,10 +41,10 @@ class DepartmentController extends Controller
         return redirect('department');
     }
 
-    // public function show(Department $department)
-    // {
-    //     return view('pages.departments.show', ['department' => $department]);
-    // }
+    public function show(Department $department)
+    {
+       // return view('pages.departments.show', ['department' => $department]);
+    }
 
     // public function edit(Department $department)
     // {
@@ -71,7 +71,6 @@ class DepartmentController extends Controller
 
      public function update(Request $request, $id)
     {
-
           $rules = [
             'name' => 'required|unique:departments,name'
         ];
@@ -86,27 +85,18 @@ class DepartmentController extends Controller
         $department->name = $request->input('name');
         $department->save();
         Session::flash('success','Successfully Updated!'); 
-        // $request->name = $request->input('name');
-        // $rules = [
-        //     'name' => 'required|unique:departments,name,'.$department->id,
-        // ];
-
-        // $customMessages = [
-        //     'name.required' => 'Please provide the department name.',
-        // ];
-
-        // $this->validate($request, $rules, $customMessages);
-
-        
-        // $department->save($request);
-
-        // return redirect('departments.index');
+        return redirect('department');
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-     $department =  Department::find($request->id);
-        $department->delete();
+     $department =  Department::find($id);
+     $department->delete();
+        
         Session::flash('success','Successfully Deleted!');
+         return redirect('department');
     }
 }
+
+
+
