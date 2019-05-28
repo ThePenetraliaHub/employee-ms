@@ -83,8 +83,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Create Client</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> View Clients</a></li>
+                        <li><a href="{{ route('client.create') }}"><i class="fa fa-circle-o"></i> Create Client</a></li>
+                        <li><a href="{{ route('client.index') }}"><i class="fa fa-circle-o"></i> View Clients</a></li>
                     </ul>
                 </li>
 

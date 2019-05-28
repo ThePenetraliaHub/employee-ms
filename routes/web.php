@@ -19,18 +19,17 @@ Route::get('/', function () {
 	}
 });
 
+
 Route::middleware('auth')->group(function () {
-	Route::group(['prefix' => 'department'], function () {
-		Route::get('/', 'Web\DepartmentController@index')->name('department.index');
-		Route::get('create', 'Web\DepartmentController@create')->name('department.create');
-		Route::post('/', 'Web\DepartmentController@store')->name('department.store');
-		Route::put('/{department}', 'Web\DepartmentController@update')->name('department.update');
-		Route::get('/{department}/edit', 'Web\DepartmentController@edit')->name('department.edit');
-	});
+	Route::resource('/department', 'Web\DepartmentController');
 });
 
-Auth::routes();
 
-//Route::resource('/emps', 'Web\DepartmentController');
+Route::middleware('auth')->group(function () {
+	Route::resource('/client', 'Web\ClientController');
+});
+
+
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
