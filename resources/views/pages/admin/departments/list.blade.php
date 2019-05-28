@@ -8,20 +8,21 @@
             <small>View</small>
         </h1>
     </section>
-    <!-- Main content -->
+
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border text-center">
-                        <h3 class="box-title">View all Departments</h3>
-                    </div>
-
+                <div class="box">
                     @include('partials._actionMessage')
 
-                    <div align="right" style="margin-top: 10px; margin-right:10px;">
+                    {{-- <div align="right" style="margin-top: 10px; margin-right:10px;">
                         <a class="btn btn-primary btn-sm " href="{{ route('department.create') }}" role="button">Create New </a> 
-                    </div>
+                    </div> --}}
+
+                    <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm ml-3 mt-4">
+                        <span class="fa fa-plus-circle mr-2"></span>
+                        Create New
+                    </a>
 
                     <div class="box-body">
                         @if(count($departments) > 0)
