@@ -17,9 +17,13 @@
                   <h3 class="box-title">View all Clients</h3>
                 </div>
 
-<div align="right" style="margin-top: 10px; margin-right:10px;">
-  <a class="btn btn-primary btn-sm " href="{{ route('client.create') }}" role="button">Create New </a> 
-</div>
+
+ @include('partials._actionMessage')
+
+<a href="{{ route('client.create') }}" class="btn btn-primary btn-sm ml-3 mt-4">
+                        <span class="fa fa-plus-circle mr-2"></span>
+                        Create New
+                    </a> 
                 <div class="box-body">
 
                     @if(count($clients) > 0)
@@ -52,7 +56,8 @@
                                         <td>{{ $client->company_url}} </td>
                                         <td>{{ $client->status}}</td>
                                         <td>{{ $client->first_contact_date}} </td>
-                                        <td><a class="btn edit-btn btn-info btn-sm" href="#" role="button" style=" margin-right: 5px; margin-bottom: 5px;" data-toggle="modal" data-target="#editModal">Edit</a><a class="btn btn-danger btn-sm " href="#" role="button">Delete</a> </td>
+                                        <td> <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('client.show' ,$client->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                        <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId= {{ $client->id}}>Delete</a></td>
                                         
                                     </tr>
                                    @endforeach
@@ -68,9 +73,10 @@
                         </div>
                     @endif
                 </div>
+                </div>
 
     <!--Start of Edit modal  -->
-    <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+   <!--  <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -127,8 +133,36 @@
               </div>
           </div>
       </div>
-    </div>
+    </div> -->
 <!--Edit modal end -->
+<!--Delete modal start -->
+                <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Delete Comfirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+                </div>
+
+                <div class="modal-body">
+                <form method="post" action="/client" id="deleteFormId">
+                {{csrf_field()}} 
+                {{method_field('DELETE')}} 
+                <div class="form-group">
+                <input type="hidden" class="form-control" id="clientId" name="_method" value="DELETE" >
+                </div>
+                <p class="text-center">Are you sure you want to delete this data?</p>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
+                <button type="submit" class="btn btn-success" >Yes</button>
+                </div>
+                </form>
+                </div>
+                </div>
+                </div>
+                </div>
+                <!--Delete modal end -->
 
               </div>
             </div>
@@ -142,55 +176,48 @@
     $('#dataTable').DataTable();
 
 // edit script
-    $('.edit-btn').on('click', function(){
+    // $('.edit-btn').on('click', function(){
 
-    $('editModal').modal('show');
+    // $('editModal').modal('show');
 
-    $tr = $(this).closest('tr');
+    // $tr = $(this).closest('tr');
 
-    var data = $tr.children('td').map(function(){
+    // var data = $tr.children('td').map(function(){
 
-      return $(this).text();
+    //   return $(this).text();
 
-    }).get();
+    // }).get();
 
-    console.log(data);
+    // console.log(data);
 
-    $('#id').val(data[0]);
-    $('#name').val(data[1]);
-    $('#details').val(data[2]);
-    $('#address').val(data[3]);
-    $('#contact').val(data[4]);
-    $('#email').val(data[5]);
-    $('#url').val(data[6]);
-    $('#status').val(data[7]);
-    $('#contactdate').val(data[8]);
+    // $('#id').val(data[0]);
+    // $('#name').val(data[1]);
+    // $('#details').val(data[2]);
+    // $('#address').val(data[3]);
+    // $('#contact').val(data[4]);
+    // $('#email').val(data[5]);
+    // $('#url').val(data[6]);
+    // $('#status').val(data[7]);
+    // $('#contactdate').val(data[8]);
 
-    $('#editFormId').attr('action','/client/'+data[0]);
-    });
+    // $('#editFormId').attr('action','/client/'+data[0]);
+    // });
 
-// Delete script
+//Delete script
 
-   // $('.delete-btn').on('click', function(){
+  $('.delete-btn').on('click', function(){
+                $('deleteModal').modal('show');
+                $tr = $(this).closest('tr');
 
-   //  $('deleteModal').modal('show');
+                var data = $tr.children('td').map(function(){
+                    return $(this).text();
+                }).get();
 
-   //  $tr = $(this).closest('tr');
-
-   //  var data = $tr.children('td').map(function(){
-
-   //    return $(this).text();
-
-   //  }).get();
-
-   //  console.log(data);
-
-   //  $('#id').val(data[0]);
-
-   //  $('#deleteFormId').attr('action','/department/'+data[0]);
-   //  });
-
-});
+                console.log(data);
+                $('#id').val(data[0]);
+                $('#deleteFormId').attr('action','/client/'+data[0]);
+            });
+        });
 
 </script>
 @endsection

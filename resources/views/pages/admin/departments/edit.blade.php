@@ -1,29 +1,31 @@
-@extends('layouts.manage')
-@section('title', 'Edit Item')
+@extends('layouts.layout')
 
 @section('content')
-    <!-- Edit Item-->
-        <section class="p-t-20">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <div class="card">
-                            <div class="card-header">Edit Item</div>
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h3 class="text-center title-2">Edit Item</h3>
-                                </div>
-                                <hr>
-                                {!! Form::model($item, ['method'=> 'PATCH', 'class'=>'form-horizontal form-label-left','route' => ['items.update', $item->id]]) !!}
+    <section class="content-header">
+        <h1>Edit Department
+            <small>Edit</small>
+        </h1>
+    </section>
 
-                                    @include('manage.items.partials.form', ['submit'=>'Update'])
+    <!-- Main content -->
+<section class="content">
+        <div class="row">
+        <div class="col-md-5">
+        <div class="box box-primary">
+        <form {{-- autocomplete="off" --}} novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('department.update',$department->id) }}"data-parsley-validate="">
+        {{csrf_field()}}  
+        {{method_field('PUT')}}  
+        <div class="box-body">
 
-                                {!! Form::close() !!}
-                            </div>
-                        </div>
-                    </div>    
-                </div>
-            </div>
-        </section>
-    <!-- End Edit Item-->
+        @include('forms.departmentformedit')
+        </div>
+        <div class="box-footer">
+        <button id="button" type="submit" class="btn btn-success col-xs-2" style="margin-right:10px;">UPDATE</button>
+       <a type="button" class="btn btn-warning" href="{{route('department.index')}}" > Cancel</a> 
+        </div>
+        </form>
+        </div>
+        </div>
+        </div>
+    </section>
 @stop

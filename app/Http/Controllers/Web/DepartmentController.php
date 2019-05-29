@@ -43,7 +43,7 @@ class DepartmentController extends Controller
 
     public function show(Department $department)
     {
-       // return view('pages.departments.show', ['department' => $department]);
+        return view('pages.admin.departments.edit', ['department' => $department]);
     }
 
     // public function edit(Department $department)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Client;
+use Session;
 use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
@@ -61,9 +62,9 @@ class ClientController extends Controller
         return redirect('client');
     }
 
-    public function show($id)
+    public function show(Client $client)
     {
-    
+    return view('pages.admin.clients.edit', ['client' => $client]);
     }
 
     public function edit($id)
@@ -73,23 +74,27 @@ class ClientController extends Controller
 
     public function update(Request $request, $id)
     {
-           $rules = [
-            'name' => 'required|unique:clients,name',
-            'details' => 'required',
-            'address' => 'required',
-            'contact_number' => 'required',
-            'contact_email' => 'required',
-            //'company_url' => ''
-            'status' => 'required',
-            'first_contact_date' => 'required'
-        ];
-        $customMessages = [
-            'name.required' => 'Please provide the department name.',
-            'name.unique' => 'Department name already exist.',
-        ];
 
-        $this->validate($request, $rules, $customMessages);
-        $client =  Client::find($id);
+
+//Server side validation not working
+
+        //    $rules = [
+        //     'name' => 'required|unique:clients,name',
+        //     'details' => 'required',
+        //     'address' => 'required',
+        //     'contact_number' => 'requireed',
+        //     'contact_email' => 'required',
+        //     //'company_url' => '',
+        //     'status' => 'required',
+        //     'first_contact_date' => 'required'
+        // ];
+        // $customMessages = [
+        //     'name.required' => 'Please provide the department name.',
+        //     'name.unique' => 'Department name already exist.',
+        // ];
+
+        //   $this->validate($request, $rules, $customMessages);
+           $client =  Client::find($id);
            $client->name =  $request->input('name');
            $client->details=  $request->input('details');
            $client->address=  $request->input('address');
@@ -105,6 +110,12 @@ class ClientController extends Controller
 
     public function destroy($id)
     {
-        //
-    }
+        //dd($id);
+        $client =  Client::find($id);
+        $client->delete();
+        Session::flash('success','Successfully Deleted!');
+        return redirect('client');
+        }
+       
+
 }
