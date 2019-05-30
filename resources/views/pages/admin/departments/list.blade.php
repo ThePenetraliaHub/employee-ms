@@ -14,7 +14,6 @@
             <div class="col-md-12">
                 <div class="box">
                     @include('partials._actionMessage')
-
                     <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm ml-3 mt-4">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create New

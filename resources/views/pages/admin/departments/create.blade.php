@@ -15,7 +15,7 @@
 					<form {{-- autocomplete="off" --}} novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('department.store') }}"data-parsley-validate="">
 						@csrf
 						<div class="box-body">
-							@include('forms.departmentform')
+							@include('pages.admin.departments.forms.create_department')
 						</div>
 						<div class="box-footer">
 							<button id="button" type="submit" class="btn btn-success col-xs-2">CREATE</button>
