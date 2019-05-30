@@ -38,7 +38,7 @@
                                                     <div class="btn-group">
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('department.show' , $department->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
 
-                                                        <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-deptId= {{ $department->id}}>Delete</a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-deptId="{{ $department->id }}">Delete</a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -59,26 +59,26 @@
 
                 <!--Delete modal start -->
                 <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-center" id="exampleModalLabel">Delete Comfirmation</h5>
+                                <h3 class="modal-title text-center" id="exampleModalLabel">Delete Comfirmation</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                             </div>
 
                             <div class="modal-body">
-                                <form method="post" action="/department" id="deleteFormId">
+                                <form id="delete-form" method="post" id="deleteFormId">
                                     {{csrf_field()}} 
                                     {{method_field('DELETE')}} 
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" id="deptId" name="_method" value="DELETE" >
                                     </div>
                                     
-                                    <p class="text-center">Are you sure you want to delete this data?</p>
+                                    <h4 class="text-center">Are you sure you want to delete this data?</h4>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
-                                        <button type="submit" class="btn btn-success" >Yes</button>
+                                        <button type="button" class="btn btn-warning px-5" data-dismiss="modal">No</button>
+                                        <button type="submit" class="btn btn-success px-5">Yes</button>
                                     </div>
                                 </form>
                             </div>
@@ -96,19 +96,27 @@
         $(document).ready(function () {
             $('#dataTable').DataTable();
 
+            $('#deleteModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var dept_id = button.data('deptid') // Extract info from data-* attributes
+                console.log("Dept Id: "+dept_id);
+                
+                var modal = $(this)
+                $('#delete-form').attr('action', "department/"+dept_id);
+            })
             // Delete script
-           $('.delete-btn').on('click', function(){
-                $('deleteModal').modal('show');
-                $tr = $(this).closest('tr');
+           // $('.delete-btn').on('click', function(){
+           //      $('deleteModal').modal('show');
+           //      $tr = $(this).closest('tr');
 
-                var data = $tr.children('td').map(function(){
-                    return $(this).text();
-                }).get();
+           //      var data = $tr.children('td').map(function(){
+           //          return $(this).text();
+           //      }).get();
 
-                console.log(data);
-                $('#id').val(data[0]);
-                $('#deleteFormId').attr('action','/department/'+data[0]);
-            });
+           //      console.log(data);
+           //      $('#id').val(data[0]);
+           //      $('#deleteFormId').attr('action','/department/'+data[0]);
+           //  });
         });
     </script>
 @endsection
