@@ -29,20 +29,20 @@ class ClientController extends Controller
             'address' => 'required',
             'contact_number' => 'required',
             'contact_email' => 'required',
-            //'company_url' => ''
+            'company_url' => 'active_url',
             'status' => 'required',
             'first_contact_date' => 'required'
         ];
 
         $customMessages = [
-            'name.required' => 'Please provide the client name.',
+            'name.required' => 'Please provide the client\'s name.',
             'name.unique' => 'Client name already exist.',
-            'details.required' => 'Please provide the client details.',
-            'address.required' => 'Please provide the client address.',
-            'contact_number.required' => 'Please provide the client Contact Number.',
-            'contact_email.required' => 'Please provide the client contact email.',
-           // 'company_url.required' => 'Please provide the client name.',
-            'first_contact_date.required' => 'Please provide the client first contacted date.'
+            'details.required' => 'Please provide the client\'s details.',
+            'address.required' => 'Please provide the client\'s address.',
+            'contact_number.required' => 'Please provide the client\'s Contact Number.',
+            'contact_email.required' => 'Please provide the client\'s contact email.',
+            'company_url.required' => 'Please provide an active client\'s web address.',
+            'first_contact_date.required' => 'Please provide the client\'s first contacted date.'
         ];
 
         $this->validate($request, $rules, $customMessages);

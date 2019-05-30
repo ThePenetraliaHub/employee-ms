@@ -20,7 +20,7 @@ class CreateClientsTable extends Migration
             $table->text("address"); 
             $table->string("contact_number");
             $table->string("contact_email");
-            $table->string("company_url");
+            $table->string("company_url")->nullable();
             $table->string("status");
             $table->date("first_contact_date");
             $table->timestamps();
