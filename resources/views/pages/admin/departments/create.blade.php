@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="box box-primary">
-					<form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('department.store') }}"data-parsley-validate="">
+					<form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('department.store') }}" data-parsley-validate="">
 						@csrf
 						<div class="box-body">
 							@include('pages.admin.departments.forms.create_department')
