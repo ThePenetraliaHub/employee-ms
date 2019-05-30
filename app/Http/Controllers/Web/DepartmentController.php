@@ -28,15 +28,13 @@ class DepartmentController extends Controller
         ];
 
         $customMessages = [
-            'name.required' => 'Please provide the department name.',
+            'name.required' => 'Please provide the department\'s name.',
             'name.unique' => 'Department name already exist.',
         ];
 
-        $this->validate($request, $rules, $customMessages);
+        $this->validate($request, $rules, $customMessages); 
 
-        $department = Department::create([
-            'name' => $request->input('name'),
-        ]);  
+        Department::create($request->all());
 
         return redirect('department')->with('success','Successfully created!');
     }
@@ -55,7 +53,7 @@ class DepartmentController extends Controller
         ];
 
         $customMessages = [
-            'name.required' => 'Please provide the department name.',
+            'name.required' => 'Please provide the department\'s name.',
             'name.unique' => 'Department name already exist.',
         ];
 

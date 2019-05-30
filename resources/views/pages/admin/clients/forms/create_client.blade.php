@@ -11,7 +11,7 @@
     
     <div class="form-group col-xs-11{{ $errors->has('details') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="details">Clients Details</label>
-        <textarea rows="3" id="details" type="textarea" class="form-control" name="details" value="{{ old('details') }}" required > </textarea>
+        <textarea rows="3" id="details" type="textarea" class="form-control" name="details" required >{{ old('details') }}</textarea>
         @if ($errors->has('details'))
             <span class="help-block">
                 <strong>{{ $errors->first('details') }}</strong>
@@ -62,8 +62,8 @@
     <div class="form-group col-xs-11{{ $errors->has('status') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="status">Client Active Status</label>
         <select class="form-control" id="status" name="status" value="{{ old('status') }}">
-            <option value="1">Active</option>
-            <option value="0">Inactive</option>
+            <option value="1" @if (old('status', "1") == 1) {{ 'selected' }} @endif>Active</option>
+            <option value="0" @if (old('status') === "0") {{ 'selected' }} @endif>Inactive</option>
         </select>
         @if ($errors->has('status'))
             <span class="help-block">

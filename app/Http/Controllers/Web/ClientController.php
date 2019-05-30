@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use Session;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
@@ -29,7 +30,7 @@ class ClientController extends Controller
             'address' => 'required',
             'contact_number' => 'required',
             'contact_email' => 'required',
-            'company_url' => 'active_url',
+            'company_url' => 'nullable|active_url',
             'status' => 'required',
             'first_contact_date' => 'required'
         ];
@@ -47,20 +48,9 @@ class ClientController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
-        $client = Client::create([
-            'name' => $request->input('name'),
-            'details' => $request->input('details'),
-            'address' => $request->input('address'),
-            'contact_number' => $request->input('contact_number'),
-            'contact_email' => $request->input('contact_email'),
-            'company_url' => $request->input('company_url'),
-            'status' => $request->input('status'),
-            'first_contact_date' => $request->input('first_contact_date')
-        ]); 
+        Client::create($request->all());
 
-        Session::flash('success','Successfully created!'); 
-
-        return redirect('client');
+        return redirect('client')->with('success','Successfully created!');
     }
 
     public function show(Client $client)
@@ -71,19 +61,28 @@ class ClientController extends Controller
     public function update(Request $request, Client $client)
     {
         $rules = [
-            'name' => 'required|unique:clients,name',
+            'name' => [
+                'required',
+                Rule::unique('clients')->ignore($client->name, "name"),
+            ],
             'details' => 'required',
             'address' => 'required',
             'contact_number' => 'required',
             'contact_email' => 'required',
-            //'company_url' => '',
+            'company_url' => 'nullable|active_url',
             'status' => 'required',
             'first_contact_date' => 'required'
         ];
         
         $customMessages = [
-            'name.required' => 'Please provide the department name.',
-            'name.unique' => 'Department name already exist.',
+            'name.required' => 'Please provide the client\'s name.',
+            'name.unique' => 'Client name already exist.',
+            'details.required' => 'Please provide the client\'s details.',
+            'address.required' => 'Please provide the client\'s address.',
+            'contact_number.required' => 'Please provide the client\'s Contact Number.',
+            'contact_email.required' => 'Please provide the client\'s contact email.',
+            'company_url.required' => 'Please provide an active client\'s web address.',
+            'first_contact_date.required' => 'Please provide the client\'s first contacted date.'
         ];
 
         $this->validate($request, $rules, $customMessages);
