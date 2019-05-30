@@ -50,9 +50,10 @@
                                             <td>{{ $client->company_url}} </td>
                                             <td>{{ $client->status}}</td>
                                             <td>{{ $client->first_contact_date}} </td>
-                                            <td> <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('client.show' ,$client->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
-                                            <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId= {{ $client->id}}>Delete</a></td>
-                                            
+                                            <td> 
+                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('client.show' ,$client->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId="{{ $client->id }}">Delete</a>
+                                            </td>
                                         </tr>
                                        @endforeach
                                    </tbody>
@@ -110,8 +111,8 @@
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var client_id = button.data('client_id') // Extract info from data-* attributes
-
+                var client_id = button.data('clientid') // Extract info from data-* attributes
+                console.log(client_id);
                 var modal = $(this)
                 $('#delete-form').attr('action', "client/"+client_id);
             })
