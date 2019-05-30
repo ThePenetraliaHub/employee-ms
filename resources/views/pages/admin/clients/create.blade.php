@@ -24,7 +24,7 @@
                             @endforeach
                         @endif
                         <div class="box-footer">
-                            <button id="button" type="submit" class="btn btn-success col-xs-2">CREATE</button>
+                            <button id="button" type="submit" class="btn btn-success col-xs-2">Create</button>
                         </div>
                     </form>
              </div>

@@ -8,7 +8,7 @@
     </section>
 
     <!-- Main content -->
-<section class="content">
+    <section class="content">
         <div class="row">
             <div class="col-md-5">
                 <div class="box box-primary">
@@ -19,7 +19,7 @@
                             @include('pages.admin.departments.forms.edit_department')
                         </div>
                         <div class="box-footer">
-                            <button id="button" type="submit" class="btn btn-success col-xs-2" style="margin-right:10px;">UPDATE</button>
+                            <button id="button" type="submit" class="btn btn-success col-xs-2" style="margin-right:10px;">Update</button>
                             <a type="button" class="btn btn-warning" href="{{route('department.index')}}" > Cancel</a> 
                         </div>
                     </form>

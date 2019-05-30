@@ -13,7 +13,6 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::orderBy('id', 'desc')->paginate(10);
-
         return view('pages.admin.departments.list', ['departments' => $departments]);
     }
 
@@ -37,11 +36,9 @@ class DepartmentController extends Controller
 
         $department = Department::create([
             'name' => $request->input('name'),
-        ]); 
+        ]);  
 
-        Session::flash('success','Successfully created!'); 
-
-        return redirect('department');
+        return redirect('department')->with('success','Successfully created!');
     }
 
     public function show(Department $department)
@@ -49,35 +46,11 @@ class DepartmentController extends Controller
         return view('pages.admin.departments.edit', ['department' => $department]);
     }
 
-    // public function edit(Department $department)
-    // {
-    //     return view('pages.departments.edit', ['department' => $department]);
-    // }
-
-    // public function update(Request $request, Department $department)
-    // {
-    //     $rules = [
-    //         'name' => 'required|unique:departments,name,'.$department->id,
-    //     ];
-
-    //     $customMessages = [
-    //         'name.required' => 'Please provide the department name.',
-    //     ];
-
-    //     $this->validate($request, $rules, $customMessages);
-
-    //     //$department->name = $request->input('name');
-    //     $department->save($request);
-
-    //     return redirect('departments.index');
-    // }
-
-     public function update(Request $request, $id)
-    {
+    public function update(Request $request, Department $department){
         $rules = [
             'name' => [
                 'required',
-                Rule::unique('departments')->ignore($id),
+                Rule::unique('departments')->ignore($department->id),
             ],
         ];
 
@@ -88,24 +61,15 @@ class DepartmentController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
-        $department =  Department::find($id);
+        $department->update($request->all());
 
-        $department->name = $request->input('name');
-        $department->save();
-
-        Session::flash('success','Successfully Updated!'); 
-
-        return redirect('department');
+        return redirect('department')->with('success','Successfully Updated!');
     }
 
-    public function destroy($id)
+    public function destroy(Departmetn $department)
     {
-        $department =  Department::find($id);
         $department->delete();
-        
-        Session::flash('success','Successfully Deleted!');
-        
-        return redirect('department');
+        return redirect('department')->with('success','Successfully Deleted!');
     }
 }
 
