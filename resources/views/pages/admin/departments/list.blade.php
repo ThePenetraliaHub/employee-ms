@@ -12,10 +12,12 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm my-2">
+                @if(count($departments) > 0)
+                    <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new Department
                     </a>
+                @endif
                 <div class="box">
                     <div class="box-body">
                         @if(count($departments) > 0)
@@ -48,9 +50,9 @@
                             </div>
                         @else
                             <div class="col text-center"> 
-                                <p>No departments yet</p>
-                                <a href="#">
-                                    <button class="btn btn-success ">Add Department</button>
+                                <h3 class="text-muted">No departments yet!</h3>
+                                <a href="{{ route("department.create") }}">
+                                    <button class="btn btn-primary ">Add Department</button>
                                 </a>
                             </div>
                         @endif
