@@ -32,7 +32,7 @@
                                     <tbody>
                                         @foreach($departments as $department)
                                             <tr>
-                                                <td>{{-- {{ $loop->iteration }} --}} {{ $department->id }} </td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $department->name}}</td>
                                                 <td>
                                                     <div class="btn-group">
@@ -100,7 +100,7 @@
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var dept_id = button.data('deptid') // Extract info from data-* attributes
                 console.log("Dept Id: "+dept_id);
-                
+
                 var modal = $(this)
                 $('#delete-form').attr('action', "department/"+dept_id);
             })
