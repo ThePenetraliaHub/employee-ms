@@ -166,6 +166,9 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         @yield('content')
+            <div class="px-4">
+                @include('partials._actionMessage')
+            </div>
       </div>
       <!-- /.content-wrapper -->
       @include("partials.footer")

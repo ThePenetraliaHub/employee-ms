@@ -12,20 +12,18 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="box">
-                    @include('partials._actionMessage')
-                    <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm ml-3 mt-4">
+                <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create New
+                        Create new Department
                     </a>
-
+                <div class="box">
                     <div class="box-body">
                         @if(count($departments) > 0)
                             <div class="table-responsive table-bordered">
                                 <table id="dataTable" class="table table-striped table-responsive">
                                     <thead>
                                         <tr class="table-heading-bg">
-                                            <th scope="col">Id</th>
+                                            <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Action</th>
                                         </tr>
@@ -34,7 +32,7 @@
                                     <tbody>
                                         @foreach($departments as $department)
                                             <tr>
-                                                <td>{{ $department->id}} </td>
+                                                <td>{{ $loop->iteration }} </td>
                                                 <td>{{ $department->name}}</td>
                                                 <td>
                                                     <div class="btn-group">

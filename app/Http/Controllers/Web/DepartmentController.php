@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Department;
 use App\Http\Controllers\Controller;
 use Session; 
+use Illuminate\Validation\Rule;
 
 class DepartmentController extends Controller
 {
@@ -71,8 +72,12 @@ class DepartmentController extends Controller
 
      public function update(Request $request, $id)
     {
-          $rules = [
-            'name' => 'required|unique:departments,name'
+        $rules = [
+            'name' => [
+                'required',
+                Rule::unique('departments')->ignore($id),
+            ],
+            //'name' => 'required|unique:departments,name'
         ];
 
         $customMessages = [
@@ -84,7 +89,9 @@ class DepartmentController extends Controller
         $department =  Department::find($id);
         $department->name = $request->input('name');
         $department->save();
+
         Session::flash('success','Successfully Updated!'); 
+
         return redirect('department');
     }
 
