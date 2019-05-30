@@ -50,7 +50,7 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{-- {{ route("user.individual.create") }} --}}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+                <li><a href="{{ route("home") }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-circle-o"></i> Administration

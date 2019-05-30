@@ -39,6 +39,8 @@ class DepartmentController extends Controller
             'name' => $request->input('name'),
         ]); 
 
+        Session::flash('success','Successfully created!'); 
+
         return redirect('department');
     }
 
@@ -77,7 +79,6 @@ class DepartmentController extends Controller
                 'required',
                 Rule::unique('departments')->ignore($id),
             ],
-            //'name' => 'required|unique:departments,name'
         ];
 
         $customMessages = [
@@ -86,7 +87,9 @@ class DepartmentController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessages);
+
         $department =  Department::find($id);
+
         $department->name = $request->input('name');
         $department->save();
 
@@ -97,11 +100,12 @@ class DepartmentController extends Controller
 
     public function destroy($id)
     {
-     $department =  Department::find($id);
-     $department->delete();
+        $department =  Department::find($id);
+        $department->delete();
         
         Session::flash('success','Successfully Deleted!');
-         return redirect('department');
+        
+        return redirect('department');
     }
 }
 
