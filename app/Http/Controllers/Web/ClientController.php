@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+
 use Illuminate\Http\Request;
 use App\Client;
 use Session;
@@ -73,7 +74,7 @@ class ClientController extends Controller
             'name' => 'required|unique:clients,name',
             'details' => 'required',
             'address' => 'required',
-            'contact_number' => 'requireed',
+            'contact_number' => 'required',
             'contact_email' => 'required',
             //'company_url' => '',
             'status' => 'required',
