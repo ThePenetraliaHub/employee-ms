@@ -61,7 +61,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('status') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="status">Client Active Status</label>
-        <select class="form-control" id="status" name="status" value="{{ old('status') }}">
+        <select class="form-control" id="status" name="status">
             <option value="1" @if (old('status', "1") == 1) {{ 'selected' }} @endif>Active</option>
             <option value="0" @if (old('status') === "0") {{ 'selected' }} @endif>Inactive</option>
         </select>

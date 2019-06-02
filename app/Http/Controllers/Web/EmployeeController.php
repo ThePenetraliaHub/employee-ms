@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Web;
 
 use App\Employee;
 use App\Department;
+use App\PayGrade;
+use App\EmployeeStatus;
+use App\JobTitle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,14 +16,21 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.employees.list', compact("employees"));
+        $pay_grades = PayGrade::all();
+        $employment_statuses = EmployeeStatus::all();
+        $job_titles = JobTitle::all();
+
+        return view('pages.admin.employees.list', compact("employees", "employment_statuses", "pay_grades", "job_titles"));
     }
 
     public function create()
     {
         $departments = Department::all();
         $employees = Employee::all();
-        return view('pages.admin.employees.create' , compact('departments', 'employees'));
+        $pay_grades = PayGrade::all();
+        $employment_statuses = EmployeeStatus::all();
+        $job_titles = JobTitle::all();
+        return view('pages.admin.employees.create' , compact('departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
     }
 
     public function store(Request $request)

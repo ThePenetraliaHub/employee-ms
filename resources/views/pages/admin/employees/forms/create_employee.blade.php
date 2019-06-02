@@ -22,7 +22,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('department_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="department_id">Employee Department</label>
-        <select class="form-control" id="department_id" name="department_id" value="{{ old('department_id') }}">
+        <select class="form-control" id="department_id" name="department_id">
             <option value="">-- Select Employee Department --</option>
             @foreach($departments as $department)
                 <option value="{{$department->id}}" @if (old('department_id') == $department->id) {{ 'selected' }} @endif>{{$department->name}}</option>
@@ -135,7 +135,7 @@
         @endif
     </div>
 
-     <div class="form-group {{ $errors->has('home_phone') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
+    <div class="form-group {{ $errors->has('home_phone') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="home_phone">Home Phone Number</label>
         <input id="home_phone" type="text" class="form-control" name="home_phone" value="{{ old('home_phone') }}" required="" placeholder="">
         @if ($errors->has('home_phone'))
@@ -175,40 +175,55 @@
         @endif
     </div>
 
-    <div class="form-group col-xs-11{{ $errors->has('job_title') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="job_title">Job Title</label>
-        <select class="form-control" id="job_title" name="job_title" value="{{ old('job_title') }}">
-            <option value="1" @if (old('job_title', "1") == 1) {{ 'selected' }} @endif>Developer</option>
-            <option value="2" @if (old('job_title') === "2") {{ 'selected' }} @endif>Marketer</option>
-            <option value="3" @if (old('job_title') === "3") {{ 'selected' }} @endif>Accountant</option>
-            <option value="4" @if (old('job_title') === "4") {{ 'selected' }} @endif>Others</option>
+    <div class="form-group col-xs-11{{ $errors->has('job_title_id') ? ' has-error' : '' }} mb-0 mt-3">
+        <label for="job_title_id">Job Title</label>
+        <select class="form-control" id="job_title_id" name="job_title_id">
+            <option value="">-- Select Employee Job Title --</option>
+            @foreach($job_titles as $job_title)
+                <option value="{{ $job_title->id }}" @if (old('job_title_id') == $job_title->id) {{ 'selected' }} @endif>{{$job_title->title}}</option>
+            @endforeach
         </select>
-        @if ($errors->has('job_title'))
+        @if ($errors->has('job_title_id'))
             <span class="help-block">
-                <strong>{{ $errors->first('job_title') }}</strong>
+                <strong>{{ $errors->first('job_title_id') }}</strong>
             </span>
         @endif
     </div>
 
-    <div class="form-group col-xs-11{{ $errors->has('employee_status') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="employee_status">Employement Status</label>
-        <select class="form-control" id="employee_status" name="employee_status" value="{{ old('employee_status') }}">
-            <option value="1" @if (old('employee_status', "1") == 1) {{ 'selected' }} @endif>Parmanent</option>
-            <option value="2" @if (old('employee_status') === "2") {{ 'selected' }} @endif>Contract</option>
-            <option value="3" @if (old('employee_status') === "3") {{ 'selected' }} @endif>Probation</option>
+    <div class="form-group col-xs-11{{ $errors->has('pay_grade_id') ? ' has-error' : '' }} mb-0 mt-3">
+        <label for="pay_grade_id">Job Title</label>
+        <select class="form-control" id="pay_grade_id" name="pay_grade_id">
+            <option value="">-- Select Employee Job Title --</option>
+            @foreach($pay_grades as $pay_grade)
+                <option value="{{ $pay_grade->id }}" @if (old('pay_grade_id') == $pay_grade->id) {{ 'selected' }} @endif>{{$pay_grade->title}}</option>
+            @endforeach
         </select>
-        @if ($errors->has('employee_status'))
+        @if ($errors->has('pay_grade_id'))
             <span class="help-block">
-                <strong>{{ $errors->first('employee_status') }}</strong>
+                <strong>{{ $errors->first('pay_grade_id') }}</strong>
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group col-xs-11{{ $errors->has('employee_status_id') ? ' has-error' : '' }} mb-0 mt-3">
+        <label for="employee_status_id">Employement Status</label>
+        <select class="form-control" id="employee_status_id" name="employee_status_id" value="{{ old('employee_status_id') }}">
+            <option value="">-- Select Employee Status --</option>
+            @foreach($employment_statuses as $employment_status)
+                <option value="{{ $employment_status->id }}" @if (old('employment_status_id') == $employment_status->id) {{ 'selected' }} @endif>{{$employment_status->title}}</option>
+            @endforeach
+        </select>
+        @if ($errors->has('employee_status_id'))
+            <span class="help-block">
+                <strong>{{ $errors->first('employee_status_id') }}</strong>
             </span>
         @endif
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('supervisor_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="supervisor_id">Supervisor</label>
-        <select class="form-control" id="employee_status" name="supervisor_id" value="{{ old('supervisor_id') }}">
+        <select class="form-control" id="employee_status" name="supervisor_id">
             @foreach($employees as $employee)
-             {{--<option value="{{$employee->all}}" {{ old('user') ? 'selected' : '' }}>{{$employee->all()}}</option>--}}
             <option value="{{$employee->id}}" @if (old('supervisor_id', "1") == 1) {{ 'selected' }} @endif>{{$employee->firstname . ' ' . $employee->middlename . ' ' . $employee->lastname}}</option>
             @endforeach
         </select>
