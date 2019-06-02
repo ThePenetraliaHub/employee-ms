@@ -36,7 +36,7 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
        $rules = [
-            'supervisor_id' => 'required',
+            //'supervisor_id' => 'required',
             'department_id' => 'required',
             'NIN' => 'required',
             'employee_number' => 'required|unique:employees,employee_number',
@@ -57,7 +57,7 @@ class EmployeeController extends Controller
         ];
 
         $customMessages = [
-            'supervisor_id.required' =>'Please select employee\'s supervisor.',
+           // 'supervisor_id.required' =>'Please select employee\'s supervisor.',
             'department_id.required' =>'Please select employee\'s department.',
             'NIN.required' => 'Please provide employee\'s NIN.',
             'NIN.unique' => 'NIN already exist.',

@@ -191,9 +191,9 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('pay_grade_id') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="pay_grade_id">Job Title</label>
+        <label for="pay_grade_id">Employee Pay Grade</label>
         <select class="form-control" id="pay_grade_id" name="pay_grade_id">
-            <option value="">-- Select Employee Job Title --</option>
+            <option value="">-- Select Employee Pay Grade --</option>
             @foreach($pay_grades as $pay_grade)
                 <option value="{{ $pay_grade->id }}" @if (old('pay_grade_id') == $pay_grade->id) {{ 'selected' }} @endif>{{$pay_grade->title}}</option>
             @endforeach
@@ -210,7 +210,7 @@
         <select class="form-control" id="employee_status_id" name="employee_status_id" value="{{ old('employee_status_id') }}">
             <option value="">-- Select Employee Status --</option>
             @foreach($employment_statuses as $employment_status)
-                <option value="{{ $employment_status->id }}" @if (old('employment_status_id') == $employment_status->id) {{ 'selected' }} @endif>{{$employment_status->title}}</option>
+                <option value="{{ $employment_status->id }}" @if (old('employee_status_id') == $employment_status->id) {{ 'selected' }} @endif>{{$employment_status->title}}</option>
             @endforeach
         </select>
         @if ($errors->has('employee_status_id'))
