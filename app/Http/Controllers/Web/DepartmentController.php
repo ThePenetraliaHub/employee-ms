@@ -66,8 +66,12 @@ class DepartmentController extends Controller
 
     public function destroy(Department $department)
     {
-        $department->delete();
-        return redirect('department')->with('success','Successfully Deleted!');
+        if($department->employees->count() > 0){
+            return redirect('department')->with('warning','Department could not be deleted!, employees currently belong in the department.');
+        }else{
+            $department->delete();
+            return redirect('department')->with('success','Successfully Deleted!');
+        }
     }
 }
 
