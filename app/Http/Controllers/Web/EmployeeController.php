@@ -47,9 +47,9 @@ class EmployeeController extends Controller
         ];
 
         $customMessages = [
-            'supervisor_id.required' =>'Please provide the supervisor\'s name.',
-            'department_id.required' =>'Please provide employees department.',
-            'NIN.required' => 'Please provide NIN.',
+            'supervisor_id.required' =>'Please select employee\'s supervisor.',
+            'department_id.required' =>'Please select employee\'s department.',
+            'NIN.required' => 'Please provide employee\'s NIN.',
             'NIN.unique' => 'NIN already exist.',
             'employee_number.required' =>'Please provide the employee\'s number.',
             'employee_number.unique' =>'employee\'s number already exist.',
@@ -58,8 +58,8 @@ class EmployeeController extends Controller
             'date_of_birth.required' => 'Please select employee\'s date of birth.',
             'gender.required' => 'Please select employee\'s gender.',
             'marital_status.required' => 'Please provide employee\'s marital status.',
-            'joined_date.required' => 'Please provide employee\'s joined date.',
-            'addressline1.required' => 'Please provide employee\'s address 1.',
+            'joined_date.required' => 'Please select the date employee joined the company.',
+            'addressline1.required' => 'Please provide employee\'s address.',
             // 'zip_code.required' => 'Please provide zip code.',
             'home_phone.required' => 'Please provide employee\'s home phone number.',
             'office_phone.required' => 'Please provide employee\'s office phone number.',
@@ -67,7 +67,7 @@ class EmployeeController extends Controller
             'private_email.unique' => 'employee\'s private email address already exist.',
             // 'office_email.required' => 'Please provide employee\'s office email address.',
             'office_email.unique' => 'employee\'s office email address already exist.',
-            'job_title.required' => 'Please provide employee\'s job title.',
+            'job_title.required' => 'Please select the date employee\'s job title.',
             'employee_status.required' => 'Please provide employee\'s status.',
         ];
 

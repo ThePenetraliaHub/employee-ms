@@ -1,5 +1,40 @@
 
 <div class="form-row">
+    <div class="form-group {{ $errors->has('NIN') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
+        <label for="NIN">National Identity Number(NIN)</label>
+        <input id="NIN" type="text" class="form-control" name="NIN" value="{{ old('NIN') }}" required="" placeholder="">
+        @if ($errors->has('NIN'))
+            <span class="help-block">
+                <strong>{{ $errors->first('NIN') }}</strong>
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group {{ $errors->has('employee_number') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
+        <label for="employee_number">Employee Number</label>
+        <input id="employee_number" type="text" class="form-control" name="employee_number" value="{{ old('employee_number') }}" required placeholder="">
+        @if ($errors->has('employee_number'))
+            <span class="help-block">
+                <strong>{{ $errors->first('employee_number') }}</strong>
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group col-xs-11{{ $errors->has('department_id') ? ' has-error' : '' }} mb-0 mt-3">
+        <label for="department_id">Employee Department</label>
+        <select class="form-control" id="department_id" name="department_id" value="{{ old('department_id') }}">
+            <option value="">-- Select Employee Department --</option>
+            @foreach($departments as $department)
+                <option value="{{$department->id}}" @if (old('department_id') == $department->id) {{ 'selected' }} @endif>{{$department->name}}</option>
+            @endforeach
+        </select>
+        @if ($errors->has('department_id'))
+            <span class="help-block">
+                <strong>{{ $errors->first('department_id') }}</strong>
+            </span>
+        @endif
+    </div>
+
     <div class="form-group {{ $errors->has('firstname') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="firstname">First Name</label>
         <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required="" placeholder="">
@@ -56,11 +91,12 @@
 
     <div class="form-group col-xs-11{{ $errors->has('marital_status') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="marital_status">Marital Status</label>
-        <select class="form-control" id="marital_status" name="marital_status" value="{{ old('marital_status') }}">
-            <option value="1" @if (old('marital_status', "1") == 1) {{ 'selected' }} @endif>Single</option>
-            <option value="2" @if (old('marital_status') === "2") {{ 'selected' }} @endif>Married</option>
-            <option value="3" @if (old('marital_status') == 3) {{ 'selected' }} @endif>Divours</option>
-            <option value="4" @if (old('marital_status') === "4") {{ 'selected' }} @endif>Others</option>
+        <select class="form-control" id="marital_status" name="marital_status">
+            <option value="">-- Select Marital Status --</option>
+            <option value="Single" @if (old('marital_status') === "Single") {{ 'selected' }} @endif>Single</option>
+            <option value="Married" @if (old('marital_status') === "Married") {{ 'selected' }} @endif>Married</option>
+            <option value="Divorced" @if (old('marital_status') === "Divorced") {{ 'selected' }} @endif>Divorced</option>
+            <option value="Others" @if (old('marital_status') === "Others") {{ 'selected' }} @endif>Others</option>
         </select>
         @if ($errors->has('marital_status'))
             <span class="help-block">
@@ -100,7 +136,7 @@
     </div>
 
      <div class="form-group {{ $errors->has('home_phone') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
-        <label for="home_phone">Home Phone No.</label>
+        <label for="home_phone">Home Phone Number</label>
         <input id="home_phone" type="text" class="form-control" name="home_phone" value="{{ old('home_phone') }}" required="" placeholder="">
         @if ($errors->has('home_phone'))
             <span class="help-block">
@@ -110,7 +146,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('office_phone') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
-        <label for="office_phone">Office Phone No.</label>
+        <label for="office_phone">Office Phone Number</label>
         <input id="office_phone" type="text" class="form-control" name="office_phone" value="{{ old('office_phone') }}" required="" placeholder="">
         @if ($errors->has('office_phone'))
             <span class="help-block">
@@ -120,7 +156,7 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('private_email') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="private_email">Private Email</label>
+        <label for="private_email">Private Email Address</label>
         <input id="private_email" type="email" class="form-control" name="private_email" value="{{ old('private_email') }}" required>
         @if ($errors->has('private_email'))
             <span class="help-block">
@@ -130,31 +166,11 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('office_email') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="office_email">Office Email</label>
+        <label for="office_email">Office Email Address</label>
         <input id="office_email" type="email" class="form-control" name="office_email" value="{{ old('office_email') }}" required>
         @if ($errors->has('office_email'))
             <span class="help-block">
                 <strong>{{ $errors->first('office_email') }}</strong>
-            </span>
-        @endif
-    </div>
-
-    <div class="form-group {{ $errors->has('NIN') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
-        <label for="NIN">National Identity Number(NIN)</label>
-        <input id="NIN" type="text" class="form-control" name="NIN" value="{{ old('NIN') }}" required="" placeholder="">
-        @if ($errors->has('NIN'))
-            <span class="help-block">
-                <strong>{{ $errors->first('NIN') }}</strong>
-            </span>
-        @endif
-    </div>
-
-    <div class="form-group {{ $errors->has('employee_number') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
-        <label for="employee_number">Employee Number</label>
-        <input id="employee_number" type="text" class="form-control" name="employee_number" value="{{ old('employee_number') }}" required="" placeholder="">
-        @if ($errors->has('employee_number'))
-            <span class="help-block">
-                <strong>{{ $errors->first('employee_number') }}</strong>
             </span>
         @endif
     </div>
@@ -188,21 +204,6 @@
         @endif
     </div>
 
-     <div class="form-group col-xs-11{{ $errors->has('department_id') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="department_id">Employee Department</label>
-        <select class="form-control" id="employee_status" name="department_id" value="{{ old('department_id') }}">
-            @foreach($departments as $department)
-             {{--<option value="{{$department->all}}" {{ old('user') ? 'selected' : '' }}>{{$department->all()}}</option>--}}
-            <option value="{{$department->id}}" @if (old('department_id', "1") == 1) {{ 'selected' }} @endif>{{$department->name}}</option>
-            @endforeach
-        </select>
-        @if ($errors->has('department_id'))
-            <span class="help-block">
-                <strong>{{ $errors->first('department_id') }}</strong>
-            </span>
-        @endif
-    </div>
-
     <div class="form-group col-xs-11{{ $errors->has('supervisor_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="supervisor_id">Supervisor</label>
         <select class="form-control" id="employee_status" name="supervisor_id" value="{{ old('supervisor_id') }}">
@@ -219,7 +220,7 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('joined_date') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="joined_date">Join Date</label>
+        <label for="joined_date">Date Employee Joined</label>
         <input id="joined_date" type="date" class="form-control" name="joined_date" value="{{ old('joined_date') }}" required>
         @if ($errors->has('joined_date'))
             <span class="help-block">
