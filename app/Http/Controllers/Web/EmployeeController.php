@@ -57,7 +57,7 @@ class EmployeeController extends Controller
             'lastname.required' => 'Please provide employee\'s last name.',
             'date_of_birth.required' => 'Please select employee\'s date of birth.',
             'gender.required' => 'Please select employee\'s gender.',
-            'marital_status.required' => 'Please provide employee\'s marital status.',
+            'marital_status.required' => 'Please select employee\'s marital status.',
             'joined_date.required' => 'Please select the date employee joined the company.',
             'addressline1.required' => 'Please provide employee\'s address.',
             // 'zip_code.required' => 'Please provide zip code.',
