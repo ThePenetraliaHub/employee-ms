@@ -64,7 +64,7 @@ class DepartmentController extends Controller
         return redirect('department')->with('success','Successfully Updated!');
     }
 
-    public function destroy(Departmetn $department)
+    public function destroy(Department $department)
     {
         $department->delete();
         return redirect('department')->with('success','Successfully Deleted!');

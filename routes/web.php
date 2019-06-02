@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::middleware('auth')->group(function () {
+	Route::resource('/employee', 'Web\EmployeeController');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

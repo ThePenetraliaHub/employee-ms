@@ -89,6 +89,18 @@
                 </li>
 
                 <li class="treeview">
+                    <a href="#"><i class="fa fa-circle-o"></i> Employee
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('employee.create') }}"><i class="fa fa-circle-o"></i> Create Employee</a></li>
+                        <li><a href="{{ route('employee.index') }}"><i class="fa fa-circle-o"></i> View Employees</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
                     <a href="#"><i class="fa fa-circle-o"></i> Project
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
