@@ -10,16 +10,6 @@
         @endif
     </div>
 
-    <div class="form-group {{ $errors->has('lastname') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
-        <label for="lastname">Surname</label>
-        <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required="" placeholder="">
-        @if ($errors->has('lastname'))
-        <span class="help-block">
-            <strong>{{ $errors->first('lastname') }}</strong>
-        </span>
-        @endif
-    </div>
-
     <div class="form-group {{ $errors->has('middlename') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="middlename">Middle Name</label>
         <input id="middlename" type="text" class="form-control" name="middlename" value="{{ old('middlename') }}" required="" placeholder="">
@@ -30,11 +20,22 @@
         @endif
     </div>
 
+    <div class="form-group {{ $errors->has('lastname') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
+        <label for="lastname">Last Name</label>
+        <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required="" placeholder="">
+        @if ($errors->has('lastname'))
+        <span class="help-block">
+            <strong>{{ $errors->first('lastname') }}</strong>
+        </span>
+        @endif
+    </div>
+
     <div class="form-group col-xs-11{{ $errors->has('gender') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="gender">Gender</label>
-        <select class="form-control" id="gender" name="gender" value="{{ old('gender') }}">
-        <option value="1" @if (old('gender', "1") == 1) {{ 'selected' }} @endif>Male</option>
-        <option value="0" @if (old('gender') === "0") {{ 'selected' }} @endif>Female</option>
+        <select class="form-control" id="gender" name="gender">
+            <option value="">-- Select Gender --</option>
+            <option value="Male" @if (old('gender') === "Male") {{ 'selected' }} @endif>Male</option>
+            <option value="Female" @if (old('gender') === "Female") {{ 'selected' }} @endif>Female</option>
         </select>
         @if ($errors->has('gender'))
         <span class="help-block">
