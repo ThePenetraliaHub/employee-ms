@@ -16,6 +16,9 @@ class CreatePayGradesTable extends Migration
         Schema::create('pay_grades', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("title");
+            $table->string("currency");
+            $table->string("min_salary");
+            $table->string("max_salary");
             $table->timestamps();
         });
     }

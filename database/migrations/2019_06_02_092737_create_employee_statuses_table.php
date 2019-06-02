@@ -16,6 +16,7 @@ class CreateEmployeeStatusesTable extends Migration
         Schema::create('employee_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("title");
+            $table->string("description");
             $table->timestamps();
         });
     }
