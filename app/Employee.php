@@ -62,4 +62,19 @@ class Employee extends Model
     {
         return $this->hasMany('App\Employee', "supervisor_id");
     }
+
+    public function job_title()
+    {
+        return $this->belongsTo('App\JobTitle');
+    }
+
+    public function pay_grade()
+    {
+        return $this->belongsTo('App\PayGrade');
+    }
+
+    public function employee_status()
+    {
+        return $this->belongsTo('App\EmployeeStatus');
+    }
 }
