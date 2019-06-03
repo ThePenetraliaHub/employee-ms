@@ -41,9 +41,9 @@
 
                                                 <td>
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('department.show' , $employee_status->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee_status.show' , $employee_status->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employee_statusId="{{ $employee_status->id }}">Delete</a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeStatusId="{{ $employee_status->id }}">Delete</a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -103,11 +103,11 @@
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var employee_status_id = button.data('employee_statusId') // Extract info from data-* attributes
-                console.log("employee_status id: "+employee_status_id);
+                var employeeStatusId = button.data('employeestatusid') // Extract info from data-* attributes
+                console.log("employee_status id: "+employeeStatusId);
 
                 var modal = $(this)
-                $('#delete-form').attr('action', "employee_status/"+dept_id);
+                $('#delete-form').attr('action', "employee_status/"+employeeStatusId);
             })
         
         });

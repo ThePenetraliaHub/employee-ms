@@ -44,7 +44,7 @@
                                                     <div class="btn-group">
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('job_title.show' , $job_title->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-deptId="{{ $job_title->id }}">Delete</a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-jobTitleId="{{ $job_title->id }}">Delete</a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -77,7 +77,7 @@
                                     {{csrf_field()}} 
                                     {{method_field('DELETE')}} 
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" id="deptId" name="_method" value="DELETE" >
+                                        <input type="hidden" class="form-control" id="jobTitleId" name="_method" value="DELETE" >
                                     </div>
                                     
                                     <h4 class="text-center">Are you sure you want to delete this data?</h4>
@@ -104,11 +104,11 @@
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var dept_id = button.data('deptid') // Extract info from data-* attributes
-                console.log("Dept Id: "+dept_id);
+                var job_title_id = button.data('jobtitleid') // Extract info from data-* attributes
+                console.log("Job id: "+job_title_id);
 
                 var modal = $(this)
-                $('#delete-form').attr('action', "department/"+dept_id);
+                $('#delete-form').attr('action', "job_title/"+job_title_id);
             })
             
         });
