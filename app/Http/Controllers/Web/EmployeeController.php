@@ -30,6 +30,7 @@ class EmployeeController extends Controller
         $pay_grades = PayGrade::all();
         $employment_statuses = EmployeeStatus::all();
         $job_titles = JobTitle::all();
+
         return view('pages.admin.employees.create' , compact('departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
     }
 
@@ -52,8 +53,9 @@ class EmployeeController extends Controller
             'office_phone' => 'required',
             'private_email' => 'required|unique:employees,private_email',
             'office_email' => 'unique:employees,office_email',
-            'job_title' => 'required',
-            'employee_status' => 'required'
+            'job_title_id' => 'required',
+            'pay_grade_id' => 'required',
+            'employee_status_id' => 'required'
         ];
 
         $customMessages = [
@@ -77,8 +79,9 @@ class EmployeeController extends Controller
             'private_email.unique' => 'employee\'s private email address already exist.',
             // 'office_email.required' => 'Please provide employee\'s office email address.',
             'office_email.unique' => 'employee\'s office email address already exist.',
-            'job_title.required' => 'Please select the date employee\'s job title.',
-            'employee_status.required' => 'Please provide employee\'s status.',
+            'job_title_id.required' => 'Please select the employee\'s job title.',
+            'pay_grade_id.required' => 'Please select the employee\'s pay grade.',
+            'employee_status_id.required' => 'Please select employee\'s employment status.',
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -86,42 +89,29 @@ class EmployeeController extends Controller
         Employee::create($request->all());
 
         return redirect('employee')->with('success','Successfully created!');
-
-      
     }
 
-    public function show($id)
+    public function show(Employee $employee)
     {
-        //
-        $employee = Employee::findOrFail($id);
-
-        return view('pages.admin.employees.edit', ['employee' => $employee]);
+        return view('pages.admin.employees.edit', compact('employee'));
     }
 
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        //
-        $employee = Employee::findOrFail($id);
-
-        return view('pages.admin.employees.edit', ['employee' => $employee]);
+        return view('pages.admin.employees.edit', compact('employee'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee)
     {
-        //
-        $employee = Institution::findOrFail($id);
-
         $employee->name = $request->input('name');
         $employee->save();
 
         return redirect('employees/'.$id);
     }
 
-
      public function destroy(Employee $employee)
     {
         $employee->delete();
         return redirect('employee')->with('success','Successfully Deleted!');
     }
-
 }
