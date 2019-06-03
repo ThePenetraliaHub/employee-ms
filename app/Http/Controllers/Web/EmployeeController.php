@@ -91,30 +91,23 @@ class EmployeeController extends Controller
         return redirect('employee')->with('success','Successfully created!');
     }
 
-    public function show($id)
+    public function show(Employee $employee)
     {
-        $employee = Employee::findOrFail($id);
-
         return view('pages.admin.employees.edit', compact('employee'));
     }
 
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        $employee = Employee::findOrFail($id);
-
         return view('pages.admin.employees.edit', compact('employee'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee)
     {
-        $employee = Institution::findOrFail($id);
-
         $employee->name = $request->input('name');
         $employee->save();
 
         return redirect('employees/'.$id);
     }
-
 
      public function destroy(Employee $employee)
     {
