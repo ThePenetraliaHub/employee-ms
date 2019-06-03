@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
 
             $table->integer("supervisor_id")->unsigned();
             $table->integer("department_id")->unsigned();
-            $table->integer("pay_grade_id")->unsigned();
+            $table->integer("pay_grade_id")->unsigned()->nullable();
             $table->integer("employee_status_id")->unsigned();
             $table->integer("job_title_id")->unsigned();
 

@@ -102,8 +102,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Add Job Title</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> View Job Titles</a></li>
+                                <li><a href="{{ route('job_title.create') }}"><i class="fa fa-circle-o"></i> Add Job Title</a></li>
+                                <li><a href="{{ route('job_title.index') }}"><i class="fa fa-circle-o"></i> View Job Titles</a></li>
                             </ul>
                         </li>
 
@@ -126,8 +126,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Add Emp. Status</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> View Emp. Statuses</a></li>
+                                <li><a href="{{ route('employee_status.create') }}"><i class="fa fa-circle-o"></i> Add Emp. Status</a></li>
+                                <li><a href="{{ route('employee_status.index') }}"><i class="fa fa-circle-o"></i> View Emp. Statuses</a></li>
                             </ul>
                         </li>
                     </ul>
