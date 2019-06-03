@@ -89,29 +89,24 @@ class EmployeeController extends Controller
         Employee::create($request->all());
 
         return redirect('employee')->with('success','Successfully created!');
-
-      
     }
 
     public function show($id)
     {
-        //
         $employee = Employee::findOrFail($id);
 
-        return view('pages.admin.employees.edit', ['employee' => $employee]);
+        return view('pages.admin.employees.edit', compact('employee'));
     }
 
     public function edit($id)
     {
-        //
         $employee = Employee::findOrFail($id);
 
-        return view('pages.admin.employees.edit', ['employee' => $employee]);
+        return view('pages.admin.employees.edit', compact('employee'));
     }
 
     public function update(Request $request, $id)
     {
-        //
         $employee = Institution::findOrFail($id);
 
         $employee->name = $request->input('name');
@@ -126,5 +121,4 @@ class EmployeeController extends Controller
         $employee->delete();
         return redirect('employee')->with('success','Successfully Deleted!');
     }
-
 }
