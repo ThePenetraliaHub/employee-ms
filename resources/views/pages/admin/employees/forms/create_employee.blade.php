@@ -194,6 +194,7 @@
         <label for="pay_grade_id">Employee Pay Grade</label>
         <select class="form-control" id="pay_grade_id" name="pay_grade_id">
             <option value="">-- Select Employee Pay Grade --</option>
+             <option value="Grade 1">Grade 1</option>   <!-- for testing sake -->
             @foreach($pay_grades as $pay_grade)
                 <option value="{{ $pay_grade->id }}" @if (old('pay_grade_id') == $pay_grade->id) {{ 'selected' }} @endif>{{$pay_grade->title}}</option>
             @endforeach
@@ -210,7 +211,7 @@
         <select class="form-control" id="employee_status_id" name="employee_status_id" value="{{ old('employee_status_id') }}">
             <option value="">-- Select Employee Status --</option>
             @foreach($employment_statuses as $employment_status)
-                <option value="{{ $employment_status->id }}" @if (old('employee_status_id') == $employment_status->id) {{ 'selected' }} @endif>{{$employment_status->title}}</option>
+                <option value="{{ $employment_status->id }}" @if (old('employee_status_id') == $employment_status->id) {{ 'selected' }} @endif> {{$employment_status->title}}</option>
             @endforeach
         </select>
         @if ($errors->has('employee_status_id'))
@@ -224,6 +225,7 @@
         <label for="supervisor_id">Supervisor</label>
         <select class="form-control" id="supervisor_id" name="supervisor_id">
             <option value="">-- Select Employee Status --</option>
+            <option value="Admin">Admin</option> <!-- for testing sake -->
             @foreach($employees as $employee)
                 <option value="{{$employee->id}}" @if (old('supervisor_id', "1") == 1) {{ 'selected' }} @endif>{{$employee->firstname . ' ' . $employee->middlename . ' ' . $employee->lastname}}</option>
             @endforeach

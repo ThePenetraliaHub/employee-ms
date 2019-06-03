@@ -42,6 +42,10 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/job_title', 'Web\JobTitleController');
 });
 
+Route::middleware('auth')->group(function () {
+	Route::resource('/pay_grade', 'Web\PayGradeController');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

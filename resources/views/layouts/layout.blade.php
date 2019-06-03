@@ -114,8 +114,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Add Pay Grade</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> View Pay Grades</a></li>
+                                <li><a href="{{ route('pay_grade.create') }}"><i class="fa fa-circle-o"></i> Add Pay Grade</a></li>
+                                <li><a href="{{ route('pay_grade.index') }}"><i class="fa fa-circle-o"></i> View Pay Grades</a></li>
                             </ul>
                         </li>
 
