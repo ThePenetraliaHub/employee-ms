@@ -38,8 +38,8 @@ class CreateEmployeesTable extends Migration
             $table->string("office_phone");
             $table->string("private_email");
             $table->string("office_email");
-            $table->string("job_title");
-            $table->string("employee_status");
+            // $table->string("job_title");
+            // $table->string("employee_status");
 
             $table->foreign('supervisor_id')
               ->references('id')->on('employees')

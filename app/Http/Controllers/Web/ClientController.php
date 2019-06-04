@@ -42,7 +42,7 @@ class ClientController extends Controller
             'address.required' => 'Please provide the client\'s address.',
             'contact_number.required' => 'Please provide the client\'s Contact Number.',
             'contact_email.required' => 'Please provide the client\'s contact email.',
-            'company_url.required' => 'Please provide an active client\'s web address.',
+            'company_url.active_url' => 'Please provide an active client\'s web address.',
             'first_contact_date.required' => 'Please provide the client\'s first contacted date.'
         ];
 
@@ -94,7 +94,11 @@ class ClientController extends Controller
 
     public function destroy(Client $client)
     {
+         if($client->projects->count() > 0){
+            return redirect('client')->with('warning','client could not be deleted!, projects are currently attached to this client.');
+        }else{
         $client->delete();
         return redirect('client')->with('success','Successfully Deleted!');
+    }
     }
 }

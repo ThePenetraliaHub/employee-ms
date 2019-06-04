@@ -225,7 +225,7 @@
         <label for="supervisor_id">Supervisor</label>
         <select class="form-control" id="supervisor_id" name="supervisor_id">
             <option value="">-- Select Employee Status --</option>
-            <option value="Admin">Admin</option> <!-- for testing sake -->
+            <option value="2">Admin</option> <!-- for testing sake -->
             @foreach($employees as $employee)
                 <option value="{{$employee->id}}" @if (old('supervisor_id', "1") == 1) {{ 'selected' }} @endif>{{$employee->firstname . ' ' . $employee->middlename . ' ' . $employee->lastname}}</option>
             @endforeach

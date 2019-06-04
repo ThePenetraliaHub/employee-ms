@@ -48,7 +48,11 @@
                                             <td>{{ $client->contact_number}} </td>
                                             <td>{{ $client->contact_email}}</td>
                                             <td>{{ $client->company_url}} </td>
-                                            <td>{{ $client->status}}</td>
+                                            <td>
+                                                @if($client->status == 1){{ 'Active' }} 
+                                                @else {{ 'Inactive' }}
+                                                @endif
+                                            </td>
                                             <td>{{ $client->first_contact_date}} </td>
                                             <td> 
                                                 <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('client.show' ,$client->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>

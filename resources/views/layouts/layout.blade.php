@@ -152,8 +152,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Create Project</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> View Projects</a></li>
+                        <li><a href="{{ route('projects.create') }}"><i class="fa fa-circle-o"></i> Create Project</a></li>
+                        <li><a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> View Projects</a></li>
                     </ul>
                 </li>
               </ul>

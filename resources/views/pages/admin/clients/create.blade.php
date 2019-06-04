@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-primary">
-                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('client.store') }}" {{-- data-parsley-validate="" --}}>
+                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('client.store') }}" >
                         @csrf
                         <div class="box-body">
                             @include('pages.admin.clients.forms.create_client')

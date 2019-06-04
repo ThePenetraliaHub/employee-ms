@@ -51,7 +51,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('company_url') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="company_url">Client Website if Available</label>
-        <input id="company_url" type="text" class="form-control" name="company_url" value="{{ old('company_url') }}" data-parsley-type="url">
+        <input id="company_url" type="text" class="form-control" name="company_url" value="{{ old('company_url') }}" >
         @if ($errors->has('company_url'))
             <span class="help-block">
                 <strong>{{ $errors->first('company_url') }}</strong>
