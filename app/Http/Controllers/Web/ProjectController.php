@@ -7,6 +7,8 @@ use App\Client;
 use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
+
 class ProjectController extends Controller
 {
     public function index()
@@ -43,7 +45,15 @@ class ProjectController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessages);
-         Project::create($request->all());
+
+        if ($request->start_date > $request->end_date) {
+            throw ValidationException::withMessages([
+                'start_date' => "Project start date cannot be higher than end date.",
+                'end_date' => "Project start date cannot be higher than end date.",
+            ]);
+        }
+
+        Project::create($request->all());
 
         return redirect('projects')->with('success','Successfully created!');
 
