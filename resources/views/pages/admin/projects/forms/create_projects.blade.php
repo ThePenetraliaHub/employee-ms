@@ -1,6 +1,7 @@
 <div class="form-row">
     <div class="form-group col-xs-11{{ $errors->has('name') ? ' has-error' : '' }} mb-0 mt-3">
-        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required placeholder="Project/Task name here..">
+        <label for="name">Project/Task name</label>
+        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
         @if ($errors->has('name'))
             <span class="help-block">
                 <strong>{{ $errors->first('name') }}</strong>
@@ -9,7 +10,7 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('details') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="details"></label>
+        <label for="details">Project/Task details</label>
         <textarea rows="3" id="details" type="textarea" class="form-control" name="details" required placeholder="Project/Task details here....">{{ old('details') }}</textarea>
         @if ($errors->has('details'))
             <span class="help-block">
@@ -19,11 +20,11 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('client_id') ? ' has-error' : '' }} mb-0 mt-3">
+        <label for="client_id">Project Client</label>
         <select class="form-control" id="client_id" name="client_id">
             <option value="">-- Select Client --</option>
             @foreach($clients as $client)
             <option value="{{$client->id}}" @if (old('client_id') == $client->id) {{ 'selected' }} @endif>{{$client->name}}</option>
-
             @endforeach
         </select>
         @if ($errors->has('client_id'))
@@ -34,8 +35,8 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('start_date') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="start_date">Start Date</label>
-        <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date') }}" required placeholder="Project/Task start date here..">
+        <label for="start_date">Project Start Date</label>
+        <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date') }}" required>
         @if ($errors->has('start_date'))
             <span class="help-block">
                 <strong>{{ $errors->first('start_date') }}</strong>
@@ -44,8 +45,8 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('end_date') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="end_date">End Date</label>
-        <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date') }}" required placeholder="Project/Task end date here..">
+        <label for="end_date">Project End Date</label>
+        <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date') }}" required>
         @if ($errors->has('end_date'))
             <span class="help-block">
                 <strong>{{ $errors->first('end_date') }}</strong>
@@ -54,6 +55,7 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('status') ? ' has-error' : '' }} mb-0 mt-3">
+        <label for="status">Project Status</label>
         <select class="form-control" id="status" name="status">
             <option value="">-- Select Project Status --</option>
             <option value="Initiated" @if (old('status') === "Initiated") {{ 'selected' }} @endif>Initiated</option>
@@ -67,6 +69,5 @@
             </span>
         @endif
     </div>
-
 </div>
    
