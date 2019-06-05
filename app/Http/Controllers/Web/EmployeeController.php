@@ -107,17 +107,13 @@ class EmployeeController extends Controller
         $rules = [
             //'supervisor_id' => 'required',
             'department_id' => 'required',
-            $rules = [
-                'NIN' => [
-                    'required',
-                    Rule::unique('employees')->ignore($employee->NIN, "NIN"),
-                ],
+            'NIN' => [
+                'required',
+                Rule::unique('employees')->ignore($employee->NIN, "NIN"),
             ],
-            $rules = [
-                'employee_number' => [
-                    'required',
-                    Rule::unique('employees')->ignore($employee->employee_number, "employee_number"),
-                ],
+            'employee_number' => [
+                'required',
+                Rule::unique('employees')->ignore($employee->employee_number, "employee_number"),
             ],
             'firstname' => 'required',
             'lastname' => 'required',
@@ -127,24 +123,18 @@ class EmployeeController extends Controller
             'joined_date' => 'required',
             'addressline1' => 'required',
             // 'zip_code' => 'required',
-            $rules = [
-                'home_phone' => [
-                    'required',
-                    Rule::unique('employees')->ignore($employee->home_phone, "home_phone"),
-                ],
+            'home_phone' => [
+                'required',
+                Rule::unique('employees')->ignore($employee->home_phone, "home_phone"),
             ],
             //'office_phone' => 'required',
-            $rules = [
-                'private_email' => [
-                    'required',
-                    Rule::unique('employees')->ignore($employee->private_email, "private_email"),
-                ],
+            'private_email' => [
+                'required',
+                Rule::unique('employees')->ignore($employee->private_email, "private_email"),
             ],
-            $rules = [
-                'office_email' => [
-                    'required',
-                    Rule::unique('employees')->ignore($employee->office_email, "office_email"),
-                ],
+            'office_email' => [
+                'required',
+                Rule::unique('employees')->ignore($employee->office_email, "office_email"),
             ],
             'job_title_id' => 'required',
             'pay_grade_id' => 'required',
