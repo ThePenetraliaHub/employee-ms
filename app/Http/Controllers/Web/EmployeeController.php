@@ -8,6 +8,7 @@ use App\PayGrade;
 use App\EmployeeStatus;
 use App\JobTitle;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
@@ -39,7 +40,7 @@ class EmployeeController extends Controller
        $rules = [
             //'supervisor_id' => 'required',
             'department_id' => 'required',
-            'NIN' => 'required',
+            'NIN' => 'required|unique:employees,NIN',
             'employee_number' => 'required|unique:employees,employee_number',
             'firstname' => 'required',
             'lastname' => 'required',
@@ -49,8 +50,8 @@ class EmployeeController extends Controller
             'joined_date' => 'required',
             'addressline1' => 'required',
             // 'zip_code' => 'required',
-            'home_phone' => 'required',
-            'office_phone' => 'required',
+            'home_phone' => 'required|unique:employees,home_phone',
+            //'office_phone' => 'required',
             'private_email' => 'required|unique:employees,private_email',
             'office_email' => 'unique:employees,office_email',
             'job_title_id' => 'required',
@@ -59,7 +60,7 @@ class EmployeeController extends Controller
         ];
 
         $customMessages = [
-           // 'supervisor_id.required' =>'Please select employee\'s supervisor.',
+            // 'supervisor_id.required' =>'Please select employee\'s supervisor.',
             'department_id.required' =>'Please select employee\'s department.',
             'NIN.required' => 'Please provide employee\'s NIN.',
             'NIN.unique' => 'NIN already exist.',
@@ -74,7 +75,7 @@ class EmployeeController extends Controller
             'addressline1.required' => 'Please provide employee\'s address.',
             // 'zip_code.required' => 'Please provide zip code.',
             'home_phone.required' => 'Please provide employee\'s home phone number.',
-            'office_phone.required' => 'Please provide employee\'s office phone number.',
+            //'office_phone.required' => 'Please provide employee\'s office phone number.',
             'private_email.required' => 'Please provide employee\'s private email address.',
             'private_email.unique' => 'employee\'s private email address already exist.',
             // 'office_email.required' => 'Please provide employee\'s office email address.',
@@ -103,10 +104,84 @@ class EmployeeController extends Controller
 
     public function update(Request $request, Employee $employee)
     {
-        $employee->name = $request->input('name');
-        $employee->save();
+        $rules = [
+            //'supervisor_id' => 'required',
+            'department_id' => 'required',
+            $rules = [
+                'NIN' => [
+                    'required',
+                    Rule::unique('employees')->ignore($employee->NIN, "NIN"),
+                ],
+            ],
+            $rules = [
+                'employee_number' => [
+                    'required',
+                    Rule::unique('employees')->ignore($employee->employee_number, "employee_number"),
+                ],
+            ],
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'date_of_birth' => 'required',
+            'gender' => 'required',
+            'marital_status' => 'required',
+            'joined_date' => 'required',
+            'addressline1' => 'required',
+            // 'zip_code' => 'required',
+            $rules = [
+                'home_phone' => [
+                    'required',
+                    Rule::unique('employees')->ignore($employee->home_phone, "home_phone"),
+                ],
+            ],
+            //'office_phone' => 'required',
+            $rules = [
+                'private_email' => [
+                    'required',
+                    Rule::unique('employees')->ignore($employee->private_email, "private_email"),
+                ],
+            ],
+            $rules = [
+                'office_email' => [
+                    'required',
+                    Rule::unique('employees')->ignore($employee->office_email, "office_email"),
+                ],
+            ],
+            'job_title_id' => 'required',
+            'pay_grade_id' => 'required',
+            'employee_status_id' => 'required'
+        ];
 
-        return redirect('employees/'.$id);
+        $customMessages = [
+            // 'supervisor_id.required' =>'Please select employee\'s supervisor.',
+            'department_id.required' =>'Please select employee\'s department.',
+            'NIN.required' => 'Please provide employee\'s NIN.',
+            'NIN.unique' => 'NIN already exist.',
+            'employee_number.required' =>'Please provide the employee\'s number.',
+            'employee_number.unique' =>'Employee\'s number already exist.',
+            'firstname.required' => 'Please provide employee\'s first name.',
+            'lastname.required' => 'Please provide employee\'s last name.',
+            'date_of_birth.required' => 'Please select employee\'s date of birth.',
+            'gender.required' => 'Please select employee\'s gender.',
+            'marital_status.required' => 'Please select employee\'s marital status.',
+            'joined_date.required' => 'Please select the date employee joined the company.',
+            'addressline1.required' => 'Please provide employee\'s address.',
+            // 'zip_code.required' => 'Please provide zip code.',
+            'home_phone.required' => 'Please provide employee\'s home phone number.',
+            //'office_phone.required' => 'Please provide employee\'s office phone number.',
+            'private_email.required' => 'Please provide employee\'s private email address.',
+            'private_email.unique' => 'Employee\'s private email address already exist.',
+            // 'office_email.required' => 'Please provide employee\'s office email address.',
+            'office_email.unique' => 'Employee\'s office email address already exist.',
+            'job_title_id.required' => 'Please select the employee\'s job title.',
+            'pay_grade_id.required' => 'Please select the employee\'s pay grade.',
+            'employee_status_id.required' => 'Please select employee\'s employment status.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $employee->update($request->all());
+
+        return redirect('employee')->with('success','Successfully Updated!');
     }
 
      public function destroy(Employee $employee)
