@@ -44,10 +44,14 @@
                                             <td>{{ $employee->firstname . ' '.$employee->middlename . ' '. $employee->lastname}}</td>
                                             <td>{{ $employee->employee_number}} </td>
                                             <td>{{ $employee->department->name}}</td> 
-                                            <td>{{ $employee->job_title}} </td>
-                                            <td>{{ $employee->supervisor->firstname . ' '.$employee->supervisor->middlename . ' '.$employee-> supervisor->lastname}}</td>
+                                            <td>{{ $employee->job_title->title}} </td>
+                                            <td>
+                                                @if($employee->supervisor)
+                                                    {{ $employee->supervisor->firstname . ' '.$employee->supervisor->middlename . ' '.$employee->supervisor->lastname}}
+                                                @endif
+                                            </td>
                                             <td>{{ $employee->joined_date}} </td>
-                                            <td>{{ $employee->employee_status}}</td>
+                                            <td>{{ $employee->employee_status->title}}</td>
                                             <td> 
                                                 <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee.show' ,$employee->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
                                                 <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeId="{{ $employee->id }}">Delete</a>

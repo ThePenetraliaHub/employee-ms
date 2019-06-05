@@ -16,7 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer("supervisor_id")->unsigned();
+            $table->integer("supervisor_id")->unsigned()->nullable();
             $table->integer("department_id")->unsigned();
             $table->integer("pay_grade_id")->unsigned();
             $table->integer("employee_status_id")->unsigned();

@@ -93,12 +93,12 @@ class EmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        return view('pages.admin.employees.edit', compact('employee'));
-    }
-
-    public function edit(Employee $employee)
-    {
-        return view('pages.admin.employees.edit', compact('employee'));
+        $departments = Department::all();
+        $employees = Employee::all();
+        $pay_grades = PayGrade::all();
+        $employment_statuses = EmployeeStatus::all();
+        $job_titles = JobTitle::all();
+        return view('pages.admin.employees.edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
     }
 
     public function update(Request $request, Employee $employee)
