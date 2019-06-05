@@ -30,11 +30,11 @@ class JobTitleController extends Controller
         ];
 
         $customMessages = [
-            'code.required' => 'Please provide the Job Title\'s code.',
-            'code.unique' => 'Job Title already exist.',
-            'title.required' => 'Please provide Job Title.',
-            'title.unique' => 'Employee Job Title already exist.',
-            'description.required' => 'Please provide Job Description.'
+            'code.required' => 'Please provide the job title\'s code.',
+            'code.unique' => 'job title already exist.',
+            'title.required' => 'Please provide job title.',
+            'title.unique' => 'Employee job title already exist.',
+            'description.required' => 'Please provide job description.'
         ];
 
         $this->validate($request, $rules, $customMessages); 
@@ -61,11 +61,11 @@ class JobTitleController extends Controller
         ];
 
         $customMessages = [
-            'code.required' => 'Please provide the Job Title\'s code.',
-            'code.unique' => 'Job Code already exist.',
-            'title.required' => 'Please provide Job Title.',
-            'title.unique' => 'Employee Job Title already exist.',
-            'description.required' => 'Please provide Job Description.'
+            'code.required' => 'Please provide the job title\'s code.',
+            'code.unique' => 'job Code already exist.',
+            'title.required' => 'Please provide job title.',
+            'title.unique' => 'Employee job title already exist.',
+            'description.required' => 'Please provide job description.'
         ];
 
         $this->validate($request, $rules, $customMessages); 
@@ -78,7 +78,7 @@ class JobTitleController extends Controller
     public function destroy(JobTitle $job_title)
     {
         if($job_title->employees->count() > 0){
-            return redirect('job_title')->with('warning','Job Title could not be deleted!, employees currently attached to this job tilte.');
+            return redirect('job_title')->with('warning','Job title could not be deleted!, employees currently attached to this job tilte.');
         }else{
             $job_title->delete();
             return redirect('job_title')->with('success','Successfully Deleted!');

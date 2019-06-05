@@ -6,6 +6,7 @@ use App\PayGrade;
 use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class PayGradeController extends Controller
 {
@@ -43,6 +44,13 @@ class PayGradeController extends Controller
 
         $this->validate($request, $rules, $customMessages); 
 
+        if ($request->min_salary > $request->max_salary) {
+            throw ValidationException::withMessages([
+                'min_salary' => "Minimum salary cannot be greater than maximun salary.",
+                'max_salary' => "Minimum salary cannot be greater than maximun salary.",
+            ]);
+        }
+
         PayGrade::create($request->all());
 
         return redirect('pay_grade')->with('success','Successfully created!');
@@ -77,7 +85,15 @@ class PayGradeController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessages);  
-         $pay_grade->update($request->all());
+        
+        if ($request->min_salary > $request->max_salary) {
+            throw ValidationException::withMessages([
+                'min_salary' => "Minimum salary cannot be greater than maximun salary.",
+                'max_salary' => "Minimum salary cannot be greater than maximun salary.",
+            ]);
+        }
+        
+        $pay_grade->update($request->all());
 
         return redirect('pay_grade')->with('success','Successfully Updated!');
         

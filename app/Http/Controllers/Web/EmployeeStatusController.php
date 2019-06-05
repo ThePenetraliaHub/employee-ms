@@ -25,13 +25,13 @@ class EmployeeStatusController extends Controller
     {
        $rules = [
             'title' => 'required|unique:employee_statuses,title',
-            //'description' => 'required'
+            'description' => 'required'
         ];
 
         $customMessages = [
-            'title.required' => 'Please provide the Employee\'s status.',
-            'title.unique' => 'Employee Status already exist.',
-            //'description.required' => 'Please provide the Employee\'s status description.'
+            'title.required' => 'Please provide the employee status.',
+            'title.unique' => 'Employee status already exist.',
+            'description.required' => 'Please provide the employee status description.'
         ];
 
         $this->validate($request, $rules, $customMessages); 
@@ -50,14 +50,17 @@ class EmployeeStatusController extends Controller
     public function update(Request $request, EmployeeStatus $employee_status){
 
          $rules = [
-            'title' => 'required|unique:employee_statuses,title',
-            //'description' => 'required'
+            'title' => [
+                'required',
+                Rule::unique('employee_statuses')->ignore($employee_status->title, "title"),
+            ],
+            'description' => 'required'
         ];
 
         $customMessages = [
-            'title.required' => 'Please provide the Employee\'s status.',
+            'title.required' => 'Please provide the employee status.',
             'title.unique' => 'Employee Status already exist.',
-            //'description.required' => 'Please provide the Employee\'s status description.'
+            'description.required' => 'Please provide the employee status description.'
         ];
 
             $this->validate($request, $rules, $customMessages); 
@@ -71,7 +74,7 @@ class EmployeeStatusController extends Controller
     public function destroy(EmployeeStatus $employee_status)
     {
         if($employee_status->employees->count() > 0){
-            return redirect('employee_status')->with('warning',' This Employee Status could not be deleted!, employees are currently attached to this status.');
+            return redirect('employee_status')->with('warning',' This Employee status could not be deleted!, employees are currently attached to this status.');
         }else{
             $employee_status->delete();
             return redirect('employee_status')->with('success','Successfully Deleted!');

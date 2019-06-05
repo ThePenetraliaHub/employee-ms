@@ -27,7 +27,7 @@
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Job Code</th>
-                                            <th scope="col">Title</th>
+                                            <th scope="col">Job Title</th>
                                             <th scope="col">Job Description</th>
                                             <th scope="col">Action</th>
                                         </tr>
