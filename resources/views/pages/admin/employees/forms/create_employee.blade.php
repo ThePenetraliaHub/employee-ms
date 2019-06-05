@@ -194,7 +194,6 @@
         <label for="pay_grade_id">Employee Pay Grade</label>
         <select class="form-control" id="pay_grade_id" name="pay_grade_id">
             <option value="">-- Select Employee Pay Grade --</option>
-             <option value="Grade 1">Grade 1</option>   <!-- for testing sake -->
             @foreach($pay_grades as $pay_grade)
                 <option value="{{ $pay_grade->id }}" @if (old('pay_grade_id') == $pay_grade->id) {{ 'selected' }} @endif>{{$pay_grade->title}}</option>
             @endforeach
@@ -225,7 +224,6 @@
         <label for="supervisor_id">Supervisor</label>
         <select class="form-control" id="supervisor_id" name="supervisor_id">
             <option value="">-- Select Employee Status --</option>
-            <option value="2">Admin</option> <!-- for testing sake -->
             @foreach($employees as $employee)
                 <option value="{{$employee->id}}" @if (old('supervisor_id', "1") == 1) {{ 'selected' }} @endif>{{$employee->firstname . ' ' . $employee->middlename . ' ' . $employee->lastname}}</option>
             @endforeach

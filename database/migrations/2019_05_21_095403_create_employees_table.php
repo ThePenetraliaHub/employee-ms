@@ -18,28 +18,27 @@ class CreateEmployeesTable extends Migration
 
             $table->integer("supervisor_id")->unsigned();
             $table->integer("department_id")->unsigned();
-            $table->integer("pay_grade_id")->unsigned()->nullable();
+            $table->integer("pay_grade_id")->unsigned();
             $table->integer("employee_status_id")->unsigned();
             $table->integer("job_title_id")->unsigned();
 
             $table->string("NIN");
             $table->string("employee_number");
             $table->string("firstname");
-            $table->string("middlename");
+            $table->string("middlename")->nullable();
             $table->string("lastname");
             $table->date("date_of_birth");
             $table->string("gender");
             $table->string("marital_status");
             $table->date("joined_date");
             $table->string("addressline1");
-            $table->string("addressline2");
-            $table->string("zip_code");
+            $table->string("addressline2")->nullable();
+            $table->string("zip_code")->nullable();
             $table->string("home_phone");
-            $table->string("office_phone");
+            $table->string("office_phone")->nullable();
             $table->string("private_email");
-            $table->string("office_email");
-            // $table->string("job_title");
-            // $table->string("employee_status");
+            $table->string("office_email")->nullable();
+
 
             $table->foreign('supervisor_id')
               ->references('id')->on('employees')

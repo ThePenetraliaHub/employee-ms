@@ -20,7 +20,7 @@ class CreateEducationTable extends Migration
             $table->string("institution");
             $table->date("start_date");
             $table->date("end_date");
-            $table->string("document_url");
+            $table->string("document_url")->nullable();
             $table->timestamps();
 
             $table->foreign('employee_id')
