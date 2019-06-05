@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Create Projects/Tasks
+        <h1>Create Project/Task
             <small>Create</small>
         </h1>
     </section>
