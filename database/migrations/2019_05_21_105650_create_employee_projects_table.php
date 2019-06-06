@@ -17,6 +17,8 @@ class CreateEmployeeProjectsTable extends Migration
             $table->increments('id');
             $table->integer("project_id")->unsigned();
             $table->integer("employee_id")->unsigned();
+            $table->string("details");
+            $table->string("document")->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')
@@ -25,11 +27,6 @@ class CreateEmployeeProjectsTable extends Migration
               ->onUpdate('cascade');
 
             $table->foreign('employee_id')
-              ->references('id')->on('employees')
-              ->onDelete('cascade')
-              ->onUpdate('cascade');
-
-            $table->foreign('supervisor_id')
               ->references('id')->on('employees')
               ->onDelete('cascade')
               ->onUpdate('cascade');
