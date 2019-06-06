@@ -17,7 +17,6 @@ class CreateEmployeeProjectsTable extends Migration
             $table->increments('id');
             $table->integer("project_id")->unsigned();
             $table->integer("employee_id")->unsigned();
-            $table->integer("supervisor_id")->unsigned();
             $table->timestamps();
 
             $table->foreign('project_id')
