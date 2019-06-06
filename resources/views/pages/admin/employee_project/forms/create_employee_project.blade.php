@@ -1,6 +1,6 @@
 <div class="form-row">
 
-    <div class="form-group col-xs-11{{ $errors->has('client_id') ? ' has-error' : '' }} mb-0 mt-3">
+    <div class="form-group col-xs-11{{ $errors->has('employee_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="client_id">Employee</label>
         <select class="form-control" id="client_id" name="client_id">
             <option value="">-- Select Client --</option>
@@ -15,7 +15,7 @@
         @endif
     </div>
 
-    <div class="form-group col-xs-11{{ $errors->has('client_id') ? ' has-error' : '' }} mb-0 mt-3">
+    <div class="form-group col-xs-11{{ $errors->has('project_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="client_id">Project</label>
         <select class="form-control" id="client_id" name="client_id">
             <option value="">-- Select Client --</option>
@@ -53,6 +53,20 @@
             <span class="help-block">
                 <strong>{{ $errors->first('status') }}</strong>
             </span>
+        @endif
+    </div>
+
+    <div class="form-group">
+        <label for="document">Project Document</label><br>
+        <label class="btn btn-default" id="upload-image">
+            <i class="fa fa-image{{ $errors->has('document') ? 'has-error' : '' }}"></i><span class="ml-3">Select Document</span><input name="document" id='select' type="file" style="display: none;" name="image">
+        </label><br>
+        <p  id="message-wrong" class="text-danger display-none" role="alert"></p>
+        <p  id="message-correct" class="text-success display-none" role="alert"></p>
+        @if ($errors->has('document'))
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $errors->first('document') }}</strong>
+          </span>
         @endif
     </div>
 </div>

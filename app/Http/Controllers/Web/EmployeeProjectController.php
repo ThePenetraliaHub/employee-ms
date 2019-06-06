@@ -18,7 +18,9 @@ class EmployeeProjectController extends Controller
 
     public function create()
     {
-        return view('pages.admin.employee_project.create');
+        $projects = Project::all();
+        $employees = Employee::all();
+        return view('pages.admin.employee_project.create', compact("projects", "employees"));
     }
 
     public function store(Request $request)
