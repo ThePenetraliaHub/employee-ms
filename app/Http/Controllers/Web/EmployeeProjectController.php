@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use App\Department;
+use App\Http\Controllers\Controller;
+use Session; 
+use Illuminate\Validation\Rule;
 
 class EmployeeProjectController extends Controller
 {
@@ -14,7 +18,7 @@ class EmployeeProjectController extends Controller
 
     public function create()
     {
-        return view('pages.admin.departments.create');
+        return view('pages.admin.employee_project.create');
     }
 
     public function store(Request $request)
@@ -37,7 +41,7 @@ class EmployeeProjectController extends Controller
 
     public function show(Department $department)
     {
-        return view('pages.admin.departments.edit', ['department' => $department]);
+        return view('pages.admin.employee_project.edit', ['department' => $department]);
     }
 
     public function update(Request $request, Department $department){

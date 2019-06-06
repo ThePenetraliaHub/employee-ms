@@ -19,35 +19,15 @@ Route::get('/', function () {
 	}
 });
 
-
-Route::middleware('auth')->group(function () {
-	Route::resource('/department', 'Web\DepartmentController');
-});
-
-
-Route::middleware('auth')->group(function () {
-	Route::resource('/client', 'Web\ClientController');
-});
-
-
-Route::middleware('auth')->group(function () {
-	Route::resource('/employee', 'Web\EmployeeController');
-});
-
-Route::middleware('auth')->group(function () {
-	Route::resource('/employee_status', 'Web\EmployeeStatusController');
-});
-
-Route::middleware('auth')->group(function () {
-	Route::resource('/job_title', 'Web\JobTitleController');
-});
-
-Route::middleware('auth')->group(function () {
-	Route::resource('/pay_grade', 'Web\PayGradeController');
-});
-
 Route::middleware('auth')->group(function () {
 	Route::resource('/projects', 'Web\ProjectController');
+	Route::resource('/pay-grade', 'Web\PayGradeController');
+	Route::resource('/job-title', 'Web\JobTitleController');
+	Route::resource('/employee-status', 'Web\EmployeeStatusController');
+	Route::resource('/department', 'Web\DepartmentController');
+	Route::resource('/client', 'Web\ClientController');
+	Route::resource('/employee', 'Web\EmployeeController');
+	Route::resource('/employee-project', 'Web\EmployeeProjectController');
 });
 
 Auth::routes();

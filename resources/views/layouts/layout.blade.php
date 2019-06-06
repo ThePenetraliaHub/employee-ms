@@ -102,8 +102,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{ route('job_title.create') }}"><i class="fa fa-circle-o"></i> Add Job Title</a></li>
-                                <li><a href="{{ route('job_title.index') }}"><i class="fa fa-circle-o"></i> View Job Titles</a></li>
+                                <li><a href="{{ route('job-title.create') }}"><i class="fa fa-circle-o"></i> Add Job Title</a></li>
+                                <li><a href="{{ route('job-title.index') }}"><i class="fa fa-circle-o"></i> View Job Titles</a></li>
                             </ul>
                         </li>
 
@@ -114,8 +114,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{ route('pay_grade.create') }}"><i class="fa fa-circle-o"></i> Add Pay Grade</a></li>
-                                <li><a href="{{ route('pay_grade.index') }}"><i class="fa fa-circle-o"></i> View Pay Grades</a></li>
+                                <li><a href="{{ route('pay-grade.create') }}"><i class="fa fa-circle-o"></i> Add Pay Grade</a></li>
+                                <li><a href="{{ route('pay-grade.index') }}"><i class="fa fa-circle-o"></i> View Pay Grades</a></li>
                             </ul>
                         </li>
 
@@ -126,8 +126,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{ route('employee_status.create') }}"><i class="fa fa-circle-o"></i> Add Emp. Status</a></li>
-                                <li><a href="{{ route('employee_status.index') }}"><i class="fa fa-circle-o"></i> View Emp. Statuses</a></li>
+                                <li><a href="{{ route('employee-status.create') }}"><i class="fa fa-circle-o"></i> Add Emp. Status</a></li>
+                                <li><a href="{{ route('employee-status.index') }}"><i class="fa fa-circle-o"></i> View Emp. Statuses</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -153,7 +153,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> Manage Projects</a></li>
-                        <li><a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> Employee Project</a></li>
+                        <li><a href="{{ route('employee-project.create') }}"><i class="fa fa-circle-o"></i> Employee Project</a></li>
                     </ul>
                 </li>
               </ul>
