@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Department;
+use App\Project;
+use App\Employee;
 use App\Http\Controllers\Controller;
 use Session; 
 use Illuminate\Validation\Rule;
