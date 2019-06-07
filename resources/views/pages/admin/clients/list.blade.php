@@ -64,10 +64,13 @@
                                </table>
                             </div>
                         @else
-                            <div class="col text-center"> 
-                                <h3 class="text-muted">No clients yet!</h3>
+                            <div class="empty-state text-center my-3">
+                                @include('icons.empty')
+                                <p class="text-muted my-3">
+                                    No clients yet!
+                                </p>
                                 <a href="{{ route("client.create") }}">
-                                    <button class="btn btn-primary ">Add Client</button>
+                                    Add Client
                                 </a>
                             </div>
                         @endif

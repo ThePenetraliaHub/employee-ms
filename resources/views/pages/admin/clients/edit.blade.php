@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-primary">
-                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('client.update', $client->id) }}"{{-- data-parsley-validate="" --}}>
+                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('client.update', $client->id) }}">
                         {{csrf_field()}}  
                         {{method_field('PUT')}}  
                         <div class="box-body">

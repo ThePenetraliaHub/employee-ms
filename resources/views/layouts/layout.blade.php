@@ -67,14 +67,14 @@
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route('job-title.index') }}"><i class="fa fa-circle-o"></i> Job Titles</a></li>
 
-                                    <li><a href="{{ route('pay-grade.index') }}"><i class="fa fa-circle-o"></i> View Pay Grades</a></li>
+                                    <li><a href="{{ route('pay-grade.index') }}"><i class="fa fa-circle-o"></i> Pay Grades</a></li>
 
                                     <li><a href="{{ route('employee-status.index') }}"><i class="fa fa-circle-o"></i> Employment Statuses</a></li>
                                 </ul>
                             </li>
 
                             <li class="treeview">
-                                    <li><a href="{{ route('employee.index') }}"><i class="fa fa-circle-o"></i> View Employees</a></li>
+                                <li><a href="{{ route('employee.index') }}"><i class="fa fa-circle-o"></i> Employees</a></li>
                             </li>
 
                             <li class="treeview">
@@ -108,10 +108,6 @@
 
         <div class="content-wrapper">
             @yield('content')
-
-            <div class="px-4">
-                @include('partials._actionMessage')
-            </div>
         </div>
 
         @include("partials.footer")

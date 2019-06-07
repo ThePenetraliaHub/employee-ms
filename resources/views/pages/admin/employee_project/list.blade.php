@@ -60,10 +60,13 @@
                                 </table>
                             </div>
                         @else
-                            <div class="col text-center"> 
-                                <h3 class="text-muted">No Projects yet!</h3>
+                            <div class="empty-state text-center my-3">
+                                @include('icons.empty')
+                                <p class="text-muted my-3">
+                                    No Projects yet!
+                                </p>
                                 <a href="{{ route("projects.create") }}">
-                                    <button class="btn btn-primary ">Add Project</button>
+                                    Add Project
                                 </a>
                             </div>
                         @endif

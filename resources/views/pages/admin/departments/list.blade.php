@@ -49,10 +49,13 @@
                                 </table>
                             </div>
                         @else
-                            <div class="col text-center"> 
-                                <h3 class="text-muted">No departments yet!</h3>
+                            <div class="empty-state text-center my-3">
+                                @include('icons.empty')
+                                <p class="text-muted my-3">
+                                    No departments yet!
+                                </p>
                                 <a href="{{ route("department.create") }}">
-                                    <button class="btn btn-primary ">Add Department</button>
+                                    Add Department
                                 </a>
                             </div>
                         @endif
@@ -106,19 +109,6 @@
                 var modal = $(this)
                 $('#delete-form').attr('action', "department/"+dept_id);
             })
-            // Delete script
-           // $('.delete-btn').on('click', function(){
-           //      $('deleteModal').modal('show');
-           //      $tr = $(this).closest('tr');
-
-           //      var data = $tr.children('td').map(function(){
-           //          return $(this).text();
-           //      }).get();
-
-           //      console.log(data);
-           //      $('#id').val(data[0]);
-           //      $('#deleteFormId').attr('action','/department/'+data[0]);
-           //  });
         });
     </script>
 @endsection

@@ -53,10 +53,13 @@
                                 </table>
                             </div>
                         @else
-                            <div class="col text-center"> 
-                                <h3 class="text-muted">No Job Titles yet!</h3>
+                            <div class="empty-state text-center my-3">
+                                @include('icons.empty')
+                                <p class="text-muted my-3">
+                                    No Job Titles yet!
+                                </p>
                                 <a href="{{ route("job_title.create") }}">
-                                    <button class="btn btn-primary ">Add Job Title</button>
+                                    Add Job Title
                                 </a>
                             </div>
                         @endif

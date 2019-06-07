@@ -55,10 +55,13 @@
                                 </table>
                             </div>
                         @else
-                            <div class="col text-center"> 
-                                <h3 class="text-muted">No Pay Grades yet!</h3>
+                            <div class="empty-state text-center my-3">
+                                @include('icons.empty')
+                                <p class="text-muted my-3">
+                                    No Pay Grades yet
+                                </p>
                                 <a href="{{ route("pay-grade.create") }}">
-                                    <button class="btn btn-primary ">Add Pay Grades</button>
+                                    Add Pay Grades
                                 </a>
                             </div>
                         @endif

@@ -52,10 +52,13 @@
                                 </table>
                             </div>
                         @else
-                            <div class="col text-center"> 
-                                <h3 class="text-muted">No Employee Statuses yet!</h3>
+                            <div class="empty-state text-center my-3">
+                                @include('icons.empty')
+                                <p class="text-muted my-3">
+                                    No Employee Statuses yet!
+                                </p>
                                 <a href="{{ route("employee-status.create") }}">
-                                    <button class="btn btn-primary ">Add Employee Status</button>
+                                    Add Employee Status
                                 </a>
                             </div>
                         @endif
