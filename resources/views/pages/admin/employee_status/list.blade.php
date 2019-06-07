@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($employee_statuses) > 0)
-                    <a href="{{ route('employee_status.create') }}" class="btn btn-primary btn-sm my-2">
+                    <a href="{{ route('employee-status.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new Employee Status
                     </a>
@@ -41,7 +41,7 @@
 
                                                 <td>
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee_status.show' , $employee_status->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee-status.show' , $employee_status->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
 
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeStatusId="{{ $employee_status->id }}">Delete</a>
                                                     </div> 
@@ -54,7 +54,7 @@
                         @else
                             <div class="col text-center"> 
                                 <h3 class="text-muted">No Employee Statuses yet!</h3>
-                                <a href="{{ route("employee_status.create") }}">
+                                <a href="{{ route("employee-status.create") }}">
                                     <button class="btn btn-primary ">Add Employee Status</button>
                                 </a>
                             </div>
@@ -104,10 +104,9 @@
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var employeeStatusId = button.data('employeestatusid') // Extract info from data-* attributes
-                console.log("employee_status id: "+employeeStatusId);
 
                 var modal = $(this)
-                $('#delete-form').attr('action', "employee_status/"+employeeStatusId);
+                $('#delete-form').attr('action', "employee-status/"+employeeStatusId);
             })
         
         });

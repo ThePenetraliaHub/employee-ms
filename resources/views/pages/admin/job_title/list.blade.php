@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($job_titles) > 0)
-                    <a href="{{ route('job_title.create') }}" class="btn btn-primary btn-sm my-2">
+                    <a href="{{ route('job-title.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new Job Title
                     </a>
@@ -42,7 +42,7 @@
                                                 <td>{{ $job_title->description}}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('job_title.show' , $job_title->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('job-title.show' , $job_title->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
 
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-jobTitleId="{{ $job_title->id }}">Delete</a>
                                                     </div> 
@@ -108,7 +108,7 @@
                 console.log("Job id: "+job_title_id);
 
                 var modal = $(this)
-                $('#delete-form').attr('action', "job_title/"+job_title_id);
+                $('#delete-form').attr('action', "job-title/"+job_title_id);
             })
             
         });

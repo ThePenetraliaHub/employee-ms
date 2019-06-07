@@ -53,7 +53,7 @@ class PayGradeController extends Controller
 
         PayGrade::create($request->all());
 
-        return redirect('pay_grade')->with('success','Successfully created!');
+        return redirect('pay-grade')->with('success','Successfully created!');
     }
 
    
@@ -95,17 +95,17 @@ class PayGradeController extends Controller
         
         $pay_grade->update($request->all());
 
-        return redirect('pay_grade')->with('success','Successfully Updated!');
+        return redirect('pay-grade')->with('success','Successfully Updated!');
         
     }
 
     public function destroy(PayGrade $pay_grade)
     {
         if($pay_grade->employees->count() > 0){
-            return redirect('pay_grade')->with('warning','Pay grade could not be deleted!, employees currently attached to this pay grade.');
+            return redirect('pay-grade')->with('warning','Pay grade could not be deleted!, employees currently attached to this pay grade.');
         }else{
             $pay_grade->delete();
-            return redirect('pay_grade')->with('success','Successfully Deleted!');
+            return redirect('pay-grade')->with('success','Successfully Deleted!');
         }
     }
 }

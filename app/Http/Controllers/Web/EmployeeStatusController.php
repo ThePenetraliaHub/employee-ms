@@ -38,7 +38,7 @@ class EmployeeStatusController extends Controller
 
         EmployeeStatus::create($request->all());
 
-        return redirect('employee_status')->with('success','Successfully created!');
+        return redirect('employee-status')->with('success','Successfully created!');
     }
 
    
@@ -67,17 +67,17 @@ class EmployeeStatusController extends Controller
 
             $employee_status->update($request->all());
 
-        return redirect('employee_status')->with('success','Successfully Updated!');
+        return redirect('employee-status')->with('success','Successfully Updated!');
 
     }
 
     public function destroy(EmployeeStatus $employee_status)
     {
         if($employee_status->employees->count() > 0){
-            return redirect('employee_status')->with('warning',' This Employee status could not be deleted!, employees are currently attached to this status.');
+            return redirect('employee-status')->with('warning',' This Employee status could not be deleted!, employees are currently attached to this status.');
         }else{
             $employee_status->delete();
-            return redirect('employee_status')->with('success','Successfully Deleted!');
+            return redirect('employee-status')->with('success','Successfully Deleted!');
         }
     }
 }

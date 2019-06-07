@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($pay_grades) > 0)
-                    <a href="{{ route('pay_grade.create') }}" class="btn btn-primary btn-sm my-2">
+                    <a href="{{ route('pay-grade.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new Pay Grade
                     </a>
@@ -44,7 +44,7 @@
                                                 <td>{{ $pay_grade->max_salary}}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('pay_grade.show' , $pay_grade->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('pay-grade.show' , $pay_grade->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
 
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-payGradeId="{{ $pay_grade->id }}">Delete</a>
                                                     </div> 
@@ -57,7 +57,7 @@
                         @else
                             <div class="col text-center"> 
                                 <h3 class="text-muted">No Pay Grades yet!</h3>
-                                <a href="{{ route("pay_grade.create") }}">
+                                <a href="{{ route("pay-grade.create") }}">
                                     <button class="btn btn-primary ">Add Pay Grades</button>
                                 </a>
                             </div>
@@ -110,7 +110,7 @@
                 console.log("pay grade id: "+payGradeId);
 
                 var modal = $(this)
-                $('#delete-form').attr('action', "pay_grade/"+payGradeId);
+                $('#delete-form').attr('action', "pay-grade/"+payGradeId);
             })
             
         });
