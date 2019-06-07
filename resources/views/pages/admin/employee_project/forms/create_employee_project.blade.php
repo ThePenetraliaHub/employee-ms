@@ -3,7 +3,7 @@
     <div class="form-group col-xs-11{{ $errors->has('employee_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="employee_id">Employee</label>
         <select class="form-control" id="employee_id" name="employee_id">
-            <option value="">-- Select Employee --</option>
+            <option value=""></option>
             @foreach($employees as $employee)
                 <option value="{{$employee->id}}" @if (old('employee_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->firstname}} {{$employee->middlename}} {{$employee->lastname}}</option>
             @endforeach
@@ -18,7 +18,7 @@
     <div class="form-group col-xs-11{{ $errors->has('project_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="project_id">Project</label>
         <select class="form-control" id="project_id" name="project_id">
-            <option value="">-- Select Project --</option>
+            <option value=""></option>
             @foreach($projects as $project)
             <option value="{{$project->id}}" @if (old('project_id') == $project->id) {{ 'selected' }} @endif>{{$project->name}}</option>
             @endforeach
@@ -43,7 +43,7 @@
     <div class="form-group col-xs-11{{ $errors->has('status') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="status">Project Status</label>
         <select class="form-control" id="status" name="status">
-            <option value="">-- Select Project Status --</option>
+            <option value=""></option>
             <option value="Initiated" @if (old('status', "Initiated") === "Initiated") {{ 'selected' }} @endif>Initiated</option>
             <option value="Completed" @if (old('status') === "Completed") {{ 'selected' }} @endif>Completed</option>
             <option value="Pending" @if (old('status') === "Pending") {{ 'selected' }} @endif>Pending</option>
@@ -70,4 +70,12 @@
         @endif
     </div>
 </div>
-   
+   @section('script')
+    <script>
+        $(document).ready(function () {
+            $('#employee_id').select2();
+            $('#project_id').select2();
+            $('#status').select2();
+        });
+    </script>
+@endsection
