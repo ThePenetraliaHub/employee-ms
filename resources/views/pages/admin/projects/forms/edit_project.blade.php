@@ -71,4 +71,11 @@
     </div>
 
 </div>
-   
+    @section('script')
+    <script>
+        $(document).ready(function () {
+            $('#status').select2();
+            $('#client_id').select2();
+        });
+    </script>
+@endsection

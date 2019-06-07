@@ -47,19 +47,19 @@
                             <li><a href="{{ route("home") }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
 
                             <li class="treeview">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Administrators</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Administrators</a></li>
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('department.index') }}"><i class="fa fa-circle-o"></i> Departments</a></li>
+                                <li><a href="{{ route('department.index') }}"><i class="glyphicon glyphicon-th-list"></i>Departments</a></li>
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('client.index') }}"><i class="fa fa-circle-o"></i> Clients</a></li>
+                                <li><a href="{{ route('client.index') }}"><i class="fa fa-handshake-o"></i> Clients</a></li>
                             </li>
 
                             <li class="treeview">
-                                <a href="#"><i class="fa fa-circle-o"></i> Job Setup
+                                <a href="#"><i class="fa fa-suitcase"></i> Job Setup
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
@@ -74,11 +74,11 @@
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('employee.index') }}"><i class="fa fa-circle-o"></i> Employees</a></li>
+                                <li><a href="{{ route('employee.index') }}"><i class="fa fa-users"></i> Employees</a></li>
                             </li>
 
                             <li class="treeview">
-                                <a href="#"><i class="fa fa-circle-o"></i> Project Setup
+                                <a href="#"><i class="fa fa-tasks"></i> Project Setup
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
@@ -99,7 +99,7 @@
                             href="{{ route('logout') }}" 
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         >
-                            <i class="fa fa-circle-o"></i> <span>Logout</span>
+                            <i class="glyphicon glyphicon-log-out"></i><span>Logout</span>
                         </a>
                     </li>
                 </ul>
