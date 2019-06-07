@@ -15,7 +15,7 @@
     <div class="login-area" style="background:#fff; height:100vh; overflow:hidden;">
         <div class="login-header">
             <a href="{{ route("home") }}" class="logo">
-                <img src="{{ asset("img/logo.png") }}" height="60" alt="">
+                <img src="{{ asset("img/penetralia.png") }}" height="60" alt="">
             </a>
         </div>
 
