@@ -55,19 +55,14 @@ class ProjectController extends Controller
 
         Project::create($request->all());
 
-        return redirect('projects')->with('success','Successfully created!');
-
+        notify()->success("Successfully created!","Success","bottomRight");
+        return redirect('projects');
     }
 
     public function show(Project $project)
     {
         $clients = Client::all();
         return view('pages.admin.projects.edit', compact('project','clients'));
-    }
-
-    public function edit($id)
-    {
-        //
     }
 
     public function update(Request $request, Project $project)
@@ -93,15 +88,16 @@ class ProjectController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
-          $project->update($request->all());
+        $project->update($request->all());
 
-        return redirect('projects')->with('success','Successfully Updated!');
+        notify()->success("Successfully Updated!","Success","bottomRight");
+        return redirect('projects');
     }
 
     public function destroy(Project $project)
     {
-     
-            $project->delete();
-            return redirect('projects')->with('success','Successfully Deleted!');
+        $project->delete();
+        notify()->success("Successfully Deleted!","Success","bottomRight");
+        return redirect('projects');
     }
 }

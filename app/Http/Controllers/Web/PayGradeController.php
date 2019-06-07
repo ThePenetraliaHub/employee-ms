@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class PayGradeController extends Controller
 {
-       public function index()
+    public function index()
     {
         $pay_grades = PayGrade::orderBy('id', 'desc')->paginate(10);
         return view('pages.admin.pay_grade.list', compact('pay_grades'));
@@ -53,7 +53,8 @@ class PayGradeController extends Controller
 
         PayGrade::create($request->all());
 
-        return redirect('pay-grade')->with('success','Successfully created!');
+        notify()->success("Successfully created!","Success","bottomRight");
+        return redirect('pay-grade');
     }
 
    
@@ -61,8 +62,6 @@ class PayGradeController extends Controller
     {
         return view('pages.admin.pay_grade.edit',compact('pay_grade'));
     }
-
-
 
     public function update(Request $request, PayGrade $pay_grade){
 
@@ -95,17 +94,20 @@ class PayGradeController extends Controller
         
         $pay_grade->update($request->all());
 
-        return redirect('pay-grade')->with('success','Successfully Updated!');
-        
+        notify()->success("Successfully Updated!","Success","bottomRight");
+        return redirect('pay-grade');        
     }
 
     public function destroy(PayGrade $pay_grade)
     {
         if($pay_grade->employees->count() > 0){
-            return redirect('pay-grade')->with('warning','Pay grade could not be deleted!, employees currently attached to this pay grade.');
+            notify()->warning("Pay grade could not be deleted!, employees currently attached to this pay grade.","Warning","bottomRight");
+            return redirect('pay-grade');
         }else{
             $pay_grade->delete();
-            return redirect('pay-grade')->with('success','Successfully Deleted!');
+
+            notify()->success("Successfully Deleted!","Success","bottomRight");
+            return redirect('pay-grade');
         }
     }
 }

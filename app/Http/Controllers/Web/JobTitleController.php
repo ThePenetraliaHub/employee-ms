@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 
 class JobTitleController extends Controller
 {
-      public function index()
+    public function index()
     {
         $job_titles = JobTitle::orderBy('id', 'desc')->paginate(10);
         return view('pages.admin.job_title.list', compact('job_titles'));
@@ -41,7 +41,8 @@ class JobTitleController extends Controller
 
         JobTitle::create($request->all());
 
-        return redirect('job-title')->with('success','Successfully created!');
+        notify()->success("Successfully created!","Success","bottomRight");
+        return redirect('job-title');
     }
 
    
@@ -49,8 +50,6 @@ class JobTitleController extends Controller
     {
         return view('pages.admin.job_title.edit',compact('job_title'));
     }
-
-
 
     public function update(Request $request, JobTitle $job_title){
 
@@ -71,17 +70,19 @@ class JobTitleController extends Controller
         $this->validate($request, $rules, $customMessages); 
          $job_title->update($request->all());
 
-        return redirect('job-title')->with('success','Successfully Updated!');
-        
+         notify()->success("Successfully Updated!","Success","bottomRight");
+        return redirect('job-title');
     }
 
     public function destroy(JobTitle $job_title)
     {
         if($job_title->employees->count() > 0){
-            return redirect('job-title')->with('warning','Job title could not be deleted!, employees currently attached to this job tilte.');
+            notify()->warning("Job title could not be deleted!, employees currently attached to this job tilte.","Warning","bottomRight");
+            return redirect('job-title');
         }else{
             $job_title->delete();
-            return redirect('job-title')->with('success','Successfully Deleted!');
+            notify()->success("Successfully Deleted!","Success","bottomRight");
+            return redirect('job-title');
         }
     }
 }

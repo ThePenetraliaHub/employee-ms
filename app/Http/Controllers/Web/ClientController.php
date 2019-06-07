@@ -50,7 +50,8 @@ class ClientController extends Controller
 
         Client::create($request->all());
 
-        return redirect('client')->with('success','Successfully created!');
+        notify()->success("Successfully created!","Success","bottomRight");
+        return redirect('client');
     }
 
     public function show(Client $client)
@@ -89,16 +90,20 @@ class ClientController extends Controller
 
         $client->update($request->all()); 
 
-        return redirect('client')->with('success','Successfully Updated!');
+        notify()->success("Successfully Updated!","Success","bottomRight");
+        return redirect('client');
     }
 
     public function destroy(Client $client)
     {
          if($client->projects->count() > 0){
-            return redirect('client')->with('warning','client could not be deleted!, projects are currently attached to this client.');
+            notify()->warning("Client could not be deleted!, projects are currently attached to this client.","Warning","bottomRight");
+            return redirect('client');
         }else{
         $client->delete();
-        return redirect('client')->with('success','Successfully Deleted!');
+
+        notify()->success("Successfully Deleted!","Success","bottomRight");
+        return redirect('client');
     }
     }
 }

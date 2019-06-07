@@ -36,7 +36,9 @@ class DepartmentController extends Controller
 
         Department::create($request->all());
 
-        return redirect('department')->with('success','Successfully created!');
+        notify()->success("Successfully created!","Success","bottomRight");
+
+        return redirect('department');
     }
 
     public function show(Department $department)
@@ -61,16 +63,21 @@ class DepartmentController extends Controller
 
         $department->update($request->all());
 
-        return redirect('department')->with('success','Successfully Updated!');
+        notify()->success("Successfully Updated!","Success","bottomRight");
+        return redirect('department');
     }
 
     public function destroy(Department $department)
     {
         if($department->employees->count() > 0){
-            return redirect('department')->with('warning','Department could not be deleted!, employees currently belong in the department.');
+
+            notify()->warning("Department could not be deleted!, employees currently belong in the department.","Warning","bottomRight");
+            return redirect('department');
         }else{
             $department->delete();
-            return redirect('department')->with('success','Successfully Deleted!');
+
+            notify()->success("Successfully Deleted!","Success","bottomRight");
+            return redirect('department');
         }
     }
 }

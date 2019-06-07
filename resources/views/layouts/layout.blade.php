@@ -118,6 +118,7 @@
     </div>
 
     @include('partials.scripts')
+    @include('vendor.lara-izitoast.toast')
     @yield('script')
 </body>
 </html>

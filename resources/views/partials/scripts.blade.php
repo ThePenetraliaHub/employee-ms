@@ -7,6 +7,7 @@
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/icheck.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="{{ asset('js/iziToast.js') }}"></script>
 
 <script type="text/javascript">
 	$(document).ready (function(){

@@ -38,7 +38,8 @@ class EmployeeStatusController extends Controller
 
         EmployeeStatus::create($request->all());
 
-        return redirect('employee-status')->with('success','Successfully created!');
+        notify()->success("Successfully created!","Success","bottomRight");
+        return redirect('employee-status');
     }
 
    
@@ -63,21 +64,23 @@ class EmployeeStatusController extends Controller
             'description.required' => 'Please provide the employee status description.'
         ];
 
-            $this->validate($request, $rules, $customMessages); 
+        $this->validate($request, $rules, $customMessages); 
 
-            $employee_status->update($request->all());
+        $employee_status->update($request->all());
 
-        return redirect('employee-status')->with('success','Successfully Updated!');
-
+        notify()->success("Successfully Updated!","Success","bottomRight");
+        return redirect('employee-status');
     }
 
     public function destroy(EmployeeStatus $employee_status)
     {
         if($employee_status->employees->count() > 0){
-            return redirect('employee-status')->with('warning',' This Employee status could not be deleted!, employees are currently attached to this status.');
+            notify()->warning("This Employee status could not be deleted!, employees are currently attached to this status.","Warning","bottomRight");
+            return redirect('employee-status');
         }else{
             $employee_status->delete();
-            return redirect('employee-status')->with('success','Successfully Deleted!');
+            notify()->success("Successfully Deleted!","Success","bottomRight");
+            return redirect('employee-status');
         }
     }
 }

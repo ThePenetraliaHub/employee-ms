@@ -89,7 +89,8 @@ class EmployeeController extends Controller
 
         Employee::create($request->all());
 
-        return redirect('employee')->with('success','Successfully created!');
+        notify()->success("Successfully created!","Success","bottomRight");
+        return redirect('employee');
     }
 
     public function show(Employee $employee)
@@ -99,6 +100,7 @@ class EmployeeController extends Controller
         $pay_grades = PayGrade::all();
         $employment_statuses = EmployeeStatus::all();
         $job_titles = JobTitle::all();
+
         return view('pages.admin.employees.edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
     }
 
@@ -171,12 +173,15 @@ class EmployeeController extends Controller
 
         $employee->update($request->all());
 
-        return redirect('employee')->with('success','Successfully Updated!');
+        notify()->success("Successfully Updated!","Success","bottomRight");
+        return redirect('employee');
     }
 
      public function destroy(Employee $employee)
     {
         $employee->delete();
-        return redirect('employee')->with('success','Successfully Deleted!');
+
+        notify()->success("Successfully Deleted!","Success","bottomRight");
+        return redirect('employee');
     }
 }

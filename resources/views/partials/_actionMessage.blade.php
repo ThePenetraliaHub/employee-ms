@@ -15,3 +15,9 @@
 		{{Session::get('warning')}}
 	</div>
 @endif
+
+@if (session('status'))
+	<div class="alert alert-success col-sm-6 col-sm-offset-6" id="success-alert" role="alert">
+		{{ session('status') }}
+	</div>
+@endif
