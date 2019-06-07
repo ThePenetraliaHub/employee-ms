@@ -18,6 +18,7 @@
                         </div>
                         <div class="box-footer">
                             <button id="button" type="submit" class="btn btn-success col-xs-2">Create</button>
+                            <a type="button" class="ml-3 btn btn-warning" href="{{route('client.index')}}" > Cancel</a>
                         </div>
                     </form>
                 </div>

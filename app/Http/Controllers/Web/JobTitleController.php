@@ -41,7 +41,7 @@ class JobTitleController extends Controller
 
         JobTitle::create($request->all());
 
-        notify()->success("Successfully created!","Success","bottomRight");
+        notify()->success("Successfully created!","","bottomRight");
         return redirect('job-title');
     }
 
@@ -70,18 +70,18 @@ class JobTitleController extends Controller
         $this->validate($request, $rules, $customMessages); 
          $job_title->update($request->all());
 
-         notify()->success("Successfully Updated!","Success","bottomRight");
+         notify()->success("Successfully Updated!","","bottomRight");
         return redirect('job-title');
     }
 
     public function destroy(JobTitle $job_title)
     {
         if($job_title->employees->count() > 0){
-            notify()->warning("Job title could not be deleted!, employees currently attached to this job tilte.","Warning","bottomRight");
+            notify()->warning("Job title could not be deleted!, employees currently attached to this job tilte.","","bottomRight");
             return redirect('job-title');
         }else{
             $job_title->delete();
-            notify()->success("Successfully Deleted!","Success","bottomRight");
+            notify()->success("Successfully Deleted!","","bottomRight");
             return redirect('job-title');
         }
     }

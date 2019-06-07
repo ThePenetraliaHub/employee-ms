@@ -19,7 +19,7 @@
 						</div>
 						<div class="box-footer">
 							<button id="button" type="submit" class="btn btn-success col-xs-2">Save</button>
-                            <a type="button" class="btn btn-warning" href="{{route('employee-project.index')}}" > Cancel</a> 
+                            <a type="button" class="btn btn-warning ml-3" href="{{route('employee-project.index')}}" > Cancel</a> 
 						</div>
 					</form>
                 </div>

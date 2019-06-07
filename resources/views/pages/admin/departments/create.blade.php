@@ -19,6 +19,7 @@
 						</div>
 						<div class="box-footer">
 							<button id="button" type="submit" class="btn btn-success col-xs-2">Create</button>
+                            <a type="button" class="btn btn-warning ml-3" href="{{route('department.index')}}" > Cancel</a> 
 						</div>
 					</form>
                 </div>

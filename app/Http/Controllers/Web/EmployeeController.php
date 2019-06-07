@@ -89,7 +89,7 @@ class EmployeeController extends Controller
 
         Employee::create($request->all());
 
-        notify()->success("Successfully created!","Success","bottomRight");
+        notify()->success("Successfully created!","","bottomRight");
         return redirect('employee');
     }
 
@@ -173,7 +173,7 @@ class EmployeeController extends Controller
 
         $employee->update($request->all());
 
-        notify()->success("Successfully Updated!","Success","bottomRight");
+        notify()->success("Successfully Updated!","","bottomRight");
         return redirect('employee');
     }
 
@@ -181,7 +181,7 @@ class EmployeeController extends Controller
     {
         $employee->delete();
 
-        notify()->success("Successfully Deleted!","Success","bottomRight");
+        notify()->success("Successfully Deleted!","","bottomRight");
         return redirect('employee');
     }
 }

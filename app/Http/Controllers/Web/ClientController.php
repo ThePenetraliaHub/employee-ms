@@ -50,7 +50,7 @@ class ClientController extends Controller
 
         Client::create($request->all());
 
-        notify()->success("Successfully created!","Success","bottomRight");
+        notify()->success("Successfully created!","","bottomRight");
         return redirect('client');
     }
 
@@ -90,19 +90,19 @@ class ClientController extends Controller
 
         $client->update($request->all()); 
 
-        notify()->success("Successfully Updated!","Success","bottomRight");
+        notify()->success("Successfully Updated!","","bottomRight");
         return redirect('client');
     }
 
     public function destroy(Client $client)
     {
          if($client->projects->count() > 0){
-            notify()->warning("Client could not be deleted!, projects are currently attached to this client.","Warning","bottomRight");
+            notify()->warning("Client could not be deleted!, projects are currently attached to this client.","","bottomRight");
             return redirect('client');
         }else{
         $client->delete();
 
-        notify()->success("Successfully Deleted!","Success","bottomRight");
+        notify()->success("Successfully Deleted!","","bottomRight");
         return redirect('client');
     }
     }

@@ -55,7 +55,7 @@ class ProjectController extends Controller
 
         Project::create($request->all());
 
-        notify()->success("Successfully created!","Success","bottomRight");
+        notify()->success("Successfully created!","","bottomRight");
         return redirect('projects');
     }
 
@@ -90,14 +90,14 @@ class ProjectController extends Controller
 
         $project->update($request->all());
 
-        notify()->success("Successfully Updated!","Success","bottomRight");
+        notify()->success("Successfully Updated!","","bottomRight");
         return redirect('projects');
     }
 
     public function destroy(Project $project)
     {
         $project->delete();
-        notify()->success("Successfully Deleted!","Success","bottomRight");
+        notify()->success("Successfully Deleted!","","bottomRight");
         return redirect('projects');
     }
 }

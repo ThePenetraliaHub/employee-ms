@@ -53,7 +53,7 @@ class PayGradeController extends Controller
 
         PayGrade::create($request->all());
 
-        notify()->success("Successfully created!","Success","bottomRight");
+        notify()->success("Successfully created!","","bottomRight");
         return redirect('pay-grade');
     }
 
@@ -94,7 +94,7 @@ class PayGradeController extends Controller
         
         $pay_grade->update($request->all());
 
-        notify()->success("Successfully Updated!","Success","bottomRight");
+        notify()->success("Successfully Updated!","","bottomRight");
         return redirect('pay-grade');        
     }
 
@@ -106,7 +106,7 @@ class PayGradeController extends Controller
         }else{
             $pay_grade->delete();
 
-            notify()->success("Successfully Deleted!","Success","bottomRight");
+            notify()->success("Successfully Deleted!","","bottomRight");
             return redirect('pay-grade');
         }
     }
