@@ -6,5 +6,6 @@
 <link rel="stylesheet" href="{{ asset('css/skins/skin-blue.css') }}">
 <link rel="stylesheet" href="{{ asset('css/blue.css') }}">
 <link rel="stylesheet" href="{{ asset('css/parsley.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
