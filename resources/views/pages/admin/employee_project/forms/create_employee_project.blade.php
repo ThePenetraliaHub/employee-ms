@@ -2,7 +2,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('employee_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="employee_id">Employee</label>
-        <select class="form-control" id="employee_id" name="employee_id">
+        <select class="form-control " id="employee_id" name="employee_id">
             <option value=""></option>
             @foreach($employees as $employee)
                 <option value="{{$employee->id}}" @if (old('employee_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->firstname}} {{$employee->middlename}} {{$employee->lastname}}</option>
@@ -73,7 +73,10 @@
    @section('script')
     <script>
         $(document).ready(function () {
-            $('#employee_id').select2();
+            $('#employee_id').select2({
+    multiple: true
+
+});
             $('#project_id').select2();
             $('#status').select2();
         });

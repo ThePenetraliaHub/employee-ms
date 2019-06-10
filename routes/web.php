@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
+	Route::resource('/skills', 'Web\SkillController');
 	Route::resource('/projects', 'Web\ProjectController');
 	Route::resource('/pay-grade', 'Web\PayGradeController');
 	Route::resource('/job-title', 'Web\JobTitleController');
