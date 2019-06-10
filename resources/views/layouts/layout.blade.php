@@ -78,7 +78,7 @@
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('skills.create') }}"><i class="fa fa-users"></i> Manage Skills</a></li>
+                                <li><a href="{{ route('skills.index') }}"><i class="fa fa-users"></i> Manage Skills</a></li>
                             </li>
 
                             <li class="treeview">
