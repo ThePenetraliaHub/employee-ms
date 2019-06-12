@@ -15,7 +15,7 @@
     </div>
 
        
-       <div class="form-row">
+    <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('skill_title') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="skill_title">Skills Title</label>
             <input id="skill_title" type="text" class="form-control" name="skill_title" value="{{ old('skill_title',$skill->skill_title) }}" required>
@@ -42,8 +42,6 @@
     <script>
         $(document).ready(function () {
             $('#employee_id').select2();
-
         });
-
     </script>
 @endsection

@@ -113,12 +113,10 @@
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var skillId = button.data('skillid') // Extract info from data-* attributes
-                console.log("employee_status id: "+skillId);
 
                 var modal = $(this)
-                $('#delete-form').attr('action', skillId);
+                $('#delete-form').attr('action', "skills/"+skillId);
             })
-        
         });
     </script>
 @endsection

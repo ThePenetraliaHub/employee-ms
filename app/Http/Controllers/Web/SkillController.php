@@ -81,7 +81,7 @@ class SkillController extends Controller
     public function destroy(Skill $skill)
     {
         $skill->delete();
-            notify()->success("Successfully Deleted!","","bottomRight");
-            return redirect()->route('skills.show', ['id' => $skill->employee_id]);
+        notify()->success("Successfully Deleted!","","bottomRight");
+        return redirect()->route('skills.show', ['id' => $skill->employee_id]);
     }
 }
