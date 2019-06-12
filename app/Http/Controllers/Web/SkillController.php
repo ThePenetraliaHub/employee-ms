@@ -13,8 +13,8 @@ class SkillController extends Controller
 {
     public function index()
      {
-  $employees = Employee::all();
-     return view('pages.admin.skills.find',  compact("employees"));
+        $employees = Employee::all();
+        return view('pages.admin.skills.find',  compact("employees"));
     }
 
     public function create()

@@ -74,9 +74,8 @@
     <script>
         $(document).ready(function () {
             $('#employee_id').select2({
-    multiple: true
-
-});
+  //  multiple: true
+        });
             $('#project_id').select2();
             $('#status').select2();
         });
