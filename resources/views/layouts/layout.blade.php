@@ -51,7 +51,7 @@
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('department.index') }}"><i class="glyphicon glyphicon-th-list"></i>Departments</a></li>
+                                <li><a href="{{ route('department.index') }}"><i class="glyphicon glyphicon-th-list"></i> Departments</a></li>
                             </li>
 
                             <li class="treeview">
@@ -107,7 +107,7 @@
                             href="{{ route('logout') }}" 
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         >
-                            <i class="glyphicon glyphicon-log-out"></i><span>Logout</span>
+                            <i class="glyphicon glyphicon-log-out"></i><span> Logout</span>
                         </a>
                     </li>
                 </ul>
