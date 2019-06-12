@@ -42,7 +42,7 @@ class SkillController extends Controller
         Skill::create($request->all());
 
         notify()->success("Successfully created!","","bottomRight");
-        return redirect()->route('skills.show', ['id' => $request->employee_id]);
+        return redirect()->route('skills.index');
     }
 
     public function show($id)
@@ -54,22 +54,20 @@ class SkillController extends Controller
     public function update(Request $request,Skill $skill)
     {
         $rules = [
-            'skill_title' => [
-                'required',
-                Rule::unique('skills')->ignore($skill->id)
-            ],
+            'skill_title' => 'required',
+            'detail' => 'required'
         ];
 
-          $customMessages = [
+        $customMessages = [
             'skill_title.required' => 'Please provide the skill title.',
-            'skill_title.unique' => 'skills already exist.',
+            'detail.required' => 'Please provide details about the skill.',
         ];
         $this->validate($request, $rules, $customMessages);
 
         $skill->update($request->all());
 
         notify()->success("Successfully Updated!","","bottomRight");
-        return redirect()->route('skills.show', ['id' => $skill->employee_id]);
+        return redirect()->route('skills.index');
     }
 
     public function edit(Skill $skill)
@@ -82,6 +80,6 @@ class SkillController extends Controller
     {
         $skill->delete();
         notify()->success("Successfully Deleted!","","bottomRight");
-        return redirect()->route('skills.show', ['id' => $skill->employee_id]);
+        return redirect()->route('skills.index');
     }
 }

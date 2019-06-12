@@ -15,8 +15,8 @@ class CertificationController extends Controller
 {
     public function index()
     {
-       $employees = Employee::all();
-        return view('pages.admin.certifications.find',  compact("employees"));
+        $certifications = Certification::all();
+        return view('pages.admin.certifications.list',  compact("certifications"));
     }
 
     public function create()
@@ -27,58 +27,41 @@ class CertificationController extends Controller
 
     public function store(Request $request)
     {
-        
-    $rules = [
+        $rules = [
             'employee_id' => 'required',
-            'certification' => 'required|unique:certifications,certification',
+            'certification' => 'required',
             'institution' => 'required',
             'granted_on' => 'required',
             'valid_on' => 'required',
-            'document_url' => 'required|file|image|mimes:jpeg,png|max:300'
-
-
+            'document_url' => 'required|file|image|mimes:jpeg,png|max:1000'
         ];
-
-
 
         $customMessages = [
             'employee_id.required' => 'Please select employee',
             'certification.required' => 'Please provide the certification title.',
-            'certification.unique' => 'certification title already exist.',
             'institution.required' => 'Please provide the awarding institution.',
             'granted_on.required' => 'Please provide the awarded date.',
             'valid_on.required' => 'Please provide Validation date.',
-           'document_url.required' => 'Please upload a document.',
+            'document_url.required' => 'Please upload the certificate.',
+            'document_url.image' => 'Certfication attachment must be an image file.',
         ];
 
         $this->validate($request, $rules, $customMessages); 
+    
+        if($request->document_url){
+            $path = $request->file('document_url')->store('certifications', 'public');
+            $request->document_url = $path;
+        }
 
-       // cache the file
-    $file = $request->file('document_url');
+        Certification::create($request->all());
 
-    // generate a new filename. getClientOriginalExtension() for the file extension
-    $filename = 'certifications-doc-' . time() . '.' . $file->getClientOriginalExtension();
+        notify()->success("Successfully created!","","bottomRight");
 
-    // save to storage/app/photos as the new $filename
-    $path = $file->storeAs('public/certifications', $filename);
-    //dd($path);
-
-    $certification = new Certification();
-    $certification->employee_id = $request->employee_id;
-    $certification->certification = $request->certification;
-    $certification->institution = $request->institution;
-    $certification->granted_on = $request->granted_on;
-    $certification->valid_on = $request->valid_on;
-    $certification->document_url = $filename ;
-    $certification->save();
-
-    notify()->success("Successfully created!","","bottomRight");
-    return redirect()->route('certification.show', ['id' => $request->employee_id]);
+        return redirect()->route('certification.index');
     }
 
      public function show($id)
     {
-
         $certifications = Certification::where('employee_id', $id)->get();
         return view('pages.admin.certifications.list', compact('certifications'));
     }
@@ -91,8 +74,6 @@ class CertificationController extends Controller
 
     public function update(Request $request, $id)
     {
-
-
         $rules = [
             //'employee_id' => 'required',
             'certification' => [
@@ -103,11 +84,7 @@ class CertificationController extends Controller
             'granted_on' => 'required',
             'valid_on' => 'required',
             'document_url' => 'sometimes|file|image|mimes:jpeg,png|max:300'
-
-
         ];
-
-
 
         $customMessages = [
             'employee_id.required' => 'Please select employee',
@@ -116,7 +93,7 @@ class CertificationController extends Controller
             'institution.required' => 'Please provide the awarding institution.',
             'granted_on.required' => 'Please provide the awarded date.',
             'valid_on.required' => 'Please provide Validation date.',
-           'document_url.required' => 'Please upload a document.',
+            'document_url.required' => 'Please upload a document.',
         ];
 
         $this->validate($request, $rules, $customMessages); 
@@ -128,7 +105,6 @@ class CertificationController extends Controller
         $certification->valid_on = $request->valid_on;
 
         if($request->hasFile('document_url')){
-      
          // cache the new file
          $file = $request->file('document_url');
          // generate a new filename. getClientOriginalExtension() for the file extension
