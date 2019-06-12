@@ -35,17 +35,17 @@
         @endif
     </div>
 
-    <div class="form-group {{ $errors->has('firstname') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
-        <label for="firstname">First Name</label>
-        <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required="" placeholder="">
-        @if ($errors->has('firstname'))
+    <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required="" placeholder="">
+        @if ($errors->has('name'))
         <span class="help-block">
-            <strong>{{ $errors->first('firstname') }}</strong>
+            <strong>{{ $errors->first('name') }}</strong>
         </span>
         @endif
     </div>
 
-    <div class="form-group {{ $errors->has('middlename') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
+    {{-- <div class="form-group {{ $errors->has('middlename') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="middlename">Middle Name</label>
         <input id="middlename" type="text" class="form-control" name="middlename" value="{{ old('middlename') }}" required="" placeholder="">
         @if ($errors->has('middlename'))
@@ -63,7 +63,7 @@
             <strong>{{ $errors->first('lastname') }}</strong>
         </span>
         @endif
-    </div>
+    </div> --}}
 
     <div class="form-group col-xs-11{{ $errors->has('gender') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="gender">Gender</label>

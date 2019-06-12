@@ -24,9 +24,10 @@ class CreateEmployeesTable extends Migration
 
             $table->string("NIN");
             $table->string("employee_number");
-            $table->string("firstname");
-            $table->string("middlename")->nullable();
-            $table->string("lastname");
+            $table->string("name");
+            // $table->string("firstname");
+            // $table->string("middlename")->nullable();
+            // $table->string("lastname");
             $table->date("date_of_birth");
             $table->string("gender");
             $table->string("marital_status");

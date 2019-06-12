@@ -4,7 +4,7 @@
         <select class="form-control " id="employee_id" name="employee_id">
             <option value=""></option>
             @foreach($employees as $employee)
-                <option value="{{$employee->id}}" @if (old('employee_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->firstname}} {{$employee->middlename}} {{$employee->lastname}}</option>
+                <option value="{{$employee->id}}" @if (old('employee_id') == $employee->id) {{ 'selected' }} @endif> {{$employee->name}} </option>
             @endforeach
         </select>
         @if ($errors->has('employee_id'))

@@ -41,13 +41,13 @@
                                       @foreach($employees as $employee)
                                         <tr>
                                             <td>{{ $loop->iteration}} </td>
-                                            <td>{{ $employee->firstname . ' '.$employee->middlename . ' '. $employee->lastname}}</td>
+                                            <td>{{ $employee->name }}</td>
                                             <td>{{ $employee->employee_number}} </td>
                                             <td>{{ $employee->department->name}}</td> 
                                             <td>{{ $employee->job_title->title}} </td>
                                             <td>
                                                 @if($employee->supervisor)
-                                                    {{ $employee->supervisor->firstname . ' '.$employee->supervisor->middlename . ' '.$employee->supervisor->lastname}}
+                                                    {{ $employee->supervisor->name }}
                                                 @endif
                                             </td>
                                             <td>{{ $employee->joined_date}} </td>

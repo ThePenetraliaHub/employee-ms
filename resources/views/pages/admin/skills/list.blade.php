@@ -37,6 +37,11 @@
                                         @foreach($skills as $skill)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <span class="inline-block"><strong> {{ $skill->employee->name }} </strong></span><br>
+                                                    <span class="inline-block text-muted">{{ $skill->employee->employee_number }}</span><br>
+                                                    <span class="inline-block text-muted">{{ $skill->employee->job_title->title }}</span>
+                                                </td>
                                                 <td>{{ $skill->skill_title}}</td>
                                                 <td>{{ $skill->detail}}</td>
 

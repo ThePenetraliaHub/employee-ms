@@ -1,12 +1,10 @@
 <div class="form-row">
-
-
      <div class="form-group col-xs-11{{ $errors->has('employee_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="employee_id">Employee</label>
         <select class="form-control" id="employee_id" name="employee_id" disabled>
             <option value=""></option>
             @foreach($employees as $employee)
-                <option value="{{$skill->employee_id}}" @if (old('$skill->employee_id', $skill->employee->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->firstname.' '.$employee->middlename.' '.$employee->lastname}}</option>
+                <option value="{{$skill->employee_id}}" @if (old('$skill->employee_id', $skill->employee->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->name}}</option>
             @endforeach
         </select>
         @if ($errors->has('employee_id'))

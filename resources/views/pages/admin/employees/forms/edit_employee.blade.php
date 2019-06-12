@@ -35,7 +35,7 @@
         @endif
     </div>
 
-    <div class="form-group {{ $errors->has('firstname') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
+    {{-- <div class="form-group {{ $errors->has('firstname') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="firstname">First Name</label>
         <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname', $employee->firstname) }}" required="" placeholder="">
         @if ($errors->has('firstname'))
@@ -61,6 +61,16 @@
         @if ($errors->has('lastname'))
         <span class="help-block">
             <strong>{{ $errors->first('lastname') }}</strong>
+        </span>
+        @endif
+    </div> --}}
+
+    <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $employee->name) }}" required="" placeholder="">
+        @if ($errors->has('name'))
+        <span class="help-block">
+            <strong>{{ $errors->first('name') }}</strong>
         </span>
         @endif
     </div>
