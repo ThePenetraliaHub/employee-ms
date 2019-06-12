@@ -72,14 +72,10 @@ class CertificationController extends Controller
         return view('pages.admin.certifications.edit', compact('certification','employees'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Certification $certification)
     {
         $rules = [
-            //'employee_id' => 'required',
-            'certification' => [
-                'required',
-                Rule::unique('certifications')->ignore($id)
-            ],
+            'certification' => 'required',
             'institution' => 'required',
             'granted_on' => 'required',
             'valid_on' => 'required',
@@ -87,22 +83,19 @@ class CertificationController extends Controller
         ];
 
         $customMessages = [
-            'employee_id.required' => 'Please select employee',
             'certification.required' => 'Please provide the certification title.',
-            'certification.unique' => 'certification title already exist.',
             'institution.required' => 'Please provide the awarding institution.',
             'granted_on.required' => 'Please provide the awarded date.',
-            'valid_on.required' => 'Please provide Validation date.',
+            'valid_on.required' => 'Please provide validation date.',
             'document_url.required' => 'Please upload a document.',
         ];
 
         $this->validate($request, $rules, $customMessages); 
-        $certification = Certification::find($id);
-        $certification->employee_id = $request->employee_id;
-        $certification->certification = $request->certification;
-        $certification->institution = $request->institution;
-        $certification->granted_on = $request->granted_on;
-        $certification->valid_on = $request->valid_on;
+
+        if($request->document_url){
+            $path = $request->file('document_url')->store('certifications', 'public');
+            $request->document_url = $path;
+        }
 
         if($request->hasFile('document_url')){
          // cache the new file
@@ -122,10 +115,10 @@ class CertificationController extends Controller
 
         }
     
-    $certification->save();
+        $certification->save();
 
-    notify()->success("Successfully updated!","","bottomRight");
-    return redirect()->route('certification.show', ['id' => $request->employee_id]);
+        notify()->success("Successfully updated!","","bottomRight");
+        return redirect()->route('certification.index');
     }
 
     public function destroy( Certification $certification)
