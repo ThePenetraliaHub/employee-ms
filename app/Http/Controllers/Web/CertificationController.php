@@ -93,29 +93,13 @@ class CertificationController extends Controller
         $this->validate($request, $rules, $customMessages); 
 
         if($request->document_url){
+            Storage::disk('public')->delete($certification->document_url);
+
             $path = $request->file('document_url')->store('certifications', 'public');
             $request->document_url = $path;
         }
-
-        if($request->hasFile('document_url')){
-         // cache the new file
-         $file = $request->file('document_url');
-         // generate a new filename. getClientOriginalExtension() for the file extension
-         $filename = 'certifications-doc-' . time() . '.' . $file->getClientOriginalExtension();
-         // save to storage/app/photos as the new $filename
-         $path = $file->storeAs('public/certifications',$filename);
-         //get old file name
-         $oldfile = $certification->document_url;
-         //update db
-         $certification->document_url = $filename ;
-
-         //delete the file
-         Storage::delete('public/certifications/'.$oldfile);
-
-
-        }
     
-        $certification->save();
+        $certification->update($request->all());
 
         notify()->success("Successfully updated!","","bottomRight");
         return redirect()->route('certification.index');
