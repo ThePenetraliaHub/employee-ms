@@ -26,6 +26,7 @@
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
+                                            <th scope="col">Employee Details</th>
                                             <th scope="col">Certification Title</th>
                                             <th scope="col">Award Institution/Body</th>
                                             <th scope="col">Awarded On</th>
@@ -38,11 +39,15 @@
                                         @foreach($certifications as $certification)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <span class="inline-block"><strong> {{ $certification->employee->name }} </strong></span><br>
+                                                    <span class="inline-block text-muted">{{ $certification->employee->employee_number }}</span><br>
+                                                    <span class="inline-block text-muted">{{ $certification->employee->job_title->title }}</span>
+                                                </td>
                                                 <td>{{ $certification->certification}}</td>
                                                 <td>{{ $certification->institution}}</td>
                                                 <td>{{ $certification->granted_on}}</td>
                                                 <td>{{ $certification->valid_on}}</td>
-
                                                 <td>
                                                     <div class="btn-group">
 
