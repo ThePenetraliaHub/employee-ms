@@ -13,8 +13,8 @@ class SkillController extends Controller
 {
     public function index()
      {
-        $employees = Employee::all();
-        return view('pages.admin.skills.find',  compact("employees"));
+        $skills = Skill::all();
+        return view('pages.admin.skills.list',  compact("skills"));
     }
 
     public function create()
@@ -25,16 +25,16 @@ class SkillController extends Controller
 
     public function store(Request $request)
     {
-    $rules = [
-            'skill_title' => 'required|unique:skills,skill_title'
-
+        $rules = [
+            'employee_id' => 'required',
+            'skill_title' => 'required',
+            'detail' => 'required'
         ];
 
-
-
         $customMessages = [
+            'employee_id.required' => 'Please select an employee.',
             'skill_title.required' => 'Please provide the skill title.',
-            'skill_title.unique' => 'skills already exist.',
+            'detail.required' => 'Please provide details about the skill.',
         ];
 
         $this->validate($request, $rules, $customMessages); 
@@ -49,7 +49,6 @@ class SkillController extends Controller
     {
         $skills = Skill::where('employee_id', $id)->get();
         return view('pages.admin.skills.list', compact('skills'));
-       
     }
 
     public function update(Request $request,Skill $skill)
@@ -65,7 +64,7 @@ class SkillController extends Controller
             'skill_title.required' => 'Please provide the skill title.',
             'skill_title.unique' => 'skills already exist.',
         ];
-     $this->validate($request, $rules, $customMessages);
+        $this->validate($request, $rules, $customMessages);
 
         $skill->update($request->all());
 
@@ -73,7 +72,7 @@ class SkillController extends Controller
         return redirect()->route('skills.show', ['id' => $skill->employee_id]);
     }
 
-      public function edit(Skill $skill)
+    public function edit(Skill $skill)
     {
         $employees = Employee::all();
         return view('pages.admin.skills.edit', compact('skill','employees'));

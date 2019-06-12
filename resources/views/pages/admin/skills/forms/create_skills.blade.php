@@ -1,5 +1,4 @@
 <div class="form-row">
-
     <div class="form-group col-xs-11{{ $errors->has('employee_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="employee_id">Employee</label>
         <select class="form-control " id="employee_id" name="employee_id">
@@ -15,8 +14,7 @@
         @endif
     </div>
 
-       
-       <div class="form-row">
+    <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('skill_title') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="skill_title">Skills Title</label>
             <input id="skill_title" type="text" class="form-control" name="skill_title" value="{{ old('skill_title') }}" required>
@@ -39,23 +37,16 @@
     </div>
 
 </div>
-   @section('script')
+
+@section('script')
     <script>
         $(document).ready(function () {
             $('#employee_id').select2({
-  //  multiple: true
-
-});
+                //  multiple: true
+            });
+        
             $('#project_id').select2();
             $('#status').select2();
-
-
         });
-
-
-
-
-
-
     </script>
 @endsection

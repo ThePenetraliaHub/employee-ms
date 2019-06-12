@@ -15,7 +15,7 @@
                 @if(count($skills) > 0)
                     <a href="{{ route('skills.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Skill
+                        Add Employee Skill
                     </a>
                 @endif
                 <div class="box">
@@ -26,6 +26,7 @@
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
+                                            <th scope="col">Employee Details</th>
                                             <th scope="col">Skill Title</th>
                                             <th scope="col">Details</th>
                                             <th scope="col">Action</th>
@@ -55,10 +56,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Skills yet!
+                                    Employees do not have skills yet!
                                 </p>
                                 <a href="{{ route("skills.create") }}">
-                                    Add Skills
+                                    Add Employee Skill
                                 </a>
                             </div>
                         @endif
