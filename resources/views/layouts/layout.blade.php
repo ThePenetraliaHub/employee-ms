@@ -86,6 +86,10 @@
                             </li>
 
                             <li class="treeview">
+                                <li><a href="{{ route('education.index') }}"><i class="fa fa-users"></i> Manage Educations</a></li>
+                            </li>
+
+                            <li class="treeview">
                                 <a href="#"><i class="fa fa-tasks"></i> Project Setup
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>

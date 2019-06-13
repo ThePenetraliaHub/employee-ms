@@ -13,4 +13,9 @@ class Certification extends Model
     {
         return $this->belongsTo('App\Employee');
     }
+
+    public function getDocumentAttribute()
+    {
+        return asset('storage/'.$this->download_url);
+    }
 }

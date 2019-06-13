@@ -10,6 +10,7 @@ use Session;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\ValidationException;
 
 class CertificationController extends Controller
 {
@@ -48,19 +49,32 @@ class CertificationController extends Controller
 
         $this->validate($request, $rules, $customMessages); 
     
-        if($request->document_url){
-            $path = $request->file('document_url')->store('certifications', 'public');
-            $request->document_url = $path;
+        if ($request->granted_on > $request->valid_on) {
+            throw ValidationException::withMessages([
+                'granted_on' => "Certification valid through date cannot be less than the grated date.",
+                'valid_on' => "Certification valid through date cannot be less than the grated date.",
+            ]);
         }
 
-        Certification::create($request->all());
+        if($request->document_url){
+            $path = $request->file('document_url')->store('certifications', 'public');
+        }
+
+        Certification::create([
+            'employee_id' => $request->employee_id,
+            'certification' => $request->certification,
+            'institution' => $request->institution,
+            'granted_on' => $request->granted_on,
+            'valid_on' => $request->valid_on,
+            'document_url' => $path,
+        ]);
 
         notify()->success("Successfully created!","","bottomRight");
 
         return redirect()->route('certification.index');
     }
 
-     public function show($id)
+    public function show($id)
     {
         $certifications = Certification::where('employee_id', $id)->get();
         return view('pages.admin.certifications.list', compact('certifications'));
@@ -68,7 +82,7 @@ class CertificationController extends Controller
 
     public function edit(Certification $certification)
     {
-         $employees = Employee::all();
+        $employees = Employee::all();
         return view('pages.admin.certifications.edit', compact('certification','employees'));
     }
 
@@ -79,7 +93,7 @@ class CertificationController extends Controller
             'institution' => 'required',
             'granted_on' => 'required',
             'valid_on' => 'required',
-            'document_url' => 'sometimes|file|image|mimes:jpeg,png|max:300'
+            'document_url' => 'sometimes|file|image|mimes:jpeg,png|max:1000'
         ];
 
         $customMessages = [
@@ -94,30 +108,39 @@ class CertificationController extends Controller
 
         if($request->document_url){
             Storage::disk('public')->delete($certification->document_url);
-
             $path = $request->file('document_url')->store('certifications', 'public');
-            $request->document_url = $path;
+
+            $certification->update([
+                'certification' => $request->certification,
+                'institution' => $request->institution,
+                'granted_on' => $request->granted_on,
+                'valid_on' => $request->valid_on,
+                'document_url' => $path,
+            ]);
+        }else{
+            $certification->update([
+                'certification' => $request->certification,
+                'institution' => $request->institution,
+                'granted_on' => $request->granted_on,
+                'valid_on' => $request->valid_on,
+            ]);
         }
-    
-        $certification->update($request->all());
 
         notify()->success("Successfully updated!","","bottomRight");
         return redirect()->route('certification.index');
     }
 
-    public function destroy( Certification $certification)
+    public function destroy(Certification $certification)
     {
-        //delete the file
-         Storage::delete('public/certifications/'.$certification->document_url);
-         $certification->delete();
+        Storage::disk('public')->delete($certification->document_url);
+        $certification->delete();
 
-         notify()->success("Successfully Deleted!","","bottomRight");
-         return redirect()->route('certification.show', ['id' => $certification->employee_id]);
+        notify()->success("Successfully Deleted!","","bottomRight");
+        return redirect()->route('certification.index');
     }
 
-
-    public function download($document)
+    public function download(Certification $certification)
     {
-      return response()->download(storage_path("app/public/certifications/{$document}"));
+        return response()->download(storage_path("app/public/".$certification->document_url));
     }
 }

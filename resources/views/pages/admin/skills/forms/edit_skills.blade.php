@@ -1,7 +1,7 @@
 <div class="form-row">
      <div class="form-group col-xs-11{{ $errors->has('employee_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="employee_id">Employee</label>
-        <select class="form-control" id="employee_id" name="employee_id" disabled>
+        <select class="form-control" id="employee_id" disabled>
             <option value=""></option>
             @foreach($employees as $employee)
                 <option value="{{$skill->employee_id}}" @if (old('$skill->employee_id', $skill->employee->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->name}}</option>
@@ -14,7 +14,6 @@
         @endif
     </div>
 
-       
     <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('skill_title') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="skill_title">Skills Title</label>
@@ -36,9 +35,9 @@
             </span>
         @endif
     </div>
-
 </div>
-   @section('script')
+
+@section('script')
     <script>
         $(document).ready(function () {
             $('#employee_id').select2();

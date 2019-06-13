@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Certifications
+            Educations
             <small>View</small>
         </h1>
     </section>
@@ -12,22 +12,22 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(count($certifications) > 0)
-                    <a href="{{ route('certification.create') }}" class="btn btn-primary btn-sm my-2">
+                @if(count($educations) > 0)
+                    <a href="{{ route('education.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Add Employee Certification
+                        Add Employee Education
                     </a>
                 @endif
                 <div class="box">
                     <div class="box-body">
-                        @if(count($certifications) > 0)
+                        @if(count($educations) > 0)
                             <div class="table-responsive table-bordered">
                                 <table id="dataTable" class="table table-striped table-responsive">
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Employee Details</th>
-                                            <th scope="col">Certification Title</th>
+                                            <th scope="col">education Title</th>
                                             <th scope="col">Award Institution/Body</th>
                                             <th scope="col">Awarded On</th>
                                             <th scope="col">Valid Through</th>
@@ -36,26 +36,26 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach($certifications as $certification)
+                                        @foreach($educations as $education)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <span class="inline-block"><strong> {{ $certification->employee->name }} </strong></span><br>
-                                                    <span class="inline-block text-muted">{{ $certification->employee->employee_number }}</span><br>
-                                                    <span class="inline-block text-muted">{{ $certification->employee->job_title->title }}</span>
+                                                    <span class="inline-block"><strong> {{ $education->employee->name }} </strong></span><br>
+                                                    <span class="inline-block text-muted">{{ $education->employee->employee_number }}</span><br>
+                                                    <span class="inline-block text-muted">{{ $education->employee->job_title->title }}</span>
                                                 </td>
-                                                <td>{{ $certification->certification}}</td>
-                                                <td>{{ $certification->institution}}</td>
-                                                <td>{{ $certification->granted_on}}</td>
-                                                <td>{{ $certification->valid_on}}</td>
+                                                <td>{{ $education->education}}</td>
+                                                <td>{{ $education->institution}}</td>
+                                                <td>{{ $education->granted_on}}</td>
+                                                <td>{{ $education->valid_on}}</td>
                                                 <td>
                                                     <div class="btn-group">
 
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download', $certification)  }}" role="button" style=" margin-right: 5px; "> </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download', $education)  }}" role="button" style=" margin-right: 5px; "> </a>
 
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('certification.edit' , $certification->id) }}" role="button" style=" margin-right: 5px; "> </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('education.edit' , $education->id) }}" role="button" style=" margin-right: 5px; "> </a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-certId="{{ $certification->id}}"></a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-certId="{{ $education->id}}"></a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -67,10 +67,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    Employees do not have certifications yet!
+                                    Employees do not have educations yet!
                                 </p>
-                                <a href="{{ route("certification.create") }}">
-                                    Add Certifications
+                                <a href="{{ route("education.create") }}">
+                                    Add educations
                                 </a>
                             </div>
                         @endif
@@ -121,7 +121,7 @@
                 var certId = button.data('certid') // Extract info from data-* attributes
 
                 var modal = $(this)
-                $('#delete-form').attr('action', "certification/"+certId);
+                $('#delete-form').attr('action', "education/"+certId);
             })
         });
     </script>

@@ -20,7 +20,8 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-	Route::get('/download/{document}', 'Web\CertificationController@download')->name('download');
+	Route::get('/download/{certification}', 'Web\CertificationController@download')->name('download');
+	Route::resource('/education', 'Web\EducationController');
 	Route::resource('/certification', 'Web\CertificationController');
 	Route::resource('/skills', 'Web\SkillController');
 	Route::resource('/projects', 'Web\ProjectController');
