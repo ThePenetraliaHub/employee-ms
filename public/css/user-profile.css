@@ -1,25 +1,19 @@
 body{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 }
-.emp-profile{
-    padding: 3%;
-   // margin-top: 3%;
-    margin-bottom: 3%;
-    border-radius: 0.5rem;
-   // background: #fff;
-}
+
 .profile-img{
     text-align: center;
 }
 .profile-img img{
-    width: 70%;
+    width: 100%;
     height: 100%;
 }
 .profile-img .file {
     position: relative;
     overflow: hidden;
     margin-top: -20%;
-    width: 70%;
+    width: 100%;
     border: none;
     border-radius: 0;
     font-size: 15px;
@@ -68,7 +62,7 @@ body{
     border-bottom:2px solid #0062cc;
 }
 .profile-work{
-   // padding: 14%;
+    padding: 14%;
     margin-top: -15%;
 }
 .profile-work p{
@@ -92,4 +86,11 @@ body{
 .profile-tab p{
     font-weight: 600;
     color: #0062cc;
+}
+
+.viewLabel{
+  display: block;
+  color: #3c8dbc;
+  height: 40px;
+ 
 }
