@@ -67,6 +67,7 @@ class CertificationController extends Controller
             'granted_on' => $request->granted_on,
             'valid_on' => $request->valid_on,
             'document_url' => $path,
+            'document_name' => $request->document_url->getClientOriginalName(),
         ]);
 
         notify()->success("Successfully created!","","bottomRight");
@@ -116,6 +117,7 @@ class CertificationController extends Controller
                 'granted_on' => $request->granted_on,
                 'valid_on' => $request->valid_on,
                 'document_url' => $path,
+                'document_name' => $request->document_url->getClientOriginalName(),
             ]);
         }else{
             $certification->update([
@@ -141,6 +143,6 @@ class CertificationController extends Controller
 
     public function download(Certification $certification)
     {
-        return response()->download(storage_path($certification->document));
+        return response()->download(storage_path($certification->document), $certification->document_name);
     }
 }
