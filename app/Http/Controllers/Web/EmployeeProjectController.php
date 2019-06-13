@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-use App\Department;
+use App\EmployeeProject;
 use App\Project;
 use App\Employee;
 use App\Http\Controllers\Controller;
@@ -28,17 +28,45 @@ class EmployeeProjectController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|unique:departments,name'
+            'project_id' => 'required',
+            'employee_id' => 'required',
+            'details' => 'required',
+            'document_url' => 'max:3000',
         ];
 
         $customMessages = [
-            'name.required' => 'Please provide the department\'s name.',
-            'name.unique' => 'Department name already exist.',
+            'project_id.required' => 'Please select the project.',
+            'employee_id.required' => 'Please select the employee.',
+            'details.required' => 'Please provide the details about employee engagement on project.',
         ];
 
         $this->validate($request, $rules, $customMessages); 
 
-        Department::create($request->all());
+        if (EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $request->employee_id)->count() > 1) {
+            throw ValidationException::withMessages([
+                'employee_id' => "Employee is already attached to this project.",
+            ]);
+        }
+
+        if($request->document_url){
+            $path = $request->file('document_url')->store('project', 'public');
+
+            EmployeeProject::create([
+                'project_id' => $request->
+                'employee_id' => $request->
+                'details' => $request->
+                'document_url' => $path,
+                'document_name' => $request-> 
+            ]);
+        }else{
+            EmployeeProject::create([
+                project_id
+                employee_id
+                details
+            ]);
+        }
+
+
 
         notify()->success("Successfully created!","","bottomRight");
         return redirect('department');

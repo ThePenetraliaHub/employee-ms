@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="box box-primary">
-					<form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('employee-project.store') }}" >
+					<form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('employee-project.store') }}" enctype="multipart/form-data">
 						@csrf
 						<div class="box-body">
 							@include('pages.admin.employee_project.forms.create_employee_project')

@@ -5,7 +5,7 @@
         <select class="form-control " id="employee_id" name="employee_id">
             <option value=""></option>
             @foreach($employees as $employee)
-                <option value="{{$employee->id}}" @if (old('employee_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->firstname}} {{$employee->middlename}} {{$employee->lastname}}</option>
+                <option value="{{$employee->id}}" @if (old('employee_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->name}}</option>
             @endforeach
         </select>
         @if ($errors->has('employee_id'))
@@ -40,42 +40,28 @@
         @endif
     </div>
 
-    <div class="form-group col-xs-11{{ $errors->has('status') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="status">Project Status</label>
-        <select class="form-control" id="status" name="status">
-            <option value=""></option>
-            <option value="Initiated" @if (old('status', "Initiated") === "Initiated") {{ 'selected' }} @endif>Initiated</option>
-            <option value="Completed" @if (old('status') === "Completed") {{ 'selected' }} @endif>Completed</option>
-            <option value="Pending" @if (old('status') === "Pending") {{ 'selected' }} @endif>Pending</option>
-            <option value="Terminated" @if (old('status') === "Terminated") {{ 'selected' }} @endif>Terminated</option>
-        </select>
-        @if ($errors->has('status'))
-            <span class="help-block">
-                <strong>{{ $errors->first('status') }}</strong>
-            </span>
-        @endif
-    </div>
-
     <div class="form-group col-xs-11 mb-0 mt-3">
-        <label for="document">Project Document</label><br>
+        <label for="document_url">Project Document</label><br>
         <label class="btn btn-default" id="upload-image">
-            <i class="fa fa-image{{ $errors->has('document') ? 'has-error' : '' }}"></i><span class="ml-3">Select Document</span><input name="document" id='select' type="file" style="display: none;" name="image">
+            <i class="fa fa-image{{ $errors->has('document_url') ? 'has-error' : '' }}"></i><span class="ml-3">Select Document</span><input name="document_url" id='select' type="file" style="display: none;" name="image">
         </label><br>
         <p  id="message-wrong" class="text-danger display-none" role="alert"></p>
         <p  id="message-correct" class="text-success display-none" role="alert"></p>
-        @if ($errors->has('document'))
+        @if ($errors->has('document_url'))
           <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('document') }}</strong>
+              <strong>{{ $errors->first('document_url') }}</strong>
           </span>
         @endif
     </div>
 </div>
-   @section('script')
+
+@section('script')
     <script>
         $(document).ready(function () {
             $('#employee_id').select2({
-  //  multiple: true
-        });
+                //  multiple: true
+            });
+
             $('#project_id').select2();
             $('#status').select2();
         });

@@ -13,6 +13,7 @@
 
         <div class="row">
                     <div class="col-md-3">
+
                         <div class="profile-img">
                             <img src="http://127.0.0.1:8000/img/user2-160x160.jpg" alt="profile image"/>
                             <div class="file btn btn-lg btn-primary">
@@ -56,10 +57,8 @@
                                     </li>
 
                             </ul>
-
                         </div>
                     </div>
-
         </div>
 
         <div class="row">
@@ -369,14 +368,9 @@
                                     
                                     </div>
                                 </div>
-
                         </div>
                     </div>
         </div>
-
-
-
-
 
 
 </section>
