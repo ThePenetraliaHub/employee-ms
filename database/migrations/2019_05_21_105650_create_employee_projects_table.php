@@ -18,7 +18,8 @@ class CreateEmployeeProjectsTable extends Migration
             $table->integer("project_id")->unsigned();
             $table->integer("employee_id")->unsigned();
             $table->string("details");
-            $table->string("document")->nullable();
+            $table->string("document_url")->nullable();
+            $table->string("document_name")->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')
