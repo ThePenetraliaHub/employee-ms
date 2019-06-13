@@ -113,7 +113,7 @@
 
                         <ul class="treeview-menu">
                             <li class="treeview">
-                                <li><a href="{{ route('client.index') }}"><i class="fa fa-handshake-o"></i> Clients</a></li>
+                                <li><a href="{{ route('client.index') }}"><i class="fa fa-user"></i> Users</a></li>
                             </li>
                         </ul>
                     </li>

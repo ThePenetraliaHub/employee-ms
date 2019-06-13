@@ -28,12 +28,17 @@ class EmployeeProjectController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|unique:departments,name'
+            'project_id' => 'required',
+            'employee_id' => 'required',
+            'details' => 'required',
+            'document' => '',
         ];
 
         $customMessages = [
-            'name.required' => 'Please provide the department\'s name.',
-            'name.unique' => 'Department name already exist.',
+            'project_id.required' => 'Please select the project.',
+            'employee_id.required' => 'Please select the employee.',
+            'details.required' => 'Please provide the details about employee engagement on project.',
+            'document.required' => 'Department name already exist.',
         ];
 
         $this->validate($request, $rules, $customMessages); 
