@@ -15,7 +15,6 @@
         @endif
     </div>
 
-       
     <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('qualification') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="qualification">Qualification Title</label>

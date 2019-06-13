@@ -51,7 +51,7 @@
                                                 <td>
                                                     <div class="btn-group">
 
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download', $certification)  }}" role="button" style=" margin-right: 5px; "> </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.certification', $certification)  }}" role="button" style=" margin-right: 5px; "> </a>
 
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('certification.edit' , $certification->id) }}" role="button" style=" margin-right: 5px; "> </a>
 

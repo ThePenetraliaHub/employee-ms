@@ -21,6 +21,7 @@ class CreateEducationTable extends Migration
             $table->date("start_date");
             $table->date("end_date");
             $table->string("document_url")->nullable();
+            $table->string("document_name")->nullable();
             $table->timestamps();
 
             $table->foreign('employee_id')

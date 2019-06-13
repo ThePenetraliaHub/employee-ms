@@ -5,7 +5,7 @@
         <select class="form-control " id="employee_id" name="employee_id" disabled>
             <option value=""></option>
             @foreach($employees as $employee)
-                <option value="{{$certification->employee_id}}" @if (old('$certification->employee_id',$certification->employee->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->name}}</option>
+                <option value="{{$education->employee_id}}" @if (old('$education->employee_id',$education->employee->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->name}}</option>
             @endforeach
         </select>
         @if ($errors->has('employee_id'))
@@ -15,14 +15,13 @@
         @endif
     </div>
 
-       
     <div class="form-row">
-        <div class="form-group col-xs-11{{ $errors->has('certification') ? ' has-error' : '' }} mb-0 mt-3">
-            <label for="certification">Certification Title</label>
-            <input id="certification" type="text" class="form-control" name="certification" value="{{ old('certification',$certification->certification) }}" required>
-            @if ($errors->has('certification'))
+        <div class="form-group col-xs-11{{ $errors->has('qualification') ? ' has-error' : '' }} mb-0 mt-3">
+            <label for="qualification">Qualification Title</label>
+            <input id="qualification" type="text" class="form-control" name="qualification" value="{{ old('qualification', $education->qualification) }}" required>
+            @if ($errors->has('qualification'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('certification') }}</strong>
+                    <strong>{{ $errors->first('qualification') }}</strong>
                 </span>
             @endif
         </div>
@@ -31,7 +30,7 @@
     <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('institution') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="institution">Award Institution/Body</label>
-            <input id="institution" type="text" class="form-control" name="institution" value="{{ old('institution',$certification->institution) }}" required>
+            <input id="institution" type="text" class="form-control" name="institution" value="{{ old('institution', $education->institution) }}" required>
             @if ($errors->has('institution'))
                 <span class="help-block">
                     <strong>{{ $errors->first('institution') }}</strong>
@@ -40,31 +39,31 @@
         </div>
     </div>
 
-     <div class="form-row">
-        <div class="form-group col-xs-11{{ $errors->has('granted_on') ? ' has-error' : '' }} mb-0 mt-3">
-            <label for="granted_on">Awarded On</label>
-            <input id="granted_on" type="date" class="form-control" name="granted_on" value="{{ old('granted_on',$certification->granted_on) }}" required>
-            @if ($errors->has('granted_on'))
+    <div class="form-row">
+        <div class="form-group col-xs-11{{ $errors->has('start_date') ? ' has-error' : '' }} mb-0 mt-3">
+            <label for="start_date">Start Date</label>
+            <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date', $education->start_date) }}" required>
+            @if ($errors->has('start_date'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('granted_on') }}</strong>
+                    <strong>{{ $errors->first('start_date') }}</strong>
                 </span>
             @endif
         </div>
     </div>
 
     <div class="form-row">
-        <div class="form-group col-xs-11{{ $errors->has('valid_on') ? ' has-error' : '' }} mb-0 mt-3">
-            <label for="valid_on">Valid Through</label>
-            <input id="valid_on" type="date" class="form-control" name="valid_on" value="{{ old('valid_on',$certification->valid_on) }}" required>
-            @if ($errors->has('valid_on'))
+        <div class="form-group col-xs-11{{ $errors->has('end_date') ? ' has-error' : '' }} mb-0 mt-3">
+            <label for="end_date">End Date</label>
+            <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date', $education->end_date) }}" required>
+            @if ($errors->has('end_date'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('valid_on') }}</strong>
+                    <strong>{{ $errors->first('end_date') }}</strong>
                 </span>
             @endif
         </div>
     </div>
 
- <div class="form-group col-xs-11 mb-0 mt-3">
+    <div class="form-group col-xs-11 mb-0 mt-3">
         <label for="document_url">Document</label><br>
         <label class="btn btn-default" id="">
             <i class="{{ $errors->has('document_url') ? 'has-error' : '' }}"></i><input name="document_url" id='document_url' type="file">
@@ -83,13 +82,11 @@
     <script>
         $(document).ready(function () {
             $('#employee_id').select2({
-  //  multiple: true
+              //  multiple: true
+            });
 
-});
             $('#project_id').select2();
             $('#status').select2();
-
-
         });
 
     </script>

@@ -65,6 +65,7 @@ class EducationController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'document_url' => $path,
+            'document_name' => $request->document_url->getClientOriginalName(),
         ]);
 
         notify()->success("Successfully created!","","bottomRight");
@@ -72,49 +73,52 @@ class EducationController extends Controller
         return redirect()->route('education.index');
     }
 
-    public function edit(Certification $certification)
+    public function edit(Education $education)
     {
         $employees = Employee::all();
-        return view('pages.admin.educations.edit', compact('certification','employees'));
+        return view('pages.admin.educations.edit', compact('education','employees'));
     }
 
-    public function update(Request $request, Certification $certification)
+    public function update(Request $request, Education $education)
     {
         $rules = [
-            'certification' => 'required',
+            'qualification' => 'required',
             'institution' => 'required',
-            'granted_on' => 'required',
-            'valid_on' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
             'document_url' => 'sometimes|file|image|mimes:jpeg,png|max:1000'
         ];
 
         $customMessages = [
-            'certification.required' => 'Please provide the certification title.',
+            'qualification.required' => 'Please provide the qualification attained.',
             'institution.required' => 'Please provide the awarding institution.',
-            'granted_on.required' => 'Please provide the awarded date.',
-            'valid_on.required' => 'Please provide validation date.',
-            'document_url.required' => 'Please upload a document.',
+            'start_date.required' => 'Please provide the date employee started education pursuit.',
+            'end_date.required' => 'Please provide the date employee completed education.',
+            'document_url.required' => 'Please upload the education certificate.',
+            'document_url.image' => 'Education certification attachment must be an image file.',
         ];
+
 
         $this->validate($request, $rules, $customMessages); 
 
         if($request->document_url){
-            Storage::disk('public')->delete($certification->document_url);
-            $path = $request->file('document_url')->store('certifications', 'public');
+            Storage::disk('public')->delete($education->document_url);
+            $path = $request->file('document_url')->store('educations', 'public');
 
-            $certification->update([
-                'certification' => $request->certification,
+            $education->update([
+                'qualification' => $request->qualification,
                 'institution' => $request->institution,
-                'granted_on' => $request->granted_on,
-                'valid_on' => $request->valid_on,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'document_url' => $path,
+                'document_name' => $request->document_url->getClientOriginalName(),
             ]);
         }else{
-            $certification->update([
-                'certification' => $request->certification,
+            $education->update([
+                'qualification' => $request->qualification,
                 'institution' => $request->institution,
-                'granted_on' => $request->granted_on,
-                'valid_on' => $request->valid_on,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
             ]);
         }
 
@@ -133,6 +137,6 @@ class EducationController extends Controller
 
     public function download(Education $education)
     {
-        return response()->download(storage_path("app/public/".$education->document_url));
+        return response()->download(storage_path($education->document), $education->document_name);
     }
 }

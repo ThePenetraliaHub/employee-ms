@@ -141,6 +141,6 @@ class CertificationController extends Controller
 
     public function download(Certification $certification)
     {
-        return response()->download(storage_path("app/public/".$certification->document_url));
+        return response()->download(storage_path($certification->document));
     }
 }

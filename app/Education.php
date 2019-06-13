@@ -12,4 +12,9 @@ class Education extends Model
     {
         return $this->belongsTo('App\Employee');
     }
+
+    public function getDocumentAttribute()
+    {
+        return 'app/public/'.$this->document_url;
+    }
 }

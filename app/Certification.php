@@ -16,6 +16,6 @@ class Certification extends Model
 
     public function getDocumentAttribute()
     {
-        return asset('storage/'.$this->download_url);
+        return 'app/public/'.$this->document_url;
     }
 }

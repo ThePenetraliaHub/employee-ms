@@ -27,10 +27,10 @@
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Employee Details</th>
-                                            <th scope="col">education Title</th>
+                                            <th scope="col">Qualification</th>
                                             <th scope="col">Award Institution/Body</th>
-                                            <th scope="col">Awarded On</th>
-                                            <th scope="col">Valid Through</th>
+                                            <th scope="col">Start Date</th>
+                                            <th scope="col">End Date</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -44,14 +44,14 @@
                                                     <span class="inline-block text-muted">{{ $education->employee->employee_number }}</span><br>
                                                     <span class="inline-block text-muted">{{ $education->employee->job_title->title }}</span>
                                                 </td>
-                                                <td>{{ $education->education}}</td>
+                                                <td>{{ $education->qualification}}</td>
                                                 <td>{{ $education->institution}}</td>
-                                                <td>{{ $education->granted_on}}</td>
-                                                <td>{{ $education->valid_on}}</td>
+                                                <td>{{ $education->start_date}}</td>
+                                                <td>{{ $education->end_date}}</td>
                                                 <td>
                                                     <div class="btn-group">
 
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download', $education)  }}" role="button" style=" margin-right: 5px; "> </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.education', $education)  }}" role="button" style=" margin-right: 5px; "> </a>
 
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('education.edit' , $education->id) }}" role="button" style=" margin-right: 5px; "> </a>
 

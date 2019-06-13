@@ -21,6 +21,7 @@ class CreateCertificationsTable extends Migration
             $table->date("granted_on");
             $table->date("valid_on");
             $table->string("document_url")->nullable();
+            $table->string("document_name")->nullable();
             $table->timestamps();
 
             $table->foreign('employee_id')
