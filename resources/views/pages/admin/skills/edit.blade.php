@@ -22,7 +22,7 @@
 
                         <div class="box-footer">
                             <button id="button" type="submit" class="btn btn-success col-xs-2" style="margin-right:10px;">Update</button>
-                            <a type="button" class="btn btn-warning" href="{{route('skills.index')}}" > Cancel</a> 
+                            <a type="button" class="btn btn-warning" href="{{route('userProfile', $skill->employee_id)}}" > Cancel</a> 
                         </div>
                     </form>
                 </div>

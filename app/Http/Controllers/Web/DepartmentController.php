@@ -64,7 +64,7 @@ class DepartmentController extends Controller
         $department->update($request->all());
 
         notify()->success("Successfully Updated!","","bottomRight");
-        return redirect('department');
+        return redirect()->route('userProfile',$department->employee_id);
     }
 
     public function destroy(Department $department)

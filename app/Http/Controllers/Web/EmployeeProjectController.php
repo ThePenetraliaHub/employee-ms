@@ -42,7 +42,7 @@ class EmployeeProjectController extends Controller
 
         $this->validate($request, $rules, $customMessages); 
 
-        if (EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $request->employee_id)->count() > 1) {
+        if(EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $request->employee_id)->count() > 1) {
             throw ValidationException::withMessages([
                 'employee_id' => "Employee is already attached to this project.",
             ]);

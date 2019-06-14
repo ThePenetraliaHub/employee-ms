@@ -7,6 +7,9 @@ use App\Department;
 use App\PayGrade;
 use App\EmployeeStatus;
 use App\JobTitle;
+use App\Certification;
+use App\Education;
+use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -104,6 +107,16 @@ class EmployeeController extends Controller
         $job_titles = JobTitle::all();
 
         return view('pages.admin.employees.edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
+    }
+
+    public function userProfile($id)
+    {
+       $employee = Employee::find($id);
+       $educations = Education::where('employee_id', $id)->get();
+       $certifications = Certification::where('employee_id', $id)->get();
+       $skills = Skill::where('employee_id', $id)->get();
+
+        return view('pages.admin.user-profile.user-profile', compact('employee','educations','certifications','skills'));
     }
 
     public function update(Request $request, Employee $employee)

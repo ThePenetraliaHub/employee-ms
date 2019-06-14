@@ -67,7 +67,8 @@ class SkillController extends Controller
         $skill->update($request->all());
 
         notify()->success("Successfully Updated!","","bottomRight");
-        return redirect()->route('skills.index');
+
+        return redirect()->route('userProfile',$skill->employee_id);
     }
 
     public function edit(Skill $skill)

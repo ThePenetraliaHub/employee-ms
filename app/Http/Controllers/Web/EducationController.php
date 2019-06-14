@@ -123,7 +123,7 @@ class EducationController extends Controller
         }
 
         notify()->success("Successfully updated!","","bottomRight");
-        return redirect()->route('education.index');
+        return redirect()->route('userProfile',$education->employee_id);
     }
 
     public function destroy(Education $education)

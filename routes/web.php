@@ -20,6 +20,9 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
+
+	Route::get('/user-profile/{id}', 'Web\EmployeeController@userProfile')->name('userProfile');
+
 	Route::get('/download/{certification}/certification', 'Web\CertificationController@download')->name('download.certification');
 	Route::get('/download/{education}/education', 'Web\EducationController@download')->name('download.education');
 	Route::resource('/education', 'Web\EducationController');
@@ -40,6 +43,3 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get("/profile", function(){
-	return view("user-profile");
-});

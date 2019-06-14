@@ -81,6 +81,7 @@ class UserController extends Controller
         return view('pages.admin.certifications.list', compact('certifications'));
     }
 
+
     public function edit(Certification $certification)
     {
         $employees = Employee::all();
