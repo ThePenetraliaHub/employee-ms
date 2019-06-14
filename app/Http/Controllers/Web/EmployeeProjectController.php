@@ -52,24 +52,22 @@ class EmployeeProjectController extends Controller
             $path = $request->file('document_url')->store('project', 'public');
 
             EmployeeProject::create([
-                'project_id' => $request->
-                'employee_id' => $request->
-                'details' => $request->
+                'project_id' => $request->project_id,
+                'employee_id' => $request->employee_id,
+                'details' => $request->details,
                 'document_url' => $path,
-                'document_name' => $request-> 
+                'document_name' => $request->document_url->getClientOriginalName(),
             ]);
         }else{
             EmployeeProject::create([
-                project_id
-                employee_id
-                details
+                'project_id' => $request->project_id,
+                'employee_id' => $request->employee_id,
+                'details' => $request->details,
             ]);
         }
 
-
-
         notify()->success("Successfully created!","","bottomRight");
-        return redirect('department');
+        return redirect('employee-project');
     }
 
     public function show(Department $department)
