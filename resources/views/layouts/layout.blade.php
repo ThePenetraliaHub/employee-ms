@@ -97,7 +97,7 @@
                                 </a>
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> Projects</a></li>
-                                    <li><a href="{{ route('employee-project.create') }}"><i class="fa fa-circle-o"></i> Employee Project</a></li>
+                                    <li><a href="{{ route('employee-project.index') }}"><i class="fa fa-circle-o"></i> Employee Project</a></li>
                                 </ul>
                             </li>
                         </ul>
