@@ -14,8 +14,8 @@ class EmployeeProjectController extends Controller
 {
     public function index()
     {
-        $departments = Department::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.departments.list', ['departments' => $departments]);
+        $employee_project = EmployeeProject::orderBy('id', 'desc')->paginate(10);
+        return view('pages.admin.employee_project.list', compact('employee_project'));
     }
 
     public function create()
