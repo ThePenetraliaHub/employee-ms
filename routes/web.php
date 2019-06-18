@@ -20,11 +20,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-
 	Route::get('/user-profile/{id}', 'Web\EmployeeController@userProfile')->name('userProfile');
-
-	Route::get('/download/{certification}/certification', 'Web\CertificationController@download')->name('download.certification');
-	Route::get('/download/{education}/education', 'Web\EducationController@download')->name('download.education');
 	Route::resource('/education', 'Web\EducationController');
 	Route::resource('/certification', 'Web\CertificationController');
 	Route::resource('/skills', 'Web\SkillController');
@@ -36,6 +32,12 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/client', 'Web\ClientController');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
+
+	Route::prefix('download')->group(function () {
+        Route::get('/{education}/education', 'ReportController@index')->name('report.index');
+        Route::get('/{certification}/certification', 'Web\CertificationController@download')->name('download.certification');
+        Route::get('/{employee_project}/employee-project', 'Web\EmployeeProjectController@download')->name('download.employee_project');
+    });
 });
 
 Auth::routes();

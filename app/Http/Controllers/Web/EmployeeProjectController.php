@@ -7,16 +7,14 @@ use App\EmployeeProject;
 use App\Project;
 use App\Employee;
 use App\Http\Controllers\Controller;
-use Session; 
-use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class EmployeeProjectController extends Controller
 {
     public function index()
     {
-        $employee_project = EmployeeProject::orderBy('id', 'desc')->paginate(10);
-
-        return view('pages.admin.employee_project.list', compact('employee_project'));
+        $employee_projects = EmployeeProject::orderBy('id', 'desc')->paginate(10);
+        return view('pages.admin.employee_project.list', compact('employee_projects'));
     }
 
     public function create()
@@ -43,7 +41,7 @@ class EmployeeProjectController extends Controller
 
         $this->validate($request, $rules, $customMessages); 
 
-        if(EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $request->employee_id)->count() > 1) {
+        if(EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $request->employee_id)->count() > 0) {
             throw ValidationException::withMessages([
                 'employee_id' => "Employee is already attached to this project.",
             ]);
@@ -97,15 +95,15 @@ class EmployeeProjectController extends Controller
         return redirect('department');
     }
 
-    public function destroy(Department $department)
+    public function destroy(EmployeeProject $employee_project)
     {
-        if($department->employees->count() > 0){
-            notify()->warning("Department could not be deleted!, employees currently belong in the department.","Warning","bottomRight");
-            return redirect('department');
-        }else{
-            $department->delete();
-            notify()->success("Successfully Deleted!","","bottomRight");
-            return redirect('department');
-        }
+        $employee_project->delete();
+        notify()->success("Successfully Deleted!","","bottomRight");
+        return redirect('employee-project');
+    }
+
+    public function download(EmployeeProject $employee_project)
+    {
+        return response()->download(storage_path($employee_project->document), $employee_project->document_name);
     }
 }
