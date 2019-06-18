@@ -7,6 +7,8 @@
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
       <!-- User Account: style can be found in dropdown.less -->
+         @include("partials.header-widget.messages")
+         @include("partials.header-widget.notifications")
       <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           <img src="{{ asset("img/user2-160x160.jpg") }}" class="user-image" alt="User Image">
