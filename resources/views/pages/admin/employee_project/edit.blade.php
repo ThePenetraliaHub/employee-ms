@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="box box-primary">
-					<form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('employee_project.update', $employee_project->id) }}" >
+					<form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('employee-project.update', $employee_project->id) }}" enctype="multipart/form-data">
                         {{csrf_field()}}  
                         {{method_field('PUT')}}
 						<div class="box-body">

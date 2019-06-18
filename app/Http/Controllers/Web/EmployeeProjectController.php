@@ -8,6 +8,7 @@ use App\Project;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeProjectController extends Controller
 {
@@ -69,30 +70,52 @@ class EmployeeProjectController extends Controller
         return redirect('employee-project');
     }
 
-    public function show(Department $department)
+    public function show(EmployeeProject $employee_project)
     {
-        return view('pages.admin.employee_project.edit', ['department' => $department]);
+        $projects = Project::all();
+        $employees = Employee::all();
+        return view('pages.admin.employee_project.edit', compact("projects", "employees", "employee_project"));
     }
 
-    public function update(Request $request, Department $department){
+    public function update(Request $request, EmployeeProject $employee_project){
         $rules = [
-            'name' => [
-                'required',
-                Rule::unique('departments')->ignore($department->id),
-            ],
+            'project_id' => 'required',
+            'details' => 'required',
+            'document_url' => 'max:3000',
         ];
 
         $customMessages = [
-            'name.required' => 'Please provide the department\'s name.',
-            'name.unique' => 'Department name already exist.',
+            'project_id.required' => 'Please select the project.',
+            'details.required' => 'Please provide the details about employee engagement on project.',
         ];
 
-        $this->validate($request, $rules, $customMessages);
+        $this->validate($request, $rules, $customMessages); 
 
-        $department->update($request->all());
+        if(EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $employee_project->employee->id)->first()->id != $employee_project->id) {
+            throw ValidationException::withMessages([
+                'employee_id' => "Employee is already attached to this project.",
+            ]);
+        }
+
+        if($request->document_url){
+            Storage::disk('public')->delete($employee_project->document_url);
+            $path = $request->file('document_url')->store('project', 'public');
+
+            $employee_project->update([
+                'project_id' => $request->project_id,
+                'details' => $request->details,
+                'document_url' => $path,
+                'document_name' => $request->document_url->getClientOriginalName(),
+            ]);
+        }else{
+            $employee_project->update([
+                'project_id' => $request->project_id,
+                'details' => $request->details,
+            ]);
+        }
 
         notify()->success("Successfully Updated!","","bottomRight");
-        return redirect('department');
+        return redirect('employee-project');
     }
 
     public function destroy(EmployeeProject $employee_project)

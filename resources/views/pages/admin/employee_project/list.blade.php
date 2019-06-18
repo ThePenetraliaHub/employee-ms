@@ -26,6 +26,7 @@
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
+                                            <th scope="col">Assigned</th>
                                             <th scope="col">Employee</th>
                                             <th scope="col">Client</th>
                                             <th scope="col">Project</th>
@@ -38,6 +39,7 @@
                                         @foreach($employee_projects as $employee_project)
                                             <tr {{ $employee_project->project->end_date < date_create() ? "class=text-danger" : "" }}>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $employee_project->created_at->diffForHumans() }}</td>
                                                 <td>
                                                     <span class="inline-block"><strong> {{ $employee_project->employee->name }} </strong></span><br>
                                                     <span class="inline-block text-muted">{{ $employee_project->employee->employee_number }}</span><br>

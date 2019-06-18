@@ -1,5 +1,4 @@
 <div class="form-row">
-
     <div class="form-group col-xs-11{{ $errors->has('employee_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="employee_id">Employee</label>
         <select class="form-control " id="employee_id" name="employee_id">
