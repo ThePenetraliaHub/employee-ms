@@ -10,7 +10,7 @@ class Project extends Model
     
     public function employees()
     {
-        return $this->belongsToMany('App\Employee');
+        return $this->belongsToMany('App\Employee')->using('App\EmployeeProject');
     }
 
     public function client()
