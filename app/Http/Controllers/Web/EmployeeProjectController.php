@@ -16,7 +16,6 @@ class EmployeeProjectController extends Controller
     {
         $employee_project = EmployeeProject::orderBy('id', 'desc')->paginate(10);
 
-        dd($employee_project);
         return view('pages.admin.employee_project.list', compact('employee_project'));
     }
 

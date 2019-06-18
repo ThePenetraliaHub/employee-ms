@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Projects/Task
+            Employee Project/Task
             <small>View</small>
         </h1>
     </section>
@@ -12,15 +12,15 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(count($projects) > 0)
-                    <a href="{{ route('projects.create') }}" class="btn btn-primary btn-sm my-2">
+                @if(count($employee_project) > 0)
+                    <a href="{{ route('employee-project.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new Task/Project
                     </a>
                 @endif
                 <div class="box">
                     <div class="box-body">
-                        @if(count($projects) > 0)
+                        @if(count($employee_project) > 0)
                             <div class="table-responsive table-bordered">
                                 <table id="dataTable" class="table table-striped table-responsive">
                                     <thead>
@@ -37,19 +37,19 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach($projects as $project)
+                                        @foreach($employee_project as $project)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                {{-- <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $project->name}}</td>
                                                 <td>{{ $project->details}}</td>
                                                 <td>{{ $project->client->name}}</td>
                                                 <td>{{ $project->start_date}}</td>
                                                 <td>{{ $project->end_date}}</td>
-                                                <td>{{$project->status}} </td>
+                                                <td>{{$project->status}} </td> --}}
 
                                                 <td>
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('projects.show' , $project->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee-project.show' , $project->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
 
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectId="{{ $project->id }}">Delete</a>
                                                     </div> 
@@ -63,9 +63,9 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Projects yet!
+                                    No employee_project yet!
                                 </p>
-                                <a href="{{ route("projects.create") }}">
+                                <a href="{{ route("employee-project.create") }}">
                                     Add Project
                                 </a>
                             </div>
@@ -115,12 +115,10 @@
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var projectId = button.data('projectid') // Extract info from data-* attributes
-                console.log("employee_status id: "+projectId);
 
                 var modal = $(this)
-                $('#delete-form').attr('action', "projects/"+projectId);
+                $('#delete-form').attr('action', "employee-project/"+projectId);
             })
-        
         });
     </script>
 @endsection
