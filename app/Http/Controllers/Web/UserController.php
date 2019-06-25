@@ -29,45 +29,54 @@ class UserController extends Controller
     {
         $rules = [
             'employee_id' => 'required',
-            'certification' => 'required',
-            'institution' => 'required',
-            'granted_on' => 'required',
-            'valid_on' => 'required',
-            'document_url' => 'required|file|image|mimes:jpeg,png|max:1000'
         ];
 
         $customMessages = [
             'employee_id.required' => 'Please select employee',
-            'certification.required' => 'Please provide the certification title.',
-            'institution.required' => 'Please provide the awarding institution.',
-            'granted_on.required' => 'Please provide the awarded date.',
-            'valid_on.required' => 'Please provide Validation date.',
-            'document_url.required' => 'Please upload the certificate.',
-            'document_url.image' => 'Certfication attachment must be an image file.',
         ];
 
         $this->validate($request, $rules, $customMessages); 
-    
-        if ($request->granted_on > $request->valid_on) {
+
+        $employee_ids = $request->input('employee_id');
+
+        dd($employee_ids);
+
+        $names = array();
+
+        foreach($employee_ids as $employee_id){
+            $user = User::where('typeable_id', $employee_id)->where('typeable_type', "App\SuperAdmin");
+
+            if($user->count() > 0) {
+                $names[] = $user->first()->owner->name;
+            }
+        }
+
+        if(count($names) > 0){
             throw ValidationException::withMessages([
-                'granted_on' => "Certification valid through date cannot be less than the grated date.",
-                'valid_on' => "Certification valid through date cannot be less than the grated date.",
+                'employee_id' => "Employee". (count($names) > 1 ? "s ":" ") . implode(", ", $names). (count($names) > 1 ? " are":" is") . " already ".(count($names) > 1 ? "have ":"has ")." user account.",
             ]);
         }
 
-        if($request->document_url){
-            $path = $request->file('document_url')->store('certifications', 'public');
+        foreach($employee_ids as $employee_id){
+            if($request->document_url){
+                $path = $request->file('document_url')->store('project', 'public');
+                
+                EmployeeProject::create([
+                    'project_id' => $request->project_id,
+                    'employee_id' => $employee_id,
+                    'details' => $request->details,
+                    'document_url' => $path,
+                    'document_name' => $request->document_url->getClientOriginalName(),
+                ]);
+             
+            }else{
+                EmployeeProject::create([
+                    'project_id' => $request->project_id,
+                    'employee_id' => $employee_id,
+                    'details' => $request->details,
+                ]);
+            }
         }
-
-        Certification::create([
-            'employee_id' => $request->employee_id,
-            'certification' => $request->certification,
-            'institution' => $request->institution,
-            'granted_on' => $request->granted_on,
-            'valid_on' => $request->valid_on,
-            'document_url' => $path,
-            'document_name' => $request->document_url->getClientOriginalName(),
-        ]);
 
         notify()->success("Successfully created!","","bottomRight");
 

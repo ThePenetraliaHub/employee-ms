@@ -54,7 +54,6 @@ class EmployeeProjectController extends Controller
             if($employee->count() > 0) {
                 $names[] = $employee->first()->employee->name;
             }
-
         }
 
 
