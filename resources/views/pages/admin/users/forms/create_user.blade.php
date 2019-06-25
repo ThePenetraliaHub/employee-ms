@@ -1,8 +1,7 @@
-
 <div class="form-row">
     <div class="form-group col-xs-11{{ $errors->has('employee_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="employee_id">Employee</label>
-        <select class="form-control " id="employee_id" name="employee_id">
+        <select class="form-control " id="employee_id" name="employee_id[]" style="width: 100%;" multiple>
             <option value=""></option>
             @foreach($employees as $employee)
                 @if(!$employee->user_info)
@@ -20,13 +19,9 @@
    @section('script')
     <script>
         $(document).ready(function () {
-            $('#supervisor_id').select2();
-            $('#department_id').select2();
-            $('#employee_status_id').select2();
-            $('#pay_grade_id').select2();
-            $('#job_title_id').select2();
-            $('#marital_status').select2();
-            $('#gender').select2();
+            $('#employee_id').select2({
+                //multiple: true
+            });
         });
     </script>
 @endsection

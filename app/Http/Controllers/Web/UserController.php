@@ -39,8 +39,6 @@ class UserController extends Controller
 
         $employee_ids = $request->input('employee_id');
 
-        dd($employee_ids);
-
         $names = array();
 
         foreach($employee_ids as $employee_id){
@@ -58,24 +56,27 @@ class UserController extends Controller
         }
 
         foreach($employee_ids as $employee_id){
-            if($request->document_url){
-                $path = $request->file('document_url')->store('project', 'public');
-                
-                EmployeeProject::create([
-                    'project_id' => $request->project_id,
-                    'employee_id' => $employee_id,
-                    'details' => $request->details,
-                    'document_url' => $path,
-                    'document_name' => $request->document_url->getClientOriginalName(),
-                ]);
-             
-            }else{
-                EmployeeProject::create([
-                    'project_id' => $request->project_id,
-                    'employee_id' => $employee_id,
-                    'details' => $request->details,
-                ]);
-            }
+            $password = rand(100000, 999999);
+
+            //Insert the institution admin
+            $employee = Employee::find($employee_id); 
+            
+            $user = User::create([
+                'name' => $employee->name,
+                'email' => $employee->office_email,
+                'password' => Hash::make($password),
+                'typeable_id' => $admin->id,
+                'typeable_type' => get_class($admin)
+            ]);
+
+            //Assign a institution admin role to the user
+            $user->assignRole('employee');
+
+            //Send mail to the new administrator
+            $institution = Institution::find($request->institution_id);
+            
+            Mail::to($request->email)
+                ->send(new InstitutionAdminMail($institution, $user, $admin, $password));
         }
 
         notify()->success("Successfully created!","","bottomRight");
