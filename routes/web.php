@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/client', 'Web\ClientController');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
+	Route::resource('/user', 'Web\UserController');
 
 	Route::prefix('download')->group(function () {
         Route::get('/{education}/education', 'ReportController@index')->name('download.education');

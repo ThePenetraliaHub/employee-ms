@@ -16,14 +16,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        $certifications = Certification::all();
-        return view('pages.admin.certifications.list',  compact("certifications"));
+        $users = Certification::all();
+        return view('pages.admin.users.list',  compact("users"));
     }
 
     public function create()
     {
         $employees = Employee::all();
-        return view('pages.admin.certifications.create', compact("employees"));
+        return view('pages.admin.users.create', compact("employees"));
     }
 
     public function store(Request $request)
@@ -78,14 +78,14 @@ class UserController extends Controller
     public function show($id)
     {
         $certifications = Certification::where('employee_id', $id)->get();
-        return view('pages.admin.certifications.list', compact('certifications'));
+        return view('pages.admin.users.list', compact('certifications'));
     }
 
 
     public function edit(Certification $certification)
     {
         $employees = Employee::all();
-        return view('pages.admin.certifications.edit', compact('certification','employees'));
+        return view('pages.admin.users.edit', compact('certification','employees'));
     }
 
     public function update(Request $request, Certification $certification)
