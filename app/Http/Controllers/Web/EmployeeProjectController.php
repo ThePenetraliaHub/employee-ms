@@ -27,6 +27,7 @@ class EmployeeProjectController extends Controller
 
     public function store(Request $request)
     {
+      
         $rules = [
             'project_id' => 'required',
             'employee_id' => 'required',
@@ -42,28 +43,46 @@ class EmployeeProjectController extends Controller
 
         $this->validate($request, $rules, $customMessages); 
 
-        if(EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $request->employee_id)->count() > 0) {
+        $employee_ids = $request->input('employee_id');
+
+
+        $names = array();
+
+        foreach($employee_ids as $employee_id){
+            $employee = EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $employee_id);
+
+            if($employee->count() > 0) {
+                $names[] = $employee->first()->employee->name;
+            }
+
+        }
+
+
+        if(count($names) > 0){
             throw ValidationException::withMessages([
-                'employee_id' => "Employee is already attached to this project.",
+                'employee_id' => "Employee". (count($names) > 1 ? "s ":" ") . implode(", ", $names). (count($names) > 1 ? " are":" is") . " already attached to this project.",
             ]);
         }
 
-        if($request->document_url){
-            $path = $request->file('document_url')->store('project', 'public');
-
-            EmployeeProject::create([
-                'project_id' => $request->project_id,
-                'employee_id' => $request->employee_id,
-                'details' => $request->details,
-                'document_url' => $path,
-                'document_name' => $request->document_url->getClientOriginalName(),
-            ]);
-        }else{
-            EmployeeProject::create([
-                'project_id' => $request->project_id,
-                'employee_id' => $request->employee_id,
-                'details' => $request->details,
-            ]);
+        foreach($employee_ids as $employee_id){
+            if($request->document_url){
+                $path = $request->file('document_url')->store('project', 'public');
+                
+                EmployeeProject::create([
+                    'project_id' => $request->project_id,
+                    'employee_id' => $employee_id,
+                    'details' => $request->details,
+                    'document_url' => $path,
+                    'document_name' => $request->document_url->getClientOriginalName(),
+                ]);
+             
+            }else{
+                EmployeeProject::create([
+                    'project_id' => $request->project_id,
+                    'employee_id' => $employee_id,
+                    'details' => $request->details,
+                ]);
+            }
         }
 
         notify()->success("Successfully created!","","bottomRight");

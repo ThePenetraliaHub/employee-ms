@@ -44,8 +44,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('task', function () {
-		return view('pages.task');
-});
+Route::view('task','pages.task');
 
 

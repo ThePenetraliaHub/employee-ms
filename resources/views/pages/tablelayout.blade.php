@@ -59,7 +59,7 @@
                     
                 </div>
                 <div class="col-md-8"> 
-                    <a class="btn btn-success btn-sm " href="">Update Status </a>
+                    <a class="btn btn-success btn-sm control-label" href="">Update Status </a>
                     
                 </div>
             </div>
