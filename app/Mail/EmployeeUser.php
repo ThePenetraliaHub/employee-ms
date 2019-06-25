@@ -11,14 +11,20 @@ class EmployeeUser extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $employee; 
+    public $password;
+    public $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user, $employee, $password)
     {
-        //
+        $this->employee = $employee;
+        $this->password = $password;
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +34,6 @@ class EmployeeUser extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.users.employee_user');
+        return $this->markdown('emails.users.employee_user')->subject("Your login details");
     }
 }

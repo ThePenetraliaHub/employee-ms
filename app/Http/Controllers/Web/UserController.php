@@ -10,6 +10,9 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\ValidationException;
+use App\Mail\EmployeeUser;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -60,28 +63,25 @@ class UserController extends Controller
 
             //Insert the institution admin
             $employee = Employee::find($employee_id); 
-            
+
             $user = User::create([
                 'name' => $employee->name,
                 'email' => $employee->office_email,
                 'password' => Hash::make($password),
-                'typeable_id' => $admin->id,
-                'typeable_type' => get_class($admin)
+                'typeable_id' => $employee->id,
+                'typeable_type' => get_class($employee)
             ]);
 
             //Assign a institution admin role to the user
             $user->assignRole('employee');
 
-            //Send mail to the new administrator
-            $institution = Institution::find($request->institution_id);
-            
-            Mail::to($request->email)
-                ->send(new InstitutionAdminMail($institution, $user, $admin, $password));
+            Mail::to($employee->office_email)
+                ->send(new EmployeeUser($user, $employee, $password));
         }
 
         notify()->success("Successfully created!","","bottomRight");
 
-        return redirect()->route('certification.index');
+        return redirect()->route('user.index');
     }
 
     public function show($id)
@@ -142,17 +142,11 @@ class UserController extends Controller
         return redirect()->route('certification.index');
     }
 
-    public function destroy(Certification $certification)
+    public function destroy(User $user)
     {
-        Storage::disk('public')->delete($certification->document_url);
-        $certification->delete();
+        $user->delete();
 
         notify()->success("Successfully Deleted!","","bottomRight");
-        return redirect()->route('certification.index');
-    }
-
-    public function download(Certification $certification)
-    {
-        return response()->download(storage_path($certification->document), $certification->document_name);
+        return redirect()->route('user.index');
     }
 }

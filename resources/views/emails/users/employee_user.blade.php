@@ -1,10 +1,17 @@
 @component('mail::message')
-# Introduction
 
-The body of your message.
+Hi {{ $user->name }},
 
-@component('mail::button', ['url' => ''])
-Button Text
+A user account has been created for you, please find your login details below.
+
+Username: {{ $user->email }}
+
+Password: {{ $password }}
+
+Click the button below to login.
+
+@component('mail::button', ['url' => route('login')])
+	Login
 @endcomponent
 
 Thanks,<br>

@@ -48,8 +48,8 @@
                                             </td>
                                             <td>{{ $user->owner->joined_date}} </td>
                                             <td> 
-                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('user.show' ,$user->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
-                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}">Delete</a>
+                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('user.show' ,$user->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
                                             </td>
                                         </tr>
                                        @endforeach
