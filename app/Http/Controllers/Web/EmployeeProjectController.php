@@ -33,13 +33,13 @@ class EmployeeProjectController extends Controller
             'details' => 'required',
             'document_url' => 'max:3000',
         ];
-
+        
         $customMessages = [
             'project_id.required' => 'Please select the project.',
             'employee_id.required' => 'Please select the employee.',
             'details.required' => 'Please provide the details about employee engagement on project.',
         ];
-
+        
         $this->validate($request, $rules, $customMessages); 
 
         if(EmployeeProject::where('project_id', $request->project_id)->where('employee_id', $request->employee_id)->count() > 0) {
