@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $guarded = [];
+    protected $casts = [
+        'joined_date' => 'datetime',
+    ];
 
 	public function user_info()
     {

@@ -142,6 +142,31 @@ class UserController extends Controller
         return redirect()->route('certification.index');
     }
 
+    //Deactivate institution administrator account
+    public function active(Request $request, User $user){
+        if($user->is_active == 1){
+            $user->update([
+                'is_active' => '0',
+            ]);
+
+            notify()->success("Employee account deactivated successfully!","","bottomRight");
+
+            return response()->json([
+                'message' => 'success',
+            ], 200);
+        }else if($user->is_active == 0){
+            $user->update([
+                'is_active' => '1',
+            ]);
+
+            notify()->success("Employee account activated successfully!","","bottomRight");
+            
+            return response()->json([
+                'message' => 'success',
+            ], 200);
+        }
+    }
+
     public function destroy(User $user)
     {
         $user->delete();

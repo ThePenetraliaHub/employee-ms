@@ -49,6 +49,15 @@
                                             <td>{{ $user->owner->joined_date->diffForHumans() }} </td>
                                             <td> 
                                                 <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+
+                                                {{-- Use the user active/inactive status to detect which icon to show --}}
+                                                @if($user->is_active == 1 && $user->id != auth()->user()->id)
+                                                    <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning fa fa-lock text-danger pointer ml-3" data-userId="{{ $user->id }}">
+                                                    </a>
+                                                @elseif($user->is_active == 0 && $user->id != auth()->user()->id)
+                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-warning fa fa-unlock text-success pointer ml-3" data-userId="{{ $user->id }}">
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
                                        @endforeach
@@ -111,10 +120,40 @@
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var user_id = button.data('userid') // Extract info from data-* attributes
-                console.log(user_id);
+
                 var modal = $(this)
                 $('#delete-form').attr('action', "user/"+user_id);
             })
+
+            //Code that handles the activation and deactivation of administrator account
+            $(".active").on('click',(function(e) {
+                e.preventDefault()
+
+                var user_id = $(this).attr("data-userId");
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "user/"+user_id+"/active",
+                    type: "GET",
+                    traditional: true,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    data: new FormData(this),
+                    success: function(res){
+                        location.reload();
+                    },
+                    error: function(jqXhr){
+                        if( jqXhr.status === 401 ) //redirect if not authenticated user.
+                            $( location ).prop( 'pathname', 'auth/login' );
+                         else {
+                            Swal.fire("Admin update failed, please try again.", "", "error")
+                        }
+                    }
+                });  
+            }));
         });
     </script>
 @endsection

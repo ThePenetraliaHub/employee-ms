@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 	Route::get('/user-profile/{id}', 'Web\EmployeeController@userProfile')->name('userProfile');
+	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
+
 	Route::resource('/education', 'Web\EducationController');
 	Route::resource('/certification', 'Web\CertificationController');
 	Route::resource('/skills', 'Web\SkillController');
