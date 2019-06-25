@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Create Employees
+        <h1>Create Users
             <small>Create</small>
         </h1>
     </section>                          
@@ -11,14 +11,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-primary">
-                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('employee.store') }}">
+                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('user.store') }}">
                         @csrf
                         <div class="box-body">
-                            @include('pages.admin.employees.forms.create_employee')
+                            @include('pages.admin.users.forms.create_user')
                         </div>
                         <div class="box-footer">
                             <button id="button" type="submit" class="btn btn-success col-xs-2">Create</button>
-                            <a type="button" class="btn btn-warning ml-3" href="{{route('employee.index')}}" > Cancel</a> 
+                            <a type="button" class="btn btn-warning ml-3" href="{{route('user.index')}}" > Cancel</a> 
                         </div>
                     </form>
                 </div>

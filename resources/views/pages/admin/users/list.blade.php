@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Employees
+            Users
             <small>View</small>
         </h1>
     </section>
@@ -12,22 +12,22 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(count($employees) > 0)
-                    <a href="{{ route('employee.create') }}" class="btn btn-primary btn-sm my-2">
+                @if(count($users) > 0)
+                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Employee
+                        Create new User
                     </a>
                 @endif
                 <div class="box">
                     <div class="box-body">
-                        @if(count($employees) > 0)
+                        @if(count($users) > 0)
                             <div class="table-responsive table-bordered">
                                <table id="dataTable" class="table table-striped table-responsive">
                                   <thead>
                                     <tr class="table-heading-bg">
                                         <th scope="col">S/N</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Employee No.</th>
+                                        <th scope="col">Employee Details</th>
+                                        <th scope="col">user No.</th>
                                         <th scope="col">Department</th>
                                         <th scope="col">Job Title</th>
                                         <th scope="col">Supervisor</th>
@@ -38,23 +38,27 @@
                                   </thead>
                                   <tbody>
 
-                                      @foreach($employees as $employee)
+                                      @foreach($users as $user)
                                         <tr>
                                             <td>{{ $loop->iteration}} </td>
-                                            <td>{{ $employee->name }}</td>
-                                            <td>{{ $employee->employee_number}} </td>
-                                            <td>{{ $employee->department->name}}</td> 
-                                            <td>{{ $employee->job_title->title}} </td>
                                             <td>
-                                                @if($employee->supervisor)
-                                                    {{ $employee->supervisor->name }}
+                                                <span class="inline-block"><strong> {{ $education->employee->name }} </strong></span><br>
+                                                <span class="inline-block text-muted">{{ $education->employee->employee_number }}</span><br>
+                                                <span class="inline-block text-muted">{{ $education->employee->job_title->title }}</span>
+                                            </td>
+                                            <td>{{ $user->user_number}} </td>
+                                            <td>{{ $user->department->name}}</td> 
+                                            <td>{{ $user->job_title->title}} </td>
+                                            <td>
+                                                @if($user->supervisor)
+                                                    {{ $user->supervisor->name }}
                                                 @endif
                                             </td>
-                                            <td>{{ $employee->joined_date}} </td>
-                                            <td>{{ $employee->employee_status->title}}</td>
+                                            <td>{{ $user->joined_date}} </td>
+                                            <td>{{ $user->user_status->title}}</td>
                                             <td> 
-                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee.show' ,$employee->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
-                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeId="{{ $employee->id }}">Delete</a>
+                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('user.show' ,$user->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}">Delete</a>
                                             </td>
                                         </tr>
                                        @endforeach
@@ -65,10 +69,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Employees yet!
+                                    No users yet!
                                 </p>
-                                <a href="{{ route("employee.create") }}">
-                                    Add Employee
+                                <a href="{{ route("user.create") }}">
+                                    Add User
                                 </a>
                             </div>
                         @endif
@@ -89,7 +93,7 @@
                                     {{csrf_field()}} 
                                     {{method_field('DELETE')}} 
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" id="employee_id" name="_method" value="DELETE" >
+                                        <input type="hidden" class="form-control" id="user_id" name="_method" value="DELETE" >
                                     </div>
                                     
                                     <h4 class="text-center">Are you sure you want to delete this data?</h4>
@@ -116,10 +120,10 @@
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var employee_id = button.data('employeeid') // Extract info from data-* attributes
-                console.log(employee_id);
+                var user_id = button.data('userid') // Extract info from data-* attributes
+                console.log(user_id);
                 var modal = $(this)
-                $('#delete-form').attr('action', "employee/"+employee_id);
+                $('#delete-form').attr('action', "user/"+user_id);
             })
         });
     </script>

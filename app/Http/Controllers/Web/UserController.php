@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Employee;
-use App\Certification;
+use App\User;
 use App\Http\Controllers\Controller;
-use Session; 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -16,7 +15,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = Certification::all();
+        $users = User::all();
         return view('pages.admin.users.list',  compact("users"));
     }
 
