@@ -27,35 +27,26 @@
                                     <tr class="table-heading-bg">
                                         <th scope="col">S/N</th>
                                         <th scope="col">Employee Details</th>
-                                        <th scope="col">user No.</th>
-                                        <th scope="col">Department</th>
-                                        <th scope="col">Job Title</th>
-                                        <th scope="col">Supervisor</th>
+                                        <th scope="col">Contact Info</th>
                                         <th scope="col">Join Date</th>
-                                        <th scope="col">Employment Status</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-
                                       @foreach($users as $user)
                                         <tr>
                                             <td>{{ $loop->iteration}} </td>
                                             <td>
-                                                <span class="inline-block"><strong> {{ $education->employee->name }} </strong></span><br>
-                                                <span class="inline-block text-muted">{{ $education->employee->employee_number }}</span><br>
-                                                <span class="inline-block text-muted">{{ $education->employee->job_title->title }}</span>
+                                                <span class="inline-block"><strong> {{ $user->owner->name }} </strong></span><br>
+                                                <span class="inline-block text-muted">{{ $user->owner->employee_number }}</span><br>
+                                                <span class="inline-block text-muted">{{ $user->owner->job_title->title }}</span>
                                             </td>
-                                            <td>{{ $user->user_number}} </td>
-                                            <td>{{ $user->department->name}}</td> 
-                                            <td>{{ $user->job_title->title}} </td>
                                             <td>
-                                                @if($user->supervisor)
-                                                    {{ $user->supervisor->name }}
-                                                @endif
+                                                <span class="inline-block"><strong> {{ $user->owner->name }} </strong></span><br>
+                                                <span class="inline-block text-muted">{{ $user->owner->employee_number }}</span><br>
+                                                <span class="inline-block text-muted">{{ $user->owner->job_title->title }}</span>
                                             </td>
-                                            <td>{{ $user->joined_date}} </td>
-                                            <td>{{ $user->user_status->title}}</td>
+                                            <td>{{ $user->owner->joined_date}} </td>
                                             <td> 
                                                 <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('user.show' ,$user->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
                                                 <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}">Delete</a>

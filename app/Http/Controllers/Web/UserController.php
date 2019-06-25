@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::where("typeable_type", "App\Employee")->get();
         return view('pages.admin.users.list',  compact("users"));
     }
 
