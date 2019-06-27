@@ -147,7 +147,7 @@
                     },
                     error: function(jqXhr){
                         if( jqXhr.status === 401 ) //redirect if not authenticated user.
-                            $( location ).prop( 'pathname', 'auth/login' );
+                            $( location ).prop( 'pathname', 'login' );
                          else {
                             Swal.fire("Admin update failed, please try again.", "", "error")
                         }
