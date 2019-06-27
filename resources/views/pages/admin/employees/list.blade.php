@@ -37,7 +37,6 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-
                                       @foreach($employees as $employee)
                                         <tr>
                                             <td>{{ $loop->iteration}} </td>
