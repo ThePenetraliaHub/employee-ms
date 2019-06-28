@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Department;
 
 class DepartmentsTableSeeder extends Seeder
 {
@@ -11,11 +12,10 @@ class DepartmentsTableSeeder extends Seeder
      */
     public function run()
     {
-     $query =  " INSERT INTO `departments` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'ICT', '2019-06-04 14:50:45', '2019-06-04 14:50:45'),
-(2, 'ADMIN', '2019-06-04 14:50:59', '2019-06-04 14:50:59'),
-(3, 'Marketting', '2019-06-05 09:47:20', '2019-06-05 09:47:20')";
+        DB::statement("SET FOREIGN_KEY_CHECKS=0");
+        Department::truncate();
+        DB::statement("SET FOREIGN_KEY_CHECKS=1");
 
-		DB::insert($query);
+        factory(\App\Department::class, 4)->create();
     }
 }

@@ -9,6 +9,7 @@ use App\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeProjectController extends Controller
 {
@@ -146,5 +147,13 @@ class EmployeeProjectController extends Controller
     public function download(EmployeeProject $employee_project)
     {
         return response()->download(storage_path($employee_project->document), $employee_project->document_name);
+    }
+
+     public function taskById()
+    {
+         $id = Auth::user()->typeable_id;
+         $tasks = EmployeeProject::where('employee_id', $id)->firstOrFail();
+         //dd($tasks);
+        return view('pages.tasks.list', compact('tasks'));
     }
 }

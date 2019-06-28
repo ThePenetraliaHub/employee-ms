@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/client', 'Web\ClientController');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
+	Route::get('/tasks', 'Web\EmployeeProjectController@taskById');
 	Route::resource('/user', 'Web\UserController');
 
 	Route::prefix('download')->group(function () {
@@ -47,6 +48,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::view('task','pages.task');
+//Route::view('task','pages.admin.projects.task');
 
 

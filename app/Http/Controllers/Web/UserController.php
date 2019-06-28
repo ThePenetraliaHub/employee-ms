@@ -46,15 +46,15 @@ class UserController extends Controller
 
         foreach($employee_ids as $employee_id){
             $user = User::where('typeable_id', $employee_id)->where('typeable_type', "App\SuperAdmin");
-
             if($user->count() > 0) {
                 $names[] = $user->first()->owner->name;
+
             }
         }
 
         if(count($names) > 0){
             throw ValidationException::withMessages([
-                'employee_id' => "Employee". (count($names) > 1 ? "s ":" ") . implode(", ", $names). (count($names) > 1 ? " are":" is") . " already ".(count($names) > 1 ? "have ":"has ")." user account.",
+                'employee_id' => "Employee". (count($names) > 1 ? "s ":" ") . implode(", ", $names). " already ".(count($names) > 1 ? "have ":"has ")." user account.",
             ]);
         }
 
