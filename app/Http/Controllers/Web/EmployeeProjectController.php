@@ -151,9 +151,8 @@ class EmployeeProjectController extends Controller
 
      public function taskById()
     {
-         $id = Auth::user()->typeable_id;
-         $tasks = EmployeeProject::where('employee_id', $id)->firstOrFail();
-         //dd($tasks);
+        $tasks = EmployeeProject::where('employee_id', auth()->user()->owner->id)->get();
+
         return view('pages.tasks.list', compact('tasks'));
     }
 }
