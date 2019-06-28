@@ -149,10 +149,15 @@ class EmployeeProjectController extends Controller
         return response()->download(storage_path($employee_project->document), $employee_project->document_name);
     }
 
-     public function taskById()
+     public function taskByEmployeeId()
     {
         $tasks = EmployeeProject::where('employee_id', auth()->user()->owner->id)->get();
 
         return view('pages.tasks.list', compact('tasks'));
+    }
+
+    public function taskByProjectId($id)
+    {
+     
     }
 }

@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-6">
                 <label class="control-label viewLabel3">Task Details</label>
-                <textarea class="control-label  textarea " disabled>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</textarea>
+                <textarea class="control-label  textarea " disabled>{{$task->project->details}}</textarea>
                 <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="">Download Attachment </a>
             </div>
          

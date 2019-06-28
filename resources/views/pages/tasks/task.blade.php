@@ -17,7 +17,7 @@
             <div class="tab-content basic-tab" id="myTabContent">
 
                     <div class="tab-pane fade in active" id="basic-info" role="tabpanel" aria-labelledby="personal-info-tab">
-                        @include('pages.admin.projects.tablelayout')
+                        @include('pages.tasks.tablelayout')
 
                     </div>
 

@@ -34,7 +34,8 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/client', 'Web\ClientController');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
-	Route::get('/tasks', 'Web\EmployeeProjectController@taskById');
+	Route::get('/tasks', 'Web\EmployeeProjectController@taskByEmployeeId')->name('tasks');
+	Route::get('/task/{id}', 'Web\EmployeeProjectController@taskByProjectId')->name('task');
 	Route::resource('/user', 'Web\UserController');
 
 	Route::prefix('download')->group(function () {
