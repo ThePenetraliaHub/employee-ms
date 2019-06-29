@@ -8,26 +8,24 @@
                     <label class="control-label viewLabel3">Task</label>
                 </div>
                 <div class="col-md-8"> 
-                    <label class="control-label viewLabel2"><b>Development of Employee Management System</b></label>
+                    <label class="control-label viewLabel2"><b>{{$project->name}}</b></label>
                 </div>
                 <div class="col-md-4">
                     <label class="control-label viewLabel3">Client</label></div>
                 <div class="col-md-8"> 
-                    <label class="control-label viewLabel2">Joint Task Board</label>
+                    <label class="control-label viewLabel2">{{$project->client->name}}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="control-label viewLabel3">Assigned on</label>
                 </div>
                 <div class="col-md-8"> 
-                    <label class="control-label viewLabel2">June 23, 2019 
-                    | 3:09PM</label>
+                    <label class="control-label viewLabel2">{{$project->start_date}}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="control-label viewLabel3">Deadline</label>
                 </div>
                 <div class="col-md-8"> 
-                    <label class="control-label viewLabel2">June 27, 2019 
-                    | 3:09PM</label>
+                    <label class="control-label viewLabel2">{{$project->end_date}}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="control-label viewLabel3">Days Left</label>
@@ -39,15 +37,15 @@
                     <label class="control-label viewLabel3">Task Status</label>
                 </div>
                 <div class="col-md-8"> 
-                    <label class="control-label viewLabel2">Innitiated</label>
+                    <label class="control-label viewLabel2">{{$project->status}}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="control-label viewLabel3">Team Members</label>
                 </div>
                 <div class="col-md-8"> 
-                    @for($i = 0; $i < 4; $i++ )
-                    <li class="control-label viewLabel2">Team Member{{$i+1}} </li>
-                    @endfor
+                    @foreach($employee_projects as $employee_project )
+                    <li class="control-label viewLabel2">{{$employee_project->employee->name}} </li>
+                    @endforeach
                 </div>
                 <div class="col-md-4">
                     <select class="control-label viewLabel3" id="status" style="width: 100%;">
@@ -65,8 +63,13 @@
             </div>
             <div class="col-md-6">
                 <label class="control-label viewLabel3">Task Details</label>
-                <textarea class="control-label  textarea " disabled>{{$task->project->details}}</textarea>
-                <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="">Download Attachment </a>
+                <textarea class="control-label  textarea " disabled>{{$project->details}} {{ $employee_project->details}}
+                </textarea>
+
+                 @if($employee_project->document_url)
+                  <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.employee_project', $employee_project)  }}">Download Attachment </a>
+                 @endif
+               
             </div>
          
 

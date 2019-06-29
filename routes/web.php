@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{education}/education', 'ReportController@index')->name('download.education');
         Route::get('/{certification}/certification', 'Web\CertificationController@download')->name('download.certification');
         Route::get('/{employee_project}/employee-project', 'Web\EmployeeProjectController@download')->name('download.employee_project');
+        
     });
 });
 

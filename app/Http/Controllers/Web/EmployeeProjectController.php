@@ -158,6 +158,11 @@ class EmployeeProjectController extends Controller
 
     public function taskByProjectId($id)
     {
+         $project = Project::find($id);
+
+         $employee_projects = EmployeeProject::where('project_id',$id)->get();
+
+        return view('pages.tasks.task', compact('employee_projects','project'));
      
     }
 }
