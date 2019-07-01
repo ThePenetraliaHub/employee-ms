@@ -119,6 +119,16 @@ class EmployeeController extends Controller
         return view('pages.admin.user-profile.user-profile', compact('employee','educations','certifications','skills'));
     }
 
+    public function shortProfile($id)
+    {
+       $employee = Employee::find($id);
+       $educations = Education::where('employee_id', $id)->get();
+       $certifications = Certification::where('employee_id', $id)->get();
+       $skills = Skill::where('employee_id', $id)->get();
+
+        return view('pages.admin.user-profile.short-profile', compact('employee','educations','certifications','skills'));
+    }
+
     public function update(Request $request, Employee $employee)
     {
         $rules = [

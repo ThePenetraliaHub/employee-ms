@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 	Route::get('/user-profile/{id}', 'Web\EmployeeController@userProfile')->name('userProfile');
+	Route::get('/short-profile/{id}', 'Web\EmployeeController@shortProfile')->name('shortProfile');
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
 
 	Route::resource('/education', 'Web\EducationController');
@@ -51,6 +52,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::view('task','pages.admin.projects.task');
+Route::view('emails','pages.broadcasts.mails.emails')->name('mails');;
+Route::view('compose-email','pages.broadcasts.mails.compose')->name('compose-mail');
+Route::view('read-mail','pages.broadcasts.mails.read')->name('read-mail');
 
 

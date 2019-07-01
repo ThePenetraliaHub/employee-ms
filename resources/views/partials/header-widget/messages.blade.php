@@ -39,6 +39,6 @@
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
+              <li class="footer"><a href="{{ route("mails") }}">See All Messages</a></li>
             </ul>
           </li>

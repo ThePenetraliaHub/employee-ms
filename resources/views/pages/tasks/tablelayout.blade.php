@@ -44,23 +44,37 @@
                 </div>
                 <div class="col-md-8"> 
                     @foreach($employee_projects as $employee_project )
-                    <li class="control-label viewLabel2">{{$employee_project->employee->name}} </li>
+                    <li class="control-label viewLabel2"><a href="{{ route('shortProfile' ,$employee_project->employee->id) }}" >{{$employee_project->employee->name}} </a></li>
                     @endforeach
+                </div>
+                
+                <div class="col-md-4">
+                    <label class="control-label viewLabel3">Team Leader</label>
+                </div>
+                <div class="col-md-8"> 
+                    <b><a class="control-label viewLabel2" href="{{ route('shortProfile' ,$employee_project->employee->id) }}" >{{$employee_projects[0]->employee->name}} </a></b>
                 </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 ">
                 <label class="control-label viewLabel3">Task Details</label>
-                <textarea class="control-label  textarea " disabled>{{$project->details}} {{ $employee_project->details}}
-                </textarea>
-
-                 @if($employee_project->document_url)
-                  <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.employee_project', $employee_project)  }}" style="margin-bottom: 10px;">Download Attachment </a>
-                 @endif
+                <div class="mailbox-read-message">
+                  {{$project->details}} {{ $employee_project->details}}
+                  
+                </div>
+                   <div class="box-footer">
+                <div class="pull-left">
+                  <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
+                  @if($employee_project->document_url)
+                  <a type="button" class="btn btn-default " href="{{route('download.employee_project', $employee_project)  }}"><i class="fa fa-cloud-download "></i> Download Attachment</a>
+                  @endif
+                </div>
+                
+              </div>
                
             </div>
 
-
+               @if($employee_projects[0]->employee->id == auth()->user()->owner->id)
             <div class="col-md-12 ">
                <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('updateTaskStatus',$project->id) }}" >
                         {{csrf_field()}}  
@@ -80,7 +94,7 @@
                </form>   
 
             </div>
-            
+           @endif   
 
         </div>
     </div>

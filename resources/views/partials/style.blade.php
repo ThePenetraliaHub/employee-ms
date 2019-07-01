@@ -3,6 +3,10 @@
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <link rel="stylesheet" href="{{ asset('css/ionicons/ionicons.css') }}">
+<!-- iCheck -->
+<link rel="stylesheet" href="{{ asset('css/iCheck/flat/blue.css') }}">
+<!-- bootstrap wysihtml5 - text editor -->
+<link rel="stylesheet" href="{{ asset('css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/AdminLTE.css') }}">
 <link rel="stylesheet" href="{{ asset('css/skins/skin-blue.css') }}">

@@ -20,7 +20,7 @@
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
             </div>
-            <a href="#" class="small-box-footer">Manage employees <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('employee.index')}}" class="small-box-footer">Manage employees <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -35,7 +35,7 @@
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">Manage users <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('user.index')}}" class="small-box-footer">Manage users <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -50,7 +50,7 @@
             <div class="icon">
               <i class="ion ion-home"></i>
             </div>
-            <a href="#" class="small-box-footer">Manage departments <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('department.index')}}" class="small-box-footer">Manage departments <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -65,7 +65,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">Manage projects<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('projects.index')}}" class="small-box-footer">Manage projects<i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -117,7 +117,7 @@
             <div class="icon">
               <i class="ion-android-contacts"></i>
             </div>
-            <a href="#" class="small-box-footer">Manage Clients <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('client.index')}}" class="small-box-footer">Manage Clients <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
