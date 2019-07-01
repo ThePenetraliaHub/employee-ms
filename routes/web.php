@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/certification', 'Web\CertificationController');
 	Route::resource('/skills', 'Web\SkillController');
 	Route::resource('/projects', 'Web\ProjectController');
+	Route::post('/task-status/{projectid}', 'Web\ProjectController@updateTaskStatus')->name('updateTaskStatus');
 	Route::resource('/pay-grade', 'Web\PayGradeController');
 	Route::resource('/job-title', 'Web\JobTitleController');
 	Route::resource('/employee-status', 'Web\EmployeeStatusController');
@@ -42,7 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{education}/education', 'ReportController@index')->name('download.education');
         Route::get('/{certification}/certification', 'Web\CertificationController@download')->name('download.certification');
         Route::get('/{employee_project}/employee-project', 'Web\EmployeeProjectController@download')->name('download.employee_project');
-        
+
     });
 });
 

@@ -13,7 +13,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-       $projects = Project::orderBy('id', 'desc')->paginate(10);
+       $projects = Project::orderBy('id', 'desc')->paginate(200);
         return view('pages.admin.projects.list', compact('projects'));
     }
 
@@ -92,6 +92,33 @@ class ProjectController extends Controller
 
         notify()->success("Successfully Updated!","","bottomRight");
         return redirect('projects');
+    }
+
+    public function updateTaskStatus(Request $request,$projectid)
+    {
+        $rules = [
+            'status' => 'required',
+
+        ];
+
+        $customMessages = [
+            'status.required' => 'Please provide project status',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $project = Project::find($projectid);
+
+        if($project) {
+
+        $project->status = $request->status;
+
+        $project->save();
+
+        }
+        notify()->success("Successfully Updated!","","bottomRight");
+
+        return redirect()->route('task',$projectid);
     }
 
     public function destroy(Project $project)
