@@ -20,10 +20,9 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-	Route::get('/profile/{user?}', 'Web\UserController@profile')->name('user.profile');
-	// Route::get('/short-profile/{id}', 'Web\EmployeeController@shortProfile')->name('shortProfile');
+	Route::get('/profile', 'Web\UserController@profile')->name('profile');
+	
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
-
 	Route::resource('/education', 'Web\EducationController');
 	Route::resource('/certification', 'Web\CertificationController');
 	Route::resource('/skills', 'Web\SkillController');
@@ -45,6 +44,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/{certification}/certification', 'Web\CertificationController@download')->name('download.certification');
         Route::get('/{employee_project}/employee-project', 'Web\EmployeeProjectController@download')->name('download.employee_project');
 
+    });
+
+    Route::prefix('employee')->group(function () {
+        Route::get('/{employee}/profile', 'UserController@employeeProfile')->name('employee.profile');
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::get('/{admin}/profile', 'UserController@adminProfile')->name('admin.profile');
     });
 });
 

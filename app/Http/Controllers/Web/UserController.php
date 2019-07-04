@@ -148,52 +148,55 @@ class UserController extends Controller
 
     public function profile(User $user)
     {
-        if($user->owner != null){
-            if(auth()->user()->hasRole('employee') && $user->owner instanceof Employee){
-                $employee = Employee::find($user->owner->id);
-                $educations = Education::where('employee_id', $user->owner->id)->get();
-                $certifications = Certification::where('employee_id', $user->owner->id)->get();
-                $skills = Skill::where('employee_id', $user->owner->id)->get();
+        if(auth()->user()->hasRole('employee')){
+            $employee = Employee::find($user->owner->id);
 
-                if($user->owner == auth()->user()->owner){
-                    return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
-                }else{
-                    return view('pages.all_users.profile.short-profile', compact('employee','educations','certifications','skills'));
-                }
-            }elseif(auth()->user()->hasRole('super admin')){
-                if($user->owner instanceof Employee){
-                    $employee = Employee::find($user->owner->id);
-                    $educations = Education::where('employee_id', $user->owner->id)->get();
-                    $certifications = Certification::where('employee_id', $user->owner->id)->get();
-                    $skills = Skill::where('employee_id', $user->owner->id)->get();
+            $educations = Education::where('employee_id', $user->owner->id)->get();
+            $certifications = Certification::where('employee_id', $user->owner->id)->get();
+            $skills = Skill::where('employee_id', $user->owner->id)->get();
 
-                    return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
-                }elseif($user->owner instanceof SuperAdmin){
-                    if($user->owner == auth()->user()->owner){
-                        
-                    }else{
-
-                    }
-                }
-            }else{
-                abort(403, 'Unauthorized action.');
-            }
+            return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
+        }elseif(auth()->user()->hasRole('super admin')){
+            
         }else{
-            if(auth()->user()->hasRole('employee')){
-                $employee = auth()->user()->owner;
-                $educations = $employee->educations;
-                $certifications = $employee->certifications;
-                $skills = $employee->skills;
-
-                return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
-            }elseif(auth()->user()->hasRole('super admin')){
-
-            }else{
-                abort(403, 'Unauthorized action.');
-            }
+            abort(403, 'Unauthorized action.');
         }
     }
 
+    public function adminProfile(SuperAdmin $admin)
+    {
+        if(auth()->user()->hasRole('super admin')){
+            if($admin == auth()->user()->owner){
+                return redirect("profile");
+            }else{
+                
+            }
+        }else{
+            abort(403, 'Unauthorized action.');
+        }
+    }
+
+    public function employeeProfile(Employee $employee)
+    {
+        if(auth()->user()->hasRole('employee')){
+            if($employee == auth()->user()->owner){
+                return redirect("profile");
+            }else{
+                $employee = Employee::find($employee->id);
+
+                return view('pages.all_users.profile.short-profile', compact('employee'));
+            }
+        }elseif(auth()->user()->hasRole('super admin')){
+            $employee = Employee::find($employee->id);
+            $educations = Education::where('employee_id', $employee->id)->get();
+            $certifications = Certification::where('employee_id', $employee->id)->get();
+            $skills = Skill::where('employee_id', $employee->id)->get();
+
+            return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
+        }else{
+            abort(403, 'Unauthorized action.');
+        }
+    }
 
     //Deactivate institution administrator account
     public function active(Request $request, User $user){
