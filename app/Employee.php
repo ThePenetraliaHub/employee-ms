@@ -23,7 +23,7 @@ class Employee extends Model
 
     public function educations()
     {
-        return $this->hasMany('App\Educatution');
+        return $this->hasMany('App\Education');
     }
 
     public function skills()

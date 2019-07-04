@@ -13,6 +13,10 @@ use Illuminate\Validation\ValidationException;
 use App\Mail\EmployeeUser;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use App\Certification;
+use App\Education;
+use App\Skill;
+use App\SuperAdmin;
 
 class UserController extends Controller
 {
@@ -144,28 +148,32 @@ class UserController extends Controller
 
     public function profile(User $user)
     {
-        if($user){
+        if($user->owner != null){
             if(auth()->user()->hasRole('employee') && $user->owner instanceof Employee){
-                $employee = Employee::find($id);
-                $educations = Education::where('employee_id', $id)->get();
-                $certifications = Certification::where('employee_id', $id)->get();
-                $skills = Skill::where('employee_id', $id)->get();
+                $employee = Employee::find($user->owner->id);
+                $educations = Education::where('employee_id', $user->owner->id)->get();
+                $certifications = Certification::where('employee_id', $user->owner->id)->get();
+                $skills = Skill::where('employee_id', $user->owner->id)->get();
 
-                if($user == auth()->user()->owner){
+                if($user->owner == auth()->user()->owner){
                     return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
                 }else{
                     return view('pages.all_users.profile.short-profile', compact('employee','educations','certifications','skills'));
                 }
             }elseif(auth()->user()->hasRole('super admin')){
                 if($user->owner instanceof Employee){
-                    $employee = Employee::find($id);
-                    $educations = Education::where('employee_id', $id)->get();
-                    $certifications = Certification::where('employee_id', $id)->get();
-                    $skills = Skill::where('employee_id', $id)->get();
+                    $employee = Employee::find($user->owner->id);
+                    $educations = Education::where('employee_id', $user->owner->id)->get();
+                    $certifications = Certification::where('employee_id', $user->owner->id)->get();
+                    $skills = Skill::where('employee_id', $user->owner->id)->get();
 
-                    return view('pages.admin.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
+                    return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
                 }elseif($user->owner instanceof SuperAdmin){
-                    
+                    if($user->owner == auth()->user()->owner){
+                        
+                    }else{
+
+                    }
                 }
             }else{
                 abort(403, 'Unauthorized action.');
