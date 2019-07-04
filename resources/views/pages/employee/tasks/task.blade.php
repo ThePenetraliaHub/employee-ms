@@ -18,7 +18,7 @@
 
                     <div class="tab-pane fade in active" id="basic-info" role="tabpanel" aria-labelledby="personal-info-tab">
                         
-                        @include('pages.tasks.tablelayout')
+                        @include('pages.employee.tasks.tablelayout')
 
                     </div>
 

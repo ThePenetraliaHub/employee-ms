@@ -153,7 +153,7 @@ class EmployeeProjectController extends Controller
     {
         $tasks = EmployeeProject::where('employee_id', auth()->user()->owner->id)->get();
 
-        return view('pages.tasks.list', compact('tasks'));
+        return view('pages.employee.tasks.list', compact('tasks'));
     }
 
     public function taskByProjectId($id)
@@ -162,7 +162,7 @@ class EmployeeProjectController extends Controller
 
          $employee_projects = EmployeeProject::where('project_id',$id)->get();
 
-        return view('pages.tasks.task', compact('employee_projects','project'));
+        return view('pages.employee.tasks.task', compact('employee_projects','project'));
      
     }
 }
