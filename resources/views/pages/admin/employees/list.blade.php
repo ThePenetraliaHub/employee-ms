@@ -52,7 +52,7 @@
                                             <td>{{ $employee->joined_date}} </td>
                                          <!--    <td>{{ $employee->employee_status->title}}</td> -->
                                             <td> 
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('user.profile' ,$employee->id) }}" role="button" style=" margin-right: 5px; "> </a>
+                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('employee.profile' ,$employee->id) }}" role="button" style=" margin-right: 5px; "> </a>
                                                 <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeId="{{ $employee->id }}"></a>
                                                 <!-- <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('employee.show' ,$employee->id) }}" role="button" style=" margin-right: 5px; "> </a>
                                                 <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeId="{{ $employee->id }}"></a> -->
