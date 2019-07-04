@@ -146,18 +146,18 @@ class UserController extends Controller
         return redirect()->route('certification.index');
     }
 
-    public function profile(User $user)
+    public function profile()
     {
         if(auth()->user()->hasRole('employee')){
-            $employee = Employee::find($user->owner->id);
+            $employee = Employee::find(auth()->user()->owner->id);
 
-            $educations = Education::where('employee_id', $user->owner->id)->get();
-            $certifications = Certification::where('employee_id', $user->owner->id)->get();
-            $skills = Skill::where('employee_id', $user->owner->id)->get();
+            $educations = Education::where('employee_id', auth()->user()->owner->id)->get();
+            $certifications = Certification::where('employee_id', auth()->user()->owner->id)->get();
+            $skills = Skill::where('employee_id', auth()->user()->owner->id)->get();
 
             return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
         }elseif(auth()->user()->hasRole('super admin')){
-            
+
         }else{
             abort(403, 'Unauthorized action.');
         }
