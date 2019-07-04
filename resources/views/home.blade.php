@@ -47,7 +47,7 @@
                     <div class="inner">
                         <h3>Admins<sup style="font-size: 20px"></sup></h3>
 
-                        <h3>{{ \App\Employee::all()->count() }}</h3>
+                        <h3>{{ \App\User::where("typeable_type", "App\SuperAdmin")->count() }}</h3>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -63,7 +63,7 @@
                 <div class="small-box bg-yellow">
                     <div class="inner">
                         <h3>Departments</h3>
-                        <p>32</p>
+                        <p><h3>{{ \App\Department::all()->count() }}</h3></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-home"></i>
