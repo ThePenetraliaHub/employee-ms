@@ -47,11 +47,11 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('employee')->group(function () {
-        Route::get('/{employee}/profile', 'UserController@employeeProfile')->name('employee.profile');
+        Route::get('/{employee}/profile', 'Web\UserController@employeeProfile')->name('employee.profile');
     });
 
     Route::prefix('admin')->group(function () {
-        Route::get('/{admin}/profile', 'UserController@adminProfile')->name('admin.profile');
+        Route::get('/{admin}/profile', 'Web\UserController@adminProfile')->name('admin.profile');
     });
 });
 
