@@ -81,7 +81,7 @@
                 <div class="small-box bg-red">
                     <div class="inner">
                         <h3>Projects</h3>
-                        <p>43</p>
+                        <h3>{{ \App\Project::all()->count() }}</h3>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
@@ -125,7 +125,7 @@
                 <div class="small-box bg-red">
                     <div class="inner">
                         <h3>Clients</h3>
-                        <p>477</p>
+                        <h3>{{ \App\Client::all()->count() }}</h3>
                     </div>
                     <div class="icon">
                         <i class="ion-android-contacts"></i>
