@@ -96,7 +96,7 @@
                     <div class="inner">
                         <h3>Attendance<sup style="font-size: 20px"></sup></h3>
 
-                        <p>85%</p>
+                        <h3 class="invisible">x</h3>
                     </div>
                     <div class="icon">
                         <i class="ion ion-clock"></i>
@@ -111,7 +111,7 @@
                     <div class="inner">
                         <h3>Reports</h3>
 
-                        <p>View / Download Reports</p>
+                        <h4 style="margin-bottom: 33px;">View / Download Reports</h4>
                     </div>
                     <div class="icon">
                         <i class="ion ion-document-text"></i>

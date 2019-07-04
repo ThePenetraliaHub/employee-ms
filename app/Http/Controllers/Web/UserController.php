@@ -142,6 +142,51 @@ class UserController extends Controller
         return redirect()->route('certification.index');
     }
 
+    public function profile(User $user)
+    {
+        if($user){
+            if(auth()->user()->hasRole('employee') && $user->owner instanceof Employee){
+                $employee = Employee::find($id);
+                $educations = Education::where('employee_id', $id)->get();
+                $certifications = Certification::where('employee_id', $id)->get();
+                $skills = Skill::where('employee_id', $id)->get();
+
+                if($user == auth()->user()->owner){
+                    return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
+                }else{
+                    return view('pages.all_users.profile.short-profile', compact('employee','educations','certifications','skills'));
+                }
+            }elseif(auth()->user()->hasRole('super admin')){
+                if($user->owner instanceof Employee){
+                    $employee = Employee::find($id);
+                    $educations = Education::where('employee_id', $id)->get();
+                    $certifications = Certification::where('employee_id', $id)->get();
+                    $skills = Skill::where('employee_id', $id)->get();
+
+                    return view('pages.admin.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
+                }elseif($user->owner instanceof SuperAdmin){
+                    
+                }
+            }else{
+                abort(403, 'Unauthorized action.');
+            }
+        }else{
+            if(auth()->user()->hasRole('employee')){
+                $employee = auth()->user()->owner;
+                $educations = $employee->educations;
+                $certifications = $employee->certifications;
+                $skills = $employee->skills;
+
+                return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
+            }elseif(auth()->user()->hasRole('super admin')){
+
+            }else{
+                abort(403, 'Unauthorized action.');
+            }
+        }
+    }
+
+
     //Deactivate institution administrator account
     public function active(Request $request, User $user){
         if($user->is_active == 1){

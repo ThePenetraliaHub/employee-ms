@@ -20,8 +20,8 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-	Route::get('/user-profile/{id}', 'Web\EmployeeController@userProfile')->name('userProfile');
-	Route::get('/short-profile/{id}', 'Web\EmployeeController@shortProfile')->name('shortProfile');
+	Route::get('/profile/{user?}', 'Web\UserController@profile')->name('user.profile');
+	// Route::get('/short-profile/{id}', 'Web\EmployeeController@shortProfile')->name('shortProfile');
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
 
 	Route::resource('/education', 'Web\EducationController');
