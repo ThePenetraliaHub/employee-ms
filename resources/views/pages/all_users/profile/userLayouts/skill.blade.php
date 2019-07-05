@@ -9,7 +9,7 @@
         <th scope="col">S/N</th>
         <th scope="col">Skill Title</th>
         <th scope="col">Details</th>
-        <th scope="col">Action</th>
+        {{-- <th scope="col">Action</th> --}}
     </tr>
 </thead>
 <tbody>
@@ -19,13 +19,13 @@
     <td>{{ $skill->skill_title}}</td>
     <td>{{ $skill->detail}}</td>
 
-    <td>
+    {{-- <td>
         <div class="btn-group">
            <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('skills.edit' , $skill->id) }}" role="button" style=" margin-right: 5px; "> </a>
 
            <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-skillId="{{ $skill->id }}"></a>
        </div> 
-   </td>
+   </td> --}}
 </tr>
 @endforeach
 </tbody>

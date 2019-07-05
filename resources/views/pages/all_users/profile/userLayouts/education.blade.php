@@ -28,9 +28,9 @@
 
                <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.education', $education)  }}" role="button" style=" margin-right: 5px; "> </a>
 
-               <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('education.edit' , $education->id) }}" role="button" style=" margin-right: 5px; "> </a>
+               {{-- <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('education.edit' , $education->id) }}" role="button" style=" margin-right: 5px; "> </a>
 
-               <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-certId="{{ $education->id}}"></a>
+               <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-certId="{{ $education->id}}"></a> --}}
            </div> 
        </td>
    </tr>
