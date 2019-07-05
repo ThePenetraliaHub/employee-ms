@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-8"> 
                     @foreach($employee_projects as $employee_project )
-                    <li class="control-label viewLabel2"><a href="{{ route('user.profile' ,$employee_project->employee->id) }}" >{{$employee_project->employee->name}} </a></li>
+                    <li class="control-label viewLabel2"><a href="{{ route('employee.profile' ,$employee_project->employee->id) }}" >{{$employee_project->employee->name}} </a></li>
                     @endforeach
                 </div>
                 
@@ -52,7 +52,7 @@
                     <label class="control-label viewLabel3">Team Leader</label>
                 </div>
                 <div class="col-md-8"> 
-                    <b><a class="control-label viewLabel2" href="{{ route('user.profile' ,$employee_project->employee->id) }}" >{{$employee_projects[0]->employee->name}} </a></b>
+                    <b><a class="control-label viewLabel2" href="{{ route('employee.profile' ,$employee_project->employee->id) }}" >{{$employee_projects[0]->employee->name}} </a></b>
                 </div>
 
             </div>
