@@ -1,8 +1,8 @@
  @if(count($certifications) > 0)
- <a href="{{ route("certification.create") }}" class="btn btn-primary btn-sm my-2">
+{{-- <a href="{{ route("certification.create") }}" class="btn btn-primary btn-sm my-2">
     <span class="fa fa-plus-circle mr-2"></span>
     Add Certifications
-</a>
+</a> --}}
 <table class="table table-striped">
   <thead>
     <tr class="table-heading-bg">
@@ -39,10 +39,10 @@
 <div class="empty-state text-center my-3">
     @include('icons.empty')
     <p class="text-muted my-3">
-        Employees do not have certifications yet!
+        Employee do not have certifications yet!
     </p>
-    <a href="{{ route("certification.create") }}">
+    {{-- <a href="{{ route("certification.create") }}">
         Add Certifications
-    </a>
+    </a> --}}
 </div>
 @endif

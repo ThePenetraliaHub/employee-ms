@@ -3,8 +3,8 @@
 @section('content')
 <section class="content-header panel">
 
-    <h1>Employees
-        <small>employees</small>
+    <h1>Employee
+        <small>profile</small>
     </h1>
 </section>
 
@@ -15,7 +15,7 @@
         <div class="col-md-2">
 
             <div class="profile-img">
-                <img src="http://127.0.0.1:8000/img/user2-160x160.jpg" alt="profile image"/>
+                <img src="{{ asset('img/user2-160x160.jpg') }}" alt="profile image"/>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
             <div class="tab-content basic-tab" id="myTabContent">
 
                     <div class="tab-pane fade in active" id="basic-info" role="tabpanel" aria-labelledby="personal-info-tab">
-                        @include('pages/admin/user-profile/userLayouts/short-info')
+                        @include('pages/all_users/profile/userLayouts/short-info')
 
                     </div>
 

@@ -1,8 +1,8 @@
 @if(count($educations) > 0)
-<a href="{{ route("education.create") }}" class="btn btn-primary btn-sm my-2">
+{{-- <a href="{{ route("education.create") }}" class="btn btn-primary btn-sm my-2">
     <span class="fa fa-plus-circle mr-2"></span>
     Add Education
-</a>
+</a> --}}
 
 <table class="table table-striped">
   <thead>
@@ -41,10 +41,10 @@
 <div class="empty-state text-center my-3">
     @include('icons.empty')
     <p class="text-muted my-3">
-        Employees do not have educations yet!
+        Employee do not have educations yet!
     </p>
-    <a href="{{ route("education.create") }}">
+    {{-- <a href="{{ route("education.create") }}">
         Add educations
-    </a>
+    </a> --}}
 </div>
 @endif

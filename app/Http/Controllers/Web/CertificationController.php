@@ -129,7 +129,7 @@ class CertificationController extends Controller
         }
 
         notify()->success("Successfully updated!","","bottomRight");
-        return redirect()->route('userProfile',$certification->employee_id);
+        return redirect()->route('certification.index');
     }
 
     public function destroy(Certification $certification)

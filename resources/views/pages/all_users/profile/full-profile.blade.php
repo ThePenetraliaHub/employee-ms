@@ -2,9 +2,8 @@
 
 @section('content')
 <section class="content-header panel">
-
-    <h1>Employees
-        <small>employees</small>
+    <h1>Employee
+        <small>profile</small>
     </h1>
 </section>
 
@@ -15,7 +14,7 @@
         <div class="col-md-2">
 
             <div class="profile-img">
-                <img src="http://127.0.0.1:8000/img/user2-160x160.jpg" alt="profile image"/>
+                <img src="{{ asset('img/user2-160x160.jpg') }}" alt="profile image"/>
                 <div class="file btn btn-lg btn-primary">
                     Change Photo
                     <input type="file" name="file"/>
@@ -40,9 +39,8 @@
                 </div>
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-
                         <li class="nav-item">
-                            <a class="nav-link active" id="basic-info-tab" data-toggle="tab" href="#basic-info" role="tab" aria-controls="basic-info" aria-selected="true">Basic Information</a>
+                            <a class="nav-link" id="basic-info-tab" data-toggle="tab" href="#basic-info" role="tab" aria-controls="basic-info" aria-selected="true">Basic Information</a>
                         </li>
 
                         <li class="nav-item">
@@ -61,9 +59,11 @@
             </div>
         </div>
 
-         <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-        </div>
+        @if(auth()->user()->owner instanceof \App\SuperAdmin)
+            <div class="col-md-2">
+                <a href="{{ route("employee.show", $employee->id) }}" class="btn btn-primary px-5">Edit Profile</a>
+            </div>
+        @endif
     </div>
 
 
@@ -76,21 +76,21 @@
             <div class="tab-content basic-tab" id="myTabContent">
 
                     <div class="tab-pane fade in active" id="basic-info" role="tabpanel" aria-labelledby="personal-info-tab">
-                        @include('pages/admin/user-profile/userLayouts/basic-info')
+                        @include('pages/all_users/profile/userLayouts/basic-info')
 
                     </div>
 
 
 
                     <div class="tab-pane fade" id="education-info" role="tabpanel" aria-labelledby="education-info-tab">
-                        @include('pages/admin/user-profile/userLayouts/education')
+                        @include('pages/all_users/profile/userLayouts/education')
                     </div>
 
 
 
 
                     <div class="tab-pane fade" id="certification-info" role="tabpanel" aria-labelledby="certification-info-tab">
-                        @include('pages/admin/user-profile/userLayouts/certification')
+                        @include('pages/all_users/profile/userLayouts/certification')
                     </div>
 
 
@@ -99,7 +99,7 @@
 
                     <div class="tab-pane fade" id="skills-info" role="tabpanel" aria-labelledby="skills-info-tab">
 
-                         @include('pages/admin/user-profile/userLayouts/skill')
+                         @include('pages/all_users/profile/userLayouts/skill')
 
                     </div>
 
