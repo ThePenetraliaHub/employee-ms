@@ -60,7 +60,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('emails','pages.all_users.broadcasts.mails.emails')->name('mails');;
-Route::view('compose-email','pages.broadcasts.mails.compose')->name('compose-mail');
-Route::view('read-mail','pages.broadcasts.mails.read')->name('read-mail');
+Route::view('compose-email','pages.all_users.broadcasts.mails.compose')->name('compose-mail');
+Route::view('read-mail','pages.all_users.broadcasts.mails.read')->name('read-mail');
 
 
