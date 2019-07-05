@@ -21,13 +21,11 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', 'Web\UserController@profile')->name('profile');
-
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
 	Route::resource('/education', 'Web\EducationController');
 	Route::resource('/certification', 'Web\CertificationController');
 	Route::resource('/skills', 'Web\SkillController');
 	Route::resource('/projects', 'Web\ProjectController');
-	Route::post('/task-status/{projectid}', 'Web\ProjectController@updateTaskStatus')->name('updateTaskStatus');
 	Route::resource('/pay-grade', 'Web\PayGradeController');
 	Route::resource('/job-title', 'Web\JobTitleController');
 	Route::resource('/employee-status', 'Web\EmployeeStatusController');
@@ -35,9 +33,12 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/client', 'Web\ClientController');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
+	Route::resource('/user', 'Web\UserController');
+	Route::resource('/admin', 'Web\SuperAdminController');
+	
 	Route::get('/tasks', 'Web\EmployeeProjectController@taskByEmployeeId')->name('tasks');
 	Route::get('/task/{id}', 'Web\EmployeeProjectController@taskByProjectId')->name('task');
-	Route::resource('/user', 'Web\UserController');
+	Route::post('/task-status/{projectid}', 'Web\ProjectController@updateTaskStatus')->name('updateTaskStatus');
 
 	Route::prefix('download')->group(function () {
         Route::get('/{education}/education', 'Web\EducationController@download')->name('download.education');
