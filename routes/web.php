@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
 	Route::resource('/user', 'Web\UserController');
 	Route::resource('/admin', 'Web\SuperAdminController');
-	
+
 	Route::get('/tasks', 'Web\EmployeeProjectController@taskByEmployeeId')->name('tasks');
 	Route::get('/task/{id}', 'Web\EmployeeProjectController@taskByProjectId')->name('task');
 	Route::post('/task-status/{projectid}', 'Web\ProjectController@updateTaskStatus')->name('updateTaskStatus');
@@ -59,7 +59,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::view('emails','pages.broadcasts.mails.emails')->name('mails');;
+Route::view('emails','pages.all_users.broadcasts.mails.emails')->name('mails');;
 Route::view('compose-email','pages.broadcasts.mails.compose')->name('compose-mail');
 Route::view('read-mail','pages.broadcasts.mails.read')->name('read-mail');
 
