@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Penetralia Hub EMS</title>
+  <title>{{ config('app.name') }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -15,7 +15,7 @@
         <header class="main-header">
             <a href="{{ route("home") }}" class="logo">
                 <span class="logo-mini"><b>EMS</span>
-                <span class="logo-lg"><b>Penetralia Hub EMS</b></span>
+                <span class="logo-lg"><b>HOME</b></span>
             </a>
             @include("partials.navbar")
         </header>
@@ -47,7 +47,7 @@
                             <li><a href="{{ route("home") }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
 
                             <li class="treeview">
-                                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Administrators</a></li>
+                                <li><a href="{{ route("admin.index") }}"><i class="glyphicon glyphicon-user"></i> Administrators</a></li>
                             </li>
 
                             <li class="treeview">

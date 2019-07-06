@@ -20,7 +20,6 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-	Route::get('/profile', 'Web\UserController@profile')->name('profile');
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
 	Route::resource('/education', 'Web\EducationController');
 	Route::resource('/certification', 'Web\CertificationController');
@@ -46,6 +45,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{employee_project}/employee-project', 'Web\EmployeeProjectController@download')->name('download.employee_project');
     });
 
+	Route::get('/profile', 'Web\UserController@profile')->name('profile');
     Route::prefix('employee')->group(function () {
         Route::get('/{employee}/profile', 'Web\UserController@employeeProfile')->name('employee.profile');
     });

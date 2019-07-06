@@ -2,7 +2,7 @@
 
 Hi {{ $user->name }},
 
-A user account has been created for you, please find your login details below.
+A user account has been created for you as an administrator, please find your login details below.
 
 Usernam: {{ $user->email }}
 
