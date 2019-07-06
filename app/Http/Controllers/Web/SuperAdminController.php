@@ -120,10 +120,11 @@ class SuperAdminController extends Controller
         return redirect('super_admins.index');
     }
 
-    public function destroy(Request $request, User $user)
+    public function destroy($user)
     {
-        dd($user);
-        $user->user_info->delete();
+        $user = User::where('id', $user)->get()->first();
+
+        $user->owner->delete();
         $user->delete();
 
         notify()->success("Successfully Deleted!","","bottomRight");
