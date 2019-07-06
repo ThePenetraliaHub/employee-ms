@@ -42,46 +42,32 @@ class UserController extends Controller
             'employee_id.required' => 'Please select employee',
         ];
 
-        $this->validate($request, $rules, $customMessages); 
+        $this->validate($request, $rules, $customMessages);
 
-        $employee_ids = $request->input('employee_id');
+        $employee = Employee::find($request->employee_id)->first(); 
 
-        $names = array();
+        // //Check if someone with same email aleady exist
+        // if (User::where('email', $employee->office_email)->get()->count() != 0) {
+        //     throw ValidationException::withMessages([
+        //         'employee_id' => "A user with employee's official email already exist."
+        //     ]);
+        // }
 
-        foreach($employee_ids as $employee_id){
-            $user = User::where('typeable_id', $employee_id)->where('typeable_type', "App\SuperAdmin");
-            if($user->count() > 0) {
-                $names[] = $user->first()->owner->name;
+        $password = rand(100000, 999999);
 
-            }
-        }
+        $user = User::create([
+            'name' => $employee->name,
+            'email' => $employee->office_email,
+            'password' => Hash::make($password),
+            'typeable_id' => $employee->id,
+            'typeable_type' => get_class($employee)
+        ]);
 
-        if(count($names) > 0){
-            throw ValidationException::withMessages([
-                'employee_id' => "Employee". (count($names) > 1 ? "s ":" ") . implode(", ", $names). " already ".(count($names) > 1 ? "have ":"has ")." user account.",
-            ]);
-        }
+        //Assign a institution admin role to the user
+        $user->assignRole('employee');
 
-        foreach($employee_ids as $employee_id){
-            $password = rand(100000, 999999);
-
-            //Insert the institution admin
-            $employee = Employee::find($employee_id); 
-
-            $user = User::create([
-                'name' => $employee->name,
-                'email' => $employee->office_email,
-                'password' => Hash::make($password),
-                'typeable_id' => $employee->id,
-                'typeable_type' => get_class($employee)
-            ]);
-
-            //Assign a institution admin role to the user
-            $user->assignRole('employee');
-
-            Mail::to($employee->office_email)
-                ->send(new EmployeeUser($user, $employee, $password));
-        }
+        Mail::to($employee->office_email)
+            ->send(new EmployeeUser($user, $employee, $password));
 
         notify()->success("Successfully created!","","bottomRight");
 
@@ -101,49 +87,9 @@ class UserController extends Controller
         return view('pages.admin.users.edit', compact('certification','employees'));
     }
 
-    public function update(Request $request, Certification $certification)
+    public function update(Request $request)
     {
-        $rules = [
-            'certification' => 'required',
-            'institution' => 'required',
-            'granted_on' => 'required',
-            'valid_on' => 'required',
-            'document_url' => 'sometimes|file|image|mimes:jpeg,png|max:1000'
-        ];
-
-        $customMessages = [
-            'certification.required' => 'Please provide the certification title.',
-            'institution.required' => 'Please provide the awarding institution.',
-            'granted_on.required' => 'Please provide the awarded date.',
-            'valid_on.required' => 'Please provide validation date.',
-            'document_url.required' => 'Please upload a document.',
-        ];
-
-        $this->validate($request, $rules, $customMessages); 
-
-        if($request->document_url){
-            Storage::disk('public')->delete($certification->document_url);
-            $path = $request->file('document_url')->store('certifications', 'public');
-
-            $certification->update([
-                'certification' => $request->certification,
-                'institution' => $request->institution,
-                'granted_on' => $request->granted_on,
-                'valid_on' => $request->valid_on,
-                'document_url' => $path,
-                'document_name' => $request->document_url->getClientOriginalName(),
-            ]);
-        }else{
-            $certification->update([
-                'certification' => $request->certification,
-                'institution' => $request->institution,
-                'granted_on' => $request->granted_on,
-                'valid_on' => $request->valid_on,
-            ]);
-        }
-
-        notify()->success("Successfully updated!","","bottomRight");
-        return redirect()->route('certification.index');
+        
     }
 
     public function profile()

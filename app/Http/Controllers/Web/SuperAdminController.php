@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminUser;
+use App\Employee;
 
 class SuperAdminController extends Controller
 {
@@ -49,7 +50,7 @@ class SuperAdminController extends Controller
             $this->validate($request, $rules, $customMessages);
 
             //Check if someone with same email aleady exist
-            if (User::where('email', $request->email)->get()->count() != 0) {
+            if (User::where('email', $request->email)->get()->count() != 0 || Employee::where('office_email', $request->email)->get()->count() != 0) {
                 throw ValidationException::withMessages([
                     'email' => "A user with thesame email already exist"
                 ]);
@@ -119,9 +120,10 @@ class SuperAdminController extends Controller
         return redirect('super_admins.index');
     }
 
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
-        $user->owner->delete();
+        dd($user);
+        $user->user_info->delete();
         $user->delete();
 
         notify()->success("Successfully Deleted!","","bottomRight");

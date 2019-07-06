@@ -1,7 +1,7 @@
 @extends('layouts.auth_layout')
 
 @section("title")
-    Penetralia Hub EMS | Login
+    {{ config('app.name') }} | Login
 @endsection
 
 @section("form-body")
