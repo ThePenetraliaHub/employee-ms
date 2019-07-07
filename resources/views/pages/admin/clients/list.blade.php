@@ -15,7 +15,7 @@
                 @if(count($clients) > 0)
                     <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new client
+                        Create client
                     </a>
                 @endif
                 <div class="box">
