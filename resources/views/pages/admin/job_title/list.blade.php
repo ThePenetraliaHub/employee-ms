@@ -58,7 +58,7 @@
                                 <p class="text-muted my-3">
                                     No job titles yet!
                                 </p>
-                                <a href="{{ route("job_title.create") }}">
+                                <a href="{{ route("job-title.create") }}">
                                     Create job title
                                 </a>
                             </div>
