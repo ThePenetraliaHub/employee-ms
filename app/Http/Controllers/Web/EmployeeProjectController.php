@@ -177,18 +177,18 @@ class EmployeeProjectController extends Controller
         return response()->download(storage_path($employee_project->document), $employee_project->document_name);
     }
 
-    public function taskByEmployeeId()
+    public function employee_tasks()
     {
         $tasks = EmployeeProject::where('employee_id', auth()->user()->owner->id)->get();
 
         return view('pages.employee.tasks.list', compact('tasks'));
     }
 
-    public function taskByProjectId($id)
+    public function task_info($id)
     {
         $project = Project::find($id);
         $employee_projects = EmployeeProject::where('project_id',$id)->get();
 
-        return view('pages.employee.tasks.task', compact('employee_projects','project'));
+        return view('pages.employee.tasks.show', compact('employee_projects','project'));
     }
 }

@@ -101,7 +101,7 @@
                                 </ul>
                             </li>
                             <li class="treeview">
-                                <li><a href="{{ route('tasks') }}"><i class="fa fa-users"></i> Employee Tasks</a></li>
+                                <li><a href="{{ route('task.index') }}"><i class="fa fa-users"></i> Employee Tasks</a></li>
                             </li>
                         </ul>
                     </li>

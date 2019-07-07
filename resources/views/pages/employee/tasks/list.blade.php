@@ -70,7 +70,7 @@
                                                 <td> {{$task->status}} </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task' , $task->project->id) }}" role="button" ></a>
+                                                         <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show' , $task->project->id) }}" role="button" ></a>
                                                     </div> 
                                                 </td>
                                             </tr>

@@ -35,9 +35,9 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/user', 'Web\UserController');
 	Route::resource('/admin', 'Web\SuperAdminController');
 
-	Route::get('/tasks', 'Web\EmployeeProjectController@taskByEmployeeId')->name('tasks');
-	Route::get('/task/{id}', 'Web\EmployeeProjectController@taskByProjectId')->name('task');
-	Route::post('/task-status/{projectid}', 'Web\ProjectController@updateTaskStatus')->name('updateTaskStatus');
+	Route::get('/task', 'Web\EmployeeProjectController@employee_tasks')->name('task.index');
+	Route::get('/task/{employee_project}', 'Web\EmployeeProjectController@task_info')->name('task.show');
+	Route::post('/task/{employee_project}', 'Web\ProjectController@update_task')->name('task.update');
 
 	Route::prefix('download')->group(function () {
         Route::get('/{education}/education', 'Web\EducationController@download')->name('download.education');
