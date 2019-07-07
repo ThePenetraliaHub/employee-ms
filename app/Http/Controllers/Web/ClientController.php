@@ -40,7 +40,7 @@ class ClientController extends Controller
             'name.unique' => 'Client name already exist.',
             'details.required' => 'Please provide the client\'s details.',
             'address.required' => 'Please provide the client\'s address.',
-            'contact_number.required' => 'Please provide the client\'s Contact Number.',
+            'contact_number.required' => 'Please provide the client\'s contact number.',
             'contact_email.required' => 'Please provide the client\'s contact email.',
             'company_url.active_url' => 'Please provide an active client\'s web address.',
             'first_contact_date.required' => 'Please provide the client\'s first contacted date.'
@@ -80,7 +80,7 @@ class ClientController extends Controller
             'name.unique' => 'Client name already exist.',
             'details.required' => 'Please provide the client\'s details.',
             'address.required' => 'Please provide the client\'s address.',
-            'contact_number.required' => 'Please provide the client\'s Contact Number.',
+            'contact_number.required' => 'Please provide the client\'s contact number.',
             'contact_email.required' => 'Please provide the client\'s contact email.',
             'company_url.required' => 'Please provide an active client\'s web address.',
             'first_contact_date.required' => 'Please provide the client\'s first contacted date.'
