@@ -15,11 +15,14 @@ class CreateEmployeeProjectsTable extends Migration
     {
         Schema::create('employee_project', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("project_id")->unsigned();
+            $table->integer("project_id")->unsigned()->nullable();
             $table->integer("employee_id")->unsigned();
             $table->string("details");
             $table->string("document_url")->nullable();
             $table->string("document_name")->nullable();
+            $table->string("status");
+            $table->date("start_date");
+            $table->date("end_date");
             $table->timestamps();
 
             $table->foreign('project_id')

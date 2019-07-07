@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Projects/Task
+            Projects
             <small>View</small>
         </h1>
     </section>
@@ -15,7 +15,7 @@
                 @if(count($projects) > 0)
                     <a href="{{ route('projects.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Task/Project
+                        Create new project
                     </a>
                 @endif
                 <div class="box">
@@ -27,12 +27,10 @@
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Details</th>
                                             <th scope="col">Client</th>
-                                            <th scope="col">Start Date</th>
-                                            <th scope="col">End Date</th>
+                                            <th scope="col">Timeline</th>
                                             <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
@@ -41,16 +39,26 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $project->name}}</td>
-                                                <td>{{ $project->details}}</td>
-                                                <td>{{ $project->client->name}}</td>
-                                                <td>{{ $project->start_date}}</td>
-                                                <td>{{ $project->end_date}}</td>
-                                                <td>{{$project->status}} </td>
-
                                                 <td>
+                                                    <span class="inline-block"><strong> {{ $project->client->name }} </strong></span><br>
+                                                    <span class="inline-block text-muted">{{ $project->client->contact_number }} ({{ $project->client->contact_email }}) </span><br>
+                                                    <span class="inline-block text-muted">
+                                                        {{ $project->client->status === 0 ? "Inactive Client" : "Active Client" }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="inline-block text-muted">
+                                                        Start{{ $project->start_date > date_create() ? "s": "ed" }} {{ $project->start_date->diffForHumans() }}
+                                                    </span>
+                                                    <br>
+                                                    <span class="inline-block text-muted">
+                                                        End{{ $project->end_date > date_create() ? "s": "ed" }} {{ $project->end_date->diffForHumans() }}
+                                                    </span>
+                                                </td>
+                                                <td>{{$project->status}} </td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('projects.show' , $project->id) }}" role="button" style=" margin-right: 5px; "></a>
-
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectId="{{ $project->id }}"></a>
                                                     </div> 
                                                 </td>
@@ -63,10 +71,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Projects yet!
+                                    No projects yet!
                                 </p>
                                 <a href="{{ route("projects.create") }}">
-                                    Add Project
+                                    Add new project
                                 </a>
                             </div>
                         @endif

@@ -8,6 +8,10 @@ class EmployeeProject extends Pivot
 {
 	protected $guarded = [];
     protected $with = ['employee', 'project'];
+    protected $casts = [
+        'end_date' => 'datetime',
+        'start_date' => 'datetime',
+    ];
 
     public function employee()
     {

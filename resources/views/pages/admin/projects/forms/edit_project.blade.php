@@ -69,7 +69,6 @@
             </span>
         @endif
     </div>
-
 </div>
     @section('script')
     <script>

@@ -46,7 +46,9 @@
                                             </td>
                                             <td>{{ $user->created_at->diffForHumans() }} </td>
                                             <td class="text-center"> 
-                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+                                                @if($user->id != auth()->user()->id)
+                                                    <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+                                                @endif
 
                                                 {{-- Use the user active/inactive status to detect which icon to show --}}
                                                 @if($user->is_active == 1 && $user->id != auth()->user()->id)

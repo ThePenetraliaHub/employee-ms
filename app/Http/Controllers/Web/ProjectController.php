@@ -35,8 +35,8 @@ class ProjectController extends Controller
         ];
 
         $customMessages = [
-          'name.unique' => 'Please project name already exist',
-           'name.required' => 'Please provide project name',
+            'name.unique' => 'Please project name already exist',
+            'name.required' => 'Please provide project name',
             'details.required' => 'Please provide project details',
             'client_id.required' => 'Please provide project client',
             'start_date.required' => 'Please provide project start date',
