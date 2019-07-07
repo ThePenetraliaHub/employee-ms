@@ -97,7 +97,7 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
          if($client->projects->count() > 0){
-            notify()->warning("Client could not be deleted!, projects are currently attached to this client.","","bottomRight");
+            notify()->warning("Can't be deleted, projects attached to client.","","bottomRight");
             return redirect('client');
         }else{
         $client->delete();
