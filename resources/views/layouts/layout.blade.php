@@ -100,10 +100,13 @@
                                     <li><a href="{{ route('employee-project.index') }}"><i class="fa fa-circle-o"></i> Employee Tasks</a></li>
                                 </ul>
                             </li>
-                            <li class="treeview">
-                                <li><a href="{{ route('task.index') }}"><i class="fa fa-users"></i> Employee Tasks</a></li>
-                            </li>
                         </ul>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('task.index') }}">
+                            <i class="fa fa-tasks"></i><span> Tasks</span>
+                        </a>
                     </li>
 
                     <li class="treeview">
