@@ -2,7 +2,6 @@
 
 @section('content')
 <section class="content-header panel">
-
     <h1>Task
         <small>information</small>
     </h1>
@@ -26,24 +25,24 @@
                                         <label class="control-label viewLabel3">Task</label>
                                     </div>
                                     <div class="col-md-8"> 
-                                        <label class="control-label viewLabel2"><b>{{$project->name}}</b></label>
+                                        <label class="control-label viewLabel2"><b>{{$employee_project->project->name}}</b></label>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label viewLabel3">Client</label></div>
                                     <div class="col-md-8"> 
-                                        <label class="control-label viewLabel2">{{$project->client->name}}</label>
+                                        <label class="control-label viewLabel2">{{$employee_project->project->client->name}}</label>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label viewLabel3">Assigned on</label>
                                     </div>
                                     <div class="col-md-8"> 
-                                        <label class="control-label viewLabel2">{{$project->start_date}}</label>
+                                        <label class="control-label viewLabel2">{{$employee_project->project->start_date}}</label>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label viewLabel3">Deadline</label>
                                     </div>
                                     <div class="col-md-8"> 
-                                        <label class="control-label viewLabel2">{{$project->end_date}}</label>
+                                        <label class="control-label viewLabel2">{{$employee_project->project->end_date}}</label>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label viewLabel3">Days Left</label>
@@ -55,28 +54,28 @@
                                         <label class="control-label viewLabel3">Task Status</label>
                                     </div>
                                     <div class="col-md-8"> 
-                                        <label class="control-label viewLabel2">{{$project->status}}</label>
+                                        <label class="control-label viewLabel2">{{$employee_project->project->status}}</label>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label viewLabel3">Team Members</label>
                                     </div>
-                                    <div class="col-md-8"> 
+{{--                                     <div class="col-md-8"> 
                                         @foreach($employee_projects as $employee_project )
-                                        <li class="control-label viewLabel2"><a href="{{ route('employee.profile' ,$employee_project->employee->id) }}" >{{$employee_project->employee->name}} </a></li>
+                                            <li class="control-label viewLabel2"><a href="{{ route('employee.profile' ,$employee_project->employee->id) }}" >{{$employee_project->employee->name}} </a></li>
                                         @endforeach
-                                    </div>
+                                    </div> --}}
                                     
                                     <div class="col-md-4">
                                         <label class="control-label viewLabel3">Team Leader</label>
                                     </div>
-                                    <div class="col-md-8"> 
+                                    {{-- <div class="col-md-8"> 
                                         <b><a class="control-label viewLabel2" href="{{ route('employee.profile' ,$employee_project->employee->id) }}" >{{$employee_projects[0]->employee->name}} </a></b>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-md-6 ">
                                     <label class="control-label viewLabel3">Task Details</label>
                                     <div class="mailbox-read-message">
-                                        {{ $project->details }} {{ $employee_project->details }}
+                                        {{ $employee_project->project->details }} {{ $employee_project->details }}
                                     </div>
                                        <div class="box-footer">
                                     <div class="pull-left">
@@ -87,15 +86,11 @@
                                     </div>
                                     
                                   </div>
-                                   
                                 </div>
-
-                                @if($employee_projects[0]->employee->id == auth()->user()->owner->id)
-                                    <div class="col-md-12 ">
-                                        @include('pages.employee.tasks.forms.update_task')
-                                    </div>
-                               @endif   
-
+                                
+                                <div class="col-md-4">
+                                    @include('pages.employee.tasks.forms.update_task')
+                                </div>
                             </div>
                         </div>
                     </div>

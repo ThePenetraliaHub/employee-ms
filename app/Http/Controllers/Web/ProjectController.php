@@ -77,8 +77,8 @@ class ProjectController extends Controller
         ];
 
         $customMessages = [
-          'name.unique' => 'Please project name already exist',
-           'name.required' => 'Please provide project name',
+            'name.unique' => 'Please project name already exist',
+            'name.required' => 'Please provide project name',
             'details.required' => 'Please provide project details',
             'client_id.required' => 'Please provide project client',
             'start_date.required' => 'Please provide project start date',
@@ -94,36 +94,10 @@ class ProjectController extends Controller
         return redirect('projects');
     }
 
-    public function updateTaskStatus(Request $request,$projectid)
-    {
-        $rules = [
-            'status' => 'required',
-
-        ];
-
-        $customMessages = [
-            'status.required' => 'Please provide project status',
-        ];
-
-        $this->validate($request, $rules, $customMessages);
-
-        $project = Project::find($projectid);
-
-        if($project) {
-
-        $project->status = $request->status;
-
-        $project->save();
-
-        }
-        notify()->success("Successfully Updated!","","bottomRight");
-
-        return redirect()->route('task',$projectid);
-    }
-
     public function destroy(Project $project)
     {
         $project->delete();
+
         notify()->success("Successfully Deleted!","","bottomRight");
         return redirect('projects');
     }

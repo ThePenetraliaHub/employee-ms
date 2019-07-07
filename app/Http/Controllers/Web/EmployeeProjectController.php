@@ -184,11 +184,30 @@ class EmployeeProjectController extends Controller
         return view('pages.employee.tasks.list', compact('tasks'));
     }
 
-    public function task_info($id)
+    public function task_info(EmployeeProject $employee_project)
     {
-        $project = Project::find($id);
-        $employee_projects = EmployeeProject::where('project_id',$id)->get();
+        return view('pages.employee.tasks.show', compact('employee_project'));
+    }
 
-        return view('pages.employee.tasks.show', compact('employee_projects','project'));
+    public function update_task(Request $request, EmployeeProject $employee_project)
+    {
+        $rules = [
+            'status' => 'required',
+
+        ];
+
+        $customMessages = [
+            'status.required' => 'Please select project status',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $employee_project->update([
+            'status' => $request->status,
+        ]);
+
+        notify()->success("Successfully Updated!","","bottomRight");
+
+        return redirect()->route('task.update', $employee_project);
     }
 }

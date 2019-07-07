@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
 
 	Route::get('/task', 'Web\EmployeeProjectController@employee_tasks')->name('task.index');
 	Route::get('/task/{employee_project}', 'Web\EmployeeProjectController@task_info')->name('task.show');
-	Route::post('/task/{employee_project}', 'Web\ProjectController@update_task')->name('task.update');
+	Route::post('/task/{employee_project}', 'Web\EmployeeProjectController@update_task')->name('task.update');
 
 	Route::prefix('download')->group(function () {
         Route::get('/{education}/education', 'Web\EducationController@download')->name('download.education');
