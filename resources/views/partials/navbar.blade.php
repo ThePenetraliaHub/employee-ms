@@ -15,13 +15,21 @@
          @include("partials.header-widget.notifications")
       <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <img src="{{ asset("img/user2-160x160.jpg") }}" class="user-image" alt="User Image">
+          <img src="{{ auth()->user()->user_avatar }}" class="user-image" alt="User Image">
           <span class="hidden-xs">{{ auth()->user()->name }}</span>
         </a>
         <ul class="dropdown-menu">
           <!-- User image -->
           <li class="user-header">
-            <img src="{{ asset("img/user2-160x160.jpg") }}" class="img-circle" alt="User Image">
+            <img src="{{ auth()->user()->user_avatar }}" class="img-circle" alt="User Image">
+            <p>
+                @if(auth()->user()->typeable_type == "App\SuperAdmin")
+                    {{ auth()->user()->user_type() }}
+                @else
+                    {{ auth()->user()->owner->job_title->title }} 
+                    <small>{{ auth()->user()->user_type() }}</small>
+                @endif 
+            </p>
           </li>
 
           <!-- Menu Footer-->
@@ -30,7 +38,7 @@
                     class="btn btn-default btn-flat"
                     href="{{ route('logout') }}" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Sign out
+                    Logout
                 </a>
           </li>
         </ul>

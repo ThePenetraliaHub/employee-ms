@@ -26,9 +26,9 @@
                                   <thead>
                                     <tr class="table-heading-bg">
                                         <th scope="col">S/N</th>
-                                        <th scope="col">Administrator Details</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Contact Info</th>
-                                        <th scope="col">Added</th>
+                                        <th scope="col">Created</th>
                                         <th class="text-center" scope="col">Action</th>
                                     </tr>
                                   </thead>
@@ -48,6 +48,8 @@
                                             <td class="text-center"> 
                                                 @if($user->id != auth()->user()->id)
                                                     <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+                                                @else
+                                                    <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('admin.show' , $user->id) }}" role="button"></a>
                                                 @endif
 
                                                 {{-- Use the user active/inactive status to detect which icon to show --}}

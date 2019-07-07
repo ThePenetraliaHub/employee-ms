@@ -26,7 +26,7 @@
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-green">
+                <div class="small-box bg-red">
                     <div class="inner">
                         <h3>Users<sup style="font-size: 20px"></sup></h3>
 
@@ -78,7 +78,7 @@
         <div class="row">
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-red">
+                <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3>Projects</h3>
                         <h3>{{ \App\Project::all()->count() }}</h3>
@@ -86,7 +86,7 @@
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="{{route('projects.index')}}" class="small-box-footer">Manage projects<i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{route('projects.index')}}" class="small-box-footer">Manage projects <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

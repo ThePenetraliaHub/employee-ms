@@ -24,7 +24,7 @@
             <section class="sidebar">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                        <img src="{{ auth()->user()->user_avatar }}" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>{{ auth()->user()->name }}</p>

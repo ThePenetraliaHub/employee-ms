@@ -57,8 +57,9 @@
                                                 </td>
                                                 <td>{{$project->status}} </td>
                                                 <td class="text-center">
-                                                    <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('projects.show' , $project->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                    <div>
+                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('projects.show' , $project->id) }}" role="button"></a>
+
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectId="{{ $project->id }}"></a>
                                                     </div> 
                                                 </td>

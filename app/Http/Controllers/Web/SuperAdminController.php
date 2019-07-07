@@ -87,37 +87,44 @@ class SuperAdminController extends Controller
         }
     }
 
-    public function show(SuperAdmin $super_admin)
+    public function show(SuperAdmin $admin)
     {
-        return view('pages.admin.super_admin.show', ['super_admin' => $super_admin]);
-    }
-
-    public function edit(SuperAdmin $super_admin)
-    {
-        return view('pages.admin.super_admin.edit', ['super_admin' => $super_admin]);
+        return view('pages.admin.super_admin.edit', compact('admin'));
     }
 
     public function update(Request $request, SuperAdmin $super_admin)
     {
-       $rules = [
-            'phone' => 'required|unique:super_admins,phone,'.$super_admin->id,
+        dd("hr");
+        $rules = [
             'name' => 'required',
+            'email' => 'required|email',
+            // "phone" => "required|regex:/^[+]?[0-9]*$/|phone:NG",
             'address' => 'required',
+            "phone" => "required",
         ];
 
         $customMessages = [
-            'phone.required' => 'Please provide the Super Admin name.',
-            'phone.unique' => 'Phone number already exist.',
-            'name' => 'Please provide a name.',
-            'address' => 'Please provide an address',
+            'name.required' => 'Please provide the administrator\'s name.',
+            'email.required' => 'Please provide the administrator\'s email.',
+            'email.email' => 'Please provide a valid administrator email.',
+            'phone.required' => 'Please provide the administrator\'s mobile number.',
+            'phone.regex' => 'Please provide a valid Nigerian phone number.',
+            'phone.phone' => 'Please provide a valid Nigerian phone number.',
+            'address.required' => 'Please provide the administrator\'s address.',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
-        //$department->name = $request->input('name');
+        //Check if someone with same email aleady exist
+        if (User::where('email', $request->email)->get()->count() != 0 || Employee::where('office_email', $request->email)->get()->count() != 0) {
+            throw ValidationException::withMessages([
+                'email' => "A user with thesame email already exist"
+            ]);
+        }
+
         $super_admin->save($request);
 
-        return redirect('super_admins.index');
+        return redirect('admin.index');
     }
 
     public function destroy($user)

@@ -48,6 +48,8 @@ class User extends Authenticatable
     {
         if ($this->typeable_type === "App\SuperAdmin") {
             return "Administrator";
+        }elseif($this->typeable_type === "App\Employee"){
+            return "Employee";
         }
     }
 }
