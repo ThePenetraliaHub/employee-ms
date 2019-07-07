@@ -27,11 +27,10 @@
                                     <tr class="table-heading-bg">
                                         <th scope="col">S/N</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Employee No.</th>
-                                        <th scope="col">Department</th>
                                         <th scope="col">Job Title</th>
                                         <th scope="col">Supervisor</th>
-                                        <th scope="col">Join Date</th>
+                                        <th scope="col">Contact</th>
+                                        <th scope="col">Joined</th>
 <!--                                         <th scope="col">Employment Status</th> -->
                                         <th scope="col">Action</th>
                                     </tr>
@@ -41,15 +40,22 @@
                                         <tr>
                                             <td>{{ $loop->iteration}} </td>
                                             <td>{{ $employee->name }}</td>
-                                            <td>{{ $employee->employee_number}} </td>
-                                            <td>{{ $employee->department->name}}</td> 
                                             <td>{{ $employee->job_title->title}} </td>
                                             <td>
                                                 @if($employee->supervisor)
                                                     {{ $employee->supervisor->name }}
                                                 @endif
                                             </td>
-                                            <td>{{ $employee->joined_date}} </td>
+                                            <td>
+                                                <span class="text-muted">
+                                                    {{ $employee->office_email}} 
+                                                </span>
+                                                <br>
+                                                <span class="text-muted">
+                                                    {{ $employee->office_phone}}
+                                                </span>
+                                            </td>
+                                            <td>{{ $employee->joined_date->diffForHumans() }} </td>
                                          <!--    <td>{{ $employee->employee_status->title}}</td> -->
                                             <td style="min-width: 140px;"> 
                                                 <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('employee.profile' ,$employee->id) }}" role="button" style="margin-right: 5px;"> </a>
