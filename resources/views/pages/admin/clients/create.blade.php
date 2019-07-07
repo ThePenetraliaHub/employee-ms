@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Create Clients
+        <h1>Client
             <small>Create</small>
         </h1>
     </section>                          

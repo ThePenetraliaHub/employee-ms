@@ -15,7 +15,7 @@
                 @if(count($projects) > 0)
                     <a href="{{ route('projects.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new project
+                        Create project
                     </a>
                 @endif
                 <div class="box">
@@ -75,7 +75,7 @@
                                     No projects yet!
                                 </p>
                                 <a href="{{ route("projects.create") }}">
-                                    Add new project
+                                    Create project
                                 </a>
                             </div>
                         @endif

@@ -15,7 +15,7 @@
                 @if(count($employees) > 0)
                     <a href="{{ route('employee.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Employee
+                        Create employee
                     </a>
                 @endif
                 <div class="box">
@@ -67,10 +67,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Employees yet!
+                                    No employees yet!
                                 </p>
                                 <a href="{{ route("employee.create") }}">
-                                    Add Employee
+                                    Create Employee
                                 </a>
                             </div>
                         @endif

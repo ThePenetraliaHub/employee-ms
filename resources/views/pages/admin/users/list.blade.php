@@ -15,7 +15,7 @@
                 @if(count($users) > 0)
                     <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new User
+                        Add user
                     </a>
                 @endif
                 <div class="box">
@@ -71,7 +71,7 @@
                                     No users yet!
                                 </p>
                                 <a href="{{ route("user.create") }}">
-                                    Add User
+                                    Add user
                                 </a>
                             </div>
                         @endif

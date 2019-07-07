@@ -52,7 +52,7 @@
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="{{route('user.index')}}" class="small-box-footer">Manage administrators 
+                    <a href="{{route('admin.index')}}" class="small-box-footer">Manage administrators 
                         <i class="fa fa-arrow-circle-right"></i>
                     </a>
                 </div>

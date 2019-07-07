@@ -15,7 +15,7 @@
                 @if(count($departments) > 0)
                     <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Department
+                        Create new department
                     </a>
                 @endif
                 <div class="box">
@@ -27,7 +27,7 @@
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
 
@@ -36,11 +36,11 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $department->name}}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('department.show' , $department->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('department.show' , $department->id) }}" role="button" style=" margin-right: 5px; "></a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-deptId="{{ $department->id }}">Delete</a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-deptId="{{ $department->id }}"></a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -55,7 +55,7 @@
                                     No departments yet!
                                 </p>
                                 <a href="{{ route("department.create") }}">
-                                    Add Department
+                                    Create department
                                 </a>
                             </div>
                         @endif

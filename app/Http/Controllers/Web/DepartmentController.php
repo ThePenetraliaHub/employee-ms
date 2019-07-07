@@ -71,7 +71,7 @@ class DepartmentController extends Controller
     {
         if($department->employees->count() > 0){
 
-            notify()->warning("Department could not be deleted!, employees currently belong in the department.","","bottomRight");
+            notify()->warning("Can't be deleted, employees belong in the department.","","bottomRight");
             return redirect('department');
         }else{
             $department->delete();

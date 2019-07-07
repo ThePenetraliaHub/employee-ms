@@ -144,7 +144,7 @@ class UserController extends Controller
         }
     }
 
-    //Deactivate institution administrator account
+    //Deactivate employee account
     public function active(Request $request, User $user){
         if($user->is_active == 1){
             $user->update([

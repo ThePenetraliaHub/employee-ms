@@ -15,7 +15,7 @@
                 @if(count($certifications) > 0)
                     <a href="{{ route('certification.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Add Employee Certification
+                        Add certification
                     </a>
                 @endif
                 <div class="box">
@@ -70,7 +70,7 @@
                                     Employees do not have certifications yet!
                                 </p>
                                 <a href="{{ route("certification.create") }}">
-                                    Add Certifications
+                                    Add certification
                                 </a>
                             </div>
                         @endif

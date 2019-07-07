@@ -2,8 +2,8 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Edit Employee Status
-            <small>Create</small>
+        <h1>Employee status
+            <small>Edit</small>
         </h1>
     </section>
 

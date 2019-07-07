@@ -3,7 +3,7 @@
 @section('content')
     <!-- Edit Item-->
     <section class="content-header">
-        <h1>Skills 
+        <h1>Skill
             <small>Edit</small>
         </h1>
     </section>

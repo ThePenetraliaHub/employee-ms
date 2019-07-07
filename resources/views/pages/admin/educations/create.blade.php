@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Educations
+        <h1>Education
             <small>Create</small>
         </h1>
     </section>

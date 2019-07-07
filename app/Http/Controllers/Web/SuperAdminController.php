@@ -92,39 +92,53 @@ class SuperAdminController extends Controller
         return view('pages.admin.super_admin.edit', compact('admin'));
     }
 
-    public function update(Request $request, SuperAdmin $super_admin)
+    public function update(Request $request, SuperAdmin $admin)
     {
-        dd("hr");
-        $rules = [
-            'name' => 'required',
-            'email' => 'required|email',
-            // "phone" => "required|regex:/^[+]?[0-9]*$/|phone:NG",
-            'address' => 'required',
-            "phone" => "required",
-        ];
+        if(auth()->user()->hasRole('super admin')){
+            $rules = [
+                'name' => 'required',
+                'email' => 'required|email',
+                // "phone" => "required|regex:/^[+]?[0-9]*$/|phone:NG",
+                'address' => 'required',
+                "phone" => "required",
+            ];
 
-        $customMessages = [
-            'name.required' => 'Please provide the administrator\'s name.',
-            'email.required' => 'Please provide the administrator\'s email.',
-            'email.email' => 'Please provide a valid administrator email.',
-            'phone.required' => 'Please provide the administrator\'s mobile number.',
-            'phone.regex' => 'Please provide a valid Nigerian phone number.',
-            'phone.phone' => 'Please provide a valid Nigerian phone number.',
-            'address.required' => 'Please provide the administrator\'s address.',
-        ];
+            $customMessages = [
+                'name.required' => 'Please provide the administrator\'s name.',
+                'email.required' => 'Please provide the administrator\'s email.',
+                'email.email' => 'Please provide a valid administrator email.',
+                'phone.required' => 'Please provide the administrator\'s mobile number.',
+                'phone.regex' => 'Please provide a valid Nigerian phone number.',
+                'phone.phone' => 'Please provide a valid Nigerian phone number.',
+                'address.required' => 'Please provide the administrator\'s address.',
+            ];
 
-        $this->validate($request, $rules, $customMessages);
+            $this->validate($request, $rules, $customMessages);
 
-        //Check if someone with same email aleady exist
-        if (User::where('email', $request->email)->get()->count() != 0 || Employee::where('office_email', $request->email)->get()->count() != 0) {
-            throw ValidationException::withMessages([
-                'email' => "A user with thesame email already exist"
+            //Check if someone with same email aleady exist
+            if (User::where('email', $request->email)->where('id', '!=', $admin->user_info->id)->get()->count() != 0 || Employee::where('office_email', $request->email)->get()->count() != 0) {
+                throw ValidationException::withMessages([
+                    'email' => "A user with thesame email already exist"
+                ]);
+            }
+
+            //Insert the institution admin
+            $admin->update([
+                'phone'=> $request->phone,
+                'address'=> $request->address,
             ]);
+
+            $admin->user_info->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            notify()->success("Successfully updated!","","bottomRight");
+
+            return redirect('admin');
+        }else{
+            abort(403, 'Unauthorized action.');
         }
-
-        $super_admin->save($request);
-
-        return redirect('admin.index');
     }
 
     public function destroy($user)
@@ -136,5 +150,30 @@ class SuperAdminController extends Controller
 
         notify()->success("Successfully Deleted!","","bottomRight");
         return redirect()->route('admin.index');
+    }
+
+    //Deactivate administrator account
+    public function active(Request $request, User $user){
+        if($user->is_active == 1){
+            $user->update([
+                'is_active' => '0',
+            ]);
+
+            notify()->success("Account deactivated successfully!","","bottomRight");
+
+            return response()->json([
+                'message' => 'success',
+            ], 200);
+        }else if($user->is_active == 0){
+            $user->update([
+                'is_active' => '1',
+            ]);
+
+            notify()->success("Account activated successfully!","","bottomRight");
+            
+            return response()->json([
+                'message' => 'success',
+            ], 200);
+        }
     }
 }

@@ -162,6 +162,7 @@ class EmployeeProjectController extends Controller
         }
 
         notify()->success("Successfully Updated!","","bottomRight");
+        
         return redirect('employee-project');
     }
 

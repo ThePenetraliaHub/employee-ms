@@ -15,7 +15,7 @@
                 @if(count($educations) > 0)
                     <a href="{{ route('education.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Add Employee Education
+                        Add education
                     </a>
                 @endif
                 <div class="box">
@@ -70,7 +70,7 @@
                                     Employees do not have educations yet!
                                 </p>
                                 <a href="{{ route("education.create") }}">
-                                    Add educations
+                                    Add education
                                 </a>
                             </div>
                         @endif

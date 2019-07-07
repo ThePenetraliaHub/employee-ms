@@ -15,7 +15,7 @@
                 @if(count($users) > 0)
                     <a href="{{ route('admin.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new admin
+                        Add administrator
                     </a>
                 @endif
                 <div class="box">
@@ -57,7 +57,7 @@
                                                     <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning fa fa-lock text-danger pointer ml-3" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @elseif($user->is_active == 0 && $user->id != auth()->user()->id)
-                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-warning fa fa-unlock text-success pointer ml-3" data-userId="{{ $user->id }}">
+                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success fa fa-unlock text-success pointer ml-3" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @endif
                                             </td>
@@ -73,7 +73,7 @@
                                     No admins yet!
                                 </p>
                                 <a href="{{ route("admin.create") }}">
-                                    Add Administrator
+                                    Add administrator
                                 </a>
                             </div>
                         @endif
@@ -137,13 +137,13 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "user/"+user_id+"/active",
+                    url: "admin/"+user_id+"/active",
                     type: "GET",
                     traditional: true,
                     contentType: false,
                     cache: false,
                     processData:false,
-                    data: new FormData(this),
+                    // data: new FormData(this),
                     success: function(res){
                         location.reload();
                     },

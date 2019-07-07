@@ -1,4 +1,3 @@
-
 <div class="form-row">
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
       <label for="name">Admin's Name</label>
@@ -40,11 +39,3 @@
       @endif
     </div>
 </div>
-
- @section('script')
-    <script>
-        $(document).ready(function () {
-            
-        });
-    </script>
-@endsection

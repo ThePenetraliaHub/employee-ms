@@ -15,7 +15,7 @@
                 @if(count($clients) > 0)
                     <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Client
+                        Create new client
                     </a>
                 @endif
                 <div class="box">
@@ -27,14 +27,11 @@
                                     <tr class="table-heading-bg">
                                         <th scope="col">Id</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Details</th>
                                         <th scope="col">Address</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Email</th>
+                                        <th scope="col">Contact</th>
                                         <th scope="col">Website</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Date of Contact </th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col" class="text-center">Action</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -43,20 +40,20 @@
                                         <tr>
                                             <td>{{ $client->id}} </td>
                                             <td>{{ $client->name}}</td>
-                                            <td>{{ $client->details}} </td>
                                             <td>{{ $client->address}}</td>
-                                            <td>{{ $client->contact_number}} </td>
-                                            <td>{{ $client->contact_email}}</td>
+                                            <td>
+                                                <span class="text-muted">{{ $client->contact_number}} </span><br>
+                                                <span class="text-muted">{{ $client->contact_email}}</span>
+                                            </td>
                                             <td>{{ $client->company_url}} </td>
                                             <td>
                                                 @if($client->status == 1){{ 'Active' }} 
                                                 @else {{ 'Inactive' }}
                                                 @endif
                                             </td>
-                                            <td>{{ $client->first_contact_date}} </td>
-                                            <td> 
-                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('client.show' ,$client->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
-                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId="{{ $client->id }}">Delete</a>
+                                            <td style="min-width: 80px;" class="text-center"> 
+                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('client.show' ,$client->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId="{{ $client->id }}"></a>
                                             </td>
                                         </tr>
                                        @endforeach
@@ -70,7 +67,7 @@
                                     No clients yet!
                                 </p>
                                 <a href="{{ route("client.create") }}">
-                                    Add Client
+                                    Create Client
                                 </a>
                             </div>
                         @endif

@@ -20,7 +20,6 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
 	Route::resource('/education', 'Web\EducationController');
 	Route::resource('/certification', 'Web\CertificationController');
 	Route::resource('/skills', 'Web\SkillController');
@@ -32,8 +31,12 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/client', 'Web\ClientController');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
+
 	Route::resource('/user', 'Web\UserController');
+	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
+
 	Route::resource('/admin', 'Web\SuperAdminController');
+	Route::get('/admin/{user}/active', 'Web\SuperAdminController@active')->name('admin.active');
 
 	Route::get('/task', 'Web\EmployeeProjectController@employee_tasks')->name('task.index');
 	Route::get('/task/{employee_project}', 'Web\EmployeeProjectController@task_info')->name('task.show');

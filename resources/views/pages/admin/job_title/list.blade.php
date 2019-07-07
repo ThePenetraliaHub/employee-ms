@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Job Title
+            Job titles
             <small>View</small>
         </h1>
     </section>
@@ -15,7 +15,7 @@
                 @if(count($job_titles) > 0)
                     <a href="{{ route('job-title.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Job Title
+                        Create job title
                     </a>
                 @endif
                 <div class="box">
@@ -26,10 +26,10 @@
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
-                                            <th scope="col">Job Code</th>
-                                            <th scope="col">Job Title</th>
-                                            <th scope="col">Job Description</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col">Code</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
@@ -40,11 +40,11 @@
                                                 <td>{{ $job_title->code}}</td>
                                                 <td>{{ $job_title->title}}</td>
                                                 <td>{{ $job_title->description}}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('job-title.show' , $job_title->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('job-title.show' , $job_title->id) }}" role="button" style=" margin-right: 5px; "></a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-jobTitleId="{{ $job_title->id }}">Delete</a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-jobTitleId="{{ $job_title->id }}"></a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -56,10 +56,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Job Titles yet!
+                                    No job titles yet!
                                 </p>
                                 <a href="{{ route("job_title.create") }}">
-                                    Add Job Title
+                                    Create job title
                                 </a>
                             </div>
                         @endif

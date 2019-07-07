@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Employee Status
+            Employee Statuses
             <small>View</small>
         </h1>
     </section>
@@ -15,7 +15,7 @@
                 @if(count($employee_statuses) > 0)
                     <a href="{{ route('employee-status.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Employee Status
+                        Create employee status
                     </a>
                 @endif
                 <div class="box">
@@ -28,7 +28,7 @@
                                             <th scope="col">S/N</th>
                                             <th scope="col">Title</th>
                                             <th scope="col">Description</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
@@ -39,11 +39,11 @@
                                                 <td>{{ $employee_status->title}}</td>
                                                 <td>{{ $employee_status->description}}</td>
 
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee-status.show' , $employee_status->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee-status.show' , $employee_status->id) }}" role="button" style=" margin-right: 5px; "></a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeStatusId="{{ $employee_status->id }}">Delete</a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeStatusId="{{ $employee_status->id }}"></a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -55,10 +55,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Employee Statuses yet!
+                                    No employee statuses yet!
                                 </p>
                                 <a href="{{ route("employee-status.create") }}">
-                                    Add Employee Status
+                                    Create employee status
                                 </a>
                             </div>
                         @endif

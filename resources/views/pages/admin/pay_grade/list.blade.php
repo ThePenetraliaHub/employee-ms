@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Pay Grades
+            Pay grades
             <small>View</small>
         </h1>
     </section>
@@ -15,7 +15,7 @@
                 @if(count($pay_grades) > 0)
                     <a href="{{ route('pay-grade.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new Pay Grade
+                        Create pay grade
                     </a>
                 @endif
                 <div class="box">
@@ -30,7 +30,7 @@
                                             <th scope="col">Currency</th>
                                             <th scope="col">Minimum Salary</th>
                                             <th scope="col">Maximum Salary</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
@@ -42,11 +42,11 @@
                                                 <td>{{ $pay_grade->currency}}</td>
                                                 <td>{{ $pay_grade->min_salary}}</td>
                                                 <td>{{ $pay_grade->max_salary}}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('pay-grade.show' , $pay_grade->id) }}" role="button" style=" margin-right: 5px; ">Edit </a>
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('pay-grade.show' , $pay_grade->id) }}" role="button" style=" margin-right: 5px; "></a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-payGradeId="{{ $pay_grade->id }}">Delete</a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-payGradeId="{{ $pay_grade->id }}"></a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -58,10 +58,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Pay Grades yet
+                                    No pay grades yet
                                 </p>
                                 <a href="{{ route("pay-grade.create") }}">
-                                    Add Pay Grades
+                                    Create pay grades
                                 </a>
                             </div>
                         @endif

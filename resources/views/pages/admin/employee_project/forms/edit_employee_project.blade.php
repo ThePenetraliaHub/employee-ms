@@ -47,7 +47,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('start_date') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="start_date">Start Date</label>
-        <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date',$employee_project->start_date) }}" required placeholder="Project/Task start date here..">
+        <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date',$employee_project->start_date->format("Y-m-d")) }}" required placeholder="Project/Task start date here..">
         @if ($errors->has('start_date'))
             <span class="help-block">
                 <strong>{{ $errors->first('start_date') }}</strong>
@@ -57,7 +57,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('end_date') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="end_date">End Date</label>
-        <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date',$employee_project->end_date) }}" required placeholder="Project/Task end date here..">
+        <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date',$employee_project->end_date->format("Y-m-d")) }}" required placeholder="Project/Task end date here..">
         @if ($errors->has('end_date'))
             <span class="help-block">
                 <strong>{{ $errors->first('end_date') }}</strong>

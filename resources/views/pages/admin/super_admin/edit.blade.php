@@ -13,9 +13,10 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-primary">
-                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" action="{{ route('admin.update', $admin->id) }}">
+                    <form autocomplete="off" novalidate="novalidate" method="POST" role="form" class="form-horizontal" action="{{ route('admin.update', $admin->id) }}">
                         {{csrf_field()}}  
-                        {{method_field('PUT')}}  
+                        {{method_field('PUT')}} 
+
                         <div class="box-body">
                             @include('pages.admin.super_admin.forms.edit_admin')
                         </div>
