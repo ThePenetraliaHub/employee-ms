@@ -252,7 +252,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('joined_date') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="joined_date">Date Employee Joined</label>
-        <input id="joined_date" type="date" class="form-control" name="joined_date" value="{{ old('joined_date', $employee->joined_date) }}" required>
+        <input id="joined_date" type="date" class="form-control" name="joined_date" value="{{ old('joined_date', $employee->joined_date->format('Y-m-d')) }}" required>
         @if ($errors->has('joined_date'))
             <span class="help-block">
                 <strong>{{ $errors->first('joined_date') }}</strong>
