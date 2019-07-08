@@ -28,7 +28,7 @@
                                             <th scope="col">S/N</th>
                                             <th scope="col">Employee</th>
                                             <th scope="col">Project</th>
-                                            <th scope="col">Client</th>
+                                            {{-- <th scope="col">Client</th> --}}
                                             <th scope="col">Timeline</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
@@ -52,10 +52,12 @@
                                                             {{ date("F jS, Y", strtotime($employee_project->project->start_date)) }} - {{ date("F jS, Y", strtotime($employee_project->project->end_date)) }}
                                                         </span>
                                                     @else
-
+                                                        <span class="inline-block text-muted text-danger">
+                                                            Task not attached to project
+                                                        </span>
                                                     @endif
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     @if($employee_project->project)
                                                         <span class="inline-block"><strong> {{ $employee_project->project->client->name }} </strong></span><br>
                                                         <span class="inline-block text-muted">{{ $employee_project->project->client->contact_number }} ({{ $employee_project->project->client->contact_email }}) </span><br>
@@ -65,7 +67,7 @@
                                                     @else
 
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <span class="inline-block text-muted">
                                                         Start{{ $employee_project->start_date > date_create() ? "s": "ed" }} {{ $employee_project->start_date->diffForHumans() }}

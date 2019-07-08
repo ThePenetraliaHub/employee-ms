@@ -1,7 +1,7 @@
 <div class="form-row">
     <div class="form-group col-xs-11{{ $errors->has('name') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="name">Project name</label>
-        <input id="name" type="text" class="form-control" name="name" value="{{ old('name',$project->name) }}" required placeholder="Project/Task name here..">
+        <input id="name" type="text" class="form-control" name="name" value="{{ old('name',$project->name) }}" required placeholder="Project name here..">
         @if ($errors->has('name'))
             <span class="help-block">
                 <strong>{{ $errors->first('name') }}</strong>
@@ -11,7 +11,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('details') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="details">Project details</label>
-        <textarea rows="3" id="details" type="textarea" class="form-control" name="details" required placeholder="Project/Task details here...." value="{{$project->details}}">{{ old('details',$project->details) }}</textarea>
+        <textarea rows="3" id="details" type="textarea" class="form-control" name="details" required placeholder="Project details here...." value="{{$project->details}}">{{ old('details',$project->details) }}</textarea>
         @if ($errors->has('details'))
             <span class="help-block">
                 <strong>{{ $errors->first('details') }}</strong>

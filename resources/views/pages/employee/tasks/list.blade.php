@@ -21,8 +21,8 @@
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Project</th>
-                                            <th scope="col">Client</th>
-                                            {{-- <th scope="col">Task</th> --}}
+                                            {{-- <th scope="col">Client</th> --}}
+                                            <th scope="col">Task Detail</th>
                                             <th scope="col">Timeline</th>
                                             <th scope="col">Status</th>
                                             <th scope="col" class="text-center">Action</th>
@@ -41,10 +41,12 @@
                                                             {{ date("F jS, Y", strtotime($task->project->start_date)) }} - {{ date("F jS, Y", strtotime($task->project->end_date)) }}
                                                         </span>
                                                     @else
-
+                                                        <span class="inline-block text-muted text-danger">
+                                                            Task not attached to project
+                                                        </span>
                                                     @endif
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     @if($task->project)
                                                         <span class="inline-block"><strong> {{ $task->project->client->name }} </strong></span><br>
                                                         <span class="inline-block text-muted">{{ $task->project->client->contact_number }} ({{ $task->project->client->contact_email }}) </span><br>
@@ -54,10 +56,10 @@
                                                     @else
 
                                                     @endif
-                                                </td>
-                                                {{-- <td class="text-truncate">  
-                                                    {{ $task->details }}
                                                 </td> --}}
+                                                <td class="text-truncate">  
+                                                    {{ $task->details }}
+                                                </td>
                                                 <td>
                                                     <span class="inline-block text-muted">
                                                         Start{{ $task->start_date > date_create() ? "s": "ed" }} {{ $task->start_date->diffForHumans() }}
@@ -70,7 +72,7 @@
                                                 <td> {{$task->status}} </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show' , $task->project->id) }}" role="button" ></a>
+                                                         <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show' , $task->id) }}" role="button" ></a>
                                                     </div> 
                                                 </td>
                                             </tr>

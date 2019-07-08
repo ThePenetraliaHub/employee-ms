@@ -28,8 +28,8 @@
                                         <th scope="col">S/N</th>
                                         <th scope="col">Employee Details</th>
                                         <th scope="col">Contact Info</th>
-                                        <th scope="col">Join Date</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Joined</th>
+                                        <th scope="col" class="text-center">Action</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -42,12 +42,16 @@
                                                 <span class="inline-block text-muted">{{ $user->owner->job_title->title }}</span>
                                             </td>
                                             <td>
-                                                <span class="inline-block"><strong> {{ $user->owner->name }} </strong></span><br>
-                                                <span class="inline-block text-muted">{{ $user->owner->employee_number }}</span><br>
-                                                <span class="inline-block text-muted">{{ $user->owner->job_title->title }}</span>
+                                                <span class="text-muted">
+                                                    {{ $user->email}} 
+                                                </span>
+                                                <br>
+                                                <span class="text-muted">
+                                                    {{ $user->owner->office_phone}}
+                                                </span>
                                             </td>
                                             <td>{{ $user->owner->joined_date->diffForHumans() }} </td>
-                                            <td> 
+                                            <td class="text-center"> 
                                                 <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
 
                                                 {{-- Use the user active/inactive status to detect which icon to show --}}
