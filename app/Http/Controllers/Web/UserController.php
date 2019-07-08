@@ -63,7 +63,7 @@ class UserController extends Controller
             'typeable_type' => get_class($employee)
         ]);
 
-        //Assign a institution admin role to the user
+        //Assign a employee role to the user
         $user->assignRole('employee');
 
         Mail::to($employee->office_email)
