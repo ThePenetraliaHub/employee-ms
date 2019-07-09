@@ -124,6 +124,12 @@
                         </ul>
                     </li>
 
+                    <li>
+                        <a href="{{ route('task.index') }}">
+                            <i class="fa fa-tasks"></i><span> Messages</span>
+                        </a>
+                    </li>
+
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>

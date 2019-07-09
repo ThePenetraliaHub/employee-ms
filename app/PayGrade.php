@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class PayGrade extends Model
 {
-     protected $guarded = [];
-      public function employees()
+    protected $guarded = [];
+    
+    public function employees()
     {
         return $this->hasMany('App\Employee');
     }

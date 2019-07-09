@@ -52,4 +52,20 @@ class User extends Authenticatable
             return "Employee";
         }
     }
+
+    public function sent_message(){
+        return $this->hasMany('App\Employee');
+    }
+
+    public function inbox_message(){
+        return $this->hasMany('App\Employee');
+    }
+
+    public function draft_message(){
+        return $this->hasMany('App\Employee');
+    }
+
+    public function unread_inbox_message(){
+        return $this->hasMany('App\Employee');
+    }
 }

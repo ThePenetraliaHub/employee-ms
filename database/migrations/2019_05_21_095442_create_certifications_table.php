@@ -15,7 +15,7 @@ class CreateCertificationsTable extends Migration
     {
         Schema::create('certifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("employee_id")->unsigned();;
+            $table->integer("employee_id")->unsigned();
             $table->string("certification");
             $table->string("institution");
             $table->date("granted_on");

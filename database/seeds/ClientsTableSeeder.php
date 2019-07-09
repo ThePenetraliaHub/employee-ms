@@ -22,7 +22,6 @@ class ClientsTableSeeder extends Seeder
         $client_ids = Client::pluck('id')->all();
 
         for($i = 0; $i < 10;  $i++){
-
             factory(\App\Client::class)->create();
         }
 }

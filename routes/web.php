@@ -56,6 +56,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/{admin}/profile', 'Web\UserController@adminProfile')->name('admin.profile');
     });
+
+    Route::prefix('messages')->group(function () {
+        Route::get('/inbox', 'Web\MessageController@inbox')->name('message.inbox');
+        Route::get('/sent', 'Web\MessageController@sent')->name('message.sent');
+        Route::get('/draft', 'Web\MessageController@draft')->name('message.draft');
+    });
 });
 
 Auth::routes();
