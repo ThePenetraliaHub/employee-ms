@@ -19,8 +19,8 @@ class CreateMessagesTable extends Migration
             $table->integer("user_id")->unsigned();
             $table->integer("message_id")->unsigned();
 
-            $table->string("content");
-            $table->string("subject");
+            $table->string("content")->nullable();
+            $table->string("subject")->nullable();
 
             //Stores if the message is a draft or sent message; 1 if it is draft and 0 if it is sent
             $table->integer("is_draft")->unsigned();
