@@ -62,15 +62,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/sent', 'Web\MessageController@sent')->name('message.sent');
         Route::get('/draft', 'Web\MessageController@draft')->name('message.draft');
         Route::get('/compose', 'Web\MessageController@compose')->name('message.compose');
+
+        Route::get('/{message}', 'Web\MessageController@show')->name('message.show');
     });
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::view('emails','pages.all_users.broadcasts.mails.emails')->name('mails');;
-Route::view('compose-email','pages.all_users.broadcasts.mails.compose')->name('compose-mail');
-Route::view('read-mail','pages.all_users.broadcasts.mails.read')->name('read-mail');
 
 
