@@ -109,6 +109,12 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="{{ route('profile') }}">
+                            <i class="fa fa-tasks"></i><span> My Profile</span>
+                        </a>
+                    </li>
+
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>System</span>

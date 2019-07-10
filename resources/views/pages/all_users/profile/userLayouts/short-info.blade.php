@@ -44,7 +44,7 @@
             <div class="col-md-4">
                 <label class="control-label ">Employee Supervisor</label>
                 <label class="control-label viewLabel"> @if($employee->supervisor)
-                   <a href="{{ route('shortProfile' ,$employee->supervisor->id) }}" > {{ $employee->supervisor->name }}
+                   <a href="{{ route('employee.profile' ,$employee->supervisor->id) }}" > {{ $employee->supervisor->name }}
                 </a>@endif</label>  
                 
             </div>
