@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Message;
 
 class MessageController extends Controller
 {
@@ -36,12 +37,13 @@ class MessageController extends Controller
         
     }
 
-    public function show(EmployeeProject $employee_project)
+    public function show(Message $message)
     {
-
+        dd("Here");
+        return view('pages.all_users.messages.read', compact('message'));
     }
 
-    public function destroy(EmployeeProject $employee_project)
+    public function destroy(Message $message)
     {
         
     }
