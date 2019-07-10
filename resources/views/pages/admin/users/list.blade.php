@@ -47,7 +47,7 @@
                                                 </span>
                                                 <br>
                                                 <span class="text-muted">
-                                                    {{ $user->owner->office_phone}}
+                                                    {{ $user->owner->home_phone}}
                                                 </span>
                                             </td>
                                             <td>{{ $user->owner->joined_date->diffForHumans() }} </td>

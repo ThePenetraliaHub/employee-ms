@@ -54,18 +54,21 @@ class User extends Authenticatable
     }
 
     public function sent_message(){
-        return $this->hasMany('App\Employee');
+        return $this->hasMany('App\Message')->where("is_draft", 0);
     }
 
     public function inbox_message(){
-        return $this->hasMany('App\Employee');
+        $projects = Message::join('recepients', 'recepients.message_id', '=', 'messages.id')
+            ->where('recepients.user_id', $this->id)
+            ->orwhere('messages.type', "broadcast")
+            ->get(["messages.*"]);
     }
 
     public function draft_message(){
-        return $this->hasMany('App\Employee');
+        return $this->hasMany('App\Message')->where("is_draft", 1);
     }
 
     public function unread_inbox_message(){
-        return $this->hasMany('App\Employee');
+        // return $this->hasMany('App\Employee');
     }
 }

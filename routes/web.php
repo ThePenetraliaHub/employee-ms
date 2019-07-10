@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/inbox', 'Web\MessageController@inbox')->name('message.inbox');
         Route::get('/sent', 'Web\MessageController@sent')->name('message.sent');
         Route::get('/draft', 'Web\MessageController@draft')->name('message.draft');
+        Route::get('/compose', 'Web\MessageController@compose')->name('message.compose');
     });
 });
 

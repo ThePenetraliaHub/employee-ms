@@ -31,7 +31,7 @@
                                             <th scope="col">Award Institution/Body</th>
                                             <th scope="col">Awarded On</th>
                                             <th scope="col">Valid Through</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
@@ -48,12 +48,11 @@
                                                 <td>{{ $certification->institution}}</td>
                                                 <td>{{ $certification->granted_on}}</td>
                                                 <td>{{ $certification->valid_on}}</td>
-                                                <td>
+                                                <td style="min-width: 130px;" class="text-center">
                                                     <div class="btn-group">
+                                                        <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.certification', $certification)  }}" role="button" style=" margin-right: 5px; "> </a>
 
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.certification', $certification)  }}" role="button" style=" margin-right: 5px; "> </a>
-
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('certification.edit' , $certification->id) }}" role="button" style=" margin-right: 5px; "> </a>
+                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('certification.edit' , $certification->id) }}" role="button" style=" margin-right: 5px; "> </a>
 
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-certId="{{ $certification->id}}"></a>
                                                     </div> 

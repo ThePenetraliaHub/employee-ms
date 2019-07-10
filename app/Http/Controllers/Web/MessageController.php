@@ -9,18 +9,27 @@ class MessageController extends Controller
 {
     public function inbox()
     {
-        
+        $messages = auth()->user()->inbox_message();
+        return view('pages.all_users.messages.inbox', compact('messages'));
     }
 
     public function sent()
     {
-        
+        $messages = auth()->user()->inbox_message();
+        return view('pages.all_users.messages.sent', compact('messages'));
     }
 
-    public function create()
+    public function compose()
     {
-        
+        return view('pages.all_users.messages.compose');
     }
+
+    public function draft()
+    {
+        $messages = auth()->user()->inbox_message();
+        return view('pages.all_users.messages.draft', compact('messages'));
+    }
+
 
     public function store(Request $request)
     {
@@ -30,10 +39,6 @@ class MessageController extends Controller
     public function show(EmployeeProject $employee_project)
     {
 
-    }
-
-    public function update(Request $request, EmployeeProject $employee_project){
-        
     }
 
     public function destroy(EmployeeProject $employee_project)

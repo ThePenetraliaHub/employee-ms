@@ -31,7 +31,7 @@
                                             <th scope="col">Award Institution/Body</th>
                                             <th scope="col">Start Date</th>
                                             <th scope="col">End Date</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
@@ -48,9 +48,8 @@
                                                 <td>{{ $education->institution}}</td>
                                                 <td>{{ $education->start_date}}</td>
                                                 <td>{{ $education->end_date}}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
-
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.education', $education)  }}" role="button" style=" margin-right: 5px; "> </a>
 
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('education.edit' , $education->id) }}" role="button" style=" margin-right: 5px; "> </a>

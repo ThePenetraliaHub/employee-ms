@@ -125,7 +125,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('task.index') }}">
+                        <a href="{{ route('message.inbox') }}">
                             <i class="fa fa-tasks"></i><span> Messages</span>
                         </a>
                     </li>
