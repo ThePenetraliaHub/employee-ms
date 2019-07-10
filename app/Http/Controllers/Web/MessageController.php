@@ -37,10 +37,9 @@ class MessageController extends Controller
         
     }
 
-    public function show(Message $message)
+    public function show(/* Message $message */)
     {
-        dd("Here");
-        return view('pages.all_users.messages.read', compact('message'));
+        return view('pages.all_users.messages.read');
     }
 
     public function destroy(Message $message)
