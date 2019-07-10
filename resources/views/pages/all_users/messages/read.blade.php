@@ -21,7 +21,7 @@
 
                         <div class="mailbox-controls with-border text-center">
                             <div class="pull-left ml-2">
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Back"> 
+                                <button onClick="javascript:history.go(-1)" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Back"> 
                                     <i class="fa fa-arrow-left "></i>
                                     Back
                                 </button>
