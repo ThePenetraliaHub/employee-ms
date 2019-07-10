@@ -32,7 +32,7 @@
                                     <tr>
                                         <td>1</td>
                                         <td class="mailbox-name">
-                                            <a href="{{route('read-mail')}}">Alexander Pierce</a></td>
+                                            <a href="">Alexander Pierce</a></td>
                                         <td class="mailbox-subject">
                                             <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
                                         </td>
