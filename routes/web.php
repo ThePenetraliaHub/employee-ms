@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/sent', 'Web\MessageController@sent')->name('message.sent');
         Route::get('/draft', 'Web\MessageController@draft')->name('message.draft');
         Route::get('/compose', 'Web\MessageController@compose')->name('message.compose');
+        Route::post('/', 'Web\MessageController@store')->name('message.store');
 
         Route::get('/{message}', 'Web\MessageController@show')->name('message.show');
     });
