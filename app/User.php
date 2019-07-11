@@ -54,17 +54,17 @@ class User extends Authenticatable
     }
 
     public function sent_message(){
-        return $this->hasMany('App\Message')->where("is_draft", 0);
+        return $this->hasMany('App\Message')->where("is_draft", 0)->get();
     }
 
     public function inbox_message(){
-        $projects = Message::join('recepients', 'recepients.message_id', '=', 'messages.id')
+        return Message::join('recepients', 'recepients.message_id', '=', 'messages.id')
             ->where('recepients.user_id', $this->id)
             ->orwhere('messages.type', "broadcast")
             ->get(["messages.*"]);
     }
 
-    public function draft_message(){
+    public function trash_message(){
         return $this->hasMany('App\Message')->where("is_draft", 1);
     }
 

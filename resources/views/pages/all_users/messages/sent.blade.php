@@ -16,32 +16,47 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="table-responsive mailbox-messages">
-                            <table id="dataTable" class="table table-hover table-striped ">
-                                <thead>
-                                    <tr class="table-heading-bg">
-                                        <th scope="col">S/N</th>
-                                        <th scope="col">Sender</th>
-                                        <th scope="col">Message</th>
-                                        <th scope="col">Time</th>
-                                    </tr>
-                                </thead>
+                        @if(count($messages) > 0)
+                            <div class="table-responsive mailbox-messages">
+                                <table id="dataTable" class="table table-hover table-striped ">
+                                    <thead>
+                                        <tr class="table-heading-bg">
+                                            <th scope="col">S/N</th>
+                                            <th scope="col">Message</th>
+                                            <th scope="col">Time Sent</th>
+                                            <th scope="col" class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td class="mailbox-name">
-                                            <a href="">Alexander Pierce</a></td>
-                                        <td class="mailbox-subject">
-                                            <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                        </td>
-                                        <td class="mailbox-date">
-                                            5 mins ago
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                    <tbody>
+                                        @foreach($messages as $message)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td class="mailbox-subject text-truncate" style="max-width: 250px;">
+                                                    <b>{{ $message->subject }}</b> {{ $message->subject != ""? "-" : "" }}
+                                                    <span class="text-muted"> {!! $message->content !!} </span>
+                                                </td>
+                                                <td class="mailbox-date">
+                                                    {{ $message->created_at->diffForHumans() }}
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('message.show', $message->id) }}" role="button" ></a>
+
+                                                    <a class="delete-btn btn btn-danger btn-sm fa fa-trash py-2" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectid=""></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <div class="empty-state text-center my-3">
+                                @include('icons.empty')
+                                <p class="text-muted my-3">
+                                    Your sent messages will apear here.
+                                </p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

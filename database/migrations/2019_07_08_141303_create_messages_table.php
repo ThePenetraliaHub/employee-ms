@@ -17,16 +17,16 @@ class CreateMessagesTable extends Migration
             $table->bigIncrements('id');
             
             $table->integer("user_id")->unsigned();
-            $table->integer("message_id")->unsigned();
+            $table->integer("message_id")->unsigned()->nullable();
 
-            $table->string("content")->nullable();
+            $table->longText("content")->nullable();
             $table->string("subject")->nullable();
-
-            //Stores if the message is a draft or sent message; 1 if it is draft and 0 if it is sent
-            $table->integer("is_draft")->unsigned();
 
             //Type stores if the message is a broadcast or not
             $table->string("type");
+
+            // Save if message is deleted, trashed, or active.
+            // $table->integer('status');
 
             $table->timestamps();
 

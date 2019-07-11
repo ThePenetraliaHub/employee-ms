@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('messages')->group(function () {
         Route::get('/inbox', 'Web\MessageController@inbox')->name('message.inbox');
         Route::get('/sent', 'Web\MessageController@sent')->name('message.sent');
-        Route::get('/draft', 'Web\MessageController@draft')->name('message.draft');
+        Route::get('/trash', 'Web\MessageController@trash')->name('message.trash');
         Route::get('/compose', 'Web\MessageController@compose')->name('message.compose');
         Route::post('/', 'Web\MessageController@store')->name('message.store');
 

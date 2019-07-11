@@ -27,8 +27,8 @@
                 </li>
 
                 <li class="{{ $active=='draft' ? 'active' : '' }}">
-                    <a href="{{route('message.draft')}}">
-                        <i class="fa fa-file-text-o"></i> Drafts
+                    <a href="{{route('message.trash')}}">
+                        <i class="fa fa-file-text-o"></i> Trash
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>

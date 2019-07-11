@@ -22,10 +22,10 @@
                             <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
                                 @if(auth()->user()->owner instanceof \App\SuperAdmin)
                                     <label for="user_id">Employee</label>
-                                    <select class="form-control " id="user_id" disabled>
+                                    <select class="form-control" name="user_id" id="user_id" disabled>
                                         <option value=""></option>
                                         @foreach(\App\User::where('typeable_type', 'App\SuoerAdmin')->get() as $user)
-                                            <option value="{{$user->id}}" @if (old('user_id') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
+                                            <option value="{{$user->id}}" @if(old('user_id') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('user_id'))
@@ -35,9 +35,9 @@
                                     @endif
                                 @elseif(auth()->user()->owner instanceof \App\Employee)
                                     <label for="user_id">Employee</label>
-                                    <select class="form-control" id="user_id" multiple>
+                                    <select class="form-control" name="user_id[]" id="user_id" multiple>
                                         <option value=""></option>
-                                        @foreach(\App\User::where('typeable_type', 'App\Employee')->get() as $user)
+                                        @foreach(\App\User::where('typeable_type', 'App\Employee')->where('id', '<>', auth()->user()->id)->get() as $user)
                                             <option value="{{$user->id}}" @if (old('user_id') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
                                         @endforeach
                                     </select>
@@ -65,7 +65,7 @@
 
                         <div class="box-footer">
                             <div class="pull-right">
-                                <button name="submit_content" value="draft" type="submit" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
+                                {{-- <button name="submit_content" value="draft" type="submit" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button> --}}
                                 <button name="submit_content" value="send" type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Send</button>
                             </div>
                             <a href="{{ route('message.compose') }}" class="btn btn-default"><i class="fa fa-times"></i> Discard</a>

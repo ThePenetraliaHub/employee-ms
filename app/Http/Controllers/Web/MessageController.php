@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Message;
+use Illuminate\Support\Facades\DB;
+use App\Recepient;
 
 class MessageController extends Controller
 {
@@ -16,7 +18,8 @@ class MessageController extends Controller
 
     public function sent()
     {
-        $messages = auth()->user()->inbox_message();
+        $messages = auth()->user()->sent_message();
+
         return view('pages.all_users.messages.sent', compact('messages'));
     }
 
@@ -25,10 +28,10 @@ class MessageController extends Controller
         return view('pages.all_users.messages.compose');
     }
 
-    public function draft()
+    public function trash()
     {
-        $messages = auth()->user()->inbox_message();
-        return view('pages.all_users.messages.draft', compact('messages'));
+        $messages = auth()->user()->trash();
+        return view('pages.all_users.messages.trash', compact('messages'));
     }
 
 
@@ -37,27 +40,7 @@ class MessageController extends Controller
         switch ($request->input('submit_content')) {
             case 'draft':
                 $rules = [
-                    'user_id' => 'required|unique:job_titles,code',
-                    'content' => 'required|unique:job_titles,title',
-                ];
-
-                $customMessages = [
-                    'code.required' => 'Please provide the job title\'s code.',
-                    'code.unique' => 'job title already exist.',
-                    'title.required' => 'Please provide job title.',
-                    'title.unique' => 'Employee job title already exist.',
-                    'description.required' => 'Please provide job description.'
-                ];
-
-                $this->validate($request, $rules, $customMessages); 
-
-                JobTitle::create($request->all());
-
-                notify()->success("Successfully created!","","bottomRight");
-                return redirect('job-title');
-            case 'send':
-                $rules = [
-                    'user_id' => 'required|unique:job_titles,code',
+                    'user_id' => 'required',
                     'content' => 'required',
                 ];
 
@@ -68,17 +51,71 @@ class MessageController extends Controller
 
                 $this->validate($request, $rules, $customMessages); 
 
-                $employee_ids = $request->employee_id;
+                $users = $request->user_id;
+
+                DB::transaction(function () use (&$request, &$users) {
+                    $message = Message::create([
+                        'user_id'=> auth()->user()->id,
+                        'message_id'=> null,
+                        'content'=> $request->content,
+                        'subject'=> $request->subject,
+                        'is_draft'=> 0,
+                        'type'=> '',
+                    ]);
+
+                    foreach($users as $user){
+                        Recepient::create([
+                            'message_id'=> $message->id,
+                            'user_id'=> $user,
+                        ]);
+                    }
+                }, 2);
 
                 notify()->success("Message Delivered!","","bottomRight");
 
-                return redirect('message.sent');
+                return redirect()->route('message.sent');
+            case 'send':
+                $rules = [
+                    'user_id' => 'required',
+                    'content' => 'required',
+                ];
+
+                $customMessages = [
+                    'user_id.required' => 'Please select message recipient(s).',
+                    'content.required' => 'You cannot send an empty message.',
+                ];
+
+                $this->validate($request, $rules, $customMessages); 
+
+                $users = $request->user_id;
+
+                DB::transaction(function () use (&$request, &$users) {
+                    $message = Message::create([
+                        'user_id'=> auth()->user()->id,
+                        'message_id'=> null,
+                        'content'=> $request->content,
+                        'subject'=> $request->subject,
+                        'is_draft'=> 0,
+                        'type'=> '',
+                    ]);
+
+                    foreach($users as $user){
+                        Recepient::create([
+                            'message_id'=> $message->id,
+                            'user_id'=> $user,
+                        ]);
+                    }
+                }, 2);
+
+                notify()->success("Message Delivered!","","bottomRight");
+
+                return redirect()->route('message.sent');
         }
     }
 
-    public function show(/* Message $message */)
+    public function show(Message $message)
     {
-        return view('pages.all_users.messages.read');
+        return view('pages.all_users.messages.read', compact('message'));
     }
 
     public function destroy(Message $message)
