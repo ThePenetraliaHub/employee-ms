@@ -24,28 +24,28 @@
                                     <label class="control-label viewLabel3">Task</label>
                                 </div>
                                 <div class="col-md-8"> 
-                                    <label class="control-label viewLabel2"><b>{{$employee_project->project->name}}</b></label>
+                                    <label class="control-label viewLabel2"><b><a href="{{ route('project.details',$employee_project->project->id) }}">{{$employee_project->project->name}}</a></b></label>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="control-label viewLabel3">Client</label>
                                 </div>
                                 <div class="col-md-8"> 
-                                    <label class="control-label viewLabel2">{{$employee_project->project->client->name}}</label>
+                                    <label class="control-label viewLabel2"><a href="{{ route('client.details',$employee_project->project->client->id) }}">{{$employee_project->project->client->name}}</a></label>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="control-label viewLabel3">Assigned on</label>
                                 </div>
                                 <div class="col-md-8"> 
-                                    <label class="control-label viewLabel2">{{$employee_project->project->start_date}}</label>
+                                    <label class="control-label viewLabel2">{{$employee_project->start_date}}</label>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="control-label viewLabel3">Deadline</label>
                                 </div>
                                 <div class="col-md-8"> 
-                                    <label class="control-label viewLabel2">{{$employee_project->project->end_date}}</label>
+                                    <label class="control-label viewLabel2">{{$employee_project->end_date}}</label>
                                 </div>
 
                                 <div class="col-md-4">
@@ -84,29 +84,30 @@
 
                                 <div class="col-md-6 right-column">
 
-                                    <div class="col-md-12">
-                                        <label class="control-label viewLabel3">Task Details</label>
-                                    </div>
-                                    <div class="mailbox-read-message col-md-12">
-                                        {{ $employee_project->project->details }} {{ $employee_project->details }}
+                                    <div class="panel panel-default ">
+                                        <div class="panel-body  viewLabel3">
+                                           Task Details
+                                        </div>
+                                        <div class="panel-footer">
+                                            {{ $employee_project->project->details }} {{ $employee_project->details }}
+
+                                            <div >
+                                              <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print Details</button>
+                                              @if($employee_project->document_url)
+                                              <a type="button" class="btn btn-default " href="{{route('download.employee_project', $employee_project)  }}"><i class="fa fa-cloud-download "></i> Download Attachment</a>
+                                              @endif
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="box-footer col-md-12">
-                                        <div class="pull-left">
-                                          <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
-                                          @if($employee_project->document_url)
-                                          <a type="button" class="btn btn-default " href="{{route('download.employee_project', $employee_project)  }}"><i class="fa fa-cloud-download "></i> Download Attachment</a>
-                                          @endif
-                                      </div>
-                                  </div>
-
-                                  <div class="col-md-12">
-                                        <label class="control-label viewLabel3">Supervisor's Remark</label>
+                                  <div class="panel panel-default ">
+                                        <div class="panel-body viewLabel3">
+                                           Supervisor's Remark
+                                        </div>
+                                        <div class="panel-footer">
+                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                        </div>
                                     </div>
-                                    <div class="mailbox-read-message col-md-12">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                    </div>
-
                                 
                                     @include('pages.employee.tasks.forms.update_task')
                                 
