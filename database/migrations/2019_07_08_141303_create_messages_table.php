@@ -22,11 +22,8 @@ class CreateMessagesTable extends Migration
             $table->longText("content")->nullable();
             $table->string("subject")->nullable();
 
-            //Type stores if the message is a broadcast or not
-            $table->string("type");
-
-            // Save if message is deleted, trashed, or active.
-            // $table->integer('status');
+            //Save if message is deleted, trashed, or active. 2,1 and 0 respectively
+            $table->integer('status')->default(0);
 
             $table->timestamps();
 

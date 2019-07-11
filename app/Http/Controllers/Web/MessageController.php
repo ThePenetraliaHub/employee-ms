@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Message;
 use Illuminate\Support\Facades\DB;
 use App\Recepient;
+use App\User;
 
 class MessageController extends Controller
 {
@@ -19,7 +20,6 @@ class MessageController extends Controller
     public function sent()
     {
         $messages = auth()->user()->sent_message();
-
         return view('pages.all_users.messages.sent', compact('messages'));
     }
 
@@ -38,78 +38,75 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         switch ($request->input('submit_content')) {
-            case 'draft':
-                $rules = [
-                    'user_id' => 'required',
-                    'content' => 'required',
-                ];
-
-                $customMessages = [
-                    'user_id.required' => 'Please select message recipient(s).',
-                    'content.required' => 'You cannot send an empty message.',
-                ];
-
-                $this->validate($request, $rules, $customMessages); 
-
-                $users = $request->user_id;
-
-                DB::transaction(function () use (&$request, &$users) {
-                    $message = Message::create([
-                        'user_id'=> auth()->user()->id,
-                        'message_id'=> null,
-                        'content'=> $request->content,
-                        'subject'=> $request->subject,
-                        'is_draft'=> 0,
-                        'type'=> '',
-                    ]);
-
-                    foreach($users as $user){
-                        Recepient::create([
-                            'message_id'=> $message->id,
-                            'user_id'=> $user,
-                        ]);
-                    }
-                }, 2);
-
-                notify()->success("Message Delivered!","","bottomRight");
-
-                return redirect()->route('message.sent');
+            // case 'draft':
             case 'send':
-                $rules = [
-                    'user_id' => 'required',
-                    'content' => 'required',
-                ];
+                if($request->type == "Broadcast"){
+                    $rules = [
+                        'content' => 'required',
+                    ];
 
-                $customMessages = [
-                    'user_id.required' => 'Please select message recipient(s).',
-                    'content.required' => 'You cannot send an empty message.',
-                ];
+                    $customMessages = [
+                        'content.required' => 'You cannot send an empty message.',
+                    ];
 
-                $this->validate($request, $rules, $customMessages); 
-
-                $users = $request->user_id;
-
-                DB::transaction(function () use (&$request, &$users) {
-                    $message = Message::create([
-                        'user_id'=> auth()->user()->id,
-                        'message_id'=> null,
-                        'content'=> $request->content,
-                        'subject'=> $request->subject,
-                        'is_draft'=> 0,
-                        'type'=> '',
-                    ]);
-
-                    foreach($users as $user){
-                        Recepient::create([
-                            'message_id'=> $message->id,
-                            'user_id'=> $user,
+                    $this->validate($request, $rules, $customMessages); 
+                    
+                    DB::transaction(function () use (&$request, &$users) {
+                        $message = Message::create([
+                            'user_id'=> auth()->user()->id,
+                            'message_id'=> null,
+                            'content'=> $request->content,
+                            'subject'=> $request->subject,
                         ]);
-                    }
-                }, 2);
 
-                notify()->success("Message Delivered!","","bottomRight");
+                        foreach(User::all() as $user){
+                            if($user->id != auth()->user()->id){
+                                Recepient::create([
+                                    'message_id'=> $message->id,
+                                    'user_id'=> $user->id,
+                                ]);
+                            }
+                        }
+                    }, 2);
 
-                return redirect()->route('message.sent');
+                    notify()->success("Message Delivered!","","bottomRight");
+
+                    return redirect()->route('message.sent');
+                }elseif($request->type == "Normal"){
+                    $rules = [
+                        'user_id' => 'required',
+                        'content' => 'required',
+                    ];
+
+                    $customMessages = [
+                        'user_id.required' => 'Please select message recipient(s).',
+                        'content.required' => 'You cannot send an empty message.',
+                    ];
+
+                    $this->validate($request, $rules, $customMessages); 
+
+                    $users = $request->user_id;
+
+                    DB::transaction(function () use (&$request, &$users) {
+                        $message = Message::create([
+                            'user_id'=> auth()->user()->id,
+                            'message_id'=> null,
+                            'content'=> $request->content,
+                            'subject'=> $request->subject,
+                        ]);
+
+                        foreach($users as $user){
+                            Recepient::create([
+                                'message_id'=> $message->id,
+                                'user_id'=> $user,
+                            ]);
+                        }
+                    }, 2);
+
+                    notify()->success("Message Delivered!","","bottomRight");
+
+                    return redirect()->route('message.sent');
+                }
         }
     }
 

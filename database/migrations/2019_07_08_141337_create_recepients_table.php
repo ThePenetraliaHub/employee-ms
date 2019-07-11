@@ -17,6 +17,10 @@ class CreateRecepientsTable extends Migration
             $table->bigIncrements('id');
             $table->integer("message_id")->unsigned();
             $table->integer("user_id")->unsigned();
+            
+            //Save if message is deleted, trashed, or active. 2,1 and 0 respectively
+            $table->integer('status')->default(0);
+
             $table->timestamps();
 
             // $table->foreign('user_id')

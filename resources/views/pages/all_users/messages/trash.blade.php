@@ -8,7 +8,7 @@
 </section>
     <section class="content">
         <div class="row">
-            @include('pages.all_users.messages.sidebar', ['active'=>'draft'])
+            @include('pages.all_users.messages.sidebar', ['active'=>'trash'])
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="box box-primary">

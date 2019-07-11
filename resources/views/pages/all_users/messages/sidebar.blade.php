@@ -26,12 +26,19 @@
                     </a>
                 </li>
 
-                <li class="{{ $active=='draft' ? 'active' : '' }}">
+                <li class="{{ $active=='trash' ? 'active' : '' }}">
                     <a href="{{route('message.trash')}}">
                         <i class="fa fa-file-text-o"></i> Trash
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
+
+                {{-- <li class="{{ $active=='broadcast' ? 'active' : '' }}">
+                    <a href="{{route('message.broadcast')}}">
+                        <i class="fa fa-envelope-o"></i> Broadcast
+                        <span class="label label-primary pull-right">12</span>
+                    </a>
+                </li> --}}
             </ul>
         </div>
     </div>

@@ -19,7 +19,20 @@
                     <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" enctype="multipart/form-data" method="POST" action="{{ route('message.store') }}">
                         @csrf
                         <div class="box-body">
-                            <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                                <label for="type">Message Type</label>
+                                <select class="form-control" name="type" id="type">
+                                    <option value="Normal" @if(old("type") == "Normal") {{ "selected" }} @endif>Normal (Send to selected)</option>
+                                    <option value="Broadcast" @if(old("type") == "Broadcast") {{ "selected" }} @endif>Broadcast (Send to all)</option>
+                                </select>
+                                @if ($errors->has('type'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div id="user_id_type" class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
                                 @if(auth()->user()->owner instanceof \App\SuperAdmin)
                                     <label for="user_id">Employee</label>
                                     <select class="form-control" name="user_id" id="user_id" disabled>
@@ -65,7 +78,6 @@
 
                         <div class="box-footer">
                             <div class="pull-right">
-                                {{-- <button name="submit_content" value="draft" type="submit" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button> --}}
                                 <button name="submit_content" value="send" type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Send</button>
                             </div>
                             <a href="{{ route('message.compose') }}" class="btn btn-default"><i class="fa fa-times"></i> Discard</a>
@@ -94,6 +106,24 @@
             $('#user_id').select2({
                 //multiple: true
             });
+
+            //Code to hide and show user selection field based on message type selection
+            const type = document.getElementById('type');
+            if(type != null){
+                if(type.value == "Broadcast"){
+                    $("#user_id_type").hide();
+                }else{
+                    $("#user_id_type").show();
+                }
+
+                type.addEventListener("change", ()=>{
+                    if(type.value == "Broadcast"){
+                        $("#user_id_type").hide();
+                    }else{
+                        $("#user_id_type").show();
+                    }
+                });
+            }
         });
     </script>
 @endsection
