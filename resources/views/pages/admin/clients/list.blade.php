@@ -39,7 +39,7 @@
                                       @foreach($clients as $client)
                                         <tr>
                                             <td>{{ $client->id}} </td>
-                                            <td>{{ $client->name}}</td>
+                                            <td><a href="{{ route('client.details' ,$client->id) }}">{{ $client->name}}</a></td>
                                             <td>{{ $client->address}}</td>
                                             <td>
                                                 <span class="text-muted">{{ $client->contact_number}} </span><br>
@@ -47,11 +47,9 @@
                                             </td>
                                             <td>{{ $client->company_url}} </td>
                                             <td>
-                                                @if($client->status == 1){{ 'Active' }} 
-                                                @else {{ 'Inactive' }}
-                                                @endif
+                                                {!!($client->status == 1? "<span class='label label-success'>Active</span>" : "<span class='label label-warning'>Inactive</span>")!!}
                                             </td>
-                                            <td style="min-width: 80px;" class="text-center"> 
+                                            <td style="min-width: 80px;" class="text-center">
                                                 <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('client.show' ,$client->id) }}" role="button" style=" margin-right: 5px; "></a>
                                                 <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId="{{ $client->id }}"></a>
                                             </td>

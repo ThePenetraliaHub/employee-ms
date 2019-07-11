@@ -59,6 +59,11 @@ class ClientController extends Controller
         return view('pages.admin.clients.edit', compact('client'));
     }
 
+    public function client_details($id){
+        $details = Client::find($id);
+        return view('pages.admin.clients.client_details', compact('details'));
+    }
+
     public function update(Request $request, Client $client)
     {
         $rules = [

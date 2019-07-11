@@ -24,11 +24,13 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/certification', 'Web\CertificationController');
 	Route::resource('/skills', 'Web\SkillController');
 	Route::resource('/projects', 'Web\ProjectController');
+	Route::get('/{id}/projects', 'Web\ProjectController@projectById')->name('project.details');
 	Route::resource('/pay-grade', 'Web\PayGradeController');
 	Route::resource('/job-title', 'Web\JobTitleController');
 	Route::resource('/employee-status', 'Web\EmployeeStatusController');
 	Route::resource('/department', 'Web\DepartmentController');
 	Route::resource('/client', 'Web\ClientController');
+	Route::get('/{id}/client', 'Web\ClientController@client_details')->name('client.details');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
 

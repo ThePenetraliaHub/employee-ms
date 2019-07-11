@@ -17,6 +17,11 @@ class ProjectController extends Controller
         return view('pages.admin.projects.list', compact('projects'));
     }
 
+     public function projectById($id){
+        $details = Project::find($id);
+        return view('pages.admin.projects.project_details', compact('details'));
+    }
+
     public function create()
     {
        $clients = Client::all();

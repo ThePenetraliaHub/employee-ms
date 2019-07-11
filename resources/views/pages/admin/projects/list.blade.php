@@ -38,12 +38,13 @@
                                         @foreach($projects as $project)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $project->name}}</td>
+                                                <td> <a href="{{ route('project.details',$project->id) }}">{{ $project->name}}</a></td>
                                                 <td>
-                                                    <span class="inline-block"><strong> {{ $project->client->name }} </strong></span><br>
+                                                    <span class="inline-block"><strong> <a href="{{ route('client.details',$project->client->id) }}"> {{ $project->client->name }} </a></strong></span><br>
                                                     <span class="inline-block text-muted">{{ $project->client->contact_number }} ({{ $project->client->contact_email }}) </span><br>
                                                     <span class="inline-block text-muted">
-                                                        {{ $project->client->status === 0 ? "Inactive Client" : "Active Client" }}
+
+                                                        {!!($project->client->status == 1? "<span class='label label-success'>Active</span>" : "<span class='label label-warning'>Inactive</span>")!!}
                                                     </span>
                                                 </td>
                                                 <td>
