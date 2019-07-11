@@ -132,6 +132,40 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
+    public function delete_permernently(Message $message)
+    {
+        if($message->user_id == auth()->user()->id){
+            $message->update([
+                'status' => 2,
+            ]);
+        }else{
+            $message->recepients->where('user_id', auth()->user()->id)->first()->update([
+                'status' => 2,
+            ]);
+        }
+
+        notify()->success("Message Deleted!","","bottomRight");
+
+        return redirect()->back();
+    }
+
+    public function recover(Message $message)
+    {
+        if($message->user_id == auth()->user()->id){
+            $message->update([
+                'status' => 0,
+            ]);
+        }else{
+            $message->recepients->where('user_id', auth()->user()->id)->first()->update([
+                'status' => 0,
+            ]);
+        }
+
+        notify()->success("Message Recovered!","","bottomRight");
+
+        return redirect()->back();
+    }
+
     public function destroy(Message $message)
     {
         

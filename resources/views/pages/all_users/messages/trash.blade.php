@@ -44,10 +44,21 @@
                                                 <td class="mailbox-date">
                                                     {{ $message->created_at->diffForHumans() }}
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center" style="min-width:120px;">
                                                     <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('message.show', $message->id) }}" role="button" ></a>
 
-                                                    <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash py-2" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectid=""></a>
+                                                    <button class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" onclick="event.preventDefault(); document.getElementById('delete_msg').submit();"></button>
+
+                                                    <button class="delete-btn btn btn-success btn-sm glyphicon glyphicon-trash" onclick="event.preventDefault(); document.getElementById('recover_msg').submit();"></button>
+
+                                                    <form method="post" id="delete_msg" action="{{ route("message.delete", $message->id) }}" class="form-inline">
+                                                        {{csrf_field()}} 
+                                                        {{method_field('DELETE')}} 
+                                                    </form>
+
+                                                    <form method="post"  id="recover_msg" action="{{ route("message.trash.recover", $message->id) }}" class="form-inline">
+                                                        {{csrf_field()}} 
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

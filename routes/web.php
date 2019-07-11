@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
 
         Route::delete('/trash/{message}', 'Web\MessageController@delete_to_trash')->name('message.trash.delete');
         Route::delete('/delete/{message}', 'Web\MessageController@delete_permernently')->name('message.delete');
+        Route::post('/trash/{message}', 'Web\MessageController@recover')->name('message.trash.recover');
     });
 });
 
