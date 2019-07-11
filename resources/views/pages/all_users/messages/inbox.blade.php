@@ -44,9 +44,14 @@
                                                     {{ $message->created_at->diffForHumans() }}
                                                 </td>
                                                 <td class="text-center">
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('message.show', $message->id) }}" role="button" ></a>
+                                                    <form method="post" action="{{ route("message.trash.delete", $message->id) }}">
+                                                        {{csrf_field()}} 
+                                                        {{method_field('DELETE')}} 
 
-                                                    <a class="delete-btn btn btn-danger btn-sm fa fa-trash py-2" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectid=""></a>
+                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('message.show', $message->id) }}" role="button" ></a>
+
+                                                        <button class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" href=""></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

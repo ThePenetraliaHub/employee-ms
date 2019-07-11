@@ -60,16 +60,20 @@ class User extends Authenticatable
     public function inbox_message(){
         return Message::join('recepients', 'recepients.message_id', '=', 'messages.id')
             ->where('recepients.user_id', $this->id)
+            ->where("recepients.status", 0)
             ->get(["messages.*"]);
     }
 
     public function trash_message(){
-        return $this->hasMany('App\Message')->where("is_draft", 1);
-    }
+        $received_messages = Message::join('recepients', 'recepients.message_id', '=', 'messages.id')
+            ->where('recepients.user_id', $this->id)
+            ->where("recepients.status", 1)
+            ->get(["messages.*"]);
 
-    // public function broadcast_message(){
-    //     return $this->hasMany('App\Message')->where("is_draft", 1);
-    // }
+        $sent_messages =  $this->hasMany('App\Message')->where("status", 1)->get();
+
+        return $received_messages->merge($sent_messages);
+    }
 
     public function unread_inbox_message(){
         // return $this->hasMany('App\Employee');

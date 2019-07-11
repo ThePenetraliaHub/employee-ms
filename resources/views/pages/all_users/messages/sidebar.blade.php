@@ -27,7 +27,7 @@
                 </li>
 
                 <li class="{{ $active=='trash' ? 'active' : '' }}">
-                    <a href="{{route('message.trash')}}">
+                    <a href="{{route('message.trash.index')}}">
                         <i class="fa fa-file-text-o"></i> Trash
                         <span class="label label-primary pull-right">12</span>
                     </a>

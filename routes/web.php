@@ -62,11 +62,13 @@ Route::middleware('auth')->group(function () {
     Route::prefix('messages')->group(function () {
         Route::get('/inbox', 'Web\MessageController@inbox')->name('message.inbox');
         Route::get('/sent', 'Web\MessageController@sent')->name('message.sent');
-        Route::get('/trash', 'Web\MessageController@trash')->name('message.trash');
+        Route::get('/trash', 'Web\MessageController@trash')->name('message.trash.index');
         Route::get('/compose', 'Web\MessageController@compose')->name('message.compose');
         Route::post('/', 'Web\MessageController@store')->name('message.store');
-
         Route::get('/{message}', 'Web\MessageController@show')->name('message.show');
+
+        Route::delete('/trash/{message}', 'Web\MessageController@delete_to_trash')->name('message.trash.delete');
+        Route::delete('/delete/{message}', 'Web\MessageController@delete_permernently')->name('message.delete');
     });
 });
 

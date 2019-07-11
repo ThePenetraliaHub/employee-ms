@@ -25,23 +25,32 @@
                                             <th scope="col">S/N</th>
                                             <th scope="col">Sender</th>
                                             <th scope="col">Message</th>
-                                            <th scope="col">Time</th>
+                                            <th scope="col">Time Sent</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="mailbox-name">
-                                                <a href="">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-date">
-                                                5 mins ago
-                                            </td>
-                                        </tr>
+                                        @foreach($messages as $message)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td class="mailbox-subject text-truncate">
+                                                    <a href="{{ route("employee.profile", $message->sender->owner->id) }}">{{ $message->sender->name }}</a>
+                                                </td>
+                                                <td class="mailbox-subject text-truncate" style="max-width: 250px;">
+                                                    <b>{{ $message->subject }}</b> {{ $message->subject != ""? "-" : "" }}
+                                                    <span class="text-muted"> {!! $message->content !!} </span>
+                                                </td>
+                                                <td class="mailbox-date">
+                                                    {{ $message->created_at->diffForHumans() }}
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('message.show', $message->id) }}" role="button" ></a>
+
+                                                    <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash py-2" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectid=""></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

@@ -30,7 +30,7 @@ class MessageController extends Controller
 
     public function trash()
     {
-        $messages = auth()->user()->trash();
+        $messages = auth()->user()->trash_message();
         return view('pages.all_users.messages.trash', compact('messages'));
     }
 
@@ -113,6 +113,23 @@ class MessageController extends Controller
     public function show(Message $message)
     {
         return view('pages.all_users.messages.read', compact('message'));
+    }
+
+    public function delete_to_trash(Message $message)
+    {
+        if($message->user_id == auth()->user()->id){
+            $message->update([
+                'status' => 1,
+            ]);
+        }else{
+            $message->recepients->where('user_id', auth()->user()->id)->first()->update([
+                'status' => 1,
+            ]);
+        }
+
+        notify()->success("Message Trashed!","","bottomRight");
+
+        return redirect()->back();
     }
 
     public function destroy(Message $message)
