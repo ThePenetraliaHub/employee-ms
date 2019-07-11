@@ -45,11 +45,11 @@
                                                     {{ $message->created_at->diffForHumans() }}
                                                 </td>
                                                 <td class="text-center" style="min-width:120px;">
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('message.show', $message->id) }}" role="button" ></a>
+                                                    <a title="View message content" class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('message.show', $message->id) }}" role="button" ></a>
 
-                                                    <button class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" onclick="event.preventDefault(); document.getElementById('delete_msg').submit();"></button>
+                                                    <button class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" title="Delete Message" onclick="event.preventDefault(); document.getElementById('delete_msg').submit();"></button>
 
-                                                    <button class="delete-btn btn btn-success btn-sm glyphicon glyphicon-trash" onclick="event.preventDefault(); document.getElementById('recover_msg').submit();"></button>
+                                                    <button class="delete-btn btn btn-success btn-sm glyphicon glyphicon-trash" title="Send to trash" onclick="event.preventDefault(); document.getElementById('recover_msg').submit();"></button>
 
                                                     <form method="post" id="delete_msg" action="{{ route("message.delete", $message->id) }}" class="form-inline">
                                                         {{csrf_field()}} 
