@@ -24,6 +24,7 @@ class CreateMessagesTable extends Migration
 
             //Save if message is deleted, trashed, or active. 2,1 and 0 respectively
             $table->integer('status')->default(0);
+            $table->integer('read_status')->default(0);
 
             $table->timestamps();
 

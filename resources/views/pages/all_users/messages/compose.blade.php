@@ -35,7 +35,7 @@
                             <div id="user_id_type" class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
                                 @if(auth()->user()->owner instanceof \App\SuperAdmin)
                                     <label for="user_id">Employee</label>
-                                    <select class="form-control" name="user_id" id="user_id" disabled>
+                                    <select class="form-control" name="user_id" id="user_id" >
                                         <option value=""></option>
                                         @foreach(\App\User::where('typeable_type', 'App\SuoerAdmin')->get() as $user)
                                             <option value="{{$user->id}}" @if(old('user_id') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>

@@ -15,21 +15,21 @@
                 <li class="{{ $active=='inbox' ? 'active' : '' }}">
                     <a href="{{route('message.inbox')}}">
                         <i class="fa fa-inbox"></i> Inbox
-                        <span class="label label-primary pull-right">12</span>
+                        <span class="label label-primary pull-right">{{auth()->user()->inbox_message()->count()}}</span>
                     </a>
                 </li>
 
                 <li class="{{ $active=='sent' ? 'active' : '' }}">
                     <a href="{{route('message.sent')}}">
                         <i class="fa fa-envelope-o"></i> Sent
-                        <span class="label label-primary pull-right">12</span>
+                        <span class="label label-primary pull-right">{{auth()->user()->sent_message()->count()}}</span>
                     </a>
                 </li>
 
                 <li class="{{ $active=='trash' ? 'active' : '' }}">
                     <a href="{{route('message.trash.index')}}">
                         <i class="fa fa-file-text-o"></i> Trash
-                        <span class="label label-primary pull-right">12</span>
+                        <span class="label label-primary pull-right">{{auth()->user()->trash_message()->count()}}</span>
                     </a>
                 </li>
 
