@@ -46,7 +46,7 @@
                                                 </td>
                                                 <td class="mailbox-date">
                                                     <span class="inline-block text-muted">
-                                                        {!!$message->read_status == 1 ? "<span class='label label-success'>read</span>" : "<span class='label label-warning'>Unread</span> "!!}
+                                                        {!!auth()->user()->unread_inbox_message()->count() == 1 ? "<span class='label label-success'>read</span>" : "<span class='label label-warning'>Unread</span> "!!}
                                                     </span>
                                                 </td>
                                                 <td class="text-center">

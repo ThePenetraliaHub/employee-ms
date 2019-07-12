@@ -49,9 +49,6 @@
 
                                                     <button class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" title="Delete message" onclick="event.preventDefault(); document.getElementById('delete_msg').submit();"></button>
                                                     <button class="delete-btn btn btn-success btn-sm glyphicon glyphicon-repeat" style="transform: scale(-1, 1);" onclick="event.preventDefault(); document.getElementById('recover_msg').submit();"></button>
-<!-- =======
-                                                    <button class="delete-btn btn btn-success btn-sm glyphicon glyphicon-trash" title="Recover message" onclick="event.preventDefault(); document.getElementById('recover_msg').submit();"></button>
->>>>>>> 1b825f91d44e198eef94902c46dedd522ef50b62 -->
 
                                                     <form method="post" id="delete_msg" action="{{ route("message.delete", $message->id) }}" class="form-inline">
                                                         {{csrf_field()}} 

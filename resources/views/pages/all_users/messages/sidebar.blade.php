@@ -26,6 +26,7 @@
                 <li class="{{ $active=='sent' ? 'active' : '' }}">
                     <a href="{{route('message.sent')}}">
                         <i class="fa fa-envelope-o"></i> Sent
+                        <span class="label label-primary pull-right">{{auth()->user()->sent_message()->count()}}</span>
                     </a>
                 </li>
 
