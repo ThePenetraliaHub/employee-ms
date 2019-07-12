@@ -76,6 +76,18 @@ class User extends Authenticatable
     }
 
     public function unread_inbox_message(){
-        // return $this->hasMany('App\Employee');
+        return Message::join('recepients', 'recepients.message_id', '=', 'messages.id')
+            ->where('recepients.user_id', $this->id)
+            ->where("recepients.status", 0)
+            ->where("recepients.is_read", 0)
+            ->get(["messages.*"]);
+    }
+
+    public function unread_trash_message(){
+        return Message::join('recepients', 'recepients.message_id', '=', 'messages.id')
+            ->where('recepients.user_id', $this->id)
+            ->where("recepients.status", 1)
+            ->where("recepients.is_read", 0)
+            ->get(["messages.*"]);
     }
 }

@@ -21,6 +21,9 @@ class CreateRecepientsTable extends Migration
             //Save if message is deleted, trashed, or active. 2,1 and 0 respectively
             $table->integer('status')->default(0);
 
+            //Save if message has been read. 0 if it has not and 1 otherwise
+            $table->integer('is_read')->default(0);
+
             $table->timestamps();
 
             // $table->foreign('user_id')
