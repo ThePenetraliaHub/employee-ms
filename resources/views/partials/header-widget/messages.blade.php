@@ -14,17 +14,24 @@
               </li>
               <li>
                 <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                    @foreach(auth()->user()->unread_inbox_message() as $message)
+                        <li>
+                            <a href="#">
+                                <h4>
+                                    {{ $message->sender->name }}
+                                    <small><i class="fa fa-clock-o"></i> {{ $message->created_at->diffForHumans() }} </small>
+                                </h4>
+                                <p>
+                                    {{ $message->subject }}
+                                    <small> {!! $message->content !!} </small>
+                                </p>
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
               </li>
-              <li class="footer"><a href="{{ route("message.inbox") }}">See All Messages</a></li>
+              @if(auth()->user()->unread_inbox_message()->count() > 0)
+                    <li class="footer"><a href="{{ route("message.inbox") }}">See All Messages</a></li>
+              @endif 
             </ul>
           </li>
