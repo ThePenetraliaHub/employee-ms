@@ -2,37 +2,23 @@
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <span class="label label-success">{{ auth()->user()->unread_inbox_message()->count() }}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">
+                @if(auth()->user()->unread_inbox_message()->count() == 0)
+                    You have no unread message
+                @else
+                    You have {{ auth()->user()->unread_inbox_message()->count() }} unread messages
+                @endif 
+              </li>
               <li>
-                <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  <li><!-- start message -->
+                  <li>
                     <a href="#">
                       <h4>
                         Support Team
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
                       </h4>
                       <p>Why not buy a new awesome theme?</p>
                     </a>
