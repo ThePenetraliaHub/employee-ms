@@ -18,4 +18,30 @@ class Message extends Model
     {
         return $this->hasMany('App\Recepient');
     }
+
+    public function is_read(){
+        $user_id = auth()->user()->id;
+
+        $recepient = \App\Recepient::where(['user_id' => $user_id, 'message_id' => $this->id])->get()->first();
+
+        if($recepient){
+            return $recepient->is_read === 0;
+        }
+
+        return false;
+    }
+
+    public function mark_read(){
+        $user_id = auth()->user()->id;
+
+        $recepient = \App\Recepient::where(['user_id' => $user_id, 'message_id' => $this->id])->get()->first();
+
+        if($recepient){
+            $recepient->update([
+                'is_read' => 1,
+            ]);
+        }
+
+        return true;
+    }
 }
