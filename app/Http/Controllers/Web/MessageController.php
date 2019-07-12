@@ -112,6 +112,10 @@ class MessageController extends Controller
 
     public function show(Message $message)
     {
+        if($message->is_read()){
+            $message->mark_read();
+        }
+
         return view('pages.all_users.messages.read', compact('message'));
     }
 
