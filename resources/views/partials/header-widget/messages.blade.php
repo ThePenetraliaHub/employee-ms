@@ -16,14 +16,14 @@
                 <ul class="menu">
                     @foreach(auth()->user()->unread_inbox_message() as $message)
                         <li>
-                            <a href="#">
+                            <a href="{{ route('message.show', $message->id) }}">
                                 <h4>
                                     {{ $message->sender->name }}
                                     <small><i class="fa fa-clock-o"></i> {{ $message->created_at->diffForHumans() }} </small>
                                 </h4>
                                 <p>
-                                    {{ $message->subject }}
-                                    <small> {!! $message->content !!} </small>
+                                    {{ substr($message->subject,0,20)}}
+                                    <small> {!!substr($message->content,0,30)!!} </small>
                                 </p>
                             </a>
                         </li>

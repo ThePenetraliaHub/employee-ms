@@ -25,6 +25,7 @@
                                             <th scope="col">Sender</th>
                                             <th scope="col">Message</th>
                                             <th scope="col">Time Sent</th>
+                                            <th scope="col">Read Status</th>
                                             <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -42,6 +43,11 @@
                                                 </td>
                                                 <td class="mailbox-date">
                                                     {{ $message->created_at->diffForHumans() }}
+                                                </td>
+                                                <td class="mailbox-date">
+                                                    <span class="inline-block text-muted">
+                                                        {!!auth()->user()->unread_inbox_message()->count() == 1 ? "<span class='label label-success'>read</span>" : "<span class='label label-warning'>Unread</span> "!!}
+                                                    </span>
                                                 </td>
                                                 <td class="text-center">
                                                     <form method="post" action="{{ route("message.trash.delete", $message->id) }}">
