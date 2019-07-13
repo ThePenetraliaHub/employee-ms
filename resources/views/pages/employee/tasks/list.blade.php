@@ -44,7 +44,12 @@
                                                 </td>
                                                 <td>
                                                     @if($task->project)
-                                                        <span class="inline-block"><strong> {{ $task->project->name }} </strong></span><br>
+                                                        <a href="{{ route("project.details", $task->project->id) }}">
+                                                            <span class="inline-block">
+                                                                <strong> {{ $task->project->name }} </strong>
+                                                            </span>
+                                                        </a>
+                                                        <br>
                                                         <span class="inline-block text-muted">{{ $task->project->status }} </span><br>
                                                         <span class="inline-block text-muted">
                                                             {{ date("F jS, Y", strtotime($task->project->start_date)) }} - {{ date("F jS, Y", strtotime($task->project->end_date)) }}
@@ -67,7 +72,6 @@
                                                         End{{ $task->end_date > date_create() ? "s": "ed" }} {{ $task->end_date->diffForHumans() }}
                                                     </span>
                                                 </td>
-                                                <td> {{$task->status}} </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                          <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show' , $task->id) }}" role="button" ></a>
