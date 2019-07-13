@@ -8,6 +8,10 @@ class Certification extends Model
 {
 
 	protected $guarded = [];
+	protected $casts = [
+        'granted_on' => 'datetime',
+        'valid_on' => 'datetime',
+    ];
 
     public function employee()
     {

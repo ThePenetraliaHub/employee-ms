@@ -42,7 +42,7 @@
     <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('start_date') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="start_date">Start Date</label>
-            <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date', $education->start_date) }}" required>
+            <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date', $education->start_date->format("Y-m-d")) }}" required>
             @if ($errors->has('start_date'))
                 <span class="help-block">
                     <strong>{{ $errors->first('start_date') }}</strong>
@@ -54,7 +54,7 @@
     <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('end_date') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="end_date">End Date</label>
-            <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date', $education->end_date) }}" required>
+            <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date', $education->end_date->format("Y-m-d")) }}" required>
             @if ($errors->has('end_date'))
                 <span class="help-block">
                     <strong>{{ $errors->first('end_date') }}</strong>

@@ -1,4 +1,4 @@
-
+f
 <div class="form-row">
     <div class="form-group {{ $errors->has('NIN') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="NIN">National Identity Number(NIN)</label>
@@ -91,7 +91,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('date_of_birth') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="date_of_birth">Date of Birth</label>
-        <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth', $employee->date_of_birth) }}" required>
+        <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth', $employee->date_of_birth->format("Y-m-d")) }}" required>
         @if ($errors->has('date_of_birth'))
         <span class="help-block">
             <strong>{{ $errors->first('date_of_birth') }}</strong>

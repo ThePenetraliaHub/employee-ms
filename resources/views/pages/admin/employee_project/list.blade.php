@@ -28,25 +28,45 @@
                                             <th scope="col">S/N</th>
                                             <th scope="col">Employee</th>
                                             <th scope="col">Project</th>
-                                            {{-- <th scope="col">Client</th> --}}
                                             <th scope="col">Timeline</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         @foreach($employee_projects as $employee_project)
                                             <tr {{ $employee_project->end_date < date_create() ? "class=text-danger" : "" }}>
-                                                <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <span class="inline-block"><strong> {{ $employee_project->employee->name }} </strong></span><br>
+                                                    {{ $loop->iteration }}
+                                                    @if($employee_project->status == "Completed")
+                                                        <span class='label label-success label-sm'>
+                                                            {{ $employee_project->status }}
+                                                        </span>
+                                                    @else
+                                                        <span class='label label-warning label-sm'>
+                                                            {{ $employee_project->status }}
+                                                        </span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route("employee.profile", $employee_project->employee->id) }}">
+                                                        <span class="inline-block">
+                                                            <strong> {{ $employee_project->employee->name }} </strong>
+                                                        </span>
+                                                    </a>
+                                                    <br>
                                                     <span class="inline-block text-muted">{{ $employee_project->employee->employee_number }}</span><br>
                                                     <span class="inline-block text-muted">{{ $employee_project->employee->job_title->title }}</span>
                                                 </td>
                                                 <td>
                                                     @if($employee_project->project)
-                                                        <span class="inline-block"><strong> {{ $employee_project->project->name }} </strong></span><br>
+                                                        <a href="{{ route("project.details", $employee_project->project->id) }}">
+                                                            <span class="inline-block">
+                                                                <strong> {{ $employee_project->project->name }} 
+                                                                </strong>
+                                                            </span>
+                                                        </a>
+                                                        <br>
                                                         <span class="inline-block text-muted">{{ $employee_project->project->status }} </span><br>
                                                         <span class="inline-block text-muted">
                                                             {{ date("F jS, Y", strtotime($employee_project->project->start_date)) }} - {{ date("F jS, Y", strtotime($employee_project->project->end_date)) }}
@@ -57,17 +77,6 @@
                                                         </span>
                                                     @endif
                                                 </td>
-                                                {{-- <td>
-                                                    @if($employee_project->project)
-                                                        <span class="inline-block"><strong> {{ $employee_project->project->client->name }} </strong></span><br>
-                                                        <span class="inline-block text-muted">{{ $employee_project->project->client->contact_number }} ({{ $employee_project->project->client->contact_email }}) </span><br>
-                                                        <span class="inline-block text-muted">
-                                                            {{ $employee_project->project->client->status === 0 ? "Inactive Client" : "Active Client" }}
-                                                        </span>
-                                                    @else
-
-                                                    @endif
-                                                </td> --}}
                                                 <td>
                                                     <span class="inline-block text-muted">
                                                         Start{{ $employee_project->start_date > date_create() ? "s": "ed" }} {{ $employee_project->start_date->diffForHumans() }}
@@ -77,17 +86,17 @@
                                                         End{{ $employee_project->end_date > date_create() ? "s": "ed" }} {{ $employee_project->end_date->diffForHumans() }}
                                                     </span>
                                                 </td>
-                                                <td>{{ $employee_project->status}}</td>
+                                                <td style="min-width:120px;" class="text-center">
+                                                    <div {{-- class="btn-group" --}}>
+                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show', $employee_project->id) }}" role="button" ></a>
 
-                                                <td style="min-width:120px;">
-                                                    <div class="btn-group">
                                                         @if($employee_project->document_url)
-                                                            <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.employee_project', $employee_project)  }}" role="button" style=" margin-right: 5px; "> </a>
+                                                            <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-cloud-download " href="{{route('download.employee_project', $employee_project)  }}" role="button"></a>
                                                         @endif
 
-                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee-project.show' , $employee_project->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('employee-project.show' , $employee_project->id) }}" role="button"></a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectid="{{ $employee_project->id }}"></a>
+                                                        <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectid="{{ $employee_project->id }}"></a>
                                                     </div> 
                                                 </td>
                                             </tr>

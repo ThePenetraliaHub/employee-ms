@@ -9,6 +9,7 @@ class Employee extends Model
     protected $guarded = [];
     protected $casts = [
         'joined_date' => 'datetime',
+        'date_of_birth' => 'datetime',
     ];
 
 	public function user_info()

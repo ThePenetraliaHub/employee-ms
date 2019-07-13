@@ -21,10 +21,8 @@
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Project</th>
-                                            {{-- <th scope="col">Client</th> --}}
                                             <th scope="col">Task Detail</th>
                                             <th scope="col">Timeline</th>
-                                            <th scope="col">Status</th>
                                             <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -32,7 +30,18 @@
                                     <tbody>
                                         @foreach($tasks as $task)
                                             <tr {{ $task->end_date < date_create() ? "class=text-danger" : "" }}>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                    @if($task->status == "Completed")
+                                                        <span class='label label-success label-sm'>
+                                                            {{ $task->status }}
+                                                        </span>
+                                                    @else
+                                                        <span class='label label-warning label-sm'>
+                                                            {{ $task->status }}
+                                                        </span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @if($task->project)
                                                         <span class="inline-block"><strong> {{ $task->project->name }} </strong></span><br>
@@ -46,17 +55,6 @@
                                                         </span>
                                                     @endif
                                                 </td>
-                                                {{-- <td>
-                                                    @if($task->project)
-                                                        <span class="inline-block"><strong> {{ $task->project->client->name }} </strong></span><br>
-                                                        <span class="inline-block text-muted">{{ $task->project->client->contact_number }} ({{ $task->project->client->contact_email }}) </span><br>
-                                                        <span class="inline-block text-muted">
-                                                            {{ $task->project->client->status === 0 ? "Inactive Client" : "Active Client" }}
-                                                        </span>
-                                                    @else
-
-                                                    @endif
-                                                </td> --}}
                                                 <td class="text-truncate">  
                                                     {{ $task->details }}
                                                 </td>

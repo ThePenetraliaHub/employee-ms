@@ -29,7 +29,6 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Client</th>
                                             <th scope="col">Timeline</th>
-                                            <th scope="col">Status</th>
                                             <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -38,13 +37,28 @@
                                         @foreach($projects as $project)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td> <a href="{{ route('project.details',$project->id) }}">{{ $project->name}}</a></td>
+                                                <td> 
+                                                    <a href="{{ route('project.details',$project->id) }}">
+                                                        {{ $project->name}}
+                                                    </a>
+                                                    <br>
+                                                    @if($project->status == "Completed")
+                                                        <span class='label label-success label-sm'>
+                                                            {{ $project->status }}
+                                                        </span>
+                                                    @else
+                                                        <span class='label label-warning label-sm'>
+                                                            {{ $project->status }}
+                                                        </span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <span class="inline-block"><strong> <a href="{{ route('client.details',$project->client->id) }}"> {{ $project->client->name }} </a></strong></span><br>
-                                                    <span class="inline-block text-muted">{{ $project->client->contact_number }} ({{ $project->client->contact_email }}) </span><br>
                                                     <span class="inline-block text-muted">
-
-                                                        {!!($project->client->status == 1? "<span class='label label-success'>Active</span>" : "<span class='label label-warning'>Inactive</span>")!!}
+                                                        {{ $project->client->contact_number }}
+                                                    </span><br>
+                                                    <span class="inline-block text-muted">
+                                                        {{ $project->client->contact_email }}
                                                     </span>
                                                 </td>
                                                 <td>
@@ -56,12 +70,13 @@
                                                         End{{ $project->end_date > date_create() ? "s": "ed" }} {{ $project->end_date->diffForHumans() }}
                                                     </span>
                                                 </td>
-                                                <td>{{$project->status}} </td>
                                                 <td class="text-center">
                                                     <div>
-                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('projects.show' , $project->id) }}" role="button"></a>
+                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('project.details', $project->id) }}" role="button" ></a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectId="{{ $project->id }}"></a>
+                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('projects.show' , $project->id) }}" role="button"></a>
+
+                                                        <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectId="{{ $project->id }}"></a>
                                                     </div> 
                                                 </td>
                                             </tr>

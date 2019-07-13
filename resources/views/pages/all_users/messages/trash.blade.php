@@ -33,7 +33,14 @@
                                     <tbody>
                                         @foreach($messages as $message)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                    @if(!$message->is_read())
+                                                        <span class="inline-block text-muted">
+                                                            <span class='label label-warning'>Unread</span>
+                                                        </span>
+                                                    @endif
+                                                </td>
                                                 <td class="mailbox-subject text-truncate">
                                                     <a href="{{ route("employee.profile", $message->sender->owner->id) }}">{{ $message->sender->name }}</a>
                                                 </td>

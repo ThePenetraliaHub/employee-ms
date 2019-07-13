@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-4">
                 <label class="control-label ">Date of Birth</label>
-                <label class="control-label viewLabel">{{ $employee->date_of_birth}}</label>  
+                <label class="control-label viewLabel">{{ $employee->date_of_birth->format('F j, Y')}}</label>  
             </div>
 
         </div>
@@ -114,7 +114,7 @@
             </div>
             <div class="col-md-4">
                 <label class="control-label ">Joined Date</label>
-                <label class="control-label viewLabel">{{ $employee->joined_date}}</label>  
+                <label class="control-label viewLabel">{{ $employee->joined_date->format('F j, Y')}}</label>  
             </div>
 
         </div>

@@ -38,7 +38,11 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <span class="inline-block"><strong> {{ $skill->employee->name }} </strong></span><br>
+                                                    <a href="{{ route("employee.profile", $skill->employee->id) }}">
+                                                        <span class="inline-block">
+                                                            <strong> {{ $skill->employee->name }} </strong>
+                                                        </span><br>
+                                                    </a>
                                                     <span class="inline-block text-muted">{{ $skill->employee->employee_number }}</span><br>
                                                     <span class="inline-block text-muted">{{ $skill->employee->job_title->title }}</span>
                                                 </td>

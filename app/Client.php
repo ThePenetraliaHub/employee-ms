@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
 	protected $guarded = [];
+	protected $casts = [
+        'first_contact_date' => 'datetime',
+    ];
 	
     public function projects()
     {

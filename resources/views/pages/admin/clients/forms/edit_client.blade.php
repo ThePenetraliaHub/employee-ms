@@ -74,7 +74,7 @@
 
      <div class="form-group col-xs-11{{ $errors->has('first_contact_date') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="first_contact_date">First Contacted Date</label>
-        <input id="first_contact_date" type="date" class="form-control" name="first_contact_date" value="{{ old('first_contact_date', $client->first_contact_date) }}" required>
+        <input id="first_contact_date" type="date" class="form-control" name="first_contact_date" value="{{ old('first_contact_date', $client->first_contact_date->format('Y-m-d')) }}" required>
         @if ($errors->has('first_contact_date'))
             <span class="help-block">
                 <strong>{{ $errors->first('first_contact_date') }}</strong>

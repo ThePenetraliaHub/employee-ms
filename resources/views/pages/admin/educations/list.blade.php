@@ -40,14 +40,18 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <span class="inline-block"><strong> {{ $education->employee->name }} </strong></span><br>
+                                                    <a href="{{ route("employee.profile", $education->employee->id) }}">
+                                                        <span class="inline-block">
+                                                            <strong> {{ $education->employee->name }} </strong>
+                                                        </span><br>
+                                                    </a>
                                                     <span class="inline-block text-muted">{{ $education->employee->employee_number }}</span><br>
                                                     <span class="inline-block text-muted">{{ $education->employee->job_title->title }}</span>
                                                 </td>
                                                 <td>{{ $education->qualification}}</td>
                                                 <td>{{ $education->institution}}</td>
-                                                <td>{{ $education->start_date}}</td>
-                                                <td>{{ $education->end_date}}</td>
+                                                <td>{{ $education->start_date->format('F j, Y')}}</td>
+                                                <td>{{ $education->end_date->format('F j, Y')}}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.education', $education)  }}" role="button" style=" margin-right: 5px; "> </a>

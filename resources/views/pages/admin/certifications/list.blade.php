@@ -40,14 +40,18 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <span class="inline-block"><strong> {{ $certification->employee->name }} </strong></span><br>
+                                                    <a href="{{ route("employee.profile", $certification->employee->id) }}">
+                                                        <span class="inline-block">
+                                                            <strong> {{ $certification->employee->name }} </strong>
+                                                        </span><br>
+                                                    </a>
                                                     <span class="inline-block text-muted">{{ $certification->employee->employee_number }}</span><br>
                                                     <span class="inline-block text-muted">{{ $certification->employee->job_title->title }}</span>
                                                 </td>
                                                 <td>{{ $certification->certification}}</td>
                                                 <td>{{ $certification->institution}}</td>
-                                                <td>{{ $certification->granted_on}}</td>
-                                                <td>{{ $certification->valid_on}}</td>
+                                                <td>{{ $certification->granted_on->format('F j, Y')}}</td>
+                                                <td>{{ $certification->valid_on->format('F j, Y')}}</td>
                                                 <td style="min-width: 130px;" class="text-center">
                                                     <div class="btn-group">
                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.certification', $certification)  }}" role="button" style=" margin-right: 5px; "> </a>

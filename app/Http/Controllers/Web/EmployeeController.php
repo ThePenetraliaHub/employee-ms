@@ -180,7 +180,7 @@ class EmployeeController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
-        if (User::where('email', $request->office_email)->get()->count() != 0) {
+        if (User::where([['email', $request->office_email], ['id', '<>', $employee->user_info->id]])->get()->count() != 0) {
             throw ValidationException::withMessages([
                 'office_email' => "A user with employee's official email already exist."
             ]);

@@ -25,12 +25,11 @@
                                <table id="dataTable" class="table table-striped table-responsive">
                                   <thead>
                                     <tr class="table-heading-bg">
-                                        <th scope="col">Id</th>
+                                        <th scope="col">S/N</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Address</th>
                                         <th scope="col">Contact</th>
                                         <th scope="col">Website</th>
-                                        <th scope="col">Status</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                   </thead>
@@ -38,20 +37,36 @@
 
                                       @foreach($clients as $client)
                                         <tr>
-                                            <td>{{ $client->id}} </td>
-                                            <td><a href="{{ route('client.details' ,$client->id) }}">{{ $client->name}}</a></td>
+                                            <td>
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('client.details', $client->id) }}">
+                                                    {{ $client->name}}
+                                                </a>
+                                                <br>
+                                                @if($client->status == 0)
+                                                    <span class="inline-block text-muted">
+                                                        <span class='label label-warning'>Inactive</span>
+                                                    </span>
+                                                @else
+                                                    <span class="inline-block text-muted">
+                                                        <span class='label label-success'>Active</span>
+                                                    </span>
+                                                @endif
+                                            </td>
                                             <td>{{ $client->address}}</td>
                                             <td>
                                                 <span class="text-muted">{{ $client->contact_number}} </span><br>
                                                 <span class="text-muted">{{ $client->contact_email}}</span>
                                             </td>
                                             <td>{{ $client->company_url}} </td>
-                                            <td>
-                                                {!!($client->status == 1? "<span class='label label-success'>Active</span>" : "<span class='label label-warning'>Inactive</span>")!!}
-                                            </td>
-                                            <td style="min-width: 80px;" class="text-center">
-                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('client.show' ,$client->id) }}" role="button" style=" margin-right: 5px; "></a>
-                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId="{{ $client->id }}"></a>
+                                            <td style="min-width: 120px;" class="text-center">
+                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('client.details', $client->id) }}" role="button" ></a>
+
+                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('client.show' ,$client->id) }}" role="button"></a>
+
+                                                <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId="{{ $client->id }}"></a>
                                             </td>
                                         </tr>
                                        @endforeach

@@ -35,10 +35,23 @@
                                   <tbody>
                                       @foreach($users as $user)
                                         <tr>
-                                            <td>{{ $loop->iteration}} </td>
+                                            <td>
+                                                {{ $loop->iteration}} 
+                                                @if($user->is_active == 0)
+                                                    <span class="inline-block text-muted">
+                                                        <span class='label label-warning'>Inactive</span>
+                                                    </span>
+                                                @else
+                                                    <span class="inline-block text-muted">
+                                                        <span class='label label-success'>Active</span>
+                                                    </span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <img class="img-rounded" style="width: 40px; height: 40px:" src="{{ $user->user_avatar }}">
-                                                <span class="inline-block"><strong> {{ $user->name }} </strong></span>
+                                                <a href="{{ route("admin.profile", $user->owner->id) }}">
+                                                    <span class="inline-block"><strong> {{ $user->name }} </strong></span>
+                                                </a>
                                             </td>
                                             <td>
                                                 <span class="inline-block text-muted">{{ $user->email }}</span><br>
@@ -46,18 +59,21 @@
                                             </td>
                                             <td>{{ $user->created_at->diffForHumans() }} </td>
                                             <td class="text-center"> 
+
+                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('admin.profile', $user->owner->id) }}" role="button" ></a>
+
                                                 @if($user->id != auth()->user()->id)
-                                                    <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+                                                    <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
                                                 @else
-                                                    <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('admin.show' , $user->id) }}" role="button"></a>
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('admin.show' , $user->id) }}" role="button"></a>
                                                 @endif
 
                                                 {{-- Use the user active/inactive status to detect which icon to show --}}
                                                 @if($user->is_active == 1 && $user->id != auth()->user()->id)
-                                                    <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning fa fa-lock text-danger pointer ml-3" data-userId="{{ $user->id }}">
+                                                    <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning glyphicon glyphicon-lock text-danger pointer" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @elseif($user->is_active == 0 && $user->id != auth()->user()->id)
-                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success fa fa-unlock text-success pointer ml-3" data-userId="{{ $user->id }}">
+                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success glyphicon glyphicon-unlock text-success pointer" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @endif
                                             </td>

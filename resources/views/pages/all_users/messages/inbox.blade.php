@@ -25,7 +25,6 @@
                                             <th scope="col">Sender</th>
                                             <th scope="col">Message</th>
                                             <th scope="col">Time Sent</th>
-                                            <th scope="col">Read Status</th>
                                             <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -33,7 +32,14 @@
                                     <tbody>
                                         @foreach($messages as $message)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                    @if(!$message->is_read())
+                                                        <span class="inline-block text-muted">
+                                                            <span class='label label-warning'>Unread</span>
+                                                        </span>
+                                                    @endif
+                                                </td>
                                                 <td class="mailbox-subject text-truncate">
                                                     <a href="{{ route("employee.profile", $message->sender->owner->id) }}">{{ $message->sender->name }}</a>
                                                 </td>
@@ -43,11 +49,6 @@
                                                 </td>
                                                 <td class="mailbox-date">
                                                     {{ $message->created_at->diffForHumans() }}
-                                                </td>
-                                                <td class="mailbox-date">
-                                                    <span class="inline-block text-muted">
-                                                        {!!auth()->user()->unread_inbox_message()->count() == 1 ? "<span class='label label-success'>read</span>" : "<span class='label label-warning'>Unread</span> "!!}
-                                                    </span>
                                                 </td>
                                                 <td class="text-center">
                                                     <form method="post" action="{{ route("message.trash.delete", $message->id) }}">
