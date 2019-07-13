@@ -37,7 +37,12 @@
                                         <tr>
                                             <td>{{ $loop->iteration}} </td>
                                             <td>
-                                                <span class="inline-block"><strong> {{ $user->owner->name }} </strong></span><br>
+                                                <a href="{{ route("employee.profile", $user->owner->id) }}">
+                                                    <span class="inline-block">
+                                                        <strong> {{ $user->owner->name }} </strong>
+                                                    </span>    
+                                                </a>
+                                                <br>
                                                 <span class="inline-block text-muted">{{ $user->owner->employee_number }}</span><br>
                                                 <span class="inline-block text-muted">{{ $user->owner->job_title->title }}</span>
                                             </td>
@@ -59,7 +64,7 @@
                                                     <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning fa fa-lock text-danger pointer ml-3" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @elseif($user->is_active == 0 && $user->id != auth()->user()->id)
-                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-warning fa fa-unlock text-success pointer ml-3" data-userId="{{ $user->id }}">
+                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success fa fa-unlock text-success pointer ml-3" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @endif
                                             </td>
@@ -145,7 +150,6 @@
                     contentType: false,
                     cache: false,
                     processData:false,
-                    data: new FormData(this),
                     success: function(res){
                         location.reload();
                     },
