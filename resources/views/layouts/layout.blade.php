@@ -78,15 +78,15 @@
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('skills.index') }}"><i class="fa fa-users"></i> Manage Skills</a></li>
+                                <li><a href="{{ route('skills.index') }}"><i class="glyphicon glyphicon-flag"></i> Manage Skills</a></li>
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('certification.index') }}"><i class="fa fa-users"></i> Manage Certifications</a></li>
+                                <li><a href="{{ route('certification.index') }}"><i class="glyphicon glyphicon-certificate"></i> Manage Certifications</a></li>
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('education.index') }}"><i class="fa fa-users"></i> Manage Educations</a></li>
+                                <li><a href="{{ route('education.index') }}"><i class="glyphicon glyphicon-education"></i> Manage Educations</a></li>
                             </li>
 
                             <li class="treeview">
