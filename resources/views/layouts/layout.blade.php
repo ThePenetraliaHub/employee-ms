@@ -100,6 +100,9 @@
                                     <li><a href="{{ route('employee-project.index') }}"><i class="fa fa-circle-o"></i> Employee Tasks</a></li>
                                 </ul>
                             </li>
+                            <li class="treeview">
+                                <li><a href="{{ route('attendance') }}"><i class="glyphicon glyphicon-time"></i> Manage Attendance</a></li>
+                            </li>
                         </ul>
                     </li>
 

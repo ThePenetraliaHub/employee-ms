@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Clients
+            Employees Attendance
             <small>View</small>
         </h1>
     </section>
@@ -12,12 +12,12 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(1 > 0)
+               <!--  @if(1 > 0)
                     <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create client
                     </a>
-                @endif
+                @endif -->
                 <div class="box">
                     <div class="box-body">
                         <div class="box box-primary">
@@ -28,8 +28,8 @@
                             <div class="box-body">
                               <div class="row">
                                 <div class="col-md-2">
-                                  <select class="filter form-control" data-col="name">
-                                    <option disabled selected="">Employee</option>
+                                  <select class="form-control" name="name">
+                                    <option disabled selected="">All Employees</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
                                     <option>option 4</option>
@@ -37,14 +37,14 @@
                                   </select>
                                 </div>
                                 <div class="col-md-2">
-                                  <input placeholder="From Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" data-col="fromDate">
+                                  <input placeholder="From Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="fromDate">
                                 </div>
                                 <div class="col-md-2">
-                                   <input placeholder="To Date" class="search-key form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" data-col="toDate">
+                                   <input placeholder="To Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="toDate">
                                 </div>
                                 <div class="col-md-2">
-                                  <select class="form-control" data-col="status" value="Present">
-                                    <option disabled selected="">Status</option>
+                                  <select class="form-control" name="status">
+                                    <option disabled selected="">All Status</option>
                                     <option>Present</option>
                                     <option>Abscent</option>
                                   </select>
@@ -52,27 +52,30 @@
                                 <div class="col-md-2">
                                  <div class="checkbox">
                                     <label>
-                                      <input type="checkbox" data-col="late" value="late">
+                                      <input type="checkbox" name="late">
                                       Late
                                     </label>
                                   </div>
                                 </div>
                                 <div class="col-md-2">
-                                 <div class="search-key checkbox">
+                                 <div class="checkbox">
                                     <label>
-                                      <input type="checkbox" data-col="earlyLeaving" value="earlyLeaving">
+                                      <input type="checkbox" name="earlyLeaving" >
                                       Early Leaving
                                     </label>
                                   </div>
                                 </div>
                                 <div class="col-md-2">
-                                 <div class="search-key checkbox">
+                                 <div class="checkbox">
                                     <label>
-                                      <input type="checkbox" data-col="overTime" value="overTime">
+                                      <input type="checkbox" name="overTime">
                                       Over Time
                                     </label>
                                   </div>
                                 </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-default "><i class="fa fa-search"></i></button>
+                                 </div>
                               </div>
                             </div>
                             <!-- /.box-body -->
@@ -105,13 +108,19 @@
                                             <td data-input="earlyLeaving">30 Min</td>
                                             <td data-input="overTime">-</td>
                                             <td>7Hrs</td>
-                                            <td data-input="status">Present</td>
+                                            <td data-input="status">
+                                                @if(1 == 1)
+                                                    <span class='label label-success label-sm'>
+                                                        Present
+                                                    </span>
+                                                @else
+                                                    <span class='label label-warning label-sm'>
+                                                        Abscent
+                                                    </span>
+                                                @endif</td>
                                             <td style="min-width: 120px;" class="text-center">
                                                 <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-comment" href="#" role="button" data-toggle="tooltip" data-placement="top"
                                                 title="Query Employee" ></a>
-
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="#" role="button"></a>
-
                                                 <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId=""></a>
                                             </td>
                                         </tr>
@@ -123,7 +132,7 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No clients yet!
+                                    Record yet!
                                 </p>
                                 <a href="{{ route("client.create") }}">
                                     Create Client
@@ -180,26 +189,5 @@
                 $('#delete-form').attr('action', "client/"+client_id);
             })
         });
-
-//         var $filterableRows = $('#dataTable').find('tr').not(':first'),
-//         $inputs = $('.search-key');
-
-// $inputs.on('input', function() {
-
-//     $filterableRows.hide().filter(function() {
-//     return $(this).find('td').filter(function() {
-        
-//       var tdText = $(this).text().toLowerCase(),
-//             inputValue = $('#' + $(this).data('input')).val().toLowerCase();
-    
-//         return tdText.indexOf(inputValue) != -1;
-    
-//     }).length == $(this).find('td').length;
-//   }).show();
-
-// });
-
-       
-
     </script>
 @endsection

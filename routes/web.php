@@ -76,8 +76,7 @@ Route::middleware('auth')->group(function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::view('attendance','pages.attendance.list');
-Route::view('t','pages.attendance.t');
+Route::view('attendance','pages.attendance.list')->name('attendance');
 
 
 
