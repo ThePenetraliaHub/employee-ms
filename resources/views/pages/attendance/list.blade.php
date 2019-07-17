@@ -12,76 +12,124 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-               <!--  @if(1 > 0)
-                    <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm my-2">
-                        <span class="fa fa-plus-circle mr-2"></span>
-                        Create client
-                    </a>
-                @endif -->
                 <div class="box">
                     <div class="box-body">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                              <h3 class="box-title">Filter by:</h3>
-                              <button type="button" class="btn btn-default pull-right"><i class="fa fa-print"></i> Print Report</button>
+                                <h3 class="box-title">Filter by:</h3>
+                                <button type="button" class="btn btn-default pull-right"><i class="fa fa-print"></i> Print Report</button>
                             </div>
                             <div class="box-body">
-                              <div class="row">
-                                <div class="col-md-2">
-                                  <select class="form-control" name="name">
-                                    <option disabled selected="">All Employees</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
-                                  </select>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>Report Type:</label>
+                                        <select class="form-control" name="name">
+                                            <option>Grouped Report</option>
+                                            <option>Ungrouped Report</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>Select Employee:</label>
+                                        <select class="form-control" name="name">
+                                            <option disabled selected="">All Employees</option>
+                                            <option>option 2</option>
+                                            <option>option 3</option>
+                                            <option>option 4</option>
+                                            <option>option 5</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>From Date:</label>
+                                        <input placeholder="From Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="fromDate">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>To Date:</label>
+                                        <input placeholder="To Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="toDate">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>Attendace Status:</label>
+                                        <select class="form-control" name="status">
+                                            <option disabled selected="">All Status</option>
+                                            <option>Present</option>
+                                            <option>Abscent</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="late">
+                                                Late
+                                            </label>
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="earlyLeaving" >
+                                                Early Leaving
+                                            </label>
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="overTime">
+                                                Over Time
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="col-md-1">
+                                        <button type="button" class="btn btn-default "><i class="fa fa-search"></i></button>
+                                    </div> --}}
                                 </div>
-                                <div class="col-md-2">
-                                  <input placeholder="From Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="fromDate">
-                                </div>
-                                <div class="col-md-2">
-                                   <input placeholder="To Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="toDate">
-                                </div>
-                                <div class="col-md-2">
-                                  <select class="form-control" name="status">
-                                    <option disabled selected="">All Status</option>
-                                    <option>Present</option>
-                                    <option>Abscent</option>
-                                  </select>
-                                </div>
-                                <div class="col-md-2">
-                                 <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox" name="late">
-                                      Late
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="col-md-2">
-                                 <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox" name="earlyLeaving" >
-                                      Early Leaving
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="col-md-2">
-                                 <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox" name="overTime">
-                                      Over Time
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="button" class="btn btn-default "><i class="fa fa-search"></i></button>
-                                 </div>
-                              </div>
                             </div>
-                            <!-- /.box-body -->
                           </div>
-                          <!-- /.box --><p></p>
-                        @if(1 > 0)
+                        @if(1 > 1)
+                            <div class="table-responsive table-bordered" id="print">
+                               <table id="dataTable" class="table table-striped table-responsive">
+                                  <thead>
+                                    <tr class="table-heading-bg">
+                                        <th scope="col">S/N</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Clock In</th>
+                                        <th scope="col">Clock Out</th>
+                                        <th scope="col">Late</th>
+                                        <th scope="col">Early Leaving</th>
+                                        <th scope="col">Over Time</th>
+                                        <th scope="col">Work Hour</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td data-input="name">Odigir Richard</td>
+                                            <td data-input="fromDate">2019 Jun 27 09:00</td>
+                                            <td data-input="toDate">2019 Jun 27 04:30</td>
+                                            <td data-input="late">30 Min.</td>
+                                            <td data-input="earlyLeaving">30 Min</td>
+                                            <td data-input="overTime">-</td>
+                                            <td>7Hrs</td>
+                                            <td data-input="status">
+                                                @if(1 == 1)
+                                                    <span class='label label-success label-sm'>
+                                                        Present
+                                                    </span>
+                                                @else
+                                                    <span class='label label-warning label-sm'>
+                                                        Abscent
+                                                    </span>
+                                                @endif</td>
+                                            <td style="min-width: 120px;" class="text-center">
+                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-comment" href="#" role="button" data-toggle="tooltip" data-placement="top"
+                                                title="Query Employee" ></a>
+                                                <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId=""></a>
+                                            </td>
+                                        </tr>
+
+                                   </tbody>
+                               </table>
+                            </div>
+                        @elseif(1 > 0)
                             <div class="table-responsive table-bordered" id="print">
                                <table id="dataTable" class="table table-striped table-responsive">
                                   <thead>
