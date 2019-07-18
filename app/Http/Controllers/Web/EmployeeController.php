@@ -11,6 +11,9 @@ use App\JobTitle;
 use App\Certification;
 use App\Education;
 use App\Skill;
+use App\Exports\EmployeeExport;
+use App\Imports\EmployeeImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -210,4 +213,22 @@ class EmployeeController extends Controller
         notify()->success("Successfully Deleted!","","bottomRight");
         return redirect('employee');
     }
+
+    public function exportdata()
+
+    {
+        return Excel::download(new EmployeeExport, 'employees.xlsx');
+    }
+
+        public function importdata(Request $request) 
+    {
+            $this->validate($request, [
+                  'file'  => 'required|mimes:xls,xlsx'
+                 ]);
+
+        Excel::import(new EmployeeImport,request()->file('file'));    
+
+        return back();
+    }
+
 }

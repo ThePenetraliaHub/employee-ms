@@ -17,6 +17,25 @@
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create employee
                     </a>
+                    <div class="box-body">
+                            <div class="row">
+                                <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
+
+                                    @csrf
+
+                                    <input type="file" name="file" class="form-control">
+
+                                    <br>
+
+                                    <button class="btn btn-success" type="submit">Import User Data</button>
+
+                                    <a class="btn btn-warning" href="{{ route('export.excel') }}">Export User Data</a>
+
+                                </form>
+               
+                            </div>
+                    </div>
+
                 @endif
                 <div class="box">
                     <div class="box-body">
