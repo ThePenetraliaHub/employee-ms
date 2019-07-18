@@ -44,6 +44,13 @@ Route::middleware('auth')->group(function () {
 	Route::get('/task/{employee_project}', 'Web\EmployeeProjectController@task_info')->name('task.show');
 	Route::post('/task/{employee_project}', 'Web\EmployeeProjectController@update_task')->name('task.update');
 
+	Route::prefix('export')->group(function () {
+        Route::get('/employees', 'Web\EmployeeController@exportdata')->name('export.excel');
+    });
+    Route::prefix('import')->group(function () {
+       Route::post('/employees', 'Web\EmployeeController@importdata')->name('import.excel');
+    });
+
 	Route::prefix('download')->group(function () {
         Route::get('/{education}/education', 'Web\EducationController@download')->name('download.education');
         Route::get('/{certification}/certification', 'Web\CertificationController@download')->name('download.certification');
