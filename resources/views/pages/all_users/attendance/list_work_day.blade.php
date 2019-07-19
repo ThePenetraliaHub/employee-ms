@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Departments
+            Work Days
             <small>View</small>
         </h1>
     </section>
@@ -12,35 +12,41 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(count($departments) > 0)
-                    <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm my-2">
+                @if(count($work_days) > 0)
+                    <a href="{{ route('work-day.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new department
+                        Create new work day
                     </a>
                 @endif
                 <div class="box">
                     <div class="box-body">
-                        @if(count($departments) > 0)
+                        @if(count($work_days) > 0)
                             <div class="table-responsive table-bordered">
                                 <table id="dataTable" class="table table-striped table-responsive">
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
-                                            <th scope="col">Name</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Official Hours</th>
                                             <th scope="col" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach($departments as $department)
+                                        @foreach($work_days as $work_day)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $department->name}}</td>
+                                                <td>{{ $work_day->start_time->format()}}</td>
+                                                <td>{{ $work_day->end_time->format()}}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('department.show' , $department->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('work_day.show' , $work_day->id) }}" role="button" style=" margin-right: 5px; ">
+                                                        </a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-deptId="{{ $department->id }}"></a>
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-workDay="{{ $work_day->id }}"></a>
+
+                                                         <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show' , $task->id) }}" role="button" >
+                                                         </a>
                                                     </div> 
                                                 </td>
                                             </tr>
@@ -52,10 +58,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No departments yet!
+                                    No work days yet!
                                 </p>
-                                <a href="{{ route("department.create") }}">
-                                    Create department
+                                <a href="{{ route("work-day.create") }}">
+                                    Create work day
                                 </a>
                             </div>
                         @endif
@@ -76,7 +82,7 @@
                                     {{csrf_field()}} 
                                     {{method_field('DELETE')}} 
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" id="deptId" name="_method" value="DELETE" >
+                                        <input type="hidden" class="form-control" id="workDay" name="_method" value="DELETE" >
                                     </div>
                                     
                                     <h4 class="text-center">Are you sure you want to delete this data?</h4>
@@ -103,11 +109,10 @@
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var dept_id = button.data('deptid') // Extract info from data-* attributes
-                console.log("Dept Id: "+dept_id);
+                var dept_id = button.data('workDay') // Extract info from data-* attributes
 
                 var modal = $(this)
-                $('#delete-form').attr('action', "department/"+dept_id);
+                $('#delete-form').attr('action', "work-day/"+dept_id);
             })
         });
     </script>

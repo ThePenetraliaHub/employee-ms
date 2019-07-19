@@ -4,18 +4,19 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\WorkDay;
 
 class WorkDayController extends Controller
 {
     public function index()
     {
-        $departments = Department::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.departments.list', ['departments' => $departments]);
+        $work_days = WorkDay::orderBy('id', 'desc')->paginate(10);
+        return view('pages.all_users.attendance.list_work_day', compact('work_days'));
     }
 
     public function create()
     {
-        return view('pages.admin.departments.create');
+        return view('pages.all_users.attendance.create_work_day');
     }
 
     public function store(Request $request)
