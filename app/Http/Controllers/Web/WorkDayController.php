@@ -72,34 +72,52 @@ class WorkDayController extends Controller
     }
 
     public function update(Request $request, WorkDay $work_day){
-        $rules = [
-            'date' => [
-                'required',
-                'date',
-                'after:yesterday',
-                Rule::unique('work_days,date')->ignore($work_day->id),
-            ],
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => "required|date_format:H:i|after:start_time"
-        ];
-
-        $customMessages = [
-            'date.required' => 'Please select the date.',
-            'date.unique' => 'Working day has already been profiled.',
-            'date.date' => 'Please select a valid day.',
-            'date.after' => 'The selected day cannot be in the past.',
-            'start_time.required' => 'Please choose the opening time.',
-            'start_time.date_format' => 'Please choose a valid opening time.',
-            'end_time.required' => 'Please choose the closing time.',
-            'end_time.date_format' => 'Please choose a valid closing time.',
-            'end_time.after' => 'Closing time cannot be earlier than opening time.',
-        ];
-
-        $this->validate($request, $rules, $customMessages);
-
         if($request->day_type === "Work Day"){
+            $rules = [
+                'date' => [
+                    'required',
+                    'date',
+                    'after:yesterday',
+                    Rule::unique('work_days')->ignore($work_day->date, 'date'),
+                ],
+                'start_time' => 'required|date_format:H:i',
+                'end_time' => 'required|date_format:H:i|after:start_time'
+            ];
+
+            $customMessages = [
+                'date.required' => 'Please select the date.',
+                'date.unique' => 'Working day has already been profiled.',
+                'date.date' => 'Please select a valid day.',
+                'date.after' => 'The selected day cannot be in the past.',
+                'start_time.required' => 'Please choose the opening time.',
+                'start_time.date_format' => 'Please choose a valid opening time.',
+                'end_time.required' => 'Please choose the closing time.',
+                'end_time.date_format' => 'Please choose a valid closing time.',
+                'end_time.after' => 'Closing time cannot be earlier than opening time.',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
             $work_day->update($request->all());
         }else{
+            $rules = [
+                'date' => [
+                    'required',
+                    'date',
+                    'after:yesterday',
+                    Rule::unique('work_days')->ignore($work_day->date, 'date'),
+                ],
+            ];
+
+            $customMessages = [
+                'date.required' => 'Please select the date.',
+                'date.unique' => 'Working day has already been profiled.',
+                'date.date' => 'Please select a valid day.',
+                'date.after' => 'The selected day cannot be in the past.',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
             $request->start_time = null;
             $request->end_time = null;
 
@@ -112,7 +130,7 @@ class WorkDayController extends Controller
         }
 
         notify()->success("Successfully Updated!","","bottomRight");
-        return redirect()->route('department.index');
+        return redirect()->route('work-day.index');
     }
 
     public function destroy(Department $department)
