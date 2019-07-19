@@ -22,35 +22,35 @@
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <select class="form-control" name="status">
-                                            <option selected>All Status</option>
-                                            <option>Present</option>
-                                            <option>Abscent</option>
+                                        <select id="status" class="form-control" name="status">
+                                            <option value="all" selected>All Status</option>
+                                            <option value="prensent">Present</option>
+                                            <option value="absent">Abscent</option>
                                         </select>
                                     </div>
 
                                     <div class="col-md-1">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="late">
+                                                <input id="late" type="checkbox" name="late">
                                                 Late
                                             </label>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2 mr-0">
+                                    <div class="col-md-2">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="earlyLeaving" >
+                                                <input id="early-leaving"  type="checkbox" name="earlyLeaving" >
                                                 Early Leaving
                                             </label>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2 ml-0">
+                                    <div class="col-md-2">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="overTime">
+                                                <input id="over-time"  type="checkbox" name="overTime">
                                                 Over Time
                                             </label>
                                         </div>
@@ -212,6 +212,32 @@
                 var modal = $(this)
                 $('#delete-form').attr('action', "client/"+client_id);
             })
+
+            //Code to hide and show user selection field based on message type selection
+            const status = document.getElementById('status');
+            if(status != null){
+                if(status.value == "absent"){
+                    $("#late").attr('disabled','disabled');
+                    $("#early-leaving").attr('disabled','disabled');
+                    $("#over-time").attr('disabled','disabled');
+                }else{
+                    $("#late").removeAttr('disabled');
+                    $("#early-leaving").removeAttr('disabled');
+                    $("#over-time").removeAttr('disabled');
+                }
+
+                status.addEventListener("change", ()=>{
+                    if(status.value == "absent"){
+                        $("#late").attr('disabled','disabled');
+                        $("#early-leaving").attr('disabled','disabled');
+                        $("#over-time").attr('disabled','disabled');
+                    }else{
+                        $("#late").removeAttr('disabled');
+                        $("#early-leaving").removeAttr('disabled');
+                        $("#over-time").removeAttr('disabled');
+                    }
+                });
+            }
         });
     </script>
 @endsection
