@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BroadcastMail;
 use Illuminate\Http\Request;
 use App\Message;
 use Illuminate\Support\Facades\DB;
@@ -65,6 +67,7 @@ class MessageController extends Controller
                                     'message_id'=> $message->id,
                                     'user_id'=> $user->id,
                                 ]);
+                                Mail::to($user->email)->send(new BroadcastMail($request->subject,$request->content,auth()->user()->email,auth()->user()->name));
                             }
                         }
                     }, 2);
