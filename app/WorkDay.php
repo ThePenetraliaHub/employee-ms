@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class WorkDay extends Model
 {
+	protected $guarded = [];
     //
 }

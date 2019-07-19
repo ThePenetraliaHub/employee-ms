@@ -41,11 +41,18 @@ class WorkDayController extends Controller
 
         $this->validate($request, $rules, $customMessages); 
 
-        Department::create($request->all());
+        if($request->day_type === "Work Day"){
+        	WorkDay::create($request->all());
+        }else{
+        	$request->start_time = null;
+        	$request->end_time = null;
+
+        	WorkDay::create($request->all());
+        }
 
         notify()->success("Successfully created!","","bottomRight");
 
-        return redirect('department');
+        return redirect('work-day');
     }
 
     public function show(Department $department)
