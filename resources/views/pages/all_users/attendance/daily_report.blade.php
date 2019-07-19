@@ -23,7 +23,7 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <select class="form-control" name="status">
-                                            <option disabled selected="">All Status</option>
+                                            <option selected>All Status</option>
                                             <option>Present</option>
                                             <option>Abscent</option>
                                         </select>
