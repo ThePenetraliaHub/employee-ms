@@ -49,7 +49,7 @@
                                                     <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('work-day.edit' , $work_day->id) }}" role="button">
                                                     </a>
 
-                                                    <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-workDay="{{ $work_day->id }}"></a>
+                                                    <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-work_day="{{ $work_day->id }}"></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -80,14 +80,14 @@
                             </div>
 
                             <div class="modal-body">
-                                <form id="delete-form" method="post" id="deleteFormId">
+                                <form id="delete-form" method="post">
                                     {{csrf_field()}} 
                                     {{method_field('DELETE')}} 
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" id="workDay" name="_method" value="DELETE" >
                                     </div>
                                     
-                                    <h4 class="text-center">Are you sure you want to delete this data?</h4>
+                                    <h4 class="text-center">Are you sure you want to delete this data? <br>Deleting this data will cause the associated attendaces to be deleted</h4>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-warning px-5" data-dismiss="modal">No</button>
@@ -111,10 +111,10 @@
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var dept_id = button.data('workDay') // Extract info from data-* attributes
-
+                var workDay = button.data('work_day') // Extract info from data-* attributes
+                console.log(workDay);
                 var modal = $(this)
-                $('#delete-form').attr('action', "work-day/"+dept_id);
+                $('#delete-form').attr('action', "work-day/"+workDay);
             })
         });
     </script>

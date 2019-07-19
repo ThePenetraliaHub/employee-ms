@@ -25,7 +25,7 @@
 
     <div id="start_time_div" class="form-group col-xs-11{{ $errors->has('start_time') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="start_time">Official Opening Time</label>
-        <input id="start_time" type="time" class="form-control" name="start_time" value="{{ old('start_time', $work_day->start_time) }}" {{-- step="3" --}} required>
+        <input id="start_time" type="time" class="form-control" name="start_time" value="{{ old('start_time', date_format(date_create($work_day->start_time), 'H:i')) }}" {{-- step="3" --}} required>
         @if ($errors->has('start_time'))
             <span class="help-block">
                 <strong>{{ $errors->first('start_time') }}</strong>
@@ -35,7 +35,7 @@
 
     <div id="end_time_div" class="form-group col-xs-11{{ $errors->has('end_time') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="end_time">Official Closing Time</label>
-        <input id="end_time" type="time" class="form-control" name="end_time" value="{{ old('end_time', $work_day->end_time) }}" {{-- step="3" --}} required>
+        <input id="end_time" type="time" class="form-control" name="end_time" value="{{ old('end_time', date_format(date_create($work_day->end_time), 'H:i')) }}" {{-- step="3" --}} required>
         @if ($errors->has('end_time'))
             <span class="help-block">
                 <strong>{{ $errors->first('end_time') }}</strong>

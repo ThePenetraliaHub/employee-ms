@@ -63,7 +63,7 @@ class WorkDayController extends Controller
 
     public function show(WorkDay $work_day)
     {
-        return view('pages.admin.departments.edit', compact('work_day'));
+        return view('pages.all_users.attendace.daily_report', compact('work_day'));
     }
 
     public function edit(WorkDay $work_day)
@@ -133,17 +133,11 @@ class WorkDayController extends Controller
         return redirect()->route('work-day.index');
     }
 
-    public function destroy(Department $department)
+    public function destroy(WorkDay $work_day)
     {
-        if($department->employees->count() > 0){
+        $work_day->delete();
 
-            notify()->warning("Can't be deleted, employees belong in the department.","","bottomRight");
-            return redirect('department');
-        }else{
-            $department->delete();
-
-            notify()->success("Successfully Deleted!","","bottomRight");
-            return redirect('department');
-        }
+        notify()->success("Successfully Deleted!","","bottomRight");
+        return redirect('work-day');
     }
 }
