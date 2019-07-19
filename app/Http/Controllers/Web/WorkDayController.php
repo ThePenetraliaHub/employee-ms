@@ -63,7 +63,7 @@ class WorkDayController extends Controller
 
     public function show(WorkDay $work_day)
     {
-        return view('pages.all_users.attendace.daily_report', compact('work_day'));
+        return view('pages.all_users.attendance.daily_report', compact('work_day'));
     }
 
     public function edit(WorkDay $work_day)
