@@ -22,12 +22,21 @@ class WorkDayController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|unique:departments,name'
+            'date' => 'required|date|unique:work_days,date|after:yesterday',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => "required|date_format:H:i|after:start_time"
         ];
 
         $customMessages = [
-            'name.required' => 'Please provide the department\'s name.',
-            'name.unique' => 'Department name already exist.',
+            'date.required' => 'Please select the date.',
+            'date.unique' => 'Working day has already been profiled.',
+            'date.date' => 'Please select a valid day.',
+            'date.after' => 'The selected day cannot be in the past.',
+            'start_time.required' => 'Please choose the opening time.',
+            'start_time.date_format' => 'Please choose a valid opening time.',
+            'end_time.required' => 'Please choose the closing time.',
+            'end_time.date_format' => 'Please choose a valid closing time.',
+            'end_time.after' => 'Closing time cannot be earlier than opening time.',
         ];
 
         $this->validate($request, $rules, $customMessages); 

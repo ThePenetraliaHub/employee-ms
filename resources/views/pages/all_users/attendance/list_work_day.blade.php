@@ -36,17 +36,17 @@
                                         @foreach($work_days as $work_day)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $work_day->start_time->format()}}</td>
-                                                <td>{{ $work_day->end_time->format()}}</td>
+                                                <td>{{ $work_day->date->format()}}</td>
+                                                <td>{{ $work_day->start_time->format() }} - {{ $work_day->end_time->format() }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('work_day.show' , $work_day->id) }}" role="button" style=" margin-right: 5px; ">
+                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('work-day.show' , $work_day->id) }}" role="button" >
+                                                         </a>
+
+                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('work-day.edit' , $work_day->id) }}" role="button" style="margin-right: 5px; ">
                                                         </a>
 
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-workDay="{{ $work_day->id }}"></a>
-
-                                                         <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show' , $task->id) }}" role="button" >
-                                                         </a>
                                                     </div> 
                                                 </td>
                                             </tr>
