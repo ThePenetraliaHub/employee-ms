@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\WorkDay;
 
@@ -10,7 +11,7 @@ class WorkDayController extends Controller
 {
     public function index()
     {
-        $work_days = WorkDay::orderBy('id', 'desc')->paginate(10);
+        $work_days = WorkDay::orderBy('date', 'desc')->paginate(10);
         return view('pages.all_users.attendance.list_work_day', compact('work_days'));
     }
 
@@ -47,7 +48,12 @@ class WorkDayController extends Controller
         	$request->start_time = null;
         	$request->end_time = null;
 
-        	WorkDay::create($request->all());
+        	WorkDay::create([
+        		'date' => $request->date,
+				'start_time' => null,
+				'end_time' => null,
+				'day_type' => $request->day_type,
+        	]);
         }
 
         notify()->success("Successfully created!","","bottomRight");
@@ -55,27 +61,55 @@ class WorkDayController extends Controller
         return redirect('work-day');
     }
 
-    public function show(Department $department)
+    public function show(WorkDay $work_day)
     {
-        return view('pages.admin.departments.edit', ['department' => $department]);
+        return view('pages.admin.departments.edit', compact('work_day'));
     }
 
-    public function update(Request $request, Department $department){
+    public function edit(WorkDay $work_day)
+    {
+        return view('pages.all_users.attendance.edit_work_day', compact('work_day'));
+    }
+
+    public function update(Request $request, WorkDay $work_day){
         $rules = [
-            'name' => [
+            'date' => [
                 'required',
-                Rule::unique('departments')->ignore($department->id),
+                'date',
+                'after:yesterday',
+                Rule::unique('work_days,date')->ignore($work_day->id),
             ],
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => "required|date_format:H:i|after:start_time"
         ];
 
         $customMessages = [
-            'name.required' => 'Please provide the department\'s name.',
-            'name.unique' => 'Department name already exist.',
+            'date.required' => 'Please select the date.',
+            'date.unique' => 'Working day has already been profiled.',
+            'date.date' => 'Please select a valid day.',
+            'date.after' => 'The selected day cannot be in the past.',
+            'start_time.required' => 'Please choose the opening time.',
+            'start_time.date_format' => 'Please choose a valid opening time.',
+            'end_time.required' => 'Please choose the closing time.',
+            'end_time.date_format' => 'Please choose a valid closing time.',
+            'end_time.after' => 'Closing time cannot be earlier than opening time.',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
-        $department->update($request->all());
+        if($request->day_type === "Work Day"){
+            $work_day->update($request->all());
+        }else{
+            $request->start_time = null;
+            $request->end_time = null;
+
+            $work_day->update([
+                'date' => $request->date,
+                'start_time' => null,
+                'end_time' => null,
+                'day_type' => $request->day_type,
+            ]);
+        }
 
         notify()->success("Successfully Updated!","","bottomRight");
         return redirect()->route('department.index');

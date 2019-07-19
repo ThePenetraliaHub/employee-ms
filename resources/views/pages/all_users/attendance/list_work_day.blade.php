@@ -27,7 +27,8 @@
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Date</th>
-                                            <th scope="col">Official Hours</th>
+                                            <th scope="col"  class="text-center">Official Hours</th>
+                                            <th scope="col">Day Type</th>
                                             <th scope="col" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
@@ -36,18 +37,19 @@
                                         @foreach($work_days as $work_day)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $work_day->date->format()}}</td>
-                                                <td>{{ $work_day->start_time->format() }} - {{ $work_day->end_time->format() }}</td>
+                                                <td>{{ $work_day->date->format("F jS, Y")}}</td>
                                                 <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('work-day.show' , $work_day->id) }}" role="button" >
-                                                         </a>
+                                                    {{ $work_day->start_time }} - {{ $work_day->end_time }}
+                                                </td>
+                                                <td>{{ $work_day->day_type}}</td>
+                                                <td class="text-center">
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('work-day.show' , $work_day->id) }}" role="button" >
+                                                     </a>
 
-                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('work-day.edit' , $work_day->id) }}" role="button" style="margin-right: 5px; ">
-                                                        </a>
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('work-day.edit' , $work_day->id) }}" role="button">
+                                                    </a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-workDay="{{ $work_day->id }}"></a>
-                                                    </div> 
+                                                    <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-workDay="{{ $work_day->id }}"></a>
                                                 </td>
                                             </tr>
                                         @endforeach
