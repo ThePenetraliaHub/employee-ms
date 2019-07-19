@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
 	Route::get('/{id}/client', 'Web\ClientController@client_details')->name('client.details');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
+	Route::resource('/attendace', 'Web\AttendaceController');
+	Route::resource('/work-day', 'Web\WorkDayController');
 
 	Route::resource('/user', 'Web\UserController');
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');

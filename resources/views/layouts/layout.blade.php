@@ -96,8 +96,14 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> Projects</a></li>
-                                    <li><a href="{{ route('employee-project.index') }}"><i class="fa fa-circle-o"></i> Employee Tasks</a></li>
+                                    <li>
+                                        <a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> Projects
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('employee-project.index') }}"><i class="fa fa-circle-o"></i> Employee Tasks
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="treeview">
@@ -129,6 +135,29 @@
                         <ul class="treeview-menu">
                             <li class="treeview">
                                 <li><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> Users</a></li>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Attendance</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <li>
+                                    <a href="{{ route('work-day.index') }}"><i class="fa fa-user"></i> Working Days</a>
+                                </li>
+                            </li>
+
+                            <li class="treeview">
+                                <li>
+                                    <a href="{{ route('attendace.index') }}"><i class="fa fa-user"></i> General Report</a>
+                                </li>
                             </li>
                         </ul>
                     </li>
