@@ -63,7 +63,7 @@ class WorkDayController extends Controller
 
     public function show(WorkDay $work_day)
     {
-        dd($work_day->present_and_absent());
+        dd(\App\Employee::find(1)->attendances_present_and_absent());
         return view('pages.all_users.attendance.daily_report', compact('work_day'));
     }
 

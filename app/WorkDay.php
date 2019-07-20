@@ -74,11 +74,6 @@ class WorkDay extends Model
             			 ->on('employees.id', '=', 'attendances.employee_id');
         		})
         	->where('work_days.id', $this->id)
-       //  	->where(function($query)
-       //  	{
-       //  		$query->where('attendances.present', 0)
-    			// ->orWhere('attendances.work_day_id', null);
-       //  	})
             ->get();
     }
 }

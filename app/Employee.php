@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Employee extends Model
 {
@@ -89,11 +90,32 @@ class Employee extends Model
 
     public function attendances_absent()
     {
-        return $this->hasMany('App\Attendance');
+        return DB::table('work_days')
+            ->crossJoin('employees')
+            ->leftJoin('attendances', function ($join) 
+                {
+                    $join->on('work_days.id', '=', 'attendances.work_day_id')
+                         ->on('employees.id', '=', 'attendances.employee_id');
+                })
+            ->where('employees.id', $this->id)
+            ->where(function($query)
+            {
+                $query->where('attendances.present', 0)
+                ->orWhere('attendances.work_day_id', null);
+            })
+            ->get();
     }
 
     public function attendances_present_and_absent()
     {
-        return $this->hasMany('App\Attendance');
+        return DB::table('work_days')
+            ->crossJoin('employees')
+            ->leftJoin('attendances', function ($join) 
+                {
+                    $join->on('work_days.id', '=', 'attendances.work_day_id')
+                         ->on('employees.id', '=', 'attendances.employee_id');
+                })
+            ->where('employees.id', $this->id)
+            ->get();
     }
 }
