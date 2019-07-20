@@ -16,6 +16,7 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger("work_day_id");
+            $table->unsignedInteger("employee_id");
             $table->time("time_in");
             $table->time("time_out");
             $table->integer("present");

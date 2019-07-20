@@ -1,7 +1,7 @@
 <div class="form-row">
     <div class="form-group col-xs-11{{ $errors->has('date') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="date">Day</label>
-        <input id="date" type="date" class="form-control" name="date" value="{{ old('date', $work_day->date->format("Y-m-d")) }}" required>
+        <input id="date" type="date" class="form-control" name="date" disabled value="{{ old('date', $work_day->date->format("Y-m-d")) }}" required>
         @if ($errors->has('date'))
             <span class="help-block">
                 <strong>{{ $errors->first('date') }}</strong>

@@ -81,4 +81,19 @@ class Employee extends Model
     {
         return $this->belongsTo('App\EmployeeStatus');
     }
+
+    public function attendances_present()
+    {
+        return $this->hasMany('App\Attendance')->where('present', 1);
+    }
+
+    public function attendances_absent()
+    {
+        return $this->hasMany('App\Attendance');
+    }
+
+    public function attendances_present_and_absent()
+    {
+        return $this->hasMany('App\Attendance');
+    }
 }

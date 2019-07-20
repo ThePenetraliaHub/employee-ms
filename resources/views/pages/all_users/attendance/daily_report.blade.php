@@ -29,28 +29,18 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-1">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input id="late" type="checkbox" name="late">
+                                    <div class="col-md-8">
+                                        <div class="radio">
+                                            <label class="pr-5">
+                                                <input  id="late" type="radio" name="choice">
                                                 Late
                                             </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input id="early-leaving"  type="checkbox" name="earlyLeaving" >
+                                            <label class="pr-5">
+                                                <input  id="early-leaving"  type="radio" name="choice" >
                                                 Early Leaving
                                             </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input id="over-time"  type="checkbox" name="overTime">
+                                            <label class="pr-5">
+                                                <input  id="over-time"  type="radio" name="choice">
                                                 Over Time
                                             </label>
                                         </div>

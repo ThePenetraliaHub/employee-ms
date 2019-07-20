@@ -63,6 +63,7 @@ class WorkDayController extends Controller
 
     public function show(WorkDay $work_day)
     {
+        dd($work_day->present_and_absent());
         return view('pages.all_users.attendance.daily_report', compact('work_day'));
     }
 
@@ -74,12 +75,12 @@ class WorkDayController extends Controller
     public function update(Request $request, WorkDay $work_day){
         if($request->day_type === "Work Day"){
             $rules = [
-                'date' => [
-                    'required',
-                    'date',
-                    'after:yesterday',
-                    Rule::unique('work_days')->ignore($work_day->date, 'date'),
-                ],
+                // 'date' => [
+                //     'required',
+                //     'date',
+                //     'after:yesterday',
+                //     Rule::unique('work_days')->ignore($work_day->date, 'date'),
+                // ],
                 'start_time' => 'required|date_format:H:i',
                 'end_time' => 'required|date_format:H:i|after:start_time'
             ];
@@ -99,14 +100,21 @@ class WorkDayController extends Controller
             $this->validate($request, $rules, $customMessages);
 
             $work_day->update($request->all());
+
+            $work_day->update([
+                // 'date' => $request->date,
+                'start_time' => $request->start_time,
+                'end_time' => $request->end_time,
+                'day_type' => $request->day_type,
+            ]);
         }else{
             $rules = [
-                'date' => [
-                    'required',
-                    'date',
-                    'after:yesterday',
-                    Rule::unique('work_days')->ignore($work_day->date, 'date'),
-                ],
+                // 'date' => [
+                //     'required',
+                //     'date',
+                //     'after:yesterday',
+                //     Rule::unique('work_days')->ignore($work_day->date, 'date'),
+                // ],
             ];
 
             $customMessages = [
@@ -122,7 +130,7 @@ class WorkDayController extends Controller
             $request->end_time = null;
 
             $work_day->update([
-                'date' => $request->date,
+                // 'date' => $request->date,
                 'start_time' => null,
                 'end_time' => null,
                 'day_type' => $request->day_type,
