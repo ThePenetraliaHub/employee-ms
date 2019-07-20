@@ -74,6 +74,6 @@ class WorkDay extends Model
             			 ->on('employees.id', '=', 'attendances.employee_id');
         		})
         	->where('work_days.id', $this->id)
-            ->get();
+            ->get(['attendances.*', 'work_days.*', 'employees.*', 'employees.id as employee_id']);
     }
 }

@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                           </div>
-                        @if(1 > 1)
+                        @if($work_day->present_and_absent()->count() > 0)
                             <div class="table-responsive table-bordered" id="print">
                                <table id="dataTable" class="table table-striped table-responsive">
                                   <thead>
@@ -61,84 +61,57 @@
                                         <th scope="col">Early Leaving</th>
                                         <th scope="col">Over Time</th>
                                         <th scope="col">Work Hour</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col" class="text-center">Status</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                   </thead>
-                                  <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td data-input="name">Odigir Richard</td>
-                                            <td data-input="fromDate">2019 Jun 27 09:00</td>
-                                            <td data-input="toDate">2019 Jun 27 04:30</td>
-                                            <td data-input="late">30 Min.</td>
-                                            <td data-input="earlyLeaving">30 Min</td>
-                                            <td data-input="overTime">-</td>
-                                            <td>7Hrs</td>
-                                            <td data-input="status">
-                                                @if(1 == 1)
-                                                    <span class='label label-success label-sm'>
-                                                        Present
-                                                    </span>
-                                                @else
-                                                    <span class='label label-warning label-sm'>
-                                                        Abscent
-                                                    </span>
-                                                @endif</td>
-                                            <td style="min-width: 120px;" class="text-center">
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-comment" href="#" role="button" data-toggle="tooltip" data-placement="top"
-                                                title="Query Employee" ></a>
-                                                <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId=""></a>
-                                            </td>
-                                        </tr>
-
-                                   </tbody>
-                               </table>
-                            </div>
-                        @elseif(1 > 0)
-                            <div class="table-responsive table-bordered" id="print">
-                               <table id="dataTable" class="table table-striped table-responsive">
-                                  <thead>
-                                    <tr class="table-heading-bg">
-                                        <th scope="col">S/N</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Clock In</th>
-                                        <th scope="col">Clock Out</th>
-                                        <th scope="col">Late</th>
-                                        <th scope="col">Early Leaving</th>
-                                        <th scope="col">Over Time</th>
-                                        <th scope="col">Work Hour</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col" class="text-center">Action</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td data-input="name">Odigir Richard</td>
-                                            <td data-input="fromDate">2019 Jun 27 09:00</td>
-                                            <td data-input="toDate">2019 Jun 27 04:30</td>
-                                            <td data-input="late">30 Min.</td>
-                                            <td data-input="earlyLeaving">30 Min</td>
-                                            <td data-input="overTime">-</td>
-                                            <td>7Hrs</td>
-                                            <td data-input="status">
-                                                @if(1 == 1)
-                                                    <span class='label label-success label-sm'>
-                                                        Present
-                                                    </span>
-                                                @else
-                                                    <span class='label label-warning label-sm'>
-                                                        Abscent
-                                                    </span>
-                                                @endif</td>
-                                            <td style="min-width: 120px;" class="text-center">
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-comment" href="#" role="button" data-toggle="tooltip" data-placement="top"
-                                                title="Query Employee" ></a>
-                                                <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId=""></a>
-                                            </td>
-                                        </tr>
-
+                                    <tbody>
+                                        {{-- {{dd($work_day->present_and_absent())}} --}}
+                                        @foreach($work_day->present_and_absent() as $attendance)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td data-input="name">
+                                                    <a href="{{ route("employee.profile", $attendance->employee_id) }}">
+                                                        {{ $attendance->name }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    @if($attendance->time_in != null)
+                                                        {{ $attendance->time_in }}
+                                                    @else
+                                                        <p class="text-danger">-- : -- : --</p>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($attendance->time_out != null)
+                                                        {{ $attendance->time_out }}
+                                                    @else
+                                                        <p class="text-danger">-- : -- : --</p>
+                                                    @endif
+                                                </td>
+                                                <td>30 Min.</td>
+                                                <td>30 Min</td>
+                                                <td>-</td>
+                                                <td>7Hrs</td>
+                                                <td class="text-center">
+                                                    @if($attendance->present == 0 || $attendance->work_day_id == null)
+                                                        <span class='label label-warning label-sm'>
+                                                            Abscent
+                                                        </span>
+                                                        @if($attendance->present == 0 && $attendance->absence_reason != "")
+                                                            <br>
+                                                            <button class="btn btn-info btn-xs glyphicon glyphicon-comment" data-toggle="popover" title="Absence Reason" data-content="{{ $attendance->absence_reason }}" data-placement="top"></button>
+                                                        @endif
+                                                    @else
+                                                        <span class='label label-success label-sm'>
+                                                            Present
+                                                        </span>
+                                                    @endif</td>
+                                                <td style="min-width: 120px;" class="text-center">
+                                                    <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId=""></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                    </tbody>
                                </table>
                             </div>
@@ -146,11 +119,8 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    Record yet!
+                                    Your attendance records will appear here
                                 </p>
-                                <a href="{{ route("client.create") }}">
-                                    Create Client
-                                </a>
                             </div>
                         @endif
                     </div>
