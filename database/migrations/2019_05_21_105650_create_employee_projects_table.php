@@ -21,6 +21,7 @@ class CreateEmployeeProjectsTable extends Migration
             $table->string("document_url")->nullable();
             $table->string("document_name")->nullable();
             $table->string("status");
+            $table->text("employee_remark")->nullable();
             $table->date("start_date");
             $table->date("end_date");
             $table->timestamps();

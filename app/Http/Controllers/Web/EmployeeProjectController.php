@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendTaskMail;
 use App\EmployeeProject;
 use App\Project;
 use App\Employee;
@@ -28,6 +30,8 @@ class EmployeeProjectController extends Controller
 
     public function store(Request $request)
     {
+
+        $message_headline = "A new task has been attached to you, kindly see brief details below:";
         $rules = [
             // 'project_id' => 'required',
             'employee_id' => 'required',
@@ -87,6 +91,7 @@ class EmployeeProjectController extends Controller
                     'start_date' => $request->start_date,
                     'end_date' => $request->end_date,
                     'status' => $request->status,
+                    'employee_remark'=>null,
                 ]);
              
             }else{
@@ -97,8 +102,14 @@ class EmployeeProjectController extends Controller
                     'start_date' => $request->start_date,
                     'end_date' => $request->end_date,
                     'status' => $request->status,
+                    'employee_remark'=>null,
                 ]);
             }
+
+             $employee = Employee::find($employee_id);
+             $project = Project::findorfail($request->project_id);
+
+             Mail::to($employee->office_email)->queue(new SendTaskMail($message_headline,$employee->name,$project->name, $request->details, $request->start_date,$request->end_date));
         }
 
         notify()->success("Successfully created!","","bottomRight");
@@ -113,6 +124,7 @@ class EmployeeProjectController extends Controller
     }
 
     public function update(Request $request, EmployeeProject $employee_project){
+        $message_headline = "An update was made to a task assigned to you recently, kindly see brief details below:";
         $rules = [
             // 'project_id' => 'required',
             'details' => 'required',
@@ -160,6 +172,10 @@ class EmployeeProjectController extends Controller
                 'status' => $request->status,
             ]);
         }
+             $employee = Employee::findorfail($employee_project->employee->id);
+             $project = Project::findorfail($request->project_id);
+
+             Mail::to($employee->office_email)->queue(new SendTaskMail($message_headline,$employee->name,$project->name, $request->details, $request->start_date,$request->end_date));
 
         notify()->success("Successfully Updated!","","bottomRight");
         
@@ -194,17 +210,20 @@ class EmployeeProjectController extends Controller
     {
         $rules = [
             'status' => 'required',
+            'employee_remark' =>'required',
 
         ];
 
         $customMessages = [
             'status.required' => 'Please select project status',
+            'employee_remark.required' => 'Please fill in employees remark',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
         $employee_project->update([
             'status' => $request->status,
+            'employee_remark' => $request->employee_remark,
         ]);
 
         notify()->success("Successfully Updated!","","bottomRight");

@@ -26,7 +26,8 @@
             </div>
 
             <div>
-               <textarea rows="3" id="details" type="textarea" class="form-control" name="details" required placeholder="Employee's Remark here...."></textarea>
+               <textarea rows="3" id="details" type="textarea" class="form-control" name="employee_remark" required placeholder="Employee's Remark here....">{{ $employee_project->employee_remark }}
+</textarea>
 
             </div>
 
