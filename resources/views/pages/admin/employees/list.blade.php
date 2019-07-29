@@ -12,7 +12,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(count($employees) > 0)
+{{--                @if(count($employees) < 0)--}}
                     <a href="{{ route('employee.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create employee
@@ -36,7 +36,7 @@
                             </div>
                     </div>
 
-                @endif
+{{--                @endif--}}
                 <div class="box">
                     <div class="box-body">
                         @if(count($employees) > 0)

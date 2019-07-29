@@ -226,9 +226,14 @@ class EmployeeController extends Controller
                   'file'  => 'required|mimes:xls,xlsx'
                  ]);
 
-        Excel::import(new EmployeeImport,request()->file('file'));    
+        $path = $request->file('file')->getRealPath();
+
+        $data = Excel::import(new EmployeeImport, $path);
+
+        notify()->success("Excel Data Imported successfully!","","bottomRight");
 
         return back();
+
     }
 
 }

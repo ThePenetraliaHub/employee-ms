@@ -1,4 +1,3 @@
-f
 <div class="form-row">
     <div class="form-group {{ $errors->has('NIN') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="NIN">National Identity Number(NIN)</label>
