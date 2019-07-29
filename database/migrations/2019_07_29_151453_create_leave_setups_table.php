@@ -18,7 +18,7 @@ class CreateLeaveSetupsTable extends Migration
             $table->string("leave_name")->unique();
             $table->string("type");
             $table->text("description")->nullable();
-            $table->integer("days");
+            $table->integer("days")->unsigned();
             $table->timestamps();
         });
     }

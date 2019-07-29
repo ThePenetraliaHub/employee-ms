@@ -15,8 +15,8 @@ class CreateLeavesTable extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer("user_id");
-            $table->integer("leave_setup_type_id");
+            $table->integer("employee_id")->unsigned();
+            $table->integer("leave_setup_id")->unsigned();
             $table->text("leave_content");
             $table->date("start_date");
             $table->date("end_date");
@@ -25,6 +25,18 @@ class CreateLeavesTable extends Migration
             $table->string("leave_status")->default('0');
             $table->text("leave_remark");
             $table->timestamps();
+
+
+            $table->foreign('employee_id')
+                ->references('id')->on('employees')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+//            $table->foreign('leave_setup_id')
+//                ->references('id')->on('leave_setups')
+//                ->onDelete('cascade')
+//                ->onUpdate('cascade');
+
         });
     }
 

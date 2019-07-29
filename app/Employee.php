@@ -118,4 +118,9 @@ class Employee extends Model
             ->where('employees.id', $this->id)
             ->get();
     }
+
+    public function leave()
+    {
+        return $this->hasMany('App\Leave');
+    }
 }
