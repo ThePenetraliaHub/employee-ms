@@ -26,7 +26,6 @@ class CreateLeavesTable extends Migration
             $table->text("leave_remark");
             $table->timestamps();
 
-
             $table->foreign('employee_id')
                 ->references('id')->on('employees')
                 ->onDelete('cascade')
