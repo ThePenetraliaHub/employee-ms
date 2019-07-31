@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
 	Route::resource('/attendace', 'Web\AttendanceController');
 	Route::resource('/work-day', 'Web\WorkDayController');
+    Route::resource('/leave', 'Web\LeaveController');
+    Route::resource('/leave-policy', 'Web\LeavePolicyController');
+
 
 	Route::resource('/user', 'Web\UserController');
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
@@ -80,12 +83,12 @@ Route::middleware('auth')->group(function () {
         Route::delete('/delete/{message}', 'Web\MessageController@delete_permernently')->name('message.delete');
         Route::post('/trash/{message}', 'Web\MessageController@recover')->name('message.trash.recover');
     });
+
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::view('attendance','pages.attendance.list')->name('attendance');
 
 
 

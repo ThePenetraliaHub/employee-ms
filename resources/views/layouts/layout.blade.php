@@ -106,9 +106,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="treeview">
-                                <li><a href="{{ route('attendance') }}"><i class="glyphicon glyphicon-time"></i> Manage Attendance</a></li>
-                            </li>
+
                         </ul>
                     </li>
 
@@ -141,7 +139,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Attendance</span>
+                            <i class="glyphicon glyphicon-time"></i> <span>Attendance</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -158,6 +156,29 @@
                                 <li>
                                     <a href="{{ route('attendace.index') }}"><i class="fa fa-user"></i> General Report</a>
                                 </li>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-bed"></i> <span>Leave Management</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                            <li>
+                                <a href="{{ route('leave-policy.index') }}"><i class="glyphicon glyphicon-list-alt"></i> Leave Policy</a>
+                            </li>
+                            </li>
+
+                            <li class="treeview">
+                            <li>
+                                <a href="{{ route('leave.index') }}"><i class="glyphicon glyphicon-send"></i> Leave Request</a>
+                            </li>
                             </li>
                         </ul>
                     </li>

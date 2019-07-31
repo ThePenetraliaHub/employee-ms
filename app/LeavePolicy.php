@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LeaveSetup extends Model
+class LeavePolicy extends Model
 {
     protected $guarded = [];
 }
