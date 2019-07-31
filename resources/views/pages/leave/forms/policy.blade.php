@@ -54,18 +54,6 @@
             @endif -->
         </div>
 
-        <div class="form-group col-xs-11<!-- {{ $errors->has('gender') ? ' has-error' : '' }} --> mb-0 mt-3">
-        <label for="department">Department</label>
-        <select class="form-control" name="department" id="department">
-            <option value="Male">ICT</option>
-        </select>
-       <!--  @if ($errors->has('type'))
-            <span class="help-block">
-                <strong>{{ $errors->first('type') }}</strong>
-            </span>
-        @endif -->
-        </div>
-
        <div class="form-group col-xs-11<!-- {{ $errors->has('gender') ? ' has-error' : '' }} --> mb-0 mt-3">
            <label for="gender">Gender</label>
            <select class="form-control" name="gender" id="gender">

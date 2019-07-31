@@ -21,7 +21,6 @@ class CreateLeavePoliciesTable extends Migration
             $table->integer("days")->unsigned();
             $table->string("gender");
             $table->string("effective_from");
-            $table->string("department");
             $table->timestamps();
         });
     }
