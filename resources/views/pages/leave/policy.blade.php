@@ -27,36 +27,34 @@
                                     <tr class="table-heading-bg">
                                         <th scope="col">S/N</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col"  >Type</th>
+                                        <th scope="col">Type</th>
                                         <th scope="col">Days</th>
-                                        <th scope="col">Gender</th>
+                                        <th scope="col">Eligibility</th>
                                         <th scope="col">Effective From</th>
-                                        <th scope="col">Department</th>
                                         <th scope="col" class="text-center">Actions</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
-{{--                                    @foreach($work_days as $work_day)--}}
+                                 @foreach($leave_policies as $leave_policy)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td ></td>
-                                            <td></td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $leave_policy->leave_name }}</td>
+                                            <td>{{ $leave_policy->type }}</td>
+                                            <td>{{ $leave_policy->days }}</td>
+                                            <td>{{ $leave_policy->gender }}</td>
+                                            <td >{{$leave_policy->effective_from }}</td>
                                             <td class="text-center">
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="" role="button" >
+                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('leave-policy.show',$leave_policy->id) }}" role="button" >
                                                 </a>
 
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="" role="button">
+                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('leave-policy.edit',$leave_policy->id) }}" role="button">
                                                 </a>
 
-                                                <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-work_day=""></a>
+                                                <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-policy="{{ $leave_policy->id }}"></a>
                                             </td>
                                         </tr>
-{{--                                    @endforeach--}}
+                                   @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -91,7 +89,7 @@
                                         <input type="hidden" class="form-control" id="workDay" name="_method" value="DELETE" >
                                     </div>
 
-                                    <h4 class="text-center">Are you sure you want to delete this data? <br>Deleting this data will cause the associated attendaces to be deleted</h4>
+                                    <h4 class="text-center">Are you sure you want to delete this data? </h4>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-warning px-5" data-dismiss="modal">No</button>
@@ -115,10 +113,10 @@
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var workDay = button.data('work_day') // Extract info from data-* attributes
-                console.log(workDay);
+                var policy = button.data('policy') // Extract info from data-* attributes
+                console.log(policy);
                 var modal = $(this)
-                $('#delete-form').attr('action', "work-day/"+workDay);
+                $('#delete-form').attr('action', "leave-policy/"+policy);
             })
         });
     </script>
