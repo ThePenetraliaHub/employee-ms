@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LeaveController extends Controller
+class LeaveRequestController extends Controller
 {
-
     public function index()
     {
         $leaves = Leave::all();

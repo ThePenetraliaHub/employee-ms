@@ -1,40 +1,25 @@
 <?php
 
+
 namespace App\Http\Controllers\Web;
 
-use App\LeavePolicy;
+use App\LeaveType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LeavePolicyController extends Controller
+class LeaveTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $leave_policies = LeavePolicy::orderBy('id', 'desc')->paginate(10);
-        return view('pages.leave.policy', compact('leave_policies'));
+        $leave_types = LeaveType::orderBy('id', 'desc')->paginate(10);
+        return view('pages.all_users.leave.list_leave_type', compact('leave_types'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('pages.leave.create_policy');
+        return view('pages.all_users.leave.create_leave_type');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $rules = [
@@ -62,7 +47,7 @@ class LeavePolicyController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
-        LeavePolicy::create($request->all());
+        LeaveRequest::create($request->all());
 
 
         notify()->success("Successfully created!","","bottomRight");
@@ -74,7 +59,6 @@ class LeavePolicyController extends Controller
     {
         return view('pages.leave.policy_details', compact('leavePolicy'));
     }
-
 
     public function edit(LeavePolicy $leavePolicy)
     {
@@ -116,12 +100,6 @@ class LeavePolicyController extends Controller
         return redirect('leave-policy');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\LeavePolicy  $leavePolicy
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(LeavePolicy $leavePolicy)
     {
         $leavePolicy->delete();

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeavePoliciesTable extends Migration
+class CreateLeaveMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateLeavePoliciesTable extends Migration
      */
     public function up()
     {
-        Schema::create('leave_policies', function (Blueprint $table) {
+        Schema::create('leave_messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("leave_name")->unique();
-            $table->string("type");
-            $table->text("description")->nullable();
-            $table->integer("days")->unsigned();
-            $table->string("gender");
-            $table->string("effective_from");
+            $table->integer("leave_request_id");
+            $table->integer('user_id');
+            $table->longText('message');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateLeavePoliciesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leave_policies');
+        Schema::dropIfExists('leave_messages');
     }
 }

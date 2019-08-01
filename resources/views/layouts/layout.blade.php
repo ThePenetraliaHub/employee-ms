@@ -162,7 +162,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-bed"></i> <span>Leave Management</span>
+                            <i class="fa fa-bed"></i> <span>Leave</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -170,15 +170,21 @@
 
                         <ul class="treeview-menu">
                             <li class="treeview">
-                            <li>
-                                <a href="{{ route('leave-policy.index') }}"><i class="glyphicon glyphicon-list-alt"></i> Leave Policy</a>
-                            </li>
+                                <li>
+                                    <a href="{{ route('leave-type.index') }}"><i class="glyphicon glyphicon-list-alt"></i> Leave Profile</a>
+                                </li>
                             </li>
 
                             <li class="treeview">
-                            <li>
-                                <a href="{{ route('leave.index') }}"><i class="glyphicon glyphicon-send"></i> Leave Request</a>
+                                <li>
+                                    <a href="{{ route('leave-request.index') }}"><i class="glyphicon glyphicon-send"></i> Leave Request</a>
+                                </li>
                             </li>
+
+                            <li class="treeview">
+                                <li>
+                                    <a href="{{ route('leave-request.index') }}"><i class="glyphicon glyphicon-send"></i> Leave Approval</a>
+                                </li>
                             </li>
                         </ul>
                     </li>

@@ -119,8 +119,23 @@ class Employee extends Model
             ->get();
     }
 
-    public function leave()
+    public function all_leave_request()
     {
-        return $this->hasMany('App\Leave');
+        return $this->hasMany('App\LeaveRequest');
+    }
+
+    public function approved_leave_request()
+    {
+        return $this->hasMany('App\LeaveRequest')->where('approval_status', 1)->get()->get();
+    }
+
+    public function pending_leave_request()
+    {
+        return $this->hasMany('App\LeaveRequest')->where('approval_status', 0)->get()->get();
+    }
+
+    public function disapproved_leave_request()
+    {
+        return $this->hasMany('App\LeaveRequest')->where('approval_status', 2)->get()->get();
     }
 }

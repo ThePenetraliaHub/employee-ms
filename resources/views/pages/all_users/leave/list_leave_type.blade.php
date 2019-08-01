@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Leave Policy
+            Leave
             <small>View</small>
         </h1>
     </section>
@@ -12,15 +12,15 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(1 > 0)
-                    <a href="{{ route('leave-policy.create')}}" class="btn btn-primary btn-sm my-2">
+                @if($leave_types->count() > 0)
+                    <a href="{{ route('leave-type.create')}}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new leave policy
+                        Profile new leave
                     </a>
                 @endif
                 <div class="box">
                     <div class="box-body">
-                        @if(1 > 0)
+                        @if($leave_types->count() > 0)
                             <div class="table-responsive table-bordered">
                                 <table id="dataTable" class="table table-striped table-responsive">
                                     <thead>
@@ -36,25 +36,25 @@
                                     </thead>
 
                                     <tbody>
-                                 @foreach($leave_policies as $leave_policy)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $leave_policy->leave_name }}</td>
-                                            <td>{{ $leave_policy->type }}</td>
-                                            <td>{{ $leave_policy->days }}</td>
-                                            <td>{{ $leave_policy->gender }}</td>
-                                            <td >{{$leave_policy->effective_from }}</td>
-                                            <td class="text-center">
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('leave-policy.show',$leave_policy->id) }}" role="button" >
-                                                </a>
+                                        @foreach($leave_types as $leave_type)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $leave_type->leave_name }}</td>
+                                                <td>{{ $leave_type->type }}</td>
+                                                <td>{{ $leave_type->days }}</td>
+                                                <td>{{ $leave_type->gender }}</td>
+                                                <td >{{$leave_type->effective_from }}</td>
+                                                <td class="text-center">
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('leave-policy.show',$leave_type->id) }}" role="button" >
+                                                    </a>
 
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('leave-policy.edit',$leave_policy->id) }}" role="button">
-                                                </a>
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('leave-policy.edit',$leave_type->id) }}" role="button">
+                                                    </a>
 
-                                                <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-policy="{{ $leave_policy->id }}"></a>
-                                            </td>
-                                        </tr>
-                                   @endforeach
+                                                    <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-policy="{{ $leave_type->id }}"></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -62,10 +62,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No Leave Policy yet!
+                                    No profiled leave yet!
                                 </p>
-                                <a href="{{ route("leave-policy.create") }}">
-                                    Create Leave Policy
+                                <a href="{{ route("leave-type.create") }}">
+                                    Profile new leave
                                 </a>
                             </div>
                         @endif
@@ -116,7 +116,7 @@
                 var policy = button.data('policy') // Extract info from data-* attributes
                 console.log(policy);
                 var modal = $(this)
-                $('#delete-form').attr('action', "leave-policy/"+policy);
+                $('#delete-form').attr('action', "leave-type/"+policy);
             })
         });
     </script>
