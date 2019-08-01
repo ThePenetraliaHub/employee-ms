@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61b22e50-d664-44fa-a729-ca550b0eb719" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/LeavePolicyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/LeavePolicyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/all_users/attendance/edit_work_day.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/all_users/attendance/edit_work_day.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/leave/create_policy.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/leave/create_policy.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/leave/forms/policy.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/leave/forms/policy.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/leave/policy.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/leave/policy.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/LeaveController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/LeaveController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Leave.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Leave.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/LeavePolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/LeavePolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_150646_create_leaves_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_150646_create_leaves_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/leave/create_request.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/leave/create_request.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/leave/forms/request.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/leave/forms/request.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/leave/leave.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/leave/leave.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,94 +26,101 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/CertificationController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/LeavePolicyController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="74" column="47" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
+            <state relative-caret-position="340">
+              <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
               <folding>
-                <element signature="e#44#64#0#PHP" expanded="true" />
+                <element signature="e#44#72#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/policy_details.blade.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/create_request.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="24" selection-end-column="38" />
+            <state relative-caret-position="425">
+              <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/WorkDayController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/forms/request.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1688">
-              <caret line="147" column="36" lean-forward="true" selection-start-line="144" selection-start-column="8" selection-end-line="147" selection-end-column="36" />
+            <state relative-caret-position="137">
+              <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
+              <folding>
+                <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#textarea#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/all_users/attendance/forms/edit_work_day.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/certifications/create.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="128" lean-forward="true" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="128" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/LeaveController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+              <folding>
+                <element signature="e#44#61#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/leave.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="75" column="47" lean-forward="true" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Leave.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/LeavePolicy.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/all_users/attendance/list_work_day.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Employee.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="51" column="226" selection-start-line="51" selection-start-column="207" selection-end-line="51" selection-end-column="226" />
+            <state relative-caret-position="328">
+              <caret line="121" column="4" selection-start-line="121" selection-start-column="4" selection-end-line="124" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/forms/edit_policy.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/certifications/forms/create_certifications.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="137" selection-start-line="4" selection-start-column="137" selection-end-line="4" selection-end-column="137" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/clients/list.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/forms/policy.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/clients/forms/create_client.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="64" column="83" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="83" />
+            <state relative-caret-position="255">
+              <caret line="78" column="10" lean-forward="true" selection-start-line="66" selection-start-column="1" selection-end-line="78" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -141,18 +151,11 @@
         <option value="$PROJECT_DIR$/app/Employee.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_29_150646_create_leave_setups_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_29_151453_create_leaves_table.php" />
-        <option value="$PROJECT_DIR$/app/Leave.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/admin/employees/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/admin/employees/forms/create_employee.blade.php" />
-        <option value="$PROJECT_DIR$/app/LeavePolicy.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_29_150646_create_leaves_table.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/leave/forms/policy_create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/leave/forms/create_policy.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/leave/request.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/leave/forms/request.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Web/LeaveController.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/leave/create_request.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/leave/leave.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_30_095507_create_leave_policies_table.php" />
@@ -164,6 +167,13 @@
         <option value="$PROJECT_DIR$/resources/views/pages/all_users/attendance/edit_work_day.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Web/LeavePolicyController.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/leave/policy_details.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/pages/leave/create_request.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_07_29_150646_create_leaves_table.php" />
+        <option value="$PROJECT_DIR$/resources/views/pages/leave/forms/request.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Web/LeaveController.php" />
+        <option value="$PROJECT_DIR$/resources/views/pages/leave/leave.blade.php" />
+        <option value="$PROJECT_DIR$/app/Leave.php" />
+        <option value="$PROJECT_DIR$/app/LeavePolicy.php" />
       </list>
     </option>
   </component>
@@ -272,7 +282,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -316,12 +325,6 @@
               <item name="ems" type="b2602c69:ProjectViewProjectNode" />
               <item name="ems" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ems" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ems" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ems" type="b2602c69:ProjectViewProjectNode" />
@@ -378,7 +381,7 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="projects" type="462c0819:PsiDirectoryNode" />
+              <item name="certifications" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ems" type="b2602c69:ProjectViewProjectNode" />
@@ -386,7 +389,28 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="employee" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="certifications" type="462c0819:PsiDirectoryNode" />
+              <item name="forms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ems" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="employee_project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ems" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="employee_project" type="462c0819:PsiDirectoryNode" />
+              <item name="forms" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ems" type="b2602c69:ProjectViewProjectNode" />
@@ -405,10 +429,29 @@
               <item name="leave" type="462c0819:PsiDirectoryNode" />
               <item name="forms" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ems" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ems" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ems" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -456,7 +499,8 @@
       <workItem from="1564059289773" duration="3614000" />
       <workItem from="1564141338836" duration="28280000" />
       <workItem from="1564479661502" duration="19569000" />
-      <workItem from="1564567840327" duration="16059000" />
+      <workItem from="1564567840327" duration="17243000" />
+      <workItem from="1564654333432" duration="14193000" />
     </task>
     <task id="LOCAL-00001" summary="leave">
       <created>1564414060601</created>
@@ -469,13 +513,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67901000" />
+    <option name="totallyTimeSpent" value="83278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991119" visible="true" weight="0.25587043" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991119" visible="true" weight="0.17813765" />
       <window_info id="Structure" order="1" sideWeight="0.5008881" side_tool="true" weight="0.25182188" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -527,62 +571,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_095506_create_projects_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_095452_create_clients_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_08_141303_create_messages_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-63">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_08_141337_create_recepients_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_18_215255_create_work_days_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="20" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_095403_create_employees_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-182">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/GuardsAttributes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="36" column="29" lean-forward="true" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/employees/list.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1895">
-          <caret line="144" column="51" selection-start-line="144" selection-start-column="51" selection-end-line="144" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/skills/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -636,20 +624,6 @@
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_30_095345_create_leave_policies_table.php" />
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_29_151453_create_leave_setups_table.php" />
     <entry file="file://$PROJECT_DIR$/app/LeaveSetup.php" />
-    <entry file="file://$PROJECT_DIR$/app/Leave.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/LeavePolicy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2100" />
@@ -691,13 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/forms/request.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -718,54 +685,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/QeaveController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding>
-            <element signature="e#44#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/LeaveController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-          <folding>
-            <element signature="e#44#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/PolicyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/employee_project/forms/create_employee_project.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="76" column="10" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="76" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/leave.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="66" column="93" selection-start-line="66" selection-start-column="93" selection-end-line="66" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/create_request.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="21" column="100" selection-start-line="21" selection-start-column="100" selection-end-line="21" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/QeaveController.php" />
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/PolicyController.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
@@ -787,38 +708,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/clients/forms/create_client.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="64" column="83" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/clients/list.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_30_095507_create_leave_policies_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="17" column="38" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_29_150646_create_leaves_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -836,38 +729,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/forms/edit_policy.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="137" selection-start-line="4" selection-start-column="137" selection-end-line="4" selection-end-column="137" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pages/all_users/attendance/edit_work_day.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/all_users/attendance/forms/edit_work_day.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/all_users/attendance/list_work_day.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="51" column="226" selection-start-line="51" selection-start-column="207" selection-end-line="51" selection-end-column="226" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/WorkDayController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1688">
-          <caret line="147" column="36" lean-forward="true" selection-start-line="144" selection-start-column="8" selection-end-line="147" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -878,20 +743,194 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/policy_details.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/WorkDayController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2448">
+          <caret line="147" column="36" selection-start-line="144" selection-start-column="8" selection-end-line="147" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/all_users/attendance/forms/edit_work_day.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/all_users/attendance/list_work_day.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="226" selection-start-line="51" selection-start-column="207" selection-end-line="51" selection-end-column="226" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/forms/edit_policy.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="137" selection-start-line="4" selection-start-column="137" selection-end-line="4" selection-end-column="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/clients/list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/clients/forms/create_client.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="64" column="83" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/employee_project/forms/create_employee_project.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/ProjectController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/LeavePolicyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="74" column="47" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
+        <state relative-caret-position="175">
+          <caret line="54" column="67" selection-start-line="39" selection-start-column="7" selection-end-line="69" selection-end-column="40" />
           <folding>
             <element signature="e#44#64#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/policy_details.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/EmployeeProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="24" selection-end-column="38" />
+        <state relative-caret-position="493">
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="910">
+          <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Certification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_29_150646_create_leaves_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/EducationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="64" column="49" lean-forward="true" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
+          <folding>
+            <element signature="e#44#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/CertificationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+          <folding>
+            <element signature="e#44#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/certifications/forms/create_certifications.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="78" column="10" lean-forward="true" selection-start-line="66" selection-start-column="1" selection-end-line="78" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/create_request.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/forms/request.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/certifications/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="128" lean-forward="true" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Web/LeaveController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+          <folding>
+            <element signature="e#44#61#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/leave/leave.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="75" column="47" lean-forward="true" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Employee.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="121" column="4" selection-start-line="121" selection-start-column="4" selection-end-line="124" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Leave.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/LeavePolicy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
         </state>
       </provider>
     </entry>

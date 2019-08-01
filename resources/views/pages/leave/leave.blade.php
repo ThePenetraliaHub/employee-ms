@@ -36,7 +36,7 @@
                                     </thead>
 
                                     <tbody>
-                                    {{--                                    @foreach($work_days as $work_day)--}}
+                                @foreach($leaves as $leave)
                                     <tr>
                                         <td>
                                             1
@@ -44,7 +44,7 @@
                                         <td>
                                             Richard Odigiri
                                         </td>
-                                        <td>Annual Leave
+                                        <td> Study Leave
                                             <br>
                                             @if(0 == 0)
                                                 <span class="inline-block text-muted">
@@ -73,7 +73,7 @@
                                             <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-work_day=""></a>
                                         </td>
                                     </tr>
-                                    {{--                                    @endforeach--}}
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

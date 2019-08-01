@@ -20,10 +20,11 @@ class CreateLeavesTable extends Migration
             $table->text("leave_content");
             $table->date("start_date");
             $table->date("end_date");
+            $table->string("support_doc_url")->nullable();
             $table->string("support_doc_name")->nullable();
-            $table->string("support_doc_rename")->nullable();
-            $table->string("leave_status")->default('0');
-            $table->text("leave_remark");
+            $table->integer("leave_status")->default(0);
+            //$table->integer("leave_count")->default(0);
+            $table->text("leave_remark")->nullable();
             $table->timestamps();
 
             $table->foreign('employee_id')

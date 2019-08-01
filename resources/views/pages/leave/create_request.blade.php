@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="box box-primary">
-                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('work-day.store') }}">
+                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('leave.store') }}">
                         @csrf
                         <div class="box-body">
                             @include('pages.leave.forms.request')
@@ -24,7 +24,7 @@
                         </div> -->
                         <div class="box-footer">
                             <div class="pull-right">
-                                <button name="submit_content" value="send" type="submit" class="btn btn-success"><i class="fa fa-send-o"></i> Request</button>
+                                <button type="submit" class="btn btn-success"><i class="fa fa-send-o"></i> Request</button>
                             </div>
                             <a href="{{ route('leave.index') }}" class="btn btn-default"><i class="fa fa-times"></i> Discard</a>
                         </div>
