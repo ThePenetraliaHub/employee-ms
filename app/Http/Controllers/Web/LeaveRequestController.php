@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Employee;
-use App\Leave;
-use App\LeavePolicy;
+use App\LeaveRequest;
+use App\LeaveType;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class LeaveRequestController extends Controller
 {
     public function index()
     {
-        $leaves = Leave::all();
+        $leaves = LeaveRequest::all();
         return view('pages.leave.leave',compact('leaves'));
     }
 

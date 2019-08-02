@@ -45,10 +45,10 @@
                                                 <td>{{ $leave_type->gender }}</td>
                                                 <td >{{$leave_type->effective_from }}</td>
                                                 <td class="text-center">
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('leave-policy.show',$leave_type->id) }}" role="button" >
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('leave-type.show',$leave_type->id) }}" role="button" >
                                                     </a>
 
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('leave-policy.edit',$leave_type->id) }}" role="button">
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('leave-type.edit',$leave_type->id) }}" role="button">
                                                     </a>
 
                                                     <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-policy="{{ $leave_type->id }}"></a>

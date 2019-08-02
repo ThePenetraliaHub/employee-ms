@@ -17,8 +17,8 @@
                         <div class="box-body">
                             @include('pages.all_users.leave.forms.create_leave_type')
                         </div>
-                        <div class="box-footer">
-                            <button id="button" type="submit" class="btn btn-success col-xs-2">Create</button>
+                        <div class="box-footer ml-4">
+                            <button id="button" type="submit" class="btn btn-success">Create</button>
                             <a type="button" class="btn btn-warning ml-3" href="{{route('leave-type.index')}}" > Cancel</a>
                         </div>
                     </form>

@@ -23,36 +23,33 @@ class LeaveTypeController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'leave_name' => 'required|unique:leave_policies,leave_name',
-            'type' => 'required|max:50',
+            'leave_name' => 'required|unique:leave_types,leave_name',
             'description' => "max:255",
-            'days' => 'required|numeric',
-            'gender' => 'required',
-            'effective_from' => "required|date|after:yesterday"
+            // 'number_of_days' => 'required|numeric',
+            'number_of_days' => 'numeric',
+            'eligibility' => 'required',   
+            'is_active' => 'required',
+            'compulsory' => 'required',
         ];
 
         $customMessages = [
             'leave_name.required' => 'Leave name is required',
             'leave_name.unique' => 'Leave name already exist',
-            'type.required' => 'Leave type required',
-            'type.max' => 'Leave type must not be more than 50 characters',
             'description.max' => "Leave description must not be more than 255 characters",
-            'days.required' => 'Numbers of leave days is required',
-            'days.numeric' => 'Numbers of leave days must be a valid integer',
-            'gender' => 'Gender is required',
-            'effective_from.required' => "Effective From date is required",
-            'effective_from.after' => "Effective From date must be greater than or equal to today",
-
+            // 'number_of_days.required' => 'Numbers of leave days is required',
+            'number_of_days.numeric' => 'Numbers of leave days must be a valid integer',
+            'eligibility' => 'Please select the eligibity requirement',
+            'is_active' => 'Please select the active status',
+            'compulsory' => 'Please select the leave compulsion status',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
-        LeaveRequest::create($request->all());
-
+        LeaveType::create($request->all());
 
         notify()->success("Successfully created!","","bottomRight");
 
-        return redirect('leave-policy');
+        return redirect('leave-type');
     }
 
     public function show(LeavePolicy $leavePolicy)
