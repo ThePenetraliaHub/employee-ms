@@ -58,7 +58,11 @@
                                       @foreach($employees as $employee)
                                         <tr>
                                             <td>{{ $loop->iteration}} </td>
-                                            <td><a href="{{ route('employee.profile' ,$employee->id) }}">{{ $employee->name }}</a></td>
+                                            <td>
+                                                <a href="{{ route('employee.profile' ,$employee->id) }}">
+                                                    {{ $employee->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $employee->job_title->title}} </td>
                                             <td>
                                                 @if($employee->supervisor)

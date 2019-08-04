@@ -126,23 +126,27 @@ class Employee extends Model
 
     public function approved_leave_request()
     {
-        return $this->hasMany('App\LeaveRequest')->where('approval_status', 1)->get()->get();
+        return $this->hasMany('App\LeaveRequest')->where('approval_status', 1)->get();
     }
 
     public function pending_leave_request()
     {
-        return $this->hasMany('App\LeaveRequest')->where('approval_status', 0)->get()->get();
+        return $this->hasMany('App\LeaveRequest')->where('approval_status', 0)->get();
     }
 
     public function disapproved_leave_request()
     {
-        return $this->hasMany('App\LeaveRequest')->where('approval_status', 2)->get()->get();
+        return $this->hasMany('App\LeaveRequest')->where('approval_status', 2)->get();
     }
 
     public function is_on_leave()
     {
-
-        $active_leaves = $this->approved_leave_request()->where('start_date', '<=', date_create('now'))->where('end_date', '>=', date_create('now'))->get();
+        $active_leaves = DB::table('leave_requests')
+            ->where('employee_id', $this->id)
+            ->where('approval_status', 1)
+            ->where('start_date', '<=', date_create('now'))
+            ->where('end_date', '>=', date_create('now'))
+            ->get();
 
         return $active_leaves->count() > 0;
     }

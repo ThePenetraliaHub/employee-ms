@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('/work-day', 'Web\WorkDayController');
     Route::resource('/leave-request', 'Web\LeaveRequestController');
     Route::resource('/leave-type', 'Web\LeaveTypeController');
+    Route::resource('/leave-approval', 'Web\LeaveApprovalController');
 
 	Route::resource('/user', 'Web\UserController');
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');

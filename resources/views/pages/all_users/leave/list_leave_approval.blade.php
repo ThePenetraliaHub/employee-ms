@@ -10,14 +10,8 @@
     </section>
 
     <section class="content">
-        @if($leave_requests->count() > 0)
-            <a href="{{route('leave-request.create')}}" class="btn btn-primary btn-sm my-2">
-                <span class="fa fa-plus-circle mr-2"></span>
-                Request for leave
-            </a>
-        @endif
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="box box-primary">
                     <div class="box-body">
                         @if($leave_requests->count() > 0)
@@ -26,12 +20,13 @@
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
+                                            <th scope="col">Employee Name</th>
                                             <th scope="col">Leave Name</th>
                                             <th scope="col">Duration</th>
-                                            <th scope="col">Comment</th>
+                                            <th scope="col">Employee Comment</th>
                                             <th scope="col">Reply</th>
                                             <th scope="col">Status</th>
-                                            <th scope="col" class="text-center"></th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
@@ -43,7 +38,13 @@
                                                 </td>
 
                                                 <td>
-                                                    {{ $leave_request->leave_type->leave_name }}
+                                                    <a href="{{ route('employee.profile', $leave_request->employee->id) }}">
+                                                        {{ $leave_request->employee->name }}
+                                                    </a>
+                                                </td>
+
+                                                <td>
+                                                    {{ $leave_request->leave_type->leave_name }}<br>
                                                     <span class='label label-{{ $leave_request->leave_type->is_active === 'Active' ? 'success' : 'warning' }} label-sm'>
                                                         {{$leave_request->leave_type->is_active }}
                                                     </span>
@@ -70,6 +71,7 @@
                                                         <span class="text-info text-muted">No reply</span>
                                                     @endif
                                                 </td>
+
                                                 <td>
                                                     @if($leave_request->approval_status == 0)
                                                         <span class="inline-block text-muted">
@@ -86,9 +88,13 @@
                                                     @endif
                                                 </td>
 
-                                                <td class="text-center">
+                                                <td class="text-center" style="min-width: 90px;">
                                                     @if($leave_request->support_doc_url)
                                                         <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{ route('download.leave_request', $leave_request) }}" role="button"></a>
+                                                    @endif
+
+                                                    @if($leave_request->approval_status == 0)
+                                                        <a class="edit-btn btn btn-info btn-sm fa fa-reply" href="{{ route('leave-approval.edit', $leave_request->id) }}" role="button"></a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -109,39 +115,9 @@
                         @endif
                     </div>
                 </div>
-
-                <!--Delete modal start -->
-                {{-- <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title text-center" id="exampleModalLabel">Delete Comfirmation</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                            </div>
-
-                            <div class="modal-body">
-                                <form id="delete-form" method="post">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" id="workDay" name="_method" value="DELETE" >
-                                    </div>
-
-                                    <h4 class="text-center">Are you sure you want to delete this data? <br>Deleting this data will cause the associated attendaces to be deleted</h4>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning px-5" data-dismiss="modal">No</button>
-                                        <button type="submit" class="btn btn-success px-5">Yes</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                <!--Delete modal end -->
             </div>
 
-            @include('pages.all_users.leave.compulsory_leave_summary')
+            @include('pages.all_users.leave.staffs_on_leave_summary')
         </div>
     </section>
 @endsection

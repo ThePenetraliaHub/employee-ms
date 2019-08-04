@@ -29,7 +29,16 @@
                     <div class="pull-left info">
                         <p>{{ auth()->user()->name }}</p>
                         <a href="#">
-                            <i class="fa fa-circle text-success"></i> Online
+                            {{-- Display when the staff is on leave here --}}
+                            @if(auth()->user()->owner instanceof \App\Employee)
+                                @if(auth()->user()->owner->is_on_leave())
+                                    <i class="fa fa-circle text-warning"></i> On leave
+                                @else
+                                    <i class="fa fa-circle text-success"></i> Active
+                                @endif
+                            @else
+                                <i class="fa fa-circle text-success"></i> Active
+                            @endif
                         </a>
                     </div>
                 </div>
@@ -183,7 +192,7 @@
 
                             <li class="treeview">
                                 <li>
-                                    <a href="{{ route('leave-request.index') }}"><i class="glyphicon glyphicon-send"></i> Leave Approval</a>
+                                    <a href="{{ route('leave-approval.index') }}"><i class="glyphicon glyphicon-send"></i> Leave Approval</a>
                                 </li>
                             </li>
                         </ul>
