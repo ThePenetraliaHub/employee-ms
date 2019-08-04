@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{education}/education', 'Web\EducationController@download')->name('download.education');
         Route::get('/{certification}/certification', 'Web\CertificationController@download')->name('download.certification');
         Route::get('/{employee_project}/employee-project', 'Web\EmployeeProjectController@download')->name('download.employee_project');
+        Route::get('/{leave_request}/leave-request', 'Web\LeaveRequestController@download')->name('download.leave_request');
     });
 
 	Route::get('/profile', 'Web\UserController@profile')->name('profile');

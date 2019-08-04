@@ -31,7 +31,7 @@
                                             <th scope="col">Comment</th>
                                             <th scope="col">Reply</th>
                                             <th scope="col">Status</th>
-                                            {{-- <th scope="col" class="text-center">Actions</th> --}}
+                                            <th scope="col" class="text-center"></th>
                                         </tr>
                                     </thead>
 
@@ -83,18 +83,11 @@
                                                     @endif
                                                 </td>
 
-                                                {{-- <td class="text-center">
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="" role="button" >
-                                                    </a>
-
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-retweet" href="" role="button" >
-                                                    </a>
-
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="" role="button">
-                                                    </a>
-
-                                                    <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-work_day=""></a>
-                                                </td> --}}
+                                                <td class="text-center">
+                                                    @if($leave_request->support_doc_url)
+                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-download" href="{{ route('download.leave_request', $leave_request->id) }}" role="button" ></a>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -115,7 +108,7 @@
                 </div>
 
                 <!--Delete modal start -->
-                <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                {{-- <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -141,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!--Delete modal end -->
             </div>
 
