@@ -47,12 +47,12 @@
     </div>
 
     <div class="col-md-12">
-        <div class="form-group col-xs-11{{ $errors->has('leave_content') ? ' has-error' : '' }} mb-0 mt-3">
-            <label for="leave_content"></label>
-            <textarea id="compose-textarea" placeholder="Please state your reason here..." name="leave_content" class="form-control" style="height: 200px">{{ old('leave_content') }}</textarea>
-            @if ($errors->has('leave_content'))
+        <div class="form-group col-xs-11{{ $errors->has('leave_request_content') ? ' has-error' : '' }} mb-0 mt-3">
+            <label for="leave_request_content"></label>
+            <textarea placeholder="Please state your reason here..." name="leave_request_content" class="form-control" style="height: 200px">{{ old('leave_request_content') }}</textarea>
+            @if ($errors->has('leave_request_content'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('leave_content') }}</strong>
+                    <strong>{{ $errors->first('leave_request_content') }}</strong>
                 </span>
             @endif
         </div>

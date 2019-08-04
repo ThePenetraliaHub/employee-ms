@@ -13,11 +13,11 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="box box-primary">
-                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('leave-approval.store') }}">
+                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('leave-approval.update', $leave_approval) }}">
                         @csrf
+                        {{method_field('PUT')}}
                         <div class="box-body">
                             @include('pages.all_users.leave.forms.respond_to_leave_request')
-                            <span class='d-inline text-warning ml-4'>Please reconfirm your entry, response can not be revoked or updated after submitted</span><br>
                         </div>
 
                         <div class="box-footer">

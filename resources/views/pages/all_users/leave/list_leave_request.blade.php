@@ -57,7 +57,7 @@
 
                                                 <td>
                                                     @if($leave_request->leave_request_content != '')
-                                                        <button class="btn btn-info btn-xs glyphicon glyphicon-comment" data-toggle="popover" title="Comment (You)" data-content="{{ $leave_request->leave_request_content }}" data-placement="top"></button>
+                                                        <button class="btn btn-info btn-xs glyphicon glyphicon-comment" data-toggle="popover" title="Comment (You)" data-content="{!! $leave_request->leave_request_content !!}" data-placement="top"></button>
                                                     @else
                                                         <span class="text-info text-muted">No comment</span>
                                                     @endif
@@ -65,7 +65,7 @@
 
                                                 <td>
                                                     @if($leave_request->leave_reply_content != '')
-                                                        <button class="btn btn-info btn-xs glyphicon glyphicon-comment" data-toggle="popover" title="Reply ({{ \App\User::find($leave_request->leave_reply_by)->name }})" data-content="{{ $leave_request->leave_reply_content }}" data-placement="top"></button>
+                                                        <button class="btn btn-info btn-xs glyphicon glyphicon-comment" data-toggle="popover" title="Reply ({{ \App\User::find($leave_request->leave_reply_by)->name }})" data-content="{!! $leave_request->leave_reply_content !!}" data-placement="top"></button>
                                                     @else
                                                         <span class="text-info text-muted">No reply</span>
                                                     @endif

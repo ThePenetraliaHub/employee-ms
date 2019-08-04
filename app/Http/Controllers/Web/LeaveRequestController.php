@@ -45,7 +45,7 @@ class LeaveRequestController extends Controller
         if(auth()->user()->hasRole('employee')){
             $rules = [
                 'leave_type_id' => 'required',
-                'leave_content' => "max:1000",
+                'leave_request_content' => "max:1000",
                 'start_date' => 'required|date|after:yesterday',
                 'end_date' => 'required|date|after_or_equal:start_date',
                 'support_doc_url' => "|file|mimes:jpeg,png,docx,pdf|max:1000",
@@ -53,8 +53,7 @@ class LeaveRequestController extends Controller
 
             $customMessages = [
                 'leave_type_id.required' => 'Leave type is required',
-                'leave_content.required' => "Leave content is required",
-                'leave_content.max' => "Leave content must not exceed 1000 characters",
+                'leave_request_content.max' => "Leave content must not exceed 1000 characters",
                 'start_date.required' => 'Start date is required',
                 'start_date.date' => 'Start date should be a valid date type',
                 'start_date.after' => 'Start date cannot be a date in the past',

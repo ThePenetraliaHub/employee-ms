@@ -3,9 +3,10 @@
         <h4 class="text-center">Compulsory Leaves</h4>
         @if($compulsory_leaves->count() > 0)
             <div class="table-responsive table-bordered">
-                <table id="dataTable" class="table table-striped table-responsive">
+                <table class="table table-striped table-responsive">
                     <thead>
                         <tr class="table-heading-bg">
+                            <th scope="col">S/N</th>
                             <th scope="col">Leave Name</th>
                             <th scope="col">Total</th>
                             <th scope="col">Remaining</th>
@@ -15,6 +16,7 @@
                     <tbody>
                         @foreach($compulsory_leaves as $compulsory_leave)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $compulsory_leave->leave_name }}</td>
                                 <td>
                                     {{ $compulsory_leave->number_of_days }} {{ $compulsory_leave->number_of_days > 1 ? 'days' : 'day' }}

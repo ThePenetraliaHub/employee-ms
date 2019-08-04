@@ -109,7 +109,6 @@ class LeaveTypeController extends Controller
 
     public function destroy(LeaveType $leave_type)
     {
-        dd($leave_type->approved_leave_requests()->count());
         if($leave_type->approved_leave_requests()->count() > 0){
             notify()->warning("Leave already approved for some employees, can't be removed!","","bottomRight");
         }else{

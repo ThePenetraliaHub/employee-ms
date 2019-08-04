@@ -8,7 +8,6 @@ use App\LeaveRequest;
 
 class LeaveApprovalController extends Controller
 {
-    //Employee leave requests
     public function index()
     {
         $leave_requests = LeaveRequest::orderBy('id', 'desc')->paginate(10);
@@ -17,106 +16,33 @@ class LeaveApprovalController extends Controller
         return view('pages.all_users.leave.list_leave_approval',compact('leave_requests', 'staffs_on_leave'));
     }
 
-    public function create()
-    {
-    }
-
-    public function store(Request $request)
+    public function update(Request $request, LeaveRequest $leave_approval)
     {
         $rules = [
-            'leave_type_id' => 'required',
             'leave_content' => "max:1000",
-            'start_date' => 'required|date|after:yesterday',
-            'end_date' => 'required|date|after_or_equal:start_date',
-            'support_doc_url' => "|file|mimes:jpeg,png,docx,pdf|max:1000",
+            'approval_status' => 'required',
         ];
 
         $customMessages = [
-            'leave_type_id.required' => 'Leave type is required',
-            'leave_content.required' => "Leave content is required",
             'leave_content.max' => "Leave content must not exceed 1000 characters",
-            'start_date.required' => 'Start date is required',
-            'start_date.date' => 'Start date should be a valid date type',
-            'start_date.after' => 'Start date cannot be a date in the past',
-            'end_date.required' => 'End date is required',
-            'end_date.date' => 'End date should be a valid date type',
-            'end_date.after' => 'End date must be older than start date',
-            'support_doc_url.mimes' => "Supporting document must be of either jpeg,png,docx or pdf",
-            'support_doc_url.max' => "Supporting document must not exceed 1MB",
+            'approval_status.required' => 'You have to either approve or disapprove leave',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
-        $leave_type = LeaveType::find($request->leave_type_id);
+        $leave_approval->update([
+            'leave_request_content' => $request->leave_request_content,
+            'approval_status' => $request->approval_status,
+        ]);
 
-        $days = auth()->user()->owner->days_exhausted_for_a_leave_type($leave_type);
+        notify()->success("Successfully updated!","","bottomRight");
 
-        //If employee is not eligible for leave, employee should not be able to apply
-        if(!auth()->user()->owner->is_eligible($leave_type)){
-            throw ValidationException::withMessages([
-                'leave_type_id' => "You are not qualified for this leave",
-            ]);
-        }
-
-        //If employee has leave already approved within the requested date, employee should not be able to apply
-        if(auth()->user()->owner->clashing_approved_requests($request->start_date, $request->end_date)->count() > 0){
-            throw ValidationException::withMessages([
-                'start_date' => "You have an approved leave within these days",
-                'end_date' => "You have an approved leave within these days",
-            ]);
-        }
-
-        //If leave has a predefined days, employee should not be able to apply if he/she has exhausted their days
-        if($leave_type->number_of_days <= $days && $leave_type->number_of_days != 0) {
-            throw ValidationException::withMessages([
-                'leave_type_id' => "You have exhausted the leave",
-            ]);
-        }
-
-        //Employee should not be able to apply if the days he is applying is more than the specified number of days
-        $sd = new DateTime($request->start_date);
-        $ed = new DateTime($request->end_date);
-
-        $days_applying = $ed->diff($sd)->format("%a");
-
-        if($leave_type->number_of_days != 0 && $days_applying > ($leave_type->number_of_days - $days)){
-            throw ValidationException::withMessages([
-                'start_date' => "You have only " . ($leave_type->number_of_days - $days) . " days left but selected ". $days_applying ." days",
-                'end_date'   => "You have only " . ($leave_type->number_of_days - $days) . " days left but selected ". $days_applying ." days",
-            ]);
-        }
-
-        $path = "";
-        if($request->support_doc_url){
-            $path = $request->file('support_doc_url')->store('leavedocuments', 'public');
-
-            LeaveRequest::create([
-                'employee_id' => auth()->user()->owner->id,
-                'leave_type_id' => $request->leave_type_id,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'support_doc_url' => $path,
-                'support_doc_name' => $request->support_doc_url->getClientOriginalName(),
-                'leave_request_content' => $request->leave_request_content,
-            ]);
-        }else{
-            LeaveRequest::create([
-                'employee_id' => auth()->user()->owner->id,
-                'leave_type_id' => $request->leave_type_id,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'leave_request_content' => $request->leave_request_content,
-            ]);
-        }
-
-        notify()->success("Successfully created!","","bottomRight");
-
-        return redirect('leave-request');
+        return redirect('leave-approval');
     }
 
-    public function edit(LeaveRequest $leave_request){
+    public function edit(LeaveRequest $leave_approval){
         $staffs_on_leave = LeaveRequest::staffs_on_leave();
 
-        return view('pages.all_users.leave.respond_to_leave_request',compact('leave_request', 'staffs_on_leave')); 
+        return view('pages.all_users.leave.respond_to_leave_request',compact('leave_approval', 'staffs_on_leave')); 
     }
 }
