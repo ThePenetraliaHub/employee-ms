@@ -137,6 +137,6 @@ class LeaveRequestController extends Controller
 
     public function download(LeaveRequest $leave_request)
     {
-        return response()->download(storage_path($leave_request->support_doc_url), $leave_request->support_doc_name);
+        return response()->download(storage_path($leave_request->document), $leave_request->support_doc_name);
     }
 }

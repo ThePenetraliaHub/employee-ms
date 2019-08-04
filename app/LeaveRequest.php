@@ -28,4 +28,9 @@ class LeaveRequest extends Model
 
           return $active_leaves;
     }
+
+    public function getDocumentAttribute()
+    {
+        return 'app/public/'.$this->support_doc_url;
+    }
 }
