@@ -40,7 +40,8 @@ class LeaveApprovalController extends Controller
         return redirect('leave-approval');
     }
 
-    public function edit(LeaveRequest $leave_approval){
+    public function edit(LeaveRequest $leave_approval)
+    {
         $staffs_on_leave = LeaveRequest::staffs_on_leave();
 
         return view('pages.all_users.leave.respond_to_leave_request',compact('leave_approval', 'staffs_on_leave')); 

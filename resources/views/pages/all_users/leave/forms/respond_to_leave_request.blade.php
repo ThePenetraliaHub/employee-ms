@@ -35,7 +35,7 @@
                     @if($leave_approval->support_doc_url)
                         <tr>
                             <th colspan="2" class="text-center">
-                                <a href="{{ route('download.leave_request', $leave_approval) }}" class="btn btn-sm fa fa-cloud-download"> Download Doc</a>
+                                <a href="{{ route('download.leave_request', $leave_approval) }}" class="btn btn-sm fa fa-cloud-download"> Download Supporting Doc</a>
                             </th>
                         </tr>
                     @endif
@@ -46,7 +46,7 @@
 
     <div class="col-md-6 col-md-pull-6">
         <div class="form-group col-xs-11{{ $errors->has('approval_status') ? ' has-error' : '' }} mb-0 mt-3">
-            <label for="approval_status">Approval</label>
+            <label for="approval_status">Approval Status</label>
             <select class="form-control" name="approval_status" id="approval_status">
                 <option value="2" @if (old('approval_status') == '2') {{ 'selected' }} @endif>Disaprove</option>
                 <option value="1" @if (old('approval_status') == '1') {{ 'selected' }} @endif>Approve</option>

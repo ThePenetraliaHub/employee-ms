@@ -105,9 +105,8 @@ class LeaveRequestController extends Controller
                 ]);
             }
 
-            $path = "";
             if($request->support_doc_url){
-                $path = $request->file('support_doc_url')->store('leavedocuments', 'public');
+                $path = $request->file('support_doc_url')->store('leave_docs', 'public');
 
                 LeaveRequest::create([
                     'employee_id' => auth()->user()->owner->id,
@@ -134,26 +133,6 @@ class LeaveRequestController extends Controller
         }else{
             abort(403, 'Unauthorized action.');
         } 
-    }
-
-    public function show(Leave $leave)
-    {
-        //
-    }
-
-    public function edit(Leave $leave)
-    {
-        //
-    }
-
-    public function update(Request $request, Leave $leave)
-    {
-        //
-    }
-
-    public function destroy(Leave $leave)
-    {
-        //
     }
 
     public function download(LeaveRequest $leave_request)
