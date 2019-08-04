@@ -58,12 +58,12 @@
             @endif
         </div>
 
-        <div class="form-group col-xs-11{{ $errors->has('leave_request_content') ? ' has-error' : '' }} mb-3">
-            <label for="leave_request_content"></label>
-            <textarea placeholder="Please state your reason here..." name="leave_request_content" class="form-control" style="height: 200px">{{ old('leave_request_content') }}</textarea>
-            @if ($errors->has('leave_request_content'))
+        <div class="form-group col-xs-11{{ $errors->has('leave_reply_content') ? ' has-error' : '' }} mb-3">
+            <label for="leave_reply_content"></label>
+            <textarea placeholder="Please state your reason here..." name="leave_reply_content" class="form-control" style="height: 200px">{{ old('leave_reply_content') }}</textarea>
+            @if ($errors->has('leave_reply_content'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('leave_request_content') }}</strong>
+                    <strong>{{ $errors->first('leave_reply_content') }}</strong>
                 </span>
             @endif
         </div>
