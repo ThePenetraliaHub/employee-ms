@@ -115,7 +115,7 @@ class LeaveApprovalController extends Controller
     }
 
     public function edit(LeaveRequest $leave_request){
-        $staffs_on_leave = array();
+        $staffs_on_leave = LeaveRequest::staffs_on_leave();
 
         return view('pages.all_users.leave.respond_to_leave_request',compact('leave_request', 'staffs_on_leave')); 
     }

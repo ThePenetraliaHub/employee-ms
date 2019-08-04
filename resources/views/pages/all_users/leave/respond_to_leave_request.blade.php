@@ -4,14 +4,14 @@
 @section('content')
     <section class="content-header">
         <h1>Leave
-            <small>Respond</small>
+            <small>Response</small>
         </h1>
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="box box-primary">
                     <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('leave-approval.store') }}">
                         @csrf
