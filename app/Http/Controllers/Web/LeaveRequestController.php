@@ -106,24 +106,32 @@ class LeaveRequestController extends Controller
                 ]);
             }
 
+            $path = "";
             if($request->support_doc_url){
                 $path = $request->file('support_doc_url')->store('leavedocuments', 'public');
+
+                LeaveRequest::create([
+                    'employee_id' => auth()->user()->owner->id,
+                    'leave_type_id' => $request->leave_type_id,
+                    'start_date' => $request->start_date,
+                    'end_date' => $request->end_date,
+                    'support_doc_url' => $path,
+                    'support_doc_name' => $request->support_doc_url->getClientOriginalName(),
+                    'leave_request_content' => $request->leave_request_content,
+                ]);
+            }else{
+                LeaveRequest::create([
+                    'employee_id' => auth()->user()->owner->id,
+                    'leave_type_id' => $request->leave_type_id,
+                    'start_date' => $request->start_date,
+                    'end_date' => $request->end_date,
+                    'leave_request_content' => $request->leave_request_content,
+                ]);
             }
-
-            LeaveRequest::create([
-                'employee_id' => $request->employee_id,
-                'leave_type_id' => $request->leave_type_id,
-                'leave_content' => $request->leave_content,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'support_doc_url' => $path,
-                'support_doc_name' => $request->support_doc_url->getClientOriginalName(),
-            ]);
-
 
             notify()->success("Successfully created!","","bottomRight");
 
-            return redirect('leave');
+            return redirect('leave-request');
         }else{
             abort(403, 'Unauthorized action.');
         } 

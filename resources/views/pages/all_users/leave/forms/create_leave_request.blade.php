@@ -1,7 +1,7 @@
 <div class="form-row">
     <div class="col-md-4">
         <div class="form-group col-xs-11 {{ $errors->has('leave_type_id') ? ' has-error' : '' }} mb-0 mt-3">
-            <label for="leave_type_id">Leave Type</label>
+            <label for="leave_type_id">Select leave:</label>
             <select class="form-control" name="leave_type_id" id="leave_type_id">
                 <option value=""></option>
                 @foreach($leave_types as $leave_type)
@@ -49,7 +49,7 @@
     <div class="col-md-12">
         <div class="form-group col-xs-11{{ $errors->has('leave_content') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="leave_content"></label>
-            <textarea id="compose-textarea" placeholder="Please state your reason here..." name="leave_content" class="form-control" style="height: 300px">{{ old('leave_content') }}</textarea>
+            <textarea id="compose-textarea" placeholder="Please state your reason here..." name="leave_content" class="form-control" style="height: 200px">{{ old('leave_content') }}</textarea>
             @if ($errors->has('leave_content'))
                 <span class="help-block">
                     <strong>{{ $errors->first('leave_content') }}</strong>

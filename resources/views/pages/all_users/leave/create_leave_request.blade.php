@@ -17,6 +17,7 @@
                         @csrf
                         <div class="box-body">
                             @include('pages.all_users.leave.forms.create_leave_request')
+                            <span class='d-inline text-warning ml-4'>Please reconfirm your entry, leave request can not be revoked or updated after submitted</span><br>
                         </div>
 
                         <div class="box-footer">
