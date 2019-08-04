@@ -27,10 +27,10 @@
                                     <tr class="table-heading-bg">
                                         <th scope="col">S/N</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Type</th>
                                         <th scope="col">Days</th>
                                         <th scope="col">Eligibility</th>
-                                        <th scope="col">Effective From</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Leave Compulsion</th>
                                         <th scope="col" class="text-center">Actions</th>
                                     </tr>
                                     </thead>
@@ -40,15 +40,39 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $leave_type->leave_name }}</td>
-                                                <td>{{ $leave_type->type }}</td>
-                                                <td>{{ $leave_type->days }}</td>
-                                                <td>{{ $leave_type->gender }}</td>
-                                                <td >{{$leave_type->effective_from }}</td>
+                                                <td>
+                                                    @if($leave_type->number_of_days > 0)
+                                                        {{$leave_type->number_of_days}}
+                                                    @else
+                                                        Leave days not pre-defined
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($leave_type->eligibility == 'All')
+                                                        All Staffs
+                                                    @elseif($leave_type->eligibility == 'Male')
+                                                        Male Staffs Only
+                                                    @elseif($leave_type->eligibility == 'Female')
+                                                        Female Staffs Only
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <span class='label label-{{ $leave_type->is_active === 'Active' ? 'success' : 'warning' }} label-sm'>
+                                                        {{$leave_type->is_active }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    @if($leave_type->compulsory == 'Yes')
+                                                        Compulsory
+                                                    @elseif($leave_type->compulsory == 'No')
+                                                        Not Compulsory
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('leave-type.show',$leave_type->id) }}" role="button" >
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('leave-type.show', $leave_type->id) }}" role="button" >
                                                     </a>
 
-                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('leave-type.edit',$leave_type->id) }}" role="button">
+                                                    <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('leave-type.edit', $leave_type->id) }}" role="button">
                                                     </a>
 
                                                     <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-policy="{{ $leave_type->id }}"></a>

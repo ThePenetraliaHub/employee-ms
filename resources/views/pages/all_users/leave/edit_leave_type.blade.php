@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Leave Policy
+        <h1>Leave
             <small>Edit</small>
         </h1>
     </section>
@@ -12,15 +12,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
-                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('leave-policy.update',$leavePolicy->id) }}">
+                    <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('leave-type.update',$leave_type->id) }}">
                         {{csrf_field()}}
                         {{method_field('PUT')}}
                         <div class="box-body">
-                            @include('pages.leave.forms.edit_policy')
+                            @include('pages.all_users.leave.forms.edit_leave_type')
                         </div>
                         <div class="box-footer">
-                            <button id="button" type="submit" class="btn btn-success col-xs-2">Update</button>
-                            <a type="button" class="btn btn-warning ml-3" href="{{route('leave-policy.index')}}" > Cancel</a>
+                            <button id="button" type="submit" class="btn btn-success ml-4">Update</button>
+                            <a type="button" class="btn btn-warning ml-3" href="{{route('leave-type.index')}}" > Cancel</a>
                         </div>
                     </form>
                 </div>
