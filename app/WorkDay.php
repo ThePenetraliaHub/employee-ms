@@ -14,6 +14,11 @@ class WorkDay extends Model
         'end_date' => 'time',
     ];
 
+    public function attendances_on_table()
+    {
+        return $this->hasMany('App\Attendance');
+    }
+
     public function present()
     {
         return $this->hasMany('App\Attendance')->where('present', 1)->get();

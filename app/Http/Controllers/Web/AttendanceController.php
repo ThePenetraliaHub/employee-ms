@@ -11,7 +11,7 @@ class AttendanceController extends Controller
 {
     public function index()
     {
-        $work_day = WorkDay::where('date', date_create('now'))->get()->first();
+        $work_day = WorkDay::where('date', date_create('now')->format('Y-m-d'))->get()->first();
         
         return view('pages.all_users.attendance.list_signed_in_staff', compact('work_day'));
     }
