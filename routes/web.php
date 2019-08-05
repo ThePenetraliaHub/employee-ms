@@ -33,11 +33,17 @@ Route::middleware('auth')->group(function () {
 	Route::get('/{id}/client', 'Web\ClientController@client_details')->name('client.details');
 	Route::resource('/employee', 'Web\EmployeeController');
 	Route::resource('/employee-project', 'Web\EmployeeProjectController');
-	Route::resource('/attendace', 'Web\AttendanceController');
 	Route::resource('/work-day', 'Web\WorkDayController');
     Route::resource('/leave-request', 'Web\LeaveRequestController');
     Route::resource('/leave-type', 'Web\LeaveTypeController');
     Route::resource('/leave-approval', 'Web\LeaveApprovalController');
+
+    Route::prefix('attendace')->group(function () {
+    	Route::get('/', 'Web\AttendanceController@index')->name('attendance.index');
+        Route::post('/sign-in', 'Web\AttendanceController@sign_in')->name('attendance.sign_in');
+        Route::post('/sign-out', 'Web\AttendanceController@sign_out')->name('attendance.sign_out');
+        Route::get('/general-report', 'Web\AttendanceController@general_report')->name('attendance.general_report');
+    });
 
 	Route::resource('/user', 'Web\UserController');
 	Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');

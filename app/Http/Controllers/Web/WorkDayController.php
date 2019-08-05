@@ -142,9 +142,14 @@ class WorkDayController extends Controller
 
     public function destroy(WorkDay $work_day)
     {
-        $work_day->delete();
+        if($work_day->present_and_absent()->count() > 0){
+            notify()->warning("Work day couldn't be deleted, attendances are attached!","","bottomRight");
+            return redirect('work-day');
+        }else{
+            $work_day->delete();
 
-        notify()->success("Successfully Deleted!","","bottomRight");
-        return redirect('work-day');
+            notify()->success("Successfully Deleted!","","bottomRight");
+            return redirect('work-day');
+        }
     }
 }

@@ -163,7 +163,13 @@
 
                             <li class="treeview">
                                 <li>
-                                    <a href="{{ route('attendace.index') }}"><i class="fa fa-user"></i> General Report</a>
+                                    <a href="{{ route('attendance.index') }}"><i class="fa fa-user"></i> Sign In | Sign Out</a>
+                                </li>
+                            </li>
+
+                            <li class="treeview">
+                                <li>
+                                    <a href="{{ route('attendance.general_report') }}"><i class="fa fa-user"></i> General Report</a>
                                 </li>
                             </li>
                         </ul>

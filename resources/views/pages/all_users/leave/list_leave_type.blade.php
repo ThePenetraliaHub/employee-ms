@@ -42,7 +42,7 @@
                                                 <td>{{ $leave_type->leave_name }}</td>
                                                 <td>
                                                     @if($leave_type->number_of_days > 0)
-                                                        {{$leave_type->number_of_days}}
+                                                        {{ $leave_type->number_of_days }} day{{ $leave_type->number_of_days > 0 ? 's' : '' }}
                                                     @else
                                                         Leave days not pre-defined
                                                     @endif

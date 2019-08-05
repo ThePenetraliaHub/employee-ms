@@ -87,7 +87,7 @@
                                         <input type="hidden" class="form-control" id="workDay" name="_method" value="DELETE" >
                                     </div>
                                     
-                                    <h4 class="text-center">Are you sure you want to delete this data? <br>Deleting this data will cause the associated attendaces to be deleted</h4>
+                                    <h4 class="text-center">Are you sure you want to delete this data?</h4>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-warning px-5" data-dismiss="modal">No</button>
