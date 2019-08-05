@@ -17,11 +17,69 @@ class AttendanceController extends Controller
         return view('pages.all_users.attendance.list_signed_in_staff', compact('work_day'));
     }
 
-    public function sign_in(WorkDay $work_day){
+    public function sign_in(WorkDay $work_day)
+    {
         //Employees not signed in already
         $unsigned_in_employees = $work_day->unsigned_employees();
 
         return view('pages.all_users.attendance.create_sign_in', compact('unsigned_in_employees'));
+    }
+
+    public function sign_in_store(){
+        if($request->present == 0)
+        {
+            $rules = [
+                'employee_id' => 'required',
+                'present' => 'required',
+                'absence_reason' => 'required'
+            ];
+
+            $customMessages = [
+                'employee_id.required' => 'Please select an employee.',
+                'present.required' => 'Please select the attendance status.',
+                'absence_reason.required' => 'Please provide a reason why the employee is absent.',
+            ];
+
+            $this->validate($request, $rules, $customMessages); 
+
+            $attendance = Attendance::
+                ->join('work_days', 'work_days.id', '=', 'attendances.work_day_id')
+                ->where('employee_id', $request->employee_id)->get();
+
+            if($attendance->count() > 0){
+                throw ValidationException::withMessages([
+                    'employee_id' => "Employee has already been signed in.",
+                ]);
+            }
+        }elseif($request->present == 1){
+            $rules = [
+                'employee_id' => 'required',
+                'present' => 'required',
+                'time_in' => 'required|date_format:H:i',
+            ];
+
+            $customMessages = [
+                'employee_id.required' => 'Please select an employee.',
+                'start_time.required' => 'Please choose the opening time.',
+                'time_in.required' => 'Please choose the opening time.',
+            ];
+
+            $this->validate($request, $rules, $customMessages); 
+
+            $attendance = Attendance::
+                ->join('work_days', 'work_days.id', '=', 'attendances.work_day_id')
+                ->where('employee_id', $request->employee_id)->get();
+                
+            if($attendance->count() > 0){
+                throw ValidationException::withMessages([
+                    'employee_id' => "Employee has already been signed in.",
+                ]);
+            }
+        }
+
+        notify()->success("Successfully created!","","bottomRight");
+        
+        return redirect('attendance');
     }
 
     public function sign_out(WorkDay $work_day){
