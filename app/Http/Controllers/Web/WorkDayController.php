@@ -54,6 +54,8 @@ class WorkDayController extends Controller
 				'end_time' => null,
 				'day_type' => $request->day_type,
         	]);
+
+            //Update all staffs on leave to the attendance list and state a comment for their absence reason
         }
 
         notify()->success("Successfully created!","","bottomRight");
