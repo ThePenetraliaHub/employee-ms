@@ -85,13 +85,11 @@ class WorkDay extends Model
     public function unsigned_employees()
     {
         $employees = \App\Employee::
-            join('attendances', function ($join) 
+            crossjoin('work_days')
+            ->join('attendances', function ($join) 
                 {
-                    $join->on('employees.id', '!=', 'attendances.employee_id');
-                })
-            ->join('work_days', function ($join) 
-                {
-                    $join->on('work_days.id', '=', 'attendances.work_day_id');
+                    $join->on('employees.id', '!=', 'attendances.employee_id')
+                    ->on('attendances.work_day_id', '=', 'work_days.id');
                 })
             ->where('work_days.date', date_create('now')->format('Y-m-d'))
             ->get();

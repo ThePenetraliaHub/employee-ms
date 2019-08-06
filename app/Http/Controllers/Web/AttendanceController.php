@@ -22,10 +22,11 @@ class AttendanceController extends Controller
         //Employees not signed in already
         $unsigned_in_employees = $work_day->unsigned_employees();
 
+        dd($unsigned_in_employees);
         return view('pages.all_users.attendance.create_sign_in', compact('unsigned_in_employees'));
     }
 
-    public function sign_in_store(){
+    public function sign_in_store(Request $request){
         if($request->present == 0)
         {
             $rules = [
@@ -43,7 +44,7 @@ class AttendanceController extends Controller
             $this->validate($request, $rules, $customMessages); 
 
             $attendance = Attendance::
-                ->join('work_days', 'work_days.id', '=', 'attendances.work_day_id')
+                join('work_days', 'work_days.id', '=', 'attendances.work_day_id')
                 ->where('employee_id', $request->employee_id)->get();
 
             if($attendance->count() > 0){
@@ -51,6 +52,15 @@ class AttendanceController extends Controller
                     'employee_id' => "Employee has already been signed in.",
                 ]);
             }
+
+            Attendance::create([
+                'work_day_id' => $request->work_day_id,
+                'employee_id' => $request->employee_id,
+                'time_in' => $request->time_in,
+                'time_out' => Nu,
+                'present' => $request->present,
+                'absence_reason' => $request->absence_reason,
+            ]);
         }elseif($request->present == 1){
             $rules = [
                 'employee_id' => 'required',
@@ -67,7 +77,7 @@ class AttendanceController extends Controller
             $this->validate($request, $rules, $customMessages); 
 
             $attendance = Attendance::
-                ->join('work_days', 'work_days.id', '=', 'attendances.work_day_id')
+                join('work_days', 'work_days.id', '=', 'attendances.work_day_id')
                 ->where('employee_id', $request->employee_id)->get();
                 
             if($attendance->count() > 0){
@@ -78,7 +88,7 @@ class AttendanceController extends Controller
         }
 
         notify()->success("Successfully created!","","bottomRight");
-        
+
         return redirect('attendance');
     }
 
