@@ -94,6 +94,8 @@ class WorkDay extends Model
             ->where('work_days.date', date_create('now')->format('Y-m-d'))
             ->get();
 
+        
+
         return $employees;
     }
 }

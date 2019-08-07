@@ -22,7 +22,7 @@ class AttendanceController extends Controller
         //Employees not signed in already
         $unsigned_in_employees = $work_day->unsigned_employees();
 
-        dd($unsigned_in_employees);
+        //dd($unsigned_in_employees);
         return view('pages.all_users.attendance.create_sign_in', compact('unsigned_in_employees'));
     }
 
