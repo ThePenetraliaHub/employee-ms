@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Leave Request
+            Leave Approval
             <small>View</small>
         </h1>
     </section>
@@ -106,11 +106,8 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    You have not made any request for leave
+                                    All leave requests by employees will appear here
                                 </p>
-                                <a href="{{ route("leave-request.create") }}">
-                                    Request for leave
-                                </a>
                             </div>
                         @endif
                     </div>

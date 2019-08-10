@@ -123,14 +123,14 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>Reports</h3>
+                        <h3>Leave</h3>
 
-                        <h4 style="margin-bottom: 33px;">View / Download Reports</h4>
+                        <h3 class="invisible">x</h3>
                     </div>
                     <div class="icon">
                         <i class="ion ion-document-text"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Generate Reports <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer">Manage Leaves <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -141,14 +141,28 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>Settings</h3>
-
-                        <p>Configure System</p>
+                        <h3>Messages</h3>
+                        <p><h3>{{ auth()->user()->unread_inbox_message()->count() }}</h3></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-settings"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Update settings <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ route("message.inbox") }}" class="small-box-footer">My Messages <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>Reports</h3>
+
+                        <h4 style="margin-bottom: 33px;">View / Download Reports</h4>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-document-text"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Generate Reports <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

@@ -21,14 +21,14 @@
                             </div>
                             <div class="box-body">
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    {{-- <div class="col-md-2">
                                         <label>Report Type:</label>
                                         <select class="form-control" name="name">
                                             <option>Grouped Report</option>
                                             <option>Ungrouped Report</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-2">
+                                    </div> --}}
+                                    <div class="col-md-3">
                                         <label>Select Employee:</label>
                                         <select class="form-control" name="name">
                                             <option disabled selected="">All Employees</option>
@@ -38,15 +38,15 @@
                                             <option>option 5</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <label>From Date:</label>
                                         <input placeholder="From Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="fromDate">
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <label>To Date:</label>
                                         <input placeholder="To Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="toDate">
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <label>Attendace Status:</label>
                                         <select class="form-control" name="status">
                                             <option disabled selected="">All Status</option>
@@ -54,7 +54,7 @@
                                             <option>Abscent</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
+                                    {{-- <div class="col-md-2">
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" name="late">
@@ -75,9 +75,6 @@
                                                 Over Time
                                             </label>
                                         </div>
-                                    </div>
-                                    {{-- <div class="col-md-1">
-                                        <button type="button" class="btn btn-default "><i class="fa fa-search"></i></button>
                                     </div> --}}
                                 </div>
                             </div>

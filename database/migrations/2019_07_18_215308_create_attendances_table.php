@@ -17,10 +17,10 @@ class CreateAttendancesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger("work_day_id");
             $table->unsignedInteger("employee_id");
-            $table->time("time_in");
-            $table->time("time_out");
+            $table->time("time_in")->nullable();
+            $table->time("time_out")->nullable();
             $table->integer("present");
-            $table->string("absence_reason");
+            $table->string("absence_reason")->nullable();
             $table->timestamps();
         });
     }

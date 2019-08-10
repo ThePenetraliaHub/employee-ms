@@ -79,22 +79,43 @@ class WorkDay extends Model
             			 ->on('employees.id', '=', 'attendances.employee_id');
         		})
         	->where('work_days.id', $this->id)
-            ->get(['attendances.*', 'work_days.*', 'employees.*', 'employees.id as employee_id']);
+            ->get(['attendances.*', 'work_days.*', 'employees.*', 'employees.id as employee_id', 'attendances.id as attendance_id']);
     }
 
-    public function unsigned_employees()
+    public function unsigned_in_employees()
     {
         $employees = \App\Employee::
-            crossjoin('work_days')
-            ->join('attendances', function ($join) 
+            join('attendances', function ($join) 
                 {
-                    $join->on('employees.id', '!=', 'attendances.employee_id')
-                    ->on('attendances.work_day_id', '=', 'work_days.id');
+                    $join->on('employees.id', '=', 'attendances.employee_id');
+                })
+            ->join('work_days', function ($join) 
+                {
+                    $join->on('attendances.work_day_id', '=', 'work_days.id');
                 })
             ->where('work_days.date', date_create('now')->format('Y-m-d'))
-            ->get();
+            ->get(['employees.*']);
 
-        
+        $all_employees = \App\Employee::all();
+        //dd($all_employees, $employees, $all_employees->diff($employees));
+        return $all_employees->diff($employees)->sortBy('name');
+    }
+
+    public function unsigned_out_employees()
+    {
+        $employees = \App\Employee::
+            join('attendances', function ($join) 
+                {
+                    $join->on('employees.id', '=', 'attendances.employee_id');
+                })
+            ->join('work_days', function ($join) 
+                {
+                    $join->on('attendances.work_day_id', '=', 'work_days.id');
+                })
+            ->where('work_days.date', date_create('now')->format('Y-m-d'))
+            ->where('attendances.present', 1)
+            ->where('attendances.time_out', null)
+            ->get(['employees.*']);
 
         return $employees;
     }

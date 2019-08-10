@@ -42,8 +42,18 @@ Route::middleware('auth')->group(function () {
     	Route::get('/', 'Web\AttendanceController@index')->name('attendance.index');
         Route::get('/sign-in', 'Web\AttendanceController@sign_in')->name('attendance.sign_in');
         Route::post('/sign-in', 'Web\AttendanceController@sign_in_store')->name('attendance.sign_in.store');
-        Route::post('/sign-out', 'Web\AttendanceController@sign_out')->name('attendance.sign_out.store');
+
+        Route::get('/sign-out/{attendance}', 'Web\AttendanceController@sign_out_ind')->name('attendance.sign_out_ind');
+        Route::post('/sign-out/{attendance}', 'Web\AttendanceController@sign_out_store_ind')->name('attendance.sign_out_ind.store');
+
+        Route::get('/sign-out', 'Web\AttendanceController@sign_out')->name('attendance.sign_out');
+        Route::post('/sign-out', 'Web\AttendanceController@sign_out_store')->name('attendance.sign_out.store');
+
         Route::get('/general-report', 'Web\AttendanceController@general_report')->name('attendance.general_report');
+
+        Route::post('/filter-by-status/{work_day}', 'Web\AttendanceController@filter_attendance_by_status')->name('attendance.filter_attendance_by_status');
+
+        Route::get('/report', 'Web\AttendanceController@self_attendance')->name('attendance.self_attendance');
     });
 
 	Route::resource('/user', 'Web\UserController');

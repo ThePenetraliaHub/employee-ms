@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Employees Attendance
+            My Attendance
             <small>View</small>
         </h1>
     </section>
@@ -12,21 +12,9 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if($work_day && $work_day->present()->count() > 0)
-                    <a href="{{ route("attendance.sign_in") }}" class="btn btn-primary btn-sm my-2">
-                        <span class="fa fa-plus-circle mr-2"></span>
-                        Sign in a staff
-                    </a>
-
-                    <a href="{{ route("attendance.sign_out") }}" class="btn btn-primary btn-sm my-2">
-                        <span class="fa fa-plus-circle mr-2"></span>
-                        Sign out a staff
-                    </a>
-                @endif
                 <div class="box">
                     <div class="box-body">
-                        @if($work_day)
-                            @if($work_day->present()->count() > 0)
+                            @if($attendances->count() > 0)
                                 <div class="box box-primary">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">Filter by:</h3>
@@ -70,7 +58,7 @@
                                       <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
-                                            <th scope="col">Name</th>
+                                            <th scope="col">Date</th>
                                             <th scope="col">Clock In</th>
                                             <th scope="col">Clock Out</th>
                                             <th scope="col">Late</th>
@@ -78,18 +66,14 @@
                                             <th scope="col">Over Time</th>
                                             <th scope="col">Work Hour</th>
                                             <th scope="col" class="text-center">Status</th>
-                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                       </thead>
                                         <tbody>
-                                            {{-- {{dd($work_day->present_and_absent())}} --}}
-                                            @foreach($work_day->present_and_absent() as $attendance)
+                                            @foreach($attendances as $attendance)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td data-input="name">
-                                                        <a href="{{ route("employee.profile", $attendance->employee_id) }}">
-                                                            {{ $attendance->name }}
-                                                        </a>
+                                                    <td>
+                                                        {{ \App\WorkDay::find($attendance->work_day_id)->date->format("F jS, Y") }}
                                                     </td>
                                                     <td>
                                                         @if($attendance->time_in != null)
@@ -107,8 +91,8 @@
                                                     </td>
 
                                                     <td>
-                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_in > $work_day->start_time)
-                                                            <span class="text-danger">{{ difference_in_time($attendance->time_in, $work_day->start_time) }}</span>
+                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_in > \App\WorkDay::find($attendance->work_day_id)->start_time)
+                                                            <span class="text-danger">{{ difference_in_time($attendance->time_in, \App\WorkDay::find($attendance->work_day_id)->start_time) }}</span>
                                                         @elseif($attendance->present == 1 && $attendance->time_out != null)
                                                             <span class="text-success">No</span>
                                                         @else
@@ -117,8 +101,8 @@
                                                     </td>
 
                                                     <td>
-                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_out < $work_day->end_time)
-                                                            <span class="text-danger">{{ difference_in_time($attendance->time_out, $work_day->end_time) }}</span>
+                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_out < \App\WorkDay::find($attendance->work_day_id)->end_time)
+                                                            <span class="text-danger">{{ difference_in_time($attendance->time_out, \App\WorkDay::find($attendance->work_day_id)->end_time) }}</span>
                                                         @elseif($attendance->present == 1 && $attendance->time_out != null)
                                                             <span class="text-success">No</span>
                                                         @else
@@ -127,8 +111,8 @@
                                                     </td>
 
                                                     <td>
-                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_out > $work_day->end_time)
-                                                            <span class="text-danger">{{ difference_in_time($attendance->time_out, $work_day->end_time) }}</span>
+                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_out > \App\WorkDay::find($attendance->work_day_id)->end_time)
+                                                            <span class="text-danger">{{ difference_in_time($attendance->time_out, \App\WorkDay::find($attendance->work_day_id)->end_time) }}</span>
                                                         @elseif($attendance->present == 1 && $attendance->time_out != null)
                                                             <span class="text-success">No</span>
                                                         @else
@@ -145,7 +129,7 @@
                                                     </td>
 
                                                     <td class="text-center">
-                                                        @if($attendance->present == 0 || $attendance->work_day_id == null)
+                                                        @if($attendance->present == 0 || $attendance->absence_reason == null)
                                                             <span class='label label-warning label-sm'>
                                                                 Absent
                                                             </span>
@@ -157,12 +141,6 @@
                                                             <span class='label label-success label-sm'>
                                                                 Present
                                                             </span>
-                                                        @endif</td>
-                                                    <td style="min-width: 120px;" class="text-center">
-                                                        @if($attendance->present === 1 && $attendance->time_out === null)
-                                                            <a class="btn-info btn-sm" href="{{ route('attendance.sign_out_ind', $attendance->attendance_id) }}">
-                                                                Sign out
-                                                            </a>
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -174,24 +152,11 @@
                                 <div class="empty-state text-center my-3">
                                     @include('icons.empty')
                                     <p class="text-muted my-3">
-                                         Attendance records for today will appear here
+                                        Your attendance records will appear here
                                     </p>
-                                    <a href="{{ route("attendance.sign_in") }}">
-                                        Sign in a staff
-                                    </a>
                                 </div>
                             @endif
-                        @else
-                            <div class="empty-state text-center my-3">
-                                @include('icons.empty')
-                                <p class="text-muted my-3">
-                                    You have not create a work day for today.
-                                </p>
-                                <a href="{{ route("work-day.create") }}">
-                                    Create work day
-                                </a>
-                            </div>
-                        @endif
+                        
                     </div>
                 </div>
 
@@ -267,7 +232,7 @@
                     }
 
                     // $.ajax({
-                    //     url: '{{ route("attendance.filter_attendance_by_status", $work_day->id) }}',
+                    //     url: '{! route("attendance.filter_attendance_by_status", \App\WorkDay::find($attendance->work_day_id)->id) !}',
                     //     headers: {
                     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     //     },

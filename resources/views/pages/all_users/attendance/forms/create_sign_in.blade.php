@@ -23,8 +23,8 @@
         <label for="present">Attendance Status</label>
         <select class="form-control" name="present" id="present">
             <option value=""></option>
-            <option value="0" @if(old("present") == "0") {{ "selected" }} @endif>Present</option>
-            <option value="1" @if(old("present") == "1") {{ "selected" }} @endif>Absent</option>
+            <option value="1" @if(old("present") == "1") {{ "selected" }} @endif>Present</option>
+            <option value="0" @if(old("present") == "0") {{ "selected" }} @endif>Absent</option>
         </select>
         @if ($errors->has('present'))
             <span class="help-block">
@@ -61,26 +61,26 @@
 	        const present = document.getElementById('present');
 
 	        if(present != null){
-	            if(present.value !== "0"){
+	            if(present.value !== "1"){
 	                $("#time_in_div").hide();
 	            }else{
                     $("#time_in_div").show();
                 }
 
-                if(present.value !== "1"){
+                if(present.value !== "0"){
 	                $("#absence_reason_div").hide();
 	            }else{
                     $("#absence_reason_div").show();
                 }
 
 	            present.addEventListener("change", ()=>{
-                    if(present.value !== "0"){
+                    if(present.value !== "1"){
                         $("#time_in_div").hide();
                     }else{
                         $("#time_in_div").show();
                     }
 
-                    if(present.value !== "1"){
+                    if(present.value !== "0"){
                         $("#absence_reason_div").hide();
                     }else{
                         $("#absence_reason_div").show();
