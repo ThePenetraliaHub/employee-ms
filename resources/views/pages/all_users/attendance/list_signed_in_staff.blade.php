@@ -267,7 +267,7 @@
                     }
 
                     // $.ajax({
-                    //     url: '{{ route("attendance.filter_attendance_by_status", $work_day->id) }}',
+                    //     url: '{-- route("attendance.filter_attendance_by_status", $work_day->id) --}',
                     //     headers: {
                     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     //     },
