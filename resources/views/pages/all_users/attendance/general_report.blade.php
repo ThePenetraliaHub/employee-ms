@@ -101,35 +101,98 @@
                                             <th scope="col">Over Time</th>
                                             <th scope="col">Work Hour</th>
                                             <th scope="col">Status</th>
-                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td data-input="name">Odigir Richard</td>
-                                            <td data-input="fromDate">2019 Jun 27 09:00</td>
-                                            <td data-input="toDate">2019 Jun 27 04:30</td>
-                                            <td data-input="late">30 Min.</td>
-                                            <td data-input="earlyLeaving">30 Min</td>
-                                            <td data-input="overTime">-</td>
-                                            <td>7Hrs</td>
-                                            <td data-input="status">
-                                                @if(1 == 1)
-                                                    <span class='label label-success label-sm'>
-                                                        Present
-                                                    </span>
-                                                @else
-                                                    <span class='label label-warning label-sm'>
-                                                        Abscent
-                                                    </span>
-                                                @endif</td>
-                                            <td style="min-width: 120px;" class="text-center">
-                                                <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-comment" href="#" role="button" data-toggle="tooltip" data-placement="top"
-                                                title="Query Employee" ></a>
-                                                <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId=""></a>
-                                            </td>
-                                        </tr>
+                                        @foreach($work_days as $work_day)
+                                            <tr>
+                                                <td class="text-center text-primary" colspan="9">
+                                                    {{ $work_day->date->format('F jS, Y') }}
+                                                </td>
+                                            </tr>
+                                            @foreach($work_day->present_and_absent() as $attendance)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    
+                                                    <td data-input="name">
+                                                        <a href="{{ route("employee.profile", $attendance->employee_id) }}">
+                                                            {{ $attendance->name }}
+                                                        </a>
+                                                    </td>
+
+                                                    <td>
+                                                        @if($attendance->time_in != null)
+                                                            {{ $attendance->time_in }}
+                                                        @else
+                                                            <p class="text-danger">-- : -- : --</p>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @if($attendance->time_out != null)
+                                                            {{ $attendance->time_out }}
+                                                        @else
+                                                            <p class="text-danger">-- : -- : --</p>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_in > $work_day->start_time)
+                                                            <span class="text-danger">{{ difference_in_time($attendance->time_in, $work_day->start_time) }}</span>
+                                                        @elseif($attendance->present == 1 && $attendance->time_out != null)
+                                                            <span class="text-success">No</span>
+                                                        @else
+                                                            <p class="text-danger">-- : -- : --</p>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_out < $work_day->end_time)
+                                                            <span class="text-danger">{{ difference_in_time($attendance->time_out, $work_day->end_time) }}</span>
+                                                        @elseif($attendance->present == 1 && $attendance->time_out != null)
+                                                            <span class="text-success">No</span>
+                                                        @else
+                                                            <p class="text-danger">-- : -- : --</p>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @if($attendance->present == 1 && $attendance->time_out != null && $attendance->time_out > $work_day->end_time)
+                                                            <span class="text-danger">{{ difference_in_time($attendance->time_out, $work_day->end_time) }}</span>
+                                                        @elseif($attendance->present == 1 && $attendance->time_out != null)
+                                                            <span class="text-success">No</span>
+                                                        @else
+                                                            <p class="text-danger">-- : -- : --</p>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @if($attendance->present == 1 && $attendance->time_out != null)
+                                                            <span class="text-danger">{{ difference_in_time($attendance->time_out, $attendance->time_in) }}</span>
+                                                        @else
+                                                            <p class="text-danger">-- : -- : --</p>
+                                                        @endif
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        @if($attendance->present == 0 || $attendance->work_day_id == null)
+                                                            <span class='label label-warning label-sm'>
+                                                                Absent
+                                                            </span>
+                                                            @if($attendance->present == 0 && $attendance->absence_reason != "")
+                                                                <br>
+                                                                <button class="btn btn-info btn-xs glyphicon glyphicon-comment" data-toggle="popover" title="Absence Reason" data-content="{{ $attendance->absence_reason }}" data-placement="top"></button>
+                                                            @endif
+                                                        @else
+                                                            <span class='label label-success label-sm'>
+                                                                Present
+                                                            </span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
