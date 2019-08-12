@@ -73,7 +73,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>
-                                                        {{ \App\WorkDay::find($attendance->work_day_id)->date->format("F jS, Y") }}
+                                                        {{ date_create($attendance->date)->format("F jS, Y") }}
                                                     </td>
                                                     <td>
                                                         @if($attendance->time_in != null)
@@ -156,39 +156,8 @@
                                     </p>
                                 </div>
                             @endif
-                        
                     </div>
                 </div>
-
-                <!--Delete modal start -->
-                <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title text-center" id="exampleModalLabel">Delete Comfirmation</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                            </div>
-
-                            <div class="modal-body">
-                                <form id="delete-form" method="post" id="deleteFormId">
-                                    {{csrf_field()}} 
-                                    {{method_field('DELETE')}} 
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" id="client_id" name="_method" value="DELETE" >
-                                    </div>
-                                    
-                                    <h4 class="text-center">Are you sure you want to delete this data?</h4>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning px-5" data-dismiss="modal">No</button>
-                                        <button type="submit" class="btn btn-success px-5">Yes</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Delete modal end -->
             </div>
         </div>
     </section>
