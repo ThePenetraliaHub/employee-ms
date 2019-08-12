@@ -171,8 +171,10 @@ class AttendanceController extends Controller
 
     public function general_report()
     {
-        $attendance = Attendance::orderBy('work_day_id', 'desc')->paginate(10);
-        return view('pages.all_users.attendance.general_report', compact('attendance'));
+        $employees = Employee::all();
+        $work_days = WorkDay::all();
+        
+        return view('pages.all_users.attendance.general_report', compact('work_days', 'employees'));
     }
 
     public function filter_attendance_by_status(Request $request, WorkDay $work_day)

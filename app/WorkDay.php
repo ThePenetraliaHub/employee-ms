@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class WorkDay extends Model
 {
 	protected $guarded = [];
+    
     protected $casts = [
     	'date' => 'datetime',
         'start_date' => 'time',
