@@ -73,7 +73,7 @@
                                                     <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning glyphicon glyphicon-lock text-danger pointer" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @elseif($user->is_active == 0 && $user->id != auth()->user()->id)
-                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success glyphicon glyphicon-unlock text-success pointer" data-userId="{{ $user->id }}">
+                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success fa fa-unlock text-success pointer" data-userId="{{ $user->id }}" style='padding-top:6px; padding-bottom: 7px;'>
                                                     </a>
                                                 @endif
                                             </td>

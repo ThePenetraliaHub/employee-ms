@@ -12,7 +12,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if($work_day && $work_day->present()->count() > 0)
+                @if($work_day && $work_day->present_and_absent()->count() > 0)
                     <a href="{{ route("attendance.sign_in") }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Sign in a staff
@@ -23,16 +23,17 @@
                         Sign out a staff
                     </a>
                 @endif
+                
                 <div class="box">
                     <div class="box-body">
                         @if($work_day)
-                            @if($work_day->present()->count() > 0)
+                            @if($work_day->present_and_absent()->count() > 0)
                                 <div class="box box-primary">
-                                    <div class="box-header with-border">
+                                    {{-- <div class="box-header with-border">
                                         <h3 class="box-title">Filter by:</h3>
                                         <button type="button" class="btn btn-default pull-right"><i class="fa fa-print"></i> Print Report</button>
-                                    </div>
-                                    <div class="box-body">
+                                    </div> --}}
+                                    {{-- <div class="box-body">
                                         <form>
                                             <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <div class="row">
@@ -44,7 +45,7 @@
                                                     </select>
                                                 </div>
 
-                                                {{-- <div class="col-md-8">
+                                                <div class="col-md-8">
                                                     <div class="radio">
                                                         <label class="pr-5">
                                                             <input  id="late" type="radio" name="choice">
@@ -59,10 +60,10 @@
                                                             Over Time
                                                         </label>
                                                     </div>
-                                                </div> --}}
+                                                </div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <div class="table-responsive table-bordered" id="print">
