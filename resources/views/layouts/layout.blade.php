@@ -56,10 +56,6 @@
                             <li><a href="{{ route("home") }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
 
                             <li class="treeview">
-                                <li><a href="{{ route("admin.index") }}"><i class="glyphicon glyphicon-user"></i> Administrators</a></li>
-                            </li>
-
-                            <li class="treeview">
                                 <li><a href="{{ route('department.index') }}"><i class="glyphicon glyphicon-th-list"></i> Departments</a></li>
                             </li>
 
@@ -141,7 +137,29 @@
 
                         <ul class="treeview-menu">
                             <li class="treeview">
-                                <li><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> Users</a></li>
+                                <a href="#"><i class="fa fa-suitcase"></i> Employee
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i> Employee Users</a></li>
+
+                                    <li><a href="{{ route('pay-grade.index') }}"><i class="fa fa-circle-o"></i> Employee Roles</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><i class="fa fa-suitcase"></i> Administrator
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route("admin.index") }}"><i class="fa fa-circle-o"></i> Admin Users</a></li>
+
+                                    <li><a href="{{ route('pay-grade.index') }}"><i class="fa fa-circle-o"></i> Admin Roles</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
