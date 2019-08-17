@@ -129,7 +129,7 @@
                                                     </td>
 
                                                     <td class="text-center">
-                                                        @if($attendance->present == 0 || $attendance->absence_reason == null)
+                                                        @if($attendance->present == 0 || $attendance->work_day_id == null)
                                                             <span class='label label-warning label-sm'>
                                                                 Absent
                                                             </span>
