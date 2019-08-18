@@ -17,7 +17,7 @@ Route::get('/', function () {
 	}else{
 		return view('auth.login');
 	}
-});
+})->name('base');
 
 Route::middleware('auth')->group(function () {
 	Route::resource('/education', 'Web\EducationController');
@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
 	Route::prefix('export')->group(function () {
         Route::get('/employees', 'Web\EmployeeController@exportdata')->name('export.excel');
     });
+
     Route::prefix('import')->group(function () {
        Route::post('/employees', 'Web\EmployeeController@importdata')->name('import.excel');
     });
@@ -100,6 +101,24 @@ Route::middleware('auth')->group(function () {
         Route::delete('/trash/{message}', 'Web\MessageController@delete_to_trash')->name('message.trash.delete');
         Route::delete('/delete/{message}', 'Web\MessageController@delete_permernently')->name('message.delete');
         Route::post('/trash/{message}', 'Web\MessageController@recover')->name('message.trash.recover');
+    });
+
+    Route::prefix('role')->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::get('/', 'Web\RoleController@index_admin')->name('role.admin');
+            Route::get('/create', 'Web\RoleController@create_admin')->name('role.admin.create');
+            Route::get('/{role}', 'Web\RoleController@show_admin')->name('role.admin.edit');
+        });
+
+        Route::prefix('employee')->group(function () {
+            Route::get('/', 'Web\RoleController@index_employee')->name('role.employee');
+            Route::get('/create', 'Web\RoleController@create_employee')->name('role.employee.create');
+            Route::get('/{role}', 'Web\RoleController@show_employee')->name('role.employee.edit');
+        });
+
+        Route::post('/', 'Web\RoleController@store')->name('role.store');
+        Route::delete('/{role}', 'Web\RoleController@destroy')->name('role.delete');
+        Route::put('/{role}', 'Web\RoleController@update')->name('role.update');
     });
 });
 

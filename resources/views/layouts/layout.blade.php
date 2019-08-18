@@ -145,7 +145,7 @@
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i> Employee Users</a></li>
 
-                                    <li><a href="{{ route('pay-grade.index') }}"><i class="fa fa-circle-o"></i> Employee Roles</a></li>
+                                    <li><a href="{{ route('role.employee') }}"><i class="fa fa-circle-o"></i> Employee Roles</a></li>
                                 </ul>
                             </li>
 
@@ -158,7 +158,7 @@
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route("admin.index") }}"><i class="fa fa-circle-o"></i> Admin Users</a></li>
 
-                                    <li><a href="{{ route('pay-grade.index') }}"><i class="fa fa-circle-o"></i> Admin Roles</a></li>
+                                    <li><a href="{{ route('role.admin') }}"><i class="fa fa-circle-o"></i> Admin Roles</a></li>
                                 </ul>
                             </li>
                         </ul>

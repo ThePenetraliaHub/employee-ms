@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 
 class EmployeeStatusController extends Controller
 {
-      public function index()
+    public function index()
     {
         $employee_statuses = EmployeeStatus::orderBy('id', 'desc')->paginate(10);
         return view('pages.admin.employee_status.list', compact('employee_statuses'));

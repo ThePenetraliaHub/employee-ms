@@ -17,6 +17,7 @@ use App\Certification;
 use App\Education;
 use App\Skill;
 use App\SuperAdmin;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -29,17 +30,21 @@ class UserController extends Controller
     public function create()
     {
         $employees = Employee::all();
-        return view('pages.admin.users.create', compact("employees"));
+        $roles = Role::employee_roles();
+
+        return view('pages.admin.users.create', compact("employees", 'roles'));
     }
 
     public function store(Request $request)
     {
         $rules = [
             'employee_id' => 'required',
+            'role' => 'required',
         ];
 
         $customMessages = [
             'employee_id.required' => 'Please select employee',
+            'role.required' => "Please select employee's role",
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -64,10 +69,10 @@ class UserController extends Controller
         ]);
 
         //Assign a employee role to the user
-        $user->assignRole('employee');
+        $user->assignRole($request->role);
 
-        Mail::to($employee->office_email)
-            ->send(new EmployeeUser($user, $employee, $password));
+        //Mail::to($employee->office_email)
+            //->send(new EmployeeUser($user, $employee, $password));
 
         notify()->success("Successfully created!","","bottomRight");
 

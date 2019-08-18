@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Users
+            Employee User
             <small>View</small>
         </h1>
     </section>
@@ -15,7 +15,7 @@
                 @if(count($users) > 0)
                     <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Add user
+                        Add employee user
                     </a>
                 @endif
                 <div class="box">
@@ -28,6 +28,7 @@
                                         <th scope="col">S/N</th>
                                         <th scope="col">Employee Details</th>
                                         <th scope="col">Contact Info</th>
+                                        <th scope="col">Role</th>
                                         <th scope="col">Joined</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
@@ -55,6 +56,12 @@
                                                     {{ $user->owner->home_phone}}
                                                 </span>
                                             </td>
+
+                                            <td>
+                                                {{ \App\Role::where('name', $user->getRoleNames()->first())->get()->first()->display_name }}
+                                            </td>
+
+
                                             <td>{{ $user->owner->joined_date->diffForHumans() }} </td>
                                             <td class="text-center"> 
                                                 <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
@@ -77,10 +84,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No users yet!
+                                    No employee users yet!
                                 </p>
                                 <a href="{{ route("user.create") }}">
-                                    Add user
+                                    Add employee user
                                 </a>
                             </div>
                         @endif
