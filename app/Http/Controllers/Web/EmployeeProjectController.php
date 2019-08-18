@@ -196,7 +196,7 @@ class EmployeeProjectController extends Controller
 
     public function employee_tasks()
     {
-        $tasks = EmployeeProject::where('employee_id', auth()->user()->owner->id)->get();
+        $tasks = auth()->user()->owner->tasks();
 
         return view('pages.employee.tasks.list', compact('tasks'));
     }

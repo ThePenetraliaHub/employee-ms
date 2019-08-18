@@ -31,7 +31,7 @@
         ?>
 
         @foreach(\App\Permission::grouped_permissions() as $table => $permission)
-        	@if(\App\Permission::where('table_name', $table)->get()->first()->user_type == 'employee')
+        	@if(\App\Permission::where('table_name', $table)->get()->first()->user_type == 'employee' || \App\Permission::where('table_name', $table)->get()->first()->user_type == 'all')
 	            <li>
 	                <input type="checkbox" id="{{$table}}" class="permission-group">
 	                <label for="{{$table}}"><strong>{{title_case(str_replace('_',' ', $table))}}</strong></label>

@@ -71,18 +71,20 @@ class UserController extends Controller
         //Assign a employee role to the user
         $user->assignRole($request->role);
 
-        //Mail::to($employee->office_email)
-            //->send(new EmployeeUser($user, $employee, $password));
+        Mail::to($employee->office_email)
+            ->send(new EmployeeUser($user, $employee, $password));
 
         notify()->success("Successfully created!","","bottomRight");
 
         return redirect()->route('user.index');
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        $certifications = Certification::where('employee_id', $id)->get();
-        return view('pages.admin.users.list', compact('certifications'));
+        $employees = Employee::all();
+        $roles = Role::employee_roles();
+
+        return view('pages.admin.users.edit', compact('user', 'roles'));
     }
 
 
@@ -92,9 +94,24 @@ class UserController extends Controller
         return view('pages.admin.users.edit', compact('certification','employees'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
-        
+        $rules = [
+            'role' => 'required',
+        ];
+
+        $customMessages = [
+            'role.required' => "Please select employee's role",
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        //Assign a employee role to the user
+        $user->syncRoles($request->role);
+
+        notify()->success("Successfully updated!","","bottomRight");
+
+        return redirect()->route('user.index');
     }
 
     public function profile()

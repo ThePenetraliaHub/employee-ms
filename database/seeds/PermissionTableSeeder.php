@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 class PermissionTableSeeder extends Seeder
@@ -16,10 +15,15 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         DB::statement("SET FOREIGN_KEY_CHECKS=0");
-        Role::truncate();
+        Permission::truncate();
         DB::statement("SET FOREIGN_KEY_CHECKS=1");
 
-        Role::create(['name' => 'super admin']);
-        Role::create(['name' => 'employee']);
+        //Administrator permissions
+        Permission::create(['name' => '', 'guard_name' => 'web', 'display_name' => '', 'table_name'=> 'administrator', 'user_type' => '']);
+        Permission::create(['name' => '', 'guard_name' => 'web', 'display_name' => '', 'table_name'=> 'administrator', 'user_type' => '']);
+        Permission::create(['name' => '', 'guard_name' => 'web', 'display_name' => '', 'table_name'=> 'administrator', 'user_type' => '']);
+        Permission::create(['name' => '', 'guard_name' => 'web', 'display_name' => '', 'table_name'=> 'administrator', 'user_type' => '']);
+        Permission::create(['name' => '', 'guard_name' => 'web', 'display_name' => '', 'table_name'=> 'administrator', 'user_type' => '']);
+
     }
 }

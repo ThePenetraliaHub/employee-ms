@@ -18,8 +18,9 @@ class RoleController extends Controller
 
     public function index_admin()
     {
-        $departments = Department::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.departments.list', ['departments' => $departments]);
+        $roles = Role::admin_roles();
+
+        return view('pages.all_users.role.list_admin', compact('roles'));
     }
 
     public function create_employee()
@@ -29,7 +30,7 @@ class RoleController extends Controller
 
     public function create_admin()
     {
-        return view('pages.admin.departments.create');
+        return view('pages.all_users.role.create_admin');
     }
 
     public function store(Request $request)
@@ -60,7 +61,11 @@ class RoleController extends Controller
 
         notify()->success("Successfully created!","","bottomRight");
 
-        return redirect()->route('role.employee');
+        if($request->user_type == 'admin'){
+            return redirect()->route('role.admin');
+        }elseif($request->user_type == 'employee'){
+            return redirect()->route('role.employee');
+        }
     }
 
     public function show_employee(Role $role)
@@ -70,7 +75,7 @@ class RoleController extends Controller
 
     public function show_admin(Role $role)
     {
-        return view('pages.admin.departments.edit', ['department' => $department]);
+        return view('pages.all_users.role.edit_admin', compact('role'));
     }
 
     public function update(Request $request, Role $role){
@@ -104,7 +109,11 @@ class RoleController extends Controller
 
         notify()->success("Successfully Updated!","","bottomRight");
 
-        return redirect()->route('role.employee');
+        if($request->user_type == 'admin'){
+            return redirect()->route('role.admin');
+        }elseif($request->user_type == 'employee'){
+            return redirect()->route('role.employee');
+        }
     }
 
     public function destroy(Role $role)

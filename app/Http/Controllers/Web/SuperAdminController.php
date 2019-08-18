@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminUser;
 use App\Employee;
+use App\Role;
 
 class SuperAdminController extends Controller
 {
@@ -23,7 +24,9 @@ class SuperAdminController extends Controller
 
     public function create()
     {
-        return view('pages.admin.super_admin.create');
+        $roles = Role::employee_roles();
+
+        return view('pages.admin.super_admin.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -35,6 +38,7 @@ class SuperAdminController extends Controller
                 // "phone" => "required|regex:/^[+]?[0-9]*$/|phone:NG",
                 'address' => 'required',
                 "phone" => "required",
+                'role' => 'required',
             ];
 
             $customMessages = [
@@ -45,6 +49,7 @@ class SuperAdminController extends Controller
                 'phone.regex' => 'Please provide a valid Nigerian phone number.',
                 'phone.phone' => 'Please provide a valid Nigerian phone number.',
                 'address.required' => 'Please provide the administrator\'s address.',
+                'role.required' => "Please select administrator's role",
             ];
 
             $this->validate($request, $rules, $customMessages);
@@ -73,7 +78,7 @@ class SuperAdminController extends Controller
             ]);
 
             //Assign a super admin role to the user
-            $user->assignRole('super admin');
+            $user->assignRole($request->role);
 
             //Send mail to the new administrator
             Mail::to($request->email)
@@ -87,9 +92,11 @@ class SuperAdminController extends Controller
         }
     }
 
-    public function show(SuperAdmin $admin)
+    public function show(User $admin)
     {
-        return view('pages.admin.super_admin.edit', compact('admin'));
+        $roles = Role::admin_roles();
+
+        return view('pages.admin.super_admin.edit', ['user' => $admin, 'roles' => $roles]);
     }
 
     public function update(Request $request, SuperAdmin $admin)
@@ -101,6 +108,7 @@ class SuperAdminController extends Controller
                 // "phone" => "required|regex:/^[+]?[0-9]*$/|phone:NG",
                 'address' => 'required',
                 "phone" => "required",
+                'role' => 'required',
             ];
 
             $customMessages = [
@@ -111,6 +119,7 @@ class SuperAdminController extends Controller
                 'phone.regex' => 'Please provide a valid Nigerian phone number.',
                 'phone.phone' => 'Please provide a valid Nigerian phone number.',
                 'address.required' => 'Please provide the administrator\'s address.',
+                'role.required' => "Please select employee's role",
             ];
 
             $this->validate($request, $rules, $customMessages);
@@ -132,6 +141,8 @@ class SuperAdminController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
             ]);
+
+            $admin->user_info->syncRoles($request->role);
 
             notify()->success("Successfully updated!","","bottomRight");
 

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class RoleTableSeeder extends Seeder
 {
@@ -19,7 +18,7 @@ class RoleTableSeeder extends Seeder
         Role::truncate();
         DB::statement("SET FOREIGN_KEY_CHECKS=1");
 
-        Role::create(['name' => 'super admin']);
-        Role::create(['name' => 'employee']);
+        Role::create(['name' => 'super admin', 'display_name' => 'Super Administrator', 'user_type' => 'admin']);
+        Role::create(['name' => 'employee', 'display_name' => 'Manager', 'user_type' => 'employee']);
     }
 }

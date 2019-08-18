@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-primary">
-                    <form autocomplete="off" novalidate="novalidate" method="POST" role="form" class="form-horizontal" action="{{ route('admin.update', $admin->id) }}">
+                    <form autocomplete="off" novalidate="novalidate" method="POST" role="form" class="form-horizontal" action="{{ route('admin.update', $user->owner->id) }}">
                         {{csrf_field()}}  
                         {{method_field('PUT')}} 
 

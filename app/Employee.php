@@ -53,6 +53,11 @@ class Employee extends Model
         return $this->belongsTo('App\Department');
     }
 
+    public function tasks()
+    {
+        return \App\EmployeeProject::where('employee_id', $this->id)->get();
+    }
+
     public function city()
     {
         return $this->belongsTo('App\Department');

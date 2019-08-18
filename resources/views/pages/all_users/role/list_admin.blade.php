@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Departments
+            Admin Roles
             <small>View</small>
         </h1>
     </section>
@@ -12,36 +12,38 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(count($departments) > 0)
-                    <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm my-2">
+                @if(count($roles) > 0)
+                    <a href="{{ route('role.admin.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
-                        Create new department
+                        Create new admin role
                     </a>
                 @endif
                 <div class="box">
                     <div class="box-body">
-                        @if(count($departments) > 0)
+                        @if(count($roles) > 0)
                             <div class="table-responsive table-bordered">
                                 <table id="dataTable" class="table table-striped table-responsive">
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
+                                            <th scope="col">Display Name</th>
                                             <th scope="col" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach($departments as $department)
+                                        @foreach($roles as $role)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $department->name}}</td>
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('department.show' , $department->id) }}" role="button" style=" margin-right: 5px; "></a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-deptId="{{ $department->id }}"></a>
-                                                    </div> 
+                                                <td>{{ $role->name}}</td>
+                                                <td>{{ $role->display_name}}</td>
+                                                
+                                                <td class="text-center">
+                                                    <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('role.admin.edit' , $role->id) }}" role="button"></a>
+
+                                                    <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-roleId="{{ $role->id }}"></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -52,10 +54,10 @@
                             <div class="empty-state text-center my-3">
                                 @include('icons.empty')
                                 <p class="text-muted my-3">
-                                    No departments yet!
+                                    No admin roles yet!
                                 </p>
-                                <a href="{{ route("department.create") }}">
-                                    Create department
+                                <a href="{{ route("role.admin.create") }}">
+                                    Create admin role
                                 </a>
                             </div>
                         @endif
@@ -76,7 +78,7 @@
                                     {{csrf_field()}} 
                                     {{method_field('DELETE')}} 
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" id="deptId" name="_method" value="DELETE" >
+                                        <input type="hidden" class="form-control" id="roleId" name="_method" value="DELETE" >
                                     </div>
                                     
                                     <h4 class="text-center">Are you sure you want to delete this data?</h4>
@@ -103,11 +105,11 @@
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var dept_id = button.data('deptid') // Extract info from data-* attributes
+                var role_id = button.data('roleid') // Extract info from data-* attributes
 
                 var modal = $(this)
-                
-                $('#delete-form').attr('action', "department/"+dept_id);
+
+                $('#delete-form').attr('action', "{{ route('base') }}/role/"+role_id);
             })
         });
     </script>

@@ -63,15 +63,19 @@
 
 
                                             <td>{{ $user->owner->joined_date->diffForHumans() }} </td>
-                                            <td class="text-center"> 
-                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+                                            
+                                            <td class="text-center">
+                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('user.show' , $user->id) }}" role="button"></a>
 
+                                                @if($user->id != auth()->user()->id)
+                                                    <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+                                                @endif
                                                 {{-- Use the user active/inactive status to detect which icon to show --}}
                                                 @if($user->is_active == 1 && $user->id != auth()->user()->id)
-                                                    <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning fa fa-lock text-danger pointer ml-3" data-userId="{{ $user->id }}">
+                                                    <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning fa fa-lock text-danger pointer" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @elseif($user->is_active == 0 && $user->id != auth()->user()->id)
-                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success fa fa-unlock text-success pointer ml-3" data-userId="{{ $user->id }}">
+                                                    <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success fa fa-unlock text-success pointer" data-userId="{{ $user->id }}">
                                                     </a>
                                                 @endif
                                             </td>
