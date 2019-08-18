@@ -37,10 +37,12 @@
 	                <label for="{{$table}}"><strong>{{title_case(str_replace('_',' ', $table))}}</strong></label>
 	                <ul>
 	                    @foreach($permission as $perm)
-	                        <li>
-	                            <input type="checkbox" id="permission-{{$perm->id}}" name="permissions[]" class="the-permission" value="{{$perm->id}}" @if(in_array($perm->name, $role_permissions)) checked @endif>
-	                            <label for="permission-{{$perm->id}}">{{title_case(str_replace('_', ' ', $perm->display_name))}}</label>
-	                        </li>
+                            @if($perm->user_type == 'admin' || $perm->user_type == 'all')
+    	                        <li>
+    	                            <input type="checkbox" id="permission-{{$perm->id}}" name="permissions[]" class="the-permission" value="{{$perm->id}}" @if(in_array($perm->name, $role_permissions)) checked @endif>
+    	                            <label for="permission-{{$perm->id}}">{{title_case(str_replace('_', ' ', $perm->display_name))}}</label>
+    	                        </li>
+                            @endif
 	                    @endforeach
 	                </ul>
 	            </li>
