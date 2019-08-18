@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleTableSeeder extends Seeder
 {
@@ -18,6 +18,10 @@ class RoleTableSeeder extends Seeder
         Role::truncate();
         DB::statement("SET FOREIGN_KEY_CHECKS=1");
 
-        Role::create(['name' => 'super admin', 'display_name' => 'Super Administrator', 'user_type' => 'admin']);
+        $permissions = Permission::where('user_type', 'admin')->orWhere('user_type', 'all')->get();
+
+        foreach($permissions as $permission){
+            
+        }
     }
 }
