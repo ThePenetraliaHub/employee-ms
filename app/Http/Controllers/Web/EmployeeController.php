@@ -182,7 +182,7 @@ class EmployeeController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessages);
-
+// this throws error when u try to update an employees email for d first time cus no employee user exist in user table yet
         if (User::where([['email', $request->office_email], ['id', '<>', $employee->user_info->id]])->get()->count() != 0) {
             throw ValidationException::withMessages([
                 'office_email' => "A user with employee's official email already exist."

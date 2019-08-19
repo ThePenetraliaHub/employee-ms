@@ -18,7 +18,7 @@ class LeaveRequestController extends Controller
     //Employee leave requests
     public function index()
     {
-        if(auth()->user()->hasRole('employee')){
+        if(auth()->user()->can('request_leave')){
             $leave_requests = auth()->user()->owner->all_leave_request;
             $compulsory_leaves = auth()->user()->owner->cumpolsory_leaves();
 
@@ -30,7 +30,7 @@ class LeaveRequestController extends Controller
 
     public function create()
     {
-        if(auth()->user()->hasRole('employee')){
+        if(auth()->user()->can('request_leave')){
             $leave_types = auth()->user()->owner->available_leave_types();
             $compulsory_leaves = auth()->user()->owner->cumpolsory_leaves();
 
@@ -42,7 +42,7 @@ class LeaveRequestController extends Controller
 
     public function store(Request $request)
     {
-        if(auth()->user()->hasRole('employee')){
+        if(auth()->user()->can('request_leave')){
             $rules = [
                 'leave_type_id' => 'required',
                 'leave_request_content' => "max:1000",
