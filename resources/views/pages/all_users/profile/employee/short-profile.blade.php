@@ -37,24 +37,15 @@
 
             </div>
         </div>
-
-
     </div>
-
-
-
-
     <div class="row">
 
         <div class="col-md-12">
 
             <div class="tab-content basic-tab" id="myTabContent">
-
                     <div class="tab-pane fade in active" id="basic-info" role="tabpanel" aria-labelledby="personal-info-tab">
-                        @include('pages/all_users/profile/userLayouts/short-info')
-
+                        @include('pages/all_users/profile/employee/userLayouts/short-info')
                     </div>
-
                 </div>
             </div>
     </div>

@@ -116,16 +116,18 @@ class UserController extends Controller
 
     public function profile()
     {
-        if(auth()->user()->hasRole('employee')){
+        if(auth()->user()->owner instanceof Employee){
             $employee = Employee::find(auth()->user()->owner->id);
 
             $educations = Education::where('employee_id', auth()->user()->owner->id)->get();
             $certifications = Certification::where('employee_id', auth()->user()->owner->id)->get();
             $skills = Skill::where('employee_id', auth()->user()->owner->id)->get();
 
-            return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
-        }elseif(auth()->user()->hasRole('super admin')){
+            return view('pages.all_users.profile.employee.full-profile', compact('employee','educations','certifications','skills'));
+        }elseif(auth()->user()->owner instanceof SuperAdmin){
+            $admin = auth()->user()->owner;
 
+            return view('pages.all_users.profile.admin.short-profile', compact('admin'));
         }else{
             abort(403, 'Unauthorized action.');
         }
@@ -133,36 +135,33 @@ class UserController extends Controller
 
     public function adminProfile(SuperAdmin $admin)
     {
-        if(auth()->user()->hasRole('super admin')){
-            if($admin == auth()->user()->owner){
-                return redirect("profile");
-            }else{
-                
-            }
+        if($admin == auth()->user()->owner){
+            return redirect("profile");
         }else{
-            abort(403, 'Unauthorized action.');
+            if(auth()->user()->can('read_admin_user')){
+                return view('pages.all_users.profile.admin.short-profile', compact('admin'));
+            }else{
+                abort(403, 'Unauthorized action.');
+            }
         }
     }
 
     public function employeeProfile(Employee $employee)
     {
-        if(auth()->user()->hasRole('employee')){
-            if($employee == auth()->user()->owner){
-                return redirect("profile");
-            }else{
-                $employee = Employee::find($employee->id);
-
-                return view('pages.all_users.profile.short-profile', compact('employee'));
-            }
-        }elseif(auth()->user()->hasRole('super admin')){
-            $employee = Employee::find($employee->id);
-            $educations = Education::where('employee_id', $employee->id)->get();
-            $certifications = Certification::where('employee_id', $employee->id)->get();
-            $skills = Skill::where('employee_id', $employee->id)->get();
-
-            return view('pages.all_users.profile.full-profile', compact('employee','educations','certifications','skills'));
+        if($employee == auth()->user()->owner){
+            return redirect("profile");
         }else{
-            abort(403, 'Unauthorized action.');
+            if(auth()->user()->can('edit_employee')){
+                $educations = Education::where('employee_id', $employee->id)->get();
+                $certifications = Certification::where('employee_id', $employee->id)->get();
+                $skills = Skill::where('employee_id', $employee->id)->get();
+
+                return view('pages.all_users.profile.employee.full-profile', compact('employee','educations','certifications','skills'));
+            }elseif(auth()->user()->can('read_employee')){
+                return view('pages.all_users.profile.employee.short-profile', compact('employee'));
+            }else{
+                abort(403, 'Unauthorized action.');
+            }
         }
     }
 

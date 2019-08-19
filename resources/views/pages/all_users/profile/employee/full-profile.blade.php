@@ -76,21 +76,21 @@
             <div class="tab-content basic-tab" id="myTabContent">
 
                     <div class="tab-pane fade in active" id="basic-info" role="tabpanel" aria-labelledby="personal-info-tab">
-                        @include('pages/all_users/profile/userLayouts/basic-info')
+                        @include('pages/all_users/profile/employee/userLayouts/basic-info')
 
                     </div>
 
 
 
                     <div class="tab-pane fade" id="education-info" role="tabpanel" aria-labelledby="education-info-tab">
-                        @include('pages/all_users/profile/userLayouts/education')
+                        @include('pages/all_users/profile/employee/userLayouts/education')
                     </div>
 
 
 
 
                     <div class="tab-pane fade" id="certification-info" role="tabpanel" aria-labelledby="certification-info-tab">
-                        @include('pages/all_users/profile/userLayouts/certification')
+                        @include('pages/all_users/profile/employee/userLayouts/certification')
                     </div>
 
 
@@ -99,7 +99,7 @@
 
                     <div class="tab-pane fade" id="skills-info" role="tabpanel" aria-labelledby="skills-info-tab">
 
-                         @include('pages/all_users/profile/userLayouts/skill')
+                         @include('pages/all_users/profile/employee/userLayouts/skill')
 
                     </div>
 

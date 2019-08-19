@@ -68,6 +68,7 @@ class PermissionTableSeeder extends Seeder
 
         //Employee Permissions
         Permission::create(['name' => 'browse_employee', 'guard_name' => 'web', 'display_name' => 'Browse Employee', 'table_name'=> 'employee', 'user_type' => 'all']);
+        Permission::create(['name' => 'read_employee', 'guard_name' => 'web', 'display_name' => 'Read Employee', 'table_name'=> 'employee', 'user_type' => 'all']);
         Permission::create(['name' => 'add_employee', 'guard_name' => 'web', 'display_name' => 'Add Employee', 'table_name'=> 'employee', 'user_type' => 'all']);
         Permission::create(['name' => 'edit_employee', 'guard_name' => 'web', 'display_name' => 'Edit Employee', 'table_name'=> 'employee', 'user_type' => 'all']);
         Permission::create(['name' => 'delete_employee', 'guard_name' => 'web', 'display_name' => 'Delete Employee', 'table_name'=> 'employee', 'user_type' => 'all']);
