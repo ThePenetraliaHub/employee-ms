@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($departments) > 0)
+                    @if(auth()->user()->can('add_departments'))
                     <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new department
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -54,9 +56,11 @@
                                 <p class="text-muted my-3">
                                     No departments yet!
                                 </p>
+                                @if(auth()->user()->can('add_departments'))
                                 <a href="{{ route("department.create") }}">
                                     Create department
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

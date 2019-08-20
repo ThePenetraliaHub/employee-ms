@@ -4,14 +4,16 @@
     <span class="sr-only">Toggle navigation</span> 
 
     <span class="ml-3">
-      {{ config('app.name') }}
+      {{-- config('app.name') --}}
     </span>
   </a>
 
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
       <!-- User Account: style can be found in dropdown.less -->
+      @if(auth()->user()->hasAnyPermission(['receive_messages','send_messages']))
          @include("partials.header-widget.messages")
+      @endif
          @include("partials.header-widget.notifications")
       <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

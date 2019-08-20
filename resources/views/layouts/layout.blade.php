@@ -15,7 +15,7 @@
         <header class="main-header">
             <a href="{{ route("home") }}" class="logo">
                 <span class="logo-mini"><b>EMS</span>
-                <span class="logo-lg"><b>HOME</b></span>
+                <span class="logo-lg"><b>HRM SYSTEM</b></span>
             </a>
             @include("partials.navbar")
         </header>
@@ -47,14 +47,18 @@
                 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Admin</span>
+                        @if(auth()->user()->typeable_type == "App\SuperAdmin")
+                            <i class="fa fa-dashboard"></i> <span>{{ auth()->user()->user_type() }}</span>
+                            @else
+                            <i class="fa fa-dashboard"></i> <span>{{-- auth()->user()->user_type() --}}{{ auth()->user()->owner->job_title->title }}</span>
+                         @endif
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
 
                         <ul class="treeview-menu">
-                            <li><a href="{{ route("home") }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+                            <!-- <li><a href="{{ route("home") }}"><i class="fa fa-circle-o"></i> Dashboard</a></li> -->
 
                             @if(auth()->user()->hasAnyPermission(['browse_departments','add_departments','edit_departments',
                                                                     'delete_departments']))
@@ -70,6 +74,12 @@
                             </li>
                             @endif
 
+                            @if(auth()->user()->hasAnyPermission(['browse_job_titles','add_job_titles','edit_job_titles',
+                                                            'delete_job_titles','browse_pay_grades','add_pay_grades',
+                                                            'edit_pay_grades','delete_pay_grades','browse_employee_statuses',
+                                                            'add_employee_statuses','edit_employee_statuses',
+                                                            'delete_employee_statuses']))
+
                             <li class="treeview">
                                 <a href="#"><i class="fa fa-suitcase"></i> Job Setup
                                     <span class="pull-right-container">
@@ -77,13 +87,26 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
+                                @if(auth()->user()->hasAnyPermission(['browse_job_titles','add_job_titles','edit_job_titles',
+                                                            'delete_job_titles']))
                                     <li><a href="{{ route('job-title.index') }}"><i class="fa fa-circle-o"></i> Job Titles</a></li>
+                                    @endif
+
+                               @if(auth()->user()->hasAnyPermission(['browse_pay_grades','add_pay_grades',
+                                                            'edit_pay_grades','delete_pay_grades']))
 
                                     <li><a href="{{ route('pay-grade.index') }}"><i class="fa fa-circle-o"></i> Pay Grades</a></li>
+                                    @endif
+
+                               @if(auth()->user()->hasAnyPermission(['browse_employee_statuses',
+                                                            'add_employee_statuses','edit_employee_statuses',
+                                                            'delete_employee_statuses']))
 
                                     <li><a href="{{ route('employee-status.index') }}"><i class="fa fa-circle-o"></i> Employment Statuses</a></li>
+                                    @endif
                                 </ul>
                             </li>
+                            @endif
 
                             @if(auth()->user()->hasAnyPermission(['browse_employee','read_employee','add_employee',
                                                                 'edit_employee','delete_employee']))
@@ -114,6 +137,11 @@
                             </li>
                             @endif
 
+                            @if(auth()->user()->hasAnyPermission(['browse_projects','read_projects','add_projects',
+                                                            'edit_projects','delete_projects','browse_employee_tasks',
+                                                            'read_employee_tasks','add_employee_tasks','edit_employee_tasks',
+                                                            'delete_employee_tasks','download_employee_tasks']))
+
                             <li class="treeview">
                                 <a href="#"><i class="fa fa-tasks"></i> Project Setup
                                     <span class="pull-right-container">
@@ -121,16 +149,24 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
+                                @if(auth()->user()->hasAnyPermission(['browse_projects','read_projects','add_projects',
+                                                            'edit_projects','delete_projects']))
                                     <li>
                                         <a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> Projects
                                         </a>
                                     </li>
+                                    @endif
+                                    @if(auth()->user()->hasAnyPermission(['browse_employee_tasks',
+                                                            'read_employee_tasks','add_employee_tasks','edit_employee_tasks',
+                                                            'delete_employee_tasks','download_employee_tasks']))
                                     <li>
                                         <a href="{{ route('employee-project.index') }}"><i class="fa fa-circle-o"></i> Employee Tasks
                                         </a>
                                     </li>
+                                    @endif
                                 </ul>
                             </li>
+                            @endif
 
                         </ul>
                     </li>
