@@ -14,10 +14,10 @@
             <div class="col-md-12">
                 @if(count($certifications) > 0)
                     @if(auth()->user()->can('add_employee_certifications'))
-                    <a href="{{ route('certification.create') }}" class="btn btn-primary btn-sm my-2">
-                        <span class="fa fa-plus-circle mr-2"></span>
-                        Add certification
-                    </a>
+                        <a href="{{ route('certification.create') }}" class="btn btn-primary btn-sm my-2">
+                            <span class="fa fa-plus-circle mr-2"></span>
+                            Add certification
+                        </a>
                     @endif
                 @endif
                 <div class="box">
