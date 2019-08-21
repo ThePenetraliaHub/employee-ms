@@ -11,6 +11,16 @@ use Illuminate\Validation\ValidationException;
 
 class ProjectController extends Controller
 {
+    function __construct()
+    {
+
+         $this->middleware('permission:browse_projects'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_projects', ['only' => 'create']);
+         $this->middleware('permission:read_projects', ['only' => 'projectById']);
+         $this->middleware('permission:edit_projects', ['only' => 'show']);
+ 
+
+    }
     public function index()
     {
        $projects = Project::orderBy('id', 'desc')->paginate(200);

@@ -9,6 +9,13 @@ use Illuminate\Validation\ValidationException;
 
 class LeaveApprovalController extends Controller
 {
+
+    function __construct()
+    {
+       
+         $this->middleware('permission:approve_unapprove_leave', ['only' => ['index','edit']]);
+
+    }
     public function index()
     {
         $leave_requests = LeaveRequest::orderBy('id', 'desc')->paginate(10);

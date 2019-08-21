@@ -12,6 +12,15 @@ use Illuminate\Validation\ValidationException;
 
 class EducationController extends Controller
 {
+    function __construct()
+    {
+
+         $this->middleware('permission:browse_employee_educations'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_employee_educations', ['only' => 'create']);
+         $this->middleware('permission:edit_employee_educations', ['only' => 'show']);
+ 
+
+    }
     public function index()
     {
         $educations = Education::all();

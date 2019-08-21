@@ -171,7 +171,7 @@
                         </ul>
                     </li>
 
-                    @if(!auth()->user()->hasAnyPermission(['read_employee_tasks','edit_employee_tasks','delete_employee_tasks','download_employee_tasks']))<li>
+                    @if(!auth()->user()->hasAnyPermission(['edit_employee_tasks','delete_employee_tasks','download_employee_tasks']))<li>
                         <a href="{{ route('task.index') }}">
                             <i class="fa fa-tasks"></i><span> Tasks</span>
                         </a>

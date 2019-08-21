@@ -10,6 +10,15 @@ use Illuminate\Validation\ValidationException;
 
 class LeaveTypeController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:browse_leave_profiles'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_leave', ['only' => 'create']);
+         $this->middleware('permission:read_leave', ['only' => 'show']);
+         $this->middleware('permission:edit_leave', ['only' => 'edit']);
+ 
+
+    }
     public function index()
     {
         $leave_types = LeaveType::orderBy('id', 'desc')->paginate(10);

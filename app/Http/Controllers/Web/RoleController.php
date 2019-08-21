@@ -9,6 +9,18 @@ use Illuminate\Validation\Rule;
 
 class RoleController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:browse_employee_roles', ['only' => 'index_employee']); 
+         $this->middleware('permission:add_employee_roles', ['only' => 'create_employee']);
+         $this->middleware('permission:edit_employee_roles', ['only' => 'show_employee']);
+
+         $this->middleware('permission:browse_employee_roles', ['only' => 'index_admin']); 
+         $this->middleware('permission:add_employee_roles', ['only' => 'create_admin']);
+         $this->middleware('permission:edit_employee_roles', ['only' => 'show_admin']);
+ 
+
+    }
 	public function index_employee()
     {
         $roles = Role::employee_roles();

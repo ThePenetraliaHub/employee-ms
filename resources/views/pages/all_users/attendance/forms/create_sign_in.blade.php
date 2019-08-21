@@ -35,7 +35,7 @@
 
     <div id="time_in_div" class="form-group col-xs-11{{ $errors->has('time_in') ? ' has-error' : '' }} mb-0 mt-3">
     	<label for="time_in">Time in</label>
-        <input id="time_in" type="time" class="form-control" name="time_in" value="{{ old('time_in', "00:00") }}" required>
+        <input id="time_in" type="time" class="form-control" name="time_in" value="{{ old('time_in', date("H:i")) }}" required>
         @if ($errors->has('time_in'))
             <span class="help-block">
                 <strong>{{ $errors->first('time_in') }}</strong>

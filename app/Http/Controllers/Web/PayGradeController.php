@@ -10,6 +10,15 @@ use Illuminate\Validation\ValidationException;
 
 class PayGradeController extends Controller
 {
+    function __construct()
+    {
+
+         $this->middleware('permission:browse_pay_grades'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_pay_grades', ['only' => 'create']);
+         $this->middleware('permission:edit_pay_grades', ['only' => 'show']);
+ 
+
+    }
     public function index()
     {
         $pay_grades = PayGrade::orderBy('id', 'desc')->paginate(10);
