@@ -13,6 +13,7 @@
         <div class="row">
             <div class="col-md-12">
 {{--                @if(count($employees) < 0)--}}
+                        @if(auth()->user()->can('add_employee'))
                     <a href="{{ route('employee.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create employee
@@ -35,6 +36,7 @@
                
                             </div>
                     </div>
+                         @endif
 
 {{--                @endif--}}
                 <div class="box">
@@ -50,8 +52,10 @@
                                         <th scope="col">Supervisor</th>
                                         <th scope="col">Contact</th>
                                         <th scope="col">Joined</th>
-<!--                                         <th scope="col">Employment Status</th> -->
+<!--                                         <th scope="col">Employment Status</th> --> 
+                                        @if(auth()->user()->hasAnyPermission(['read_employee','edit_employee','delete_employee']))
                                         <th scope="col">Action</th>
+                                        @endif
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -79,14 +83,23 @@
                                                 </span>
                                             </td>
                                             <td>{{ $employee->joined_date->diffForHumans() }} </td>
-                                         <!--    <td>{{ $employee->employee_status->title}}</td> -->
-                                            <td style="min-width: 140px;"> 
+                                         <!--    <td>{{ $employee->employee_status->title}}</td> --> 
+                                         @if(auth()->user()->hasAnyPermission(['read_employee','edit_employee','delete_employee']))
+                                            <td style="min-width: 140px;">
+                                                @if(auth()->user()->can('read_employee')) 
                                                 <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('employee.profile' ,$employee->id) }}" role="button" style="margin-right: 5px;"> </a>
+                                                 @endif
 
-                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeId="{{ $employee->id }}"></a>
-
+                                                 @if(auth()->user()->can('edit_employee'))
                                                 <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee.show' , $employee->id) }}" role="button" style=" margin-right: 5px; "> </a>
+                                                @endif
+
+                                                @if(auth()->user()->can('delete_employee'))
+                                                <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeId="{{ $employee->id }}"></a>
+                                                @endif
+                                                
                                             </td>
+                                            @endif
                                         </tr>
                                        @endforeach
                                    </tbody>
@@ -98,9 +111,11 @@
                                 <p class="text-muted my-3">
                                     No employees yet!
                                 </p>
+                                @if(auth()->user()->can('add_employee'))
                                 <a href="{{ route("employee.create") }}">
                                     Create Employee
-                                </a>
+                                </a> 
+                                @endif
                             </div>
                         @endif
                     </div>

@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(StatesTableSeeder::class);
         // $this->call(CitiesTableSeeder::class);
         // $this->call(RoleTableSeeder::class);
-        $this->call(PermissionTableSeeder::class);
-        $this->call(SuperAdminPermissionTableSeeder::class);
-        // $this->call(SuperAdminTableSeeder::class);
+        // $this->call(PermissionTableSeeder::class);
+        // $this->call(SuperAdminPermissionTableSeeder::class);
+        $this->call(SuperAdminTableSeeder::class);
         // $this->call(DepartmentsTableSeeder::class);
         // $this->call(PayGradesTableSeeder::class);
         // $this->call(JobTitlesTableSeeder::class);

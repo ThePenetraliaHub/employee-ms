@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($clients) > 0)
+                     @if(auth()->user()->can('add_clients'))
                     <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create client
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -30,7 +32,9 @@
                                         <th scope="col">Address</th>
                                         <th scope="col">Contact</th>
                                         <th scope="col">Website</th>
+                                        @if(auth()->user()->hasAnyPermission(['read_clients','edit_clients','delete_clients']))
                                         <th scope="col" class="text-center">Action</th>
+                                        @endif
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -61,13 +65,21 @@
                                                 <span class="text-muted">{{ $client->contact_email}}</span>
                                             </td>
                                             <td>{{ $client->company_url}} </td>
+                                            @if(auth()->user()->hasAnyPermission(['read_clients','edit_clients','delete_clients']))
                                             <td style="min-width: 120px;" class="text-center">
+                                                @if(auth()->user()->can('read_clients'))
                                                 <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('client.details', $client->id) }}" role="button" ></a>
+                                                @endif
 
+                                                @if(auth()->user()->can('edit_clients'))
                                                 <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('client.show' ,$client->id) }}" role="button"></a>
+                                                @endif
 
+                                                @if(auth()->user()->can('delete_clients'))
                                                 <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-clientId="{{ $client->id }}"></a>
+                                                @endif
                                             </td>
+                                            @endif
                                         </tr>
                                        @endforeach
                                    </tbody>
@@ -79,9 +91,11 @@
                                 <p class="text-muted my-3">
                                     No clients yet!
                                 </p>
+                                @if(auth()->user()->can('add_clients'))
                                 <a href="{{ route("client.create") }}">
                                     Create Client
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

@@ -29,7 +29,9 @@
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
+                                            @if(auth()->user()->hasAnyPermission(['edit_departments','delete_departments']))
                                             <th scope="col" class="text-center">Actions</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -38,13 +40,19 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $department->name}}</td>
+                                                @if(auth()->user()->hasAnyPermission(['edit_departments','delete_departments']))
                                                 <td class="text-center">
                                                     <div class="btn-group">
+                                                    @if(auth()->user()->can('edit_departments'))
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('department.show' , $department->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                         @endif
 
+                                                    @if(auth()->user()->can('delete_departments'))
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-deptId="{{ $department->id }}"></a>
+                                                        @endif
                                                     </div> 
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

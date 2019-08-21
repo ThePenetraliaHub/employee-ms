@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($certifications) > 0)
+                    @if(auth()->user()->can('add_employee_certifications'))
                     <a href="{{ route('certification.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Add certification
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -31,7 +33,9 @@
                                             <th scope="col">Award Institution/Body</th>
                                             <th scope="col">Awarded On</th>
                                             <th scope="col">Valid Through</th>
+                                            @if(auth()->user()->hasAnyPermission(['edit_employee_certifications','download_employee_certifications','delete_employee_certifications']))
                                             <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -52,15 +56,24 @@
                                                 <td>{{ $certification->institution}}</td>
                                                 <td>{{ $certification->granted_on->format('F j, Y')}}</td>
                                                 <td>{{ $certification->valid_on->format('F j, Y')}}</td>
+
+                                                @if(auth()->user()->hasAnyPermission(['edit_employee_certifications','download_employee_certifications','delete_employee_certifications']))
                                                 <td style="min-width: 130px;" class="text-center">
                                                     <div class="btn-group">
-                                                        <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.certification', $certification)  }}" role="button" style=" margin-right: 5px; "> </a>
+                                                        @if(auth()->user()->can('download_employee_certifications'))
+                                                        <a class="edit-btn btn btn-info btn-sm fa fa-cloud-download " href="{{route('download.certification', $certification)  }}" role="button" style=" margin-right: 5px; "> </a> 
+                                                        @endif
 
-                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('certification.edit' , $certification->id) }}" role="button" style=" margin-right: 5px; "> </a>
+                                                        @if(auth()->user()->can('edit_employee_certifications'))
+                                                        <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('certification.edit' , $certification->id) }}" role="button" style=" margin-right: 5px; "> </a> 
+                                                        @endif
 
+                                                        @if(auth()->user()->can('delete_employee_certifications'))
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-certId="{{ $certification->id}}"></a>
+                                                         @endif
                                                     </div> 
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -72,9 +85,11 @@
                                 <p class="text-muted my-3">
                                     Employees do not have certifications yet!
                                 </p>
+                                @if(auth()->user()->can('add_employee_certifications'))
                                 <a href="{{ route("certification.create") }}">
                                     Add certification
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

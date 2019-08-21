@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($employee_projects) > 0)
+                    @if(auth()->user()->can('add_employee_tasks'))
                     <a href="{{ route('employee-project.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Assign task to employee
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -29,7 +31,9 @@
                                             <th scope="col">Employee</th>
                                             <th scope="col">Project</th>
                                             <th scope="col">Timeline</th>
+                                            @if(auth()->user()->hasAnyPermission(['read_employee_tasks','edit_employee_tasks','delete_employee_tasks','download_employee_tasks']))
                                             <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -86,19 +90,29 @@
                                                         End{{ $employee_project->end_date > date_create() ? "s": "ed" }} {{ $employee_project->end_date->diffForHumans() }}
                                                     </span>
                                                 </td>
-                                                <td style="min-width:120px;" class="text-center">
+                                                 @if(auth()->user()->hasAnyPermission(['read_employee_tasks','edit_employee_tasks','delete_employee_tasks','download_employee_tasks']))
+                                                 <td style="min-width:120px;" class="text-center">
                                                     <div {{-- class="btn-group" --}}>
-                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show', $employee_project->id) }}" role="button" ></a>
-
-                                                        @if($employee_project->document_url)
-                                                            <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-cloud-download " href="{{route('download.employee_project', $employee_project)  }}" role="button"></a>
+                                                        @if(auth()->user()->can('read_employee_tasks'))
+                                                           <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('task.show', $employee_project->id) }}" role="button" ></a>
                                                         @endif
 
-                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('employee-project.show' , $employee_project->id) }}" role="button"></a>
+                                                        @if(auth()->user()->can('download_employee_tasks')) 
+                                                           @if($employee_project->document_url)
+                                                           <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-cloud-download " href="{{route('download.employee_project', $employee_project)  }}" role="button"></a>
+                                                           @endif  
+                                                        @endif
 
-                                                        <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectid="{{ $employee_project->id }}"></a>
+                                                        @if(auth()->user()->can('edit_employee_tasks'))
+                                                          <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('employee-project.show' , $employee_project->id) }}" role="button"></a>
+                                                        @endif
+
+                                                        @if(auth()->user()->can('delete_employee_tasks'))
+                                                          <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectid="{{ $employee_project->id }}"></a>
+                                                        @endif
                                                     </div> 
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -110,9 +124,11 @@
                                 <p class="text-muted my-3">
                                     No employee has been assigned a task yet!
                                 </p>
+                                @if(auth()->user()->can('add_employee_tasks'))
                                 <a href="{{ route("employee-project.create") }}">
                                     Assign task to employee
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

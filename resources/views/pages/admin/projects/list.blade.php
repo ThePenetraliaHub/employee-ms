@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($projects) > 0)
+                    @if(auth()->user()->can('add_projects'))
                     <a href="{{ route('projects.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create project
                     </a>
+                     @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -29,7 +31,9 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Client</th>
                                             <th scope="col">Timeline</th>
+                                            @if(auth()->user()->hasAnyPermission(['read_projects','edit_projects','delete_projects']))
                                             <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -69,16 +73,24 @@
                                                     <span class="inline-block text-muted">
                                                         End{{ $project->end_date > date_create() ? "s": "ed" }} {{ $project->end_date->diffForHumans() }}
                                                     </span>
-                                                </td>
+                                                </td> 
+                                                @if(auth()->user()->hasAnyPermission(['read_projects','edit_projects','delete_projects']))
                                                 <td class="text-center">
                                                     <div>
-                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('project.details', $project->id) }}" role="button" ></a>
+                                                         @if(auth()->user()->can('read_projects'))
+                                                         <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('project.details', $project->id) }}" role="button" ></a>
+                                                         @endif
 
-                                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('projects.show' , $project->id) }}" role="button"></a>
+                                                         @if(auth()->user()->can('edit_projects'))
+                                                         <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('projects.show' , $project->id) }}" role="button"></a>
+                                                         @endif
 
-                                                        <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectId="{{ $project->id }}"></a>
+                                                         @if(auth()->user()->can('delete_projects'))
+                                                         <a class="delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-projectId="{{ $project->id }}"></a>
+                                                         @endif
                                                     </div> 
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -90,9 +102,11 @@
                                 <p class="text-muted my-3">
                                     No projects yet!
                                 </p>
+                                @if(auth()->user()->can('add_projects'))
                                 <a href="{{ route("projects.create") }}">
                                     Create project
-                                </a>
+                                </a> 
+                                @endif
                             </div>
                         @endif
                     </div>

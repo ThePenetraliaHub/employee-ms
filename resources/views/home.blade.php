@@ -209,19 +209,21 @@
             </div> -->
             <!-- ./col -->
             <!-- ./col -->
+            @if(!auth()->user()->hasAnyPermission(['read_employee_tasks','edit_employee_tasks','delete_employee_tasks','download_employee_tasks']))
             <div class="col-md-4 col-lg-3 col-xs-6">
                 <!-- small box -->
-                <!-- <div class="small-box bg-green">
+                <div class="small-box bg-green">
                     <div class="inner">
                         <h3>Task<sup style="font-size: 20px"></sup></h3>
-                        <p><h3>{{-- auth()->user()->owner->tasks()->count() --}}</h3></p>
+                        <p><h3>{{ auth()->user()->owner->tasks()->count()}}</h3></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-clock"></i>
                     </div>
                      <a href="{{ route("task.index") }}" class="small-box-footer">My Tasks <i class="fa fa-arrow-circle-right"></i></a> 
-                </div> -->
+                </div>
             </div>
+            @endif
         <!-- </div> -->
         </div>
     </section>

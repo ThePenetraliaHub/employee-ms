@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($pay_grades) > 0)
+                    @if(auth()->user()->can('add_pay_grades'))
                     <a href="{{ route('pay-grade.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create pay grade
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -30,7 +32,9 @@
                                             <th scope="col">Currency</th>
                                             <th scope="col">Minimum Salary</th>
                                             <th scope="col">Maximum Salary</th>
+                                            @if(auth()->user()->hasAnyPermission(['edit_pay_grades','delete_pay_grades']))
                                             <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -42,13 +46,19 @@
                                                 <td>{{ $pay_grade->currency}}</td>
                                                 <td>{{ $pay_grade->min_salary}}</td>
                                                 <td>{{ $pay_grade->max_salary}}</td>
+                                                @if(auth()->user()->hasAnyPermission(['edit_pay_grades','delete_pay_grades']))
                                                 <td class="text-center">
                                                     <div class="btn-group">
+                                                         @if(auth()->user()->can('edit_pay_grades'))
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('pay-grade.show' , $pay_grade->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                         @endif
 
+                                                        @if(auth()->user()->can('delete_pay_grades'))
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-payGradeId="{{ $pay_grade->id }}"></a>
+                                                        @endif
                                                     </div> 
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -60,9 +70,11 @@
                                 <p class="text-muted my-3">
                                     No pay grades yet
                                 </p>
+                                @if(auth()->user()->can('add_pay_grades'))
                                 <a href="{{ route("pay-grade.create") }}">
                                     Create pay grades
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

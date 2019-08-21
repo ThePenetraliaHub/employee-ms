@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($job_titles) > 0)
+                     @if(auth()->user()->can('add_job_titles'))
                     <a href="{{ route('job-title.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create job title
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -29,7 +31,9 @@
                                             <th scope="col">Code</th>
                                             <th scope="col">Title</th>
                                             <th scope="col">Description</th>
+                                            @if(auth()->user()->hasAnyPermission(['edit_job_titles','delete_job_titles']))
                                             <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -40,13 +44,19 @@
                                                 <td>{{ $job_title->code}}</td>
                                                 <td>{{ $job_title->title}}</td>
                                                 <td>{{ $job_title->description}}</td>
+                                                @if(auth()->user()->hasAnyPermission(['edit_job_titles','delete_job_titles']))
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('job-title.show' , $job_title->id) }}" role="button" style=" margin-right: 5px; "></a>
 
-                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-jobTitleId="{{ $job_title->id }}"></a>
+                                                        @if(auth()->user()->can('edit_job_titles'))
+                                                         <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('job-title.show' , $job_title->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                        @endif
+                                                        @if(auth()->user()->can('delete_job_titles'))
+                                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-jobTitleId="{{ $job_title->id }}"></a>                                                     
+                                                        @endif 
                                                     </div> 
                                                 </td>
+                                                 @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -58,9 +68,11 @@
                                 <p class="text-muted my-3">
                                     No job titles yet!
                                 </p>
+                                @if(auth()->user()->can('add_job_titles'))
                                 <a href="{{ route("job-title.create") }}">
                                     Create job title
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

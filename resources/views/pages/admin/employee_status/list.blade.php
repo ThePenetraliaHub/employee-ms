@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($employee_statuses) > 0)
+                    @if(auth()->user()->can('add_employee_statuses'))
                     <a href="{{ route('employee-status.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create employee status
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -28,7 +30,9 @@
                                             <th scope="col">S/N</th>
                                             <th scope="col">Title</th>
                                             <th scope="col">Description</th>
+                                            @if(auth()->user()->hasAnyPermission(['edit_employee_statuses','delete_employee_statuses']))
                                             <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -39,13 +43,19 @@
                                                 <td>{{ $employee_status->title}}</td>
                                                 <td>{{ $employee_status->description}}</td>
 
+                                                @if(auth()->user()->hasAnyPermission(['edit_employee_statuses','delete_employee_statuses']))
                                                 <td class="text-center">
                                                     <div class="btn-group">
+                                                         @if(auth()->user()->can('edit_employee_statuses'))
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('employee-status.show' , $employee_status->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                         @endif
 
+                                                        @if(auth()->user()->can('delete_employee_statuses'))
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-employeeStatusId="{{ $employee_status->id }}"></a>
+                                                        @endif
                                                     </div> 
-                                                </td>
+                                                </td> 
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -57,9 +67,11 @@
                                 <p class="text-muted my-3">
                                     No employee statuses yet!
                                 </p>
-                                <a href="{{ route("employee-status.create") }}">
+                               @if(auth()->user()->can('add_employee_statuses')) 
+                               <a href="{{ route("employee-status.create") }}">
                                     Create employee status
-                                </a>
+                                </a
+                                >@endif
                             </div>
                         @endif
                     </div>

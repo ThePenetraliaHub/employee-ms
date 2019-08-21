@@ -192,7 +192,7 @@ class AttendanceController extends Controller
 
     public function self_attendance()
     {
-        if(auth()->user()->hasRole('employee')){
+        if(auth()->user()->can('browse_self_attendance')){
             $attendances = auth()->user()->owner->attendances_present_and_absent();
 
             return view('pages.all_users.attendance.list_self_attendance', compact('attendances'));

@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($roles) > 0)
-                    <a href="{{ route('role.employee.create') }}" class="btn btn-primary btn-sm my-2">
+                     @if(auth()->user()->can('add_employee_roles'))
+                     <a href="{{ route('role.employee.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new employee role
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -28,7 +30,9 @@
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Display Name</th>
-                                            <th scope="col" class="text-center">Actions</th>
+                                            @if(auth()->user()->hasAnyPermission(['edit_employee_roles','delete_employee_roles']))
+                                            <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -40,11 +44,17 @@
                                                 <td>{{ $role->name}}</td>
                                                 <td>{{ $role->display_name}}</td>
                                                 
-                                                <td class="text-center">
-                                                    <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('role.employee.edit' , $role->id) }}" role="button"></a>
+                                                 @if(auth()->user()->hasAnyPermission(['edit_employee_roles','delete_employee_roles']))
+                                                 <td class="text-center">
+                                                     @if(auth()->user()->can('edit_employee_roles'))
+                                                     <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('role.employee.edit' , $role->id) }}" role="button"></a>
+                                                     @endif
 
+                                                    @if(auth()->user()->can('delete_employee_roles')) 
                                                     <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-roleId="{{ $role->id }}"></a>
+                                                    @endif
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -56,9 +66,11 @@
                                 <p class="text-muted my-3">
                                     No employee roles yet!
                                 </p>
+                                @if(auth()->user()->can('add_employee_roles'))
                                 <a href="{{ route("role.employee.create") }}">
                                     Create employee role
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($skills) > 0)
+                    @if(auth()->user()->can('add_employee_skills'))
                     <a href="{{ route('skills.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Add skill
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -29,7 +31,9 @@
                                             <th scope="col">Employee Details</th>
                                             <th scope="col">Skill Title</th>
                                             <th scope="col">Details</th>
+                                            @if(auth()->user()->hasAnyPermission(['edit_employee_skills','delete_employee_skills']))
                                             <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -49,13 +53,19 @@
                                                 <td>{{ $skill->skill_title}}</td>
                                                 <td>{{ $skill->detail}}</td>
 
+                                                @if(auth()->user()->hasAnyPermission(['edit_employee_skills','delete_employee_skills']))
                                                 <td class="text-center">
                                                     <div class="btn-group">
+                                                         @if(auth()->user()->can('edit_employee_skills'))
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('skills.edit' , $skill->id) }}" role="button" style=" margin-right: 5px; "></a>
+                                                         @endif
 
+                                                        @if(auth()->user()->can('delete_employee_skills'))
                                                         <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-skillId="{{ $skill->id }}"></a>
+                                                        @endif
                                                     </div> 
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -67,9 +77,11 @@
                                 <p class="text-muted my-3">
                                     Employees do not have skills yet!
                                 </p>
+                                @if(auth()->user()->can('add_employee_skills'))
                                 <a href="{{ route("skills.create") }}">
                                     Add skill
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

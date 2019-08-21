@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($users) > 0)
+                    @if(auth()->user()->can('add_employee_user'))
                     <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Add employee user
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -30,7 +32,9 @@
                                         <th scope="col">Contact Info</th>
                                         <th scope="col">Role</th>
                                         <th scope="col">Joined</th>
+                                        @if(auth()->user()->hasAnyPermission(['edit_employee_user','delete_employee_user','activate_deactivate_employee_user']))
                                         <th scope="col" class="text-center">Action</th>
+                                        @endif
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -64,21 +68,29 @@
 
                                             <td>{{ $user->owner->joined_date->diffForHumans() }} </td>
                                             
+                                            @if(auth()->user()->hasAnyPermission(['edit_employee_user','delete_employee_user','activate_deactivate_employee_user']))
                                             <td class="text-center">
+                                                @if(auth()->user()->can('edit_employee_user'))
                                                 <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('user.show' , $user->id) }}" role="button"></a>
-
-                                                @if($user->id != auth()->user()->id)
-                                                    <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
                                                 @endif
-                                                {{-- Use the user active/inactive status to detect which icon to show --}}
-                                                @if($user->is_active == 1 && $user->id != auth()->user()->id)
+
+                                                
+                                                    @if($user->id != auth()->user()->id && auth()->user()->can('delete_employee_user'))
+                                                    <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+                                                    @endif
+                                                
+                                                    @if($user->is_active == 1 && $user->id != auth()->user()->id && auth()->user()->can('activate_deactivate_employee_user'))
                                                     <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning fa fa-lock text-danger pointer" data-userId="{{ $user->id }}">
                                                     </a>
-                                                @elseif($user->is_active == 0 && $user->id != auth()->user()->id)
+                                                    @endif
+                                                
+                                                    @if($user->is_active == 0 && $user->id != auth()->user()->id && auth()->user()->can('activate_deactivate_employee_user'))
                                                     <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success fa fa-unlock text-success pointer" data-userId="{{ $user->id }}">
                                                     </a>
-                                                @endif
+                                                    @endif
+                                               
                                             </td>
+                                            @endif
                                         </tr>
                                        @endforeach
                                    </tbody>
@@ -90,9 +102,11 @@
                                 <p class="text-muted my-3">
                                     No employee users yet!
                                 </p>
+                                @if(auth()->user()->can('add_employee_user'))
                                 <a href="{{ route("user.create") }}">
                                     Add employee user
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>

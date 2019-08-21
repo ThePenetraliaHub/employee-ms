@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($roles) > 0)
+                    @if(auth()->user()->can('add_administrator_roles'))
                     <a href="{{ route('role.admin.create') }}" class="btn btn-primary btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new admin role
                     </a>
+                    @endif
                 @endif
                 <div class="box">
                     <div class="box-body">
@@ -28,7 +30,9 @@
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Display Name</th>
-                                            <th scope="col" class="text-center">Actions</th>
+                                            @if(auth()->user()->hasAnyPermission(['edit_administrator_roles','delete_administrator_roles']))
+                                            <th scope="col" class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -40,11 +44,17 @@
                                                 <td>{{ $role->name}}</td>
                                                 <td>{{ $role->display_name}}</td>
                                                 
+                                                @if(auth()->user()->hasAnyPermission(['edit_administrator_roles','delete_administrator_roles']))
                                                 <td class="text-center">
+                                                    @if(auth()->user()->can('edit_administrator_roles'))
                                                     <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('role.admin.edit' , $role->id) }}" role="button"></a>
+                                                    @endif
 
+                                                    @if(auth()->user()->can('delete_administrator_roles'))
                                                     <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-roleId="{{ $role->id }}"></a>
+                                                    @endif
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -56,9 +66,11 @@
                                 <p class="text-muted my-3">
                                     No admin roles yet!
                                 </p>
+                                @if(auth()->user()->can('add_administrator_roles'))
                                 <a href="{{ route("role.admin.create") }}">
                                     Create admin role
                                 </a>
+                                @endif
                             </div>
                         @endif
                     </div>
