@@ -26,8 +26,6 @@ class UserController extends Controller
          $this->middleware('permission:browse_employee_user'); //index func. if cant browse then you cant access the rest
          $this->middleware('permission:add_employee_user', ['only' => 'create']);
          $this->middleware('permission:edit_employee_user', ['only' => 'show']);
- 
-
     }
     public function index()
     {
