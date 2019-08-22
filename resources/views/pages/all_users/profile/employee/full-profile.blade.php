@@ -13,7 +13,7 @@
             <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('user.profile_img',$employee->user_info->id) }}" >
                         @csrf
                 <div class="profile-img {{ $errors->has('avatar') ? ' has-error' : '' }} mb-0 mt-3">
-                    <img src="{{asset('storage/'.auth()->user()->avatar) }}" alt="profile image"/>
+                    <img src="{{asset('storage/'.App\User::find($employee->user_info->id)->avatar) }}" alt="profile image"/>
                     <div class="file btn btn-lg btn-primary">
                         Change Photo
                         <input type="file" name="avatar"/>
