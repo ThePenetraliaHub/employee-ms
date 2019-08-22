@@ -18,10 +18,9 @@
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new work day
                     </a>
-<<<<<<< Updated upstream
                     @endif
-=======
-                    <div class="box-body">
+                    <!-- trying to work on import for work days -->
+                    <!-- <div class="box-body">
                             <div class="row">
                                 <form action="{{ route('import.workday') }}" method="POST" enctype="multipart/form-data">
 
@@ -31,15 +30,14 @@
 
                                     <br>
 
-                                    <button class="btn btn-success" type="submit">Import Work Days</button>
+                                    <button class="btn btn-success" type="submit">Import Work Days</button> -->
 
                                     <!-- <a class="btn btn-warning" href="">Export User Data</a> -->
 
-                                </form>
+                                <!-- </form>
                
                             </div>
-                    </div>
->>>>>>> Stashed changes
+                    </div> -->
                 @endif
                 <div class="box">
                     <div class="box-body">
