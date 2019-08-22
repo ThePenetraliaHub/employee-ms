@@ -10,7 +10,7 @@
 <section class="content">
     <div class="row">
         <div class="col-md-2">
-            <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('user.profile_img') }}" >
+            <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('user.profile_img',$employee->user_info->id) }}" >
                         @csrf
                 <div class="profile-img {{ $errors->has('avatar') ? ' has-error' : '' }} mb-0 mt-3">
                     <img src="{{auth()->user()->getUserAvatarAttribute() }}" alt="profile image"/>

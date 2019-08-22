@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
     	Route::get('/admin/{user}/active', 'Web\SuperAdminController@active')->name('admin.active');
 
     Route::get('/profile', 'Web\UserController@profile')->name('profile');
-    Route::post('/profile/image', 'Web\UserController@profile_img')->name('user.profile_img');
+    Route::post('/profile/{user}', 'Web\UserController@profile_img')->name('user.profile_img');
     Route::prefix('employee')->group(function () {
         Route::get('/{employee}/profile', 'Web\UserController@employeeProfile')->name('employee.profile');
     });

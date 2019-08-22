@@ -171,9 +171,7 @@ class UserController extends Controller
         }
     }
 
-   
-
-    public function profile_img(Request $request)
+    public function profile_img(Request $request, User $user)
     {
         $rules = [
             'avatar' => 'required|file|image|mimes:jpeg,png|max:1000'
@@ -185,7 +183,6 @@ class UserController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessages); 
-        $user = User::findOrFail(auth()->user()->id);
         if($request->avatar){
         Storage::disk('public')->delete($user->avatar);
         $path = $request->file('avatar')->store('avatars', 'public');
