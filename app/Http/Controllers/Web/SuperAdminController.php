@@ -24,7 +24,7 @@ class SuperAdminController extends Controller
 
     public function create()
     {
-        $roles = Role::employee_roles();
+        $roles = Role::admin_roles();
 
         return view('pages.admin.super_admin.create', compact('roles'));
     }

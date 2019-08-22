@@ -13,11 +13,11 @@
         <div class="row">
             <div class="col-md-12">
                 @if(count($clients) > 0)
-                     @if(auth()->user()->can('add_clients'))
-                    <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm my-2">
-                        <span class="fa fa-plus-circle mr-2"></span>
-                        Create client
-                    </a>
+                    @if(auth()->user()->can('add_clients'))
+                        <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm my-2">
+                            <span class="fa fa-plus-circle mr-2"></span>
+                            Create client
+                        </a>
                     @endif
                 @endif
                 <div class="box">
