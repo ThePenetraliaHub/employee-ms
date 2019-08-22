@@ -13,7 +13,8 @@
             <div class="col-md-5">
                 <div class="box box-primary">
                     <form {{-- autocomplete="off" --}} novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('work-day.update',$work_day->id) }}">
-                        {{csrf_field()}}
+                    {{csrf_field()}}  
+                    {{method_field('PUT')}}  
                         <div class="box-body">
                             @include('pages.all_users.attendance.forms.edit_work_day')
                         </div>

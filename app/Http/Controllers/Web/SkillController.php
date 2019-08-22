@@ -11,6 +11,15 @@ use Illuminate\Validation\Rule;
 
 class SkillController extends Controller
 {
+    function __construct()
+    {
+
+         $this->middleware('permission:browse_employee_skills'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_employee_skills', ['only' => 'create']);
+         $this->middleware('permission:edit_employee_skills', ['only' => 'show']);
+ 
+
+    }
     public function index()
      {
         $skills = Skill::all();

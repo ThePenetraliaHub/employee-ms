@@ -13,6 +13,13 @@ use App\User;
 
 class MessageController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:receive_messages', ['only' =>['inbox','trash'] ]);
+         $this->middleware('permission:send_messages', ['only' => ['compose','sent']]);
+ 
+
+    }
     public function inbox()
     {
         $messages = auth()->user()->inbox_message();

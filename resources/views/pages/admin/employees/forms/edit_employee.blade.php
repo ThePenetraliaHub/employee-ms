@@ -236,9 +236,9 @@
             <option value=""></option>
             @foreach($employees as $employee)
                 @if($employee->supervisor)
-                    <option value="{{$employee->id}}" @if (old('supervisor_id', $employee->supervisor->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->firstname . ' ' . $employee->middlename . ' ' . $employee->lastname}}</option>
+                    <option value="{{$employee->id}}" @if (old('supervisor_id', $employee->supervisor->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->name }}</option>
                 @else
-                    <option value="{{$employee->id}}" @if (old('supervisor_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->firstname . ' ' . $employee->middlename . ' ' . $employee->lastname}}</option>
+                    <option value="{{$employee->id}}" @if (old('supervisor_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->name }}</option>
                 @endif
             @endforeach
         </select>

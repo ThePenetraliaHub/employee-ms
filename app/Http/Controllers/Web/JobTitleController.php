@@ -9,6 +9,16 @@ use Illuminate\Validation\Rule;
 
 class JobTitleController extends Controller
 {
+    function __construct()
+
+    {
+
+         $this->middleware('permission:browse_job_titles'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_job_titles', ['only' => 'create']);
+         $this->middleware('permission:edit_job_titles', ['only' => 'show']);
+
+    }
+
     public function index()
     {
         $job_titles = JobTitle::orderBy('id', 'desc')->paginate(10);

@@ -9,6 +9,14 @@ use Illuminate\Validation\Rule;
 
 class EmployeeStatusController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:browse_employee_statuses'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_employee_statuses', ['only' => 'create']);
+         $this->middleware('permission:edit_employee_statuses', ['only' => 'show']);
+ 
+
+    }
     public function index()
     {
         $employee_statuses = EmployeeStatus::orderBy('id', 'desc')->paginate(10);

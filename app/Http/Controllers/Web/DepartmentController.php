@@ -10,6 +10,14 @@ use Illuminate\Validation\Rule;
 
 class DepartmentController extends Controller
 {
+    function __construct()
+
+    {
+        $this->middleware('permission:browse_departments'); //index func. if cant browse then you cant access the rest
+        $this->middleware('permission:add_departments', ['only' => 'create']);
+        $this->middleware('permission:edit_departments', ['only' => 'show']);
+
+    }
     public function index()
     {
         $departments = Department::orderBy('id', 'desc')->paginate(10);

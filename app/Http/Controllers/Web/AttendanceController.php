@@ -11,6 +11,17 @@ use Illuminate\Validation\ValidationException;
 
 class AttendanceController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:browse_employee_attendance', ['only' => 'index']); //index func. if cant browse then you can stll access the rest
+         $this->middleware('permission:sign_in_employee', ['only' => 'sign_in']);
+         $this->middleware('permission:sign_out_employee', ['only' => ['sign_out','sign_out_ind']]);
+         $this->middleware('permission:browse_attendance_general_report', ['only' => 'general_report']);
+         $this->middleware('permission:browse_self_attendance', ['only' => 'self_attendance']);
+
+ 
+
+    }
     public function index()
     {
         $work_day = WorkDay::where('date', date_create('now')->format('Y-m-d'))->get()->first();

@@ -6,9 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\WorkDay;
+use App\Imports\WorkDayImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WorkDayController extends Controller
 {
+    function __construct()
+    {
+
+         $this->middleware('permission:browse_working_days'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_working_days', ['only' => 'create']);
+         $this->middleware('permission:read_working_days', ['only' => 'show']);
+         $this->middleware('permission:edit_working_days', ['only' => 'edit']);
+ 
+
+    }
     public function index()
     {
         $work_days = WorkDay::orderBy('date', 'desc')->paginate(10);
@@ -100,7 +112,7 @@ class WorkDayController extends Controller
 
             $this->validate($request, $rules, $customMessages);
 
-            $work_day->update($request->all());
+            $work_day->update($request->all()); //why this? and the below
 
             $work_day->update([
                 // 'date' => $request->date,
@@ -153,5 +165,20 @@ class WorkDayController extends Controller
             notify()->success("Successfully Deleted!","","bottomRight");
             return redirect('work-day');
         }
+    }
+    public function importdata(Request $request) 
+    {
+            $this->validate($request, [
+                  'file'  => 'required|mimes:xls,xlsx'
+                 ]);
+
+        $path = $request->file('file')->getRealPath();
+
+        $data = Excel::import(new WorkDayImport, $path);
+
+        notify()->success("Excel Data Imported successfully!","","bottomRight");
+
+        return back();
+
     }
 }

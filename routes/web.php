@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('import')->group(function () {
        Route::post('/employees', 'Web\EmployeeController@importdata')->name('import.excel');
+       Route::post('/workdays', 'Web\WorkDayController@importdata')->name('import.workday');
     });
 
 	Route::prefix('download')->group(function () {

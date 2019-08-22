@@ -15,6 +15,16 @@ use Illuminate\Validation\ValidationException;
 
 class EmployeeProjectController extends Controller
 {
+    // function __construct()
+
+    // {
+        
+    //         $this->middleware('permission:browse_employee_tasks');
+    //         $this->middleware('permission:add_employee_tasks', ['only' => 'create']);
+    //         $this->middleware('permission:read_employee_tasks', ['only' => ['task_info']]);
+    //         $this->middleware('permission:edit_employee_tasks', ['only' => 'show']);  
+
+    // }
     public function index()
     {
         $employee_projects = EmployeeProject::orderBy('id', 'desc')->paginate(10);

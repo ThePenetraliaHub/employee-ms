@@ -33,7 +33,7 @@
                                         <th scope="col">Eligibility</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Leave Compulsion</th>
-                                        @if(auth()->user()->hasAnyPermission(['read_workread_leaveing_days','edit_leave','delete_leave']))
+                                        @if(auth()->user()->hasAnyPermission(['read_leave','edit_leave','delete_leave']))
                                             <th scope="col" class="text-center">Action</th>
                                             @endif
                                     </tr>
@@ -72,9 +72,9 @@
                                                         Not Compulsory
                                                     @endif
                                                 </td>
-                                                @if(auth()->user()->hasAnyPermission(['read_workread_leaveing_days','edit_leave','delete_leave']))
+                                                @if(auth()->user()->hasAnyPermission(['read_leave','edit_leave','delete_leave']))
                                                 <td class="text-center">
-                                                    @if(auth()->user()->can('read_workread_leaveing_days'))
+                                                    @if(auth()->user()->can('read_leave'))
                                                     <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('leave-type.show', $leave_type->id) }}" role="button" >
                                                     </a>
                                                     @endif

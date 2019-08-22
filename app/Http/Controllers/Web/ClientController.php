@@ -11,6 +11,17 @@ use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
+    function __construct()
+    {
+
+         $this->middleware('permission:browse_clients'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_clients', ['only' => 'create']);
+         $this->middleware('permission:read_clients', ['only' => 'client_details']);
+         $this->middleware('permission:edit_clients', ['only' => 'show']);
+ 
+
+    }
+
     public function index()
     {
        $clients = Client::orderBy('id', 'desc')->paginate(10);
