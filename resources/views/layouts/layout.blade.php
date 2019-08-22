@@ -67,7 +67,7 @@
                             </li>
                             @endif
 
-                            @if(auth()->user()->hasAnyPermission(['browse_clients','add_clients','read_clients',
+                            @if(auth()->user()->hasAnyPermission(['browse_clients','add_clients',
                                                                 'edit_clients','delete_clients']))
                             <li class="treeview">
                                 <li><a href="{{ route('client.index') }}"><i class="fa fa-handshake-o"></i> Clients</a></li>
@@ -108,7 +108,7 @@
                             </li>
                             @endif
 
-                            @if(auth()->user()->hasAnyPermission(['browse_employee','read_employee','add_employee',
+                            @if(auth()->user()->hasAnyPermission(['browse_employee','add_employee',
                                                                 'edit_employee','delete_employee']))
 
                             <li class="treeview">
@@ -137,7 +137,7 @@
                             </li>
                             @endif
 
-                            @if(auth()->user()->hasAnyPermission(['browse_projects','read_projects','add_projects',
+                            @if(auth()->user()->hasAnyPermission(['browse_projects','add_projects',
                                                             'edit_projects','delete_projects','browse_employee_tasks',
                                                             'read_employee_tasks','add_employee_tasks','edit_employee_tasks',
                                                             'delete_employee_tasks','download_employee_tasks']))
@@ -157,7 +157,7 @@
                                     </li>
                                     @endif
                                     @if(auth()->user()->hasAnyPermission(['browse_employee_tasks',
-                                                            'read_employee_tasks','add_employee_tasks','edit_employee_tasks',
+                                                            'add_employee_tasks','edit_employee_tasks',
                                                             'delete_employee_tasks','download_employee_tasks']))
                                     <li>
                                         <a href="{{ route('employee-project.index') }}"><i class="fa fa-circle-o"></i> Employee Tasks

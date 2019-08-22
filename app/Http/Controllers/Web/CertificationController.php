@@ -98,6 +98,7 @@ class CertificationController extends Controller
 
     public function update(Request $request, Certification $certification)
     {
+        dd($certification);
         $rules = [
             'certification' => 'required',
             'institution' => 'required',

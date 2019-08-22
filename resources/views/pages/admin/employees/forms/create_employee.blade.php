@@ -133,7 +133,31 @@
                 <strong>{{ $errors->first('zip_code') }}</strong>
             </span>
         @endif
-    </div>
+     </div>
+
+     <!-- <div class="form-group col-xs-11{{ $errors->has('country') ? ' has-error' : '' }} mb-0 mt-3">
+            <label for="country">Country</label>
+            <select class="form-control" id="country" name="country">
+                <option>Select Country</option>
+            </select>
+            @if ($errors->has('country'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('country') }}</strong>
+                </span>
+            @endif
+        </div>
+        
+        <div class="form-group col-xs-11{{ $errors->has('state') ? ' has-error' : '' }} mb-0 mt-3">
+            <label for="state">State</label>
+            <select class="form-control" id="state" name="state">
+                <option value=""></option>
+            </select>
+            @if ($errors->has('state'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('state') }}</strong>
+                </span>
+            @endif
+        </div> -->
 
         <div class="form-group {{ $errors->has('home_phone') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
             <label for="home_phone">Home Phone Number</label>
@@ -256,6 +280,68 @@
             $('#job_title_id').select2();
             $('#marital_status').select2();
             $('#gender').select2();
+            $('#state').select2();
+            $('#country').select2();
         });
+
+
+        //Codes that handles residence selection
+        $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '{{ route("ajax.countries") }}',
+                type: "POST",
+                data: {},
+                dataType: "json",
+                success: function(json_data){
+                    var html = [];
+                    html.push('<option value = "">Select country</option>');
+                    //loop through the array
+                    for (i in json_data) {//begin for loop
+                        html.push("<option value = '" + i + "'>" + json_data[i] + "</option>");
+                    }//end for loop
+
+                    document.getElementById("country").innerHTML = html.join('');
+                },
+            });
+
+            //Code for getting states upon country selection change
+            $("#country").change(function () {
+                var country = $(this).val();
+
+                var state = document.getElementById("state").value;
+
+                var html = [];
+                
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: '{{ route("ajax.states") }}',
+                    type: "POST",
+                    data: {country : country},
+                    dataType: "json",
+                    success: function(json_data){
+                        if(json_data.length != 0){
+                            html.push('<option value = "">Select state of residence</option>');
+                            //loop through the array
+                            for (i in json_data) {//begin for loop
+                                if(i == state){
+                                    html.push("<option selected value = '" + i + "'>" + json_data[i] + "</option>");
+                                    continue;
+                                }
+                                html.push("<option value = '" + i + "'>" + json_data[i] + "</option>");
+                            }//end for loop
+                        }else{
+                            html.push('<option value = "">Select country first</option>');
+                        }
+                        //add the option values to the select list with an id of lga
+                        document.getElementById("state").innerHTML = html.join('');
+                    },
+                });
+            });
+
+            $("#country").trigger("change");
     </script>
 @endsection

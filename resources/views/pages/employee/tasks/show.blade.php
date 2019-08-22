@@ -86,13 +86,16 @@
 
                                     <div class="panel panel-default ">
                                         <div class="panel-body  viewLabel3">
-                                           Task Details
+                                           Task/Project Details
                                         </div>
                                         <div class="panel-footer">
-                                            {{ $employee_project->project->details }} {{ $employee_project->details }}
+                                            <h4 class="viewLabel3">Project Details</h4>
+                                            {{ $employee_project->project->details }} 
+                                            <h4 class="viewLabel3">Task Details</h4>
+                                            {{ $employee_project->details }}
 
                                             <div >
-                                              <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print Details</button>
+                                              <!-- <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print Details</button> -->
                                               @if($employee_project->document_url)
                                               <a type="button" class="btn btn-default " href="{{route('download.employee_project', $employee_project)  }}"><i class="fa fa-cloud-download "></i> Download Attachment</a>
                                               @endif
@@ -105,7 +108,7 @@
                                            Supervisor's Remark
                                         </div>
                                         <div class="panel-footer">
-                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                        {{ $employee_project->supervisor_remark }}
                                         </div>
                                     </div>
                                 
