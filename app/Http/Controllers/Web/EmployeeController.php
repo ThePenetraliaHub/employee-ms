@@ -24,7 +24,7 @@ class EmployeeController extends Controller
     function __construct()
     {
 
-         $this->middleware('permission:browse_employee'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:browse_employee', ['only' => 'index']); //index func. if cant browse then you cant access the rest
          $this->middleware('permission:add_employee', ['only' => 'create']);
          $this->middleware('permission:edit_employee', ['only' => 'show']);
  

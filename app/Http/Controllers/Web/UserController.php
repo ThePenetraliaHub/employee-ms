@@ -195,6 +195,31 @@ class UserController extends Controller
         return back();
     }
 
+    public function admin_profile_img(Request $request, SuperAdmin $admin)
+    {
+        $rules = [
+            'avatar' => 'required|file|image|mimes:jpeg,png|max:1000'
+        ];
+
+        $customMessages = [
+            'avatar.required' => 'Please select an image.',
+            'avatar.image' => 'profile image must be an image file.',
+        ];
+       
+        $this->validate($request, $rules, $customMessages); 
+        
+        if($request->avatar){
+            
+            Storage::disk('public')->delete($admin->avatar);
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $admin->update(['avatar' => $path ]);
+        }
+
+        notify()->success("Uploadedrr Successfully!","","bottomRight");
+
+        return back();
+    }
+
     //Deactivate employee account
     public function active(Request $request, User $user){
         if($user->is_active == 1){

@@ -10,24 +10,7 @@
 <section class="content">
     <div class="row">
         <div class="col-md-2">
-            <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('user.profile_img', $employee->id) }}" >
-                        @csrf
-                <div class="profile-img {{ $errors->has('avatar') ? ' has-error' : '' }} mb-0 mt-3">
-                    <img src="{{asset('storage/'.$employee->avatar) }}" alt="profile image"/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="avatar"/>
-                    </div>
-                </div>
-                <div >
-                <button class="form-control" id="button" type="submit" class="btn btn-success">Upload Photo</button>
-                </div>
-                @if ($errors->has('avatar'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('avatar') }}</strong>
-                </span>
-                @endif
-            </form>
+        @include('pages.all_users.profile.profile_image')
         </div>
 
         <div class="col-md-8 ">
@@ -39,12 +22,12 @@
                    {{ $employee->job_title->title}}
                 </h4>
                     
-                 <p class="proile-rating">EVALUATION : <span>75%</span></p>
+                 <!-- <p class="proile-rating">EVALUATION : <span>75%</span></p>
                 <div class="progress">
                         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
                             <span class="sr-only">75% Complete</span>
                         </div>
-                </div>
+                </div> -->
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -67,11 +50,19 @@
             </div>
         </div>
 
-        @if(auth()->user()->owner instanceof \App\SuperAdmin)
+        <!-- @if(auth()->user()->owner instanceof \App\SuperAdmin)
             <div class="col-md-2">
                 <a href="{{ route("employee.show", $employee->id) }}" class="btn btn-primary px-5">Edit Profile</a>
             </div>
+        @endif -->
+
+        @if(auth()->user()->can('edit_employee'))
+            <div class="col-md-2">
+                <a href="{{ route("employee.show", $employee->id) }}" class="btn btn-primary px-5">Edit Profile</a>
+            </div> 
         @endif
+           
+   
     </div>
 
 

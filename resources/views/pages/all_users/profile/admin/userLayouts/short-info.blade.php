@@ -2,52 +2,33 @@
     <div class="panel panel-default">
         <div class="panel-heading">Contact Information</div>
         <div class="panel-body">
-            <div class="col-md-4"> 
-                <label class="control-label ">Personal Phone</label>
-                <label class="control-label viewLabel">{{ $employee->home_phone}}</label> 
-            </div>
             <div class="col-md-4">
                 <label class="control-label ">Office Phone</label>
-                <label class="control-label viewLabel">{{ $employee->office_phone}}</label>  
+                <label class="control-label viewLabel">{{ $admin->address}}</label>  
             </div>
 
             <div class="col-md-4"> 
-                <label class="control-label ">Private Email</label>
-                <label class="control-label viewLabel">{{ $employee->private_email}}</label> 
+                <label class="control-label ">Address</label>
+                <label class="control-label viewLabel">{{ $admin->phone}}</label> 
             </div>
+
             <div class="col-md-4">
-                <label class="control-label ">Office Email</label>
-                <label class="control-label viewLabel">{{ $employee->office_email}}</label>  
+                <label class="control-label ">Email</label>
+                <label class="control-label viewLabel">{{ $admin->user_info->email}}</label>  
+            </div>
+
+            <div class="col-md-4"> 
+                <label class="control-label ">Type</label>
+                <label class="control-label viewLabel">{{substr($admin->user_info->typeable_type,4)}}</label> 
+            </div>
+
+            <div class="col-md-4"> 
+                <label class="control-label ">Active</label>
+                <label class="control-label viewLabel">{{($admin->user_info->is_active?"Active":"Inactive")}}</label> 
             </div>
 
         </div>
     </div>
 
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Job Information</div>
-        <div class="panel-body">
-            <div class="col-md-4"> 
-                <label class="control-label ">Job Title</label>
-                <label class="control-label viewLabel">{{ $employee->job_title->title}}</label> 
-            </div>
-
-            <div class="col-md-4">
-                <label class="control-label ">Department</label>
-                <label class="control-label viewLabel">{{ $employee->department->name}}</label>  
-            </div>
-            
-            <div class="col-md-4"> 
-                <label class="control-label ">Employee ID</label>
-                <label class="control-label viewLabel">{{ $employee->employee_number}}</label> 
-            </div>
-            <div class="col-md-4">
-                <label class="control-label ">Employee Supervisor</label>
-                <label class="control-label viewLabel"> @if($employee->supervisor)
-                   <a href="{{ route('employee.profile' ,$employee->supervisor->id) }}" > {{ $employee->supervisor->name }}
-                </a>@endif</label>  
-                
-            </div>
-
-        </div>
-    </div>
+  

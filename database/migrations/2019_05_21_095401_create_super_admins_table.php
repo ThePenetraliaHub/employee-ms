@@ -17,6 +17,7 @@ class CreateSuperAdminsTable extends Migration
             $table->increments('id');
             $table->string("phone");
             $table->string("address");
+            $table->string('avatar')->default('avatars/default.png');
             $table->timestamps();
         });
     }
