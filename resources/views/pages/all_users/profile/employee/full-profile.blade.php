@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div >
-                <button class="form-control" id="button" type="submit" class="btn btn-success">Upload Photo</button>
+                <button class="form-control mb-3" id="button" type="submit" class="btn btn-success">Upload Photo</button>
                 </div>
                 @if ($errors->has('avatar'))
                 <span class="help-block">
