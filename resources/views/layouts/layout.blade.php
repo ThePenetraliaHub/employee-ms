@@ -24,7 +24,11 @@
             <section class="sidebar">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="{{ auth()->user()->user_avatar }}" class="img-circle" alt="User Image">
+                        @if(auth()->user()->owner instanceof \App\SuperAdmin)
+                            <img src="{{ auth()->user()->user_avatar }}" class="img-circle" alt="User Image">
+                        @elseif(auth()->user()->owner instanceof \App\Employee)
+                            <img src="{{ asset('storage/'.auth()->user()->owner->user_avatar) }}" class="img-circle" alt="User Image">
+                        @endif
                     </div>
                     <div class="pull-left info">
                         <p>{{ auth()->user()->name }}</p>

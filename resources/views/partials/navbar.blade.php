@@ -17,11 +17,11 @@
          @include("partials.header-widget.notifications")
       <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-         @if(auth()->user()->typeable_type == "App\SuperAdmin")
-          <img src="{{--asset('storage/'.$admin->avatar) --}}" class="user-image" alt="User Image">
-         @else
-         <img src="{{asset('storage/'.$employee->avatar) }}" class="user-image" alt="User Image">
-         @endif
+            @if(auth()->user()->owner instanceof \App\SuperAdmin)
+                <img src="{{ auth()->user()->user_avatar }}" class="user-image" alt="User Image">
+            @elseif(auth()->user()->owner instanceof \App\Employee)
+                <img src="{{ asset('storage/'.auth()->user()->owner->user_avatar) }}" class="user-image" alt="User Image">
+            @endif
           <span class="hidden-xs">{{ auth()->user()->name }}</span>
         </a>
         <ul class="dropdown-menu">
