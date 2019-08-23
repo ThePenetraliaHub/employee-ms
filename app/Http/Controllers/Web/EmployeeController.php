@@ -217,6 +217,7 @@ class EmployeeController extends Controller
         $employee->delete();
 
         notify()->success("Successfully Deleted!","","bottomRight");
+        
         return redirect('employee');
     }
 
