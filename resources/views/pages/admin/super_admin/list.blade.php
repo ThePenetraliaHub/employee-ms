@@ -53,7 +53,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <img class="img-rounded" style="width: 40px; height: 40px:" src="{{ $user->user_avatar }}">
+                                                <img class="img-rounded" style="width: 40px; height: 40px:" src="{{ asset('storage/'.$user->owner->avatar) }}">
                                                 <a href="{{ route("admin.profile", $user->owner->id) }}">
                                                     <span class="inline-block"><strong> {{ $user->name }} </strong></span>
                                                 </a>
