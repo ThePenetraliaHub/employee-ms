@@ -17,6 +17,7 @@
             <div class="profile-img">
                 <img src="{{ asset('img/user2-160x160.jpg') }}" alt="profile image"/>
             </div>
+            <!-- @include('pages.all_users.profile.profile_image') -->
         </div>
 
         <div class="col-md-8 ">
