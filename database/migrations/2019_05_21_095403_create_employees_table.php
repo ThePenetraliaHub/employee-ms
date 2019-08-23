@@ -36,7 +36,7 @@ class CreateEmployeesTable extends Migration
             $table->string("office_phone")->nullable();
             $table->string("private_email");
             $table->string("office_email")->nullable();
-
+            $table->string('avatar')->default('avatars/default.png');
 
             $table->foreign('supervisor_id')
               ->references('id')->on('employees')

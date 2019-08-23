@@ -16,13 +16,11 @@ class CertificationController extends Controller
 {
     function __construct()
     {
-
-         $this->middleware('permission:browse_employee_certifications'); //index func. if cant browse then you cant access the rest
-         $this->middleware('permission:add_employee_certifications', ['only' => 'create']);
-         $this->middleware('permission:edit_employee_certifications', ['only' => 'show']);
- 
-
+        $this->middleware('permission:browse_employee_certifications'); //index func. if cant browse then you cant access the rest
+        $this->middleware('permission:add_employee_certifications', ['only' => 'create']);
+        $this->middleware('permission:edit_employee_certifications', ['only' => 'show']);
     }
+    
     public function index()
     {
         $certifications = Certification::all();
