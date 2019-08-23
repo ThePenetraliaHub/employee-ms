@@ -15,9 +15,9 @@
         <div class="col-md-2">
 
         <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('admin.profile_img', $admin->id) }}" >
-                        @csrf
+                @csrf
                 <div class="profile-img {{ $errors->has('avatar') ? ' has-error' : '' }} mb-0 mt-3">
-                    <img src="{{asset('storage/'.$admin->avatar)}}" alt="profile image"/>
+                    <img src="{{asset('storage/'.$admin->user_info->avatar)}}" alt="profile image"/>
                     @if(auth()->user()->can('edit_employee'))
                      <div class="file btn btn-lg btn-primary">
                         Change Photo
