@@ -78,8 +78,8 @@
         <label for="gender">Gender</label>
         <select class="form-control" id="gender" name="gender">
             <option value=""></option>
-            <option value="Male" @if (old('gender', $employee->gender) === "Male") {{ 'selected' }} @endif>Male</option>
-            <option value="Female" @if (old('gender', $employee->gender) === "Female") {{ 'selected' }} @endif>Female</option>
+            <option value="male" @if (old('gender', $employee->gender) === "male") {{ 'selected' }} @endif>Male</option>
+            <option value="female" @if (old('gender', $employee->gender) === "female") {{ 'selected' }} @endif>Female</option>
         </select>
         @if ($errors->has('gender'))
         <span class="help-block">
@@ -102,10 +102,10 @@
         <label for="marital_status">Marital Status</label>
         <select class="form-control" id="marital_status" name="marital_status">
             <option value=""></option>
-            <option value="Single" @if (old('marital_status', $employee->marital_status) === "Single") {{ 'selected' }} @endif>Single</option>
-            <option value="Married" @if (old('marital_status', $employee->marital_status) === "Married") {{ 'selected' }} @endif>Married</option>
-            <option value="Divorced" @if (old('marital_status', $employee->marital_status) === "Divorced") {{ 'selected' }} @endif>Divorced</option>
-            <option value="Others" @if (old('marital_status', $employee->marital_status) === "Others") {{ 'selected' }} @endif>Others</option>
+            <option value="single" @if (old('marital_status', $employee->marital_status) === "single") {{ 'selected' }} @endif>Single</option>
+            <option value="married" @if (old('marital_status', $employee->marital_status) === "married") {{ 'selected' }} @endif>Married</option>
+            <option value="divorced" @if (old('marital_status', $employee->marital_status) === "divorced") {{ 'selected' }} @endif>Divorced</option>
+            <option value="others" @if (old('marital_status', $employee->marital_status) === "others") {{ 'selected' }} @endif>Others</option>
         </select>
         @if ($errors->has('marital_status'))
             <span class="help-block">

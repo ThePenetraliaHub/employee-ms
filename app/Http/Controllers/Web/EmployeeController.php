@@ -127,7 +127,6 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         $rules = [
-            //'supervisor_id' => 'required',
             'department_id' => 'required',
             'NIN' => [
                 'required',
@@ -143,10 +142,9 @@ class EmployeeController extends Controller
             'marital_status' => 'required',
             'joined_date' => 'required',
             'addressline1' => 'required',
-            // 'zip_code' => 'required',
             'home_phone' => [
                 'required',
-                Rule::unique('employees')->ignore($employee->home_phone, "home_phone"),
+                Rule::unique('employees', 'home_phone')->ignore($employee),
             ],
             //'office_phone' => 'required',
             'private_email' => [

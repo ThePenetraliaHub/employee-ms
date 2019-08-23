@@ -185,7 +185,10 @@ class UserController extends Controller
         $this->validate($request, $rules, $customMessages); 
         
         if($request->avatar){
-            Storage::disk('public')->delete($employee->avatar);
+            if($employee->avatar != 'avatars/default.png'){
+                Storage::disk('public')->delete($employee->avatar);
+            }
+            
             $path = $request->file('avatar')->store('avatars', 'public');
             $employee->update(['avatar' => $path ]);
         }
