@@ -20,17 +20,17 @@
             @if(auth()->user()->owner instanceof \App\SuperAdmin)
                 <img src="{{ auth()->user()->user_avatar }}" class="user-image" alt="User Image">
             @elseif(auth()->user()->owner instanceof \App\Employee)
-                <img src="{{ asset('storage/'.auth()->user()->owner->user_avatar) }}" class="user-image" alt="User Image">
+                <img src="{{ asset('storage/'.auth()->user()->owner->avatar) }}" class="user-image" alt="User Image">
             @endif
           <span class="hidden-xs">{{ auth()->user()->name }}</span>
         </a>
         <ul class="dropdown-menu">
           <!-- User image -->
           <li class="user-header">
-          @if(auth()->user()->typeable_type == "App\SuperAdmin")
-            <img src="{{--asset('storage/'.$admin->avatar) --}}" class="img-circle" alt="User Image">
-            @else
-            <img src="{{asset('storage/'.$employee->avatar) }}" class="img-circle" alt="User Image">
+            @if(auth()->user()->owner instanceof \App\SuperAdmin)
+                <img src="{{ auth()->user()->user_avatar }}" class="img-circle" alt="User Image">
+            @elseif(auth()->user()->owner instanceof \App\Employee)
+                <img src="{{ asset('storage/'.auth()->user()->owner->avatar) }}" class="img-circle" alt="User Image">
             @endif
             <p>
                 @if(auth()->user()->typeable_type == "App\SuperAdmin")
