@@ -198,7 +198,7 @@ class UserController extends Controller
         return back();
     }
 
-    public function admin_profile_img(Request $request, SuperAdmin $admin)
+    public function admin_profile_img(Request $request, User $user)
     {
         $rules = [
             'avatar' => 'required|file|image|mimes:jpeg,png|max:1000'
@@ -212,13 +212,14 @@ class UserController extends Controller
         $this->validate($request, $rules, $customMessages); 
         
         if($request->avatar){
-            
-            Storage::disk('public')->delete($admin->avatar);
+            if($user->avatar != 'avatars/default.png'){
+                Storage::disk('public')->delete($user->avatar);
+            }
             $path = $request->file('avatar')->store('avatars', 'public');
-            $admin->update(['avatar' => $path ]);
+            $user->update(['avatar' => $path ]);
         }
 
-        notify()->success("Uploadedrr Successfully!","","bottomRight");
+        notify()->success("Uploaded Successfully!","","bottomRight");
 
         return back();
     }

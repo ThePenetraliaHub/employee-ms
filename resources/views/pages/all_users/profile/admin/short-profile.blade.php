@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-2">
 
-        <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('admin.profile_img', $admin->id) }}" >
+        <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('admin.profile_img', $admin->user_info->id) }}" >
                 @csrf
                 <div class="profile-img {{ $errors->has('avatar') ? ' has-error' : '' }} mb-0 mt-3">
                     <img src="{{asset('storage/'.$admin->user_info->avatar)}}" alt="profile image"/>

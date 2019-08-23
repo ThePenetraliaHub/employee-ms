@@ -1,4 +1,4 @@
-<form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('user.profile_img', $employee->id) }}" >
+                <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form"  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('user.profile_img', $employee->id) }}" >
                         @csrf
                 <div class="profile-img {{ $errors->has('avatar') ? ' has-error' : '' }} mb-0 mt-3">
                     <img src="{{asset('storage/'.$employee->avatar) }}" alt="profile image"/>
