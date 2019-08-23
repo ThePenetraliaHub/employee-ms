@@ -27,7 +27,7 @@
                         @if(auth()->user()->owner instanceof \App\SuperAdmin)
                             <img src="{{ auth()->user()->user_avatar }}" class="img-circle" alt="User Image">
                         @elseif(auth()->user()->owner instanceof \App\Employee)
-                            <img src="{{ asset('storage/'.auth()->user()->owner->user_avatar) }}" class="img-circle" alt="User Image">
+                            <img src="{{ asset('storage/'.auth()->user()->owner->avatar) }}" class="img-circle" alt="User Image">
                         @endif
                     </div>
                     <div class="pull-left info">
