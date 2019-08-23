@@ -4,7 +4,7 @@
     <span class="sr-only">Toggle navigation</span> 
 
     <span class="ml-3">
-      {{-- config('app.name') --}}
+      {{ config('app.name') }}
     </span>
   </a>
 

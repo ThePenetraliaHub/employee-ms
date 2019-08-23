@@ -23,7 +23,7 @@ class UserController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:browse_employee_user'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:browse_employee_user', ['only' => 'index']); 
          $this->middleware('permission:add_employee_user', ['only' => 'create']);
          $this->middleware('permission:edit_employee_user', ['only' => 'show']);
     }
@@ -169,6 +169,29 @@ class UserController extends Controller
                 abort(403, 'Unauthorized action.');
             }
         }
+    }
+
+    public function profile_img(Request $request, User $user)
+    {
+        $rules = [
+            'avatar' => 'required|file|image|mimes:jpeg,png|max:1000'
+        ];
+
+        $customMessages = [
+            'avatar.required' => 'Please select an image.',
+            'avatar.image' => 'profile image must be an image file.',
+        ];
+
+        $this->validate($request, $rules, $customMessages); 
+        if($request->avatar){
+        Storage::disk('public')->delete($user->avatar);
+        $path = $request->file('avatar')->store('avatars', 'public');
+        $user->update(['avatar' => $path ]);
+        }
+
+        notify()->success("Uploaded Successfully!","","bottomRight");
+
+        return back();
     }
 
     //Deactivate employee account

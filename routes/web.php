@@ -24,6 +24,8 @@ Route::get('deactivated', function () {
         redirect('/');
     }
 
+	Route::resource('/user', 'Web\UserController');
+    Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
     if (auth()->user()->isActive()) {
         return redirect(route('home'));
     }
@@ -77,6 +79,11 @@ Route::middleware('auth')->group(function () {
     	Route::resource('/admin', 'Web\SuperAdminController');
     	Route::get('/admin/{user}/active', 'Web\SuperAdminController@active')->name('admin.active');
 
+    Route::get('/profile', 'Web\UserController@profile')->name('profile');
+    Route::post('/profile/{user}', 'Web\UserController@profile_img')->name('user.profile_img');
+    Route::prefix('employee')->group(function () {
+        Route::get('/{employee}/profile', 'Web\UserController@employeeProfile')->name('employee.profile');
+    });
     	Route::get('/task', 'Web\EmployeeProjectController@employee_tasks')->name('task.index');
     	Route::get('/task/{employee_project}', 'Web\EmployeeProjectController@task_info')->name('task.show');
     	Route::post('/task/{employee_project}', 'Web\EmployeeProjectController@update_task')->name('task.update');
@@ -136,6 +143,12 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{role}', 'Web\RoleController@destroy')->name('role.delete');
             Route::put('/{role}', 'Web\RoleController@update')->name('role.update');
         });
+    });
+
+    // AJAX specific routes
+    Route::prefix('ajax')->group(function () {
+        Route::post('/states', 'Web\AjaxResourceController@getStates')->name('ajax.states');
+        Route::post('/countries', 'Web\AjaxResourceController@getCountries')->name('ajax.countries');
     });
 });
 

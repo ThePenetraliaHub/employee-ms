@@ -61,7 +61,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-truncate">  
-                                                    {{ $task->details }}
+                                                    {{ substr($task->details,0,50) }}...
                                                 </td>
                                                 <td>
                                                     <span class="inline-block text-muted">

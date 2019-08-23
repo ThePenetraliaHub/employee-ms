@@ -33,10 +33,13 @@
         <label for="status">Status</label>
         <select class="form-control" id="status" name="status">
             <option value="{{$employee_project->status}}" @if (old('status',$employee_project->status) === $employee_project->status) {{ 'selected' }} @endif>{{$employee_project->status}}</option>
-            <option value="Initiated" @if (old('status') === "Initiated") {{ 'selected' }} @endif>Initiated</option>
-            <option value="Completed" @if (old('status') === "Completed") {{ 'selected' }} @endif>Completed</option>
-            <option value="Pending" @if (old('status') === "Pending") {{ 'selected' }} @endif>Pending</option>
-            <option value="Terminated" @if (old('status') === "Terminated") {{ 'selected' }} @endif>Terminated</option>
+            <option value="Initiated" @if (old('status', $employee_project->status) === "Initiated") {{ 'selected' }} @endif>Initiated</option>
+            <option value="Processing" @if (old('status', $employee_project->status) === "Processing") {{ 'selected' }} @endif>Processing</option>
+            <option value="Rounding-up" @if (old('status', $employee_project->status) === "Rounding-up") {{ 'selected' }} @endif>Rounding-up</option>
+            <option value="Completed" @if (old('status', $employee_project->status) === "Completed") {{ 'selected' }} @endif>Completed</option>
+            <option value="Approved" @if (old('status', $employee_project->status) === "Approved") {{ 'selected' }} @endif>Approved</option>
+            <option value="Disapproved" @if (old('status', $employee_project->status) === "Disapproved") {{ 'selected' }} @endif>Disapproved</option>
+            <option value="Terminated" @if (old('status', $employee_project->status) === "Terminated") {{ 'selected' }} @endif>Terminated</option>
         </select>
         @if ($errors->has('status'))
             <span class="help-block">
@@ -66,11 +69,21 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('details') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="details">Details</label>
+        <label for="details">Task Details</label>
         <textarea rows="3" id="details" type="textarea" class="form-control" name="details" required placeholder="Detail of employee task on this project here...">{{ old('details', $employee_project->details) }}</textarea>
         @if ($errors->has('details'))
             <span class="help-block">
                 <strong>{{ $errors->first('details') }}</strong>
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group col-xs-11{{ $errors->has('supervisor_remark') ? ' has-error' : '' }} mb-0 mt-3">
+        <label for="supervisor_remark">Supervisor's Remark</label>
+        <textarea rows="3" id="supervisor_remark" type="textarea" class="form-control" name="supervisor_remark" required placeholder="Query Employee on task status here...">{{ old('supervisor_remark', $employee_project->supervisor_remark) }}</textarea>
+        @if ($errors->has('supervisor_remark'))
+            <span class="help-block">
+                <strong>{{ $errors->first('supervisor_remark') }}</strong>
             </span>
         @endif
     </div>

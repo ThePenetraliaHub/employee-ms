@@ -12,11 +12,16 @@
                 <label for="status" class="control-label viewLabel3 ">Task Status</label>
             </div>
             <div class="form-group col-md-12{{ $errors->has('status') ? ' has-error' : '' }} mb-0 mt-3 viewLabel2">
-                <select class="form-control" id="status" name="status" style="width: 100%">
-                    <option value="Initiated" @if (old('status', $employee_project->status) === "Initiated") {{ 'selected' }} @endif>Initiated</option>
+            @if($employee_project->status==="Approved"||"Terminated")
+            <select disabled class="form-control" id="status" name="status" style="width: 100%">@else
+            <select class="form-control" id="status" name="status" style="width: 100%"> @endif
+                    <option value="Processing" @if (old('status', $employee_project->status) === "Processing") {{ 'selected' }} @endif>Processing</option>
+                    <option value="Rounding-up" @if (old('status', $employee_project->status) === "Rounding-up") {{ 'selected' }} @endif>Rounding-up</option>
                     <option value="Completed" @if (old('status', $employee_project->status) === "Completed") {{ 'selected' }} @endif>Completed</option>
-                    <option value="Pending" @if (old('status', $employee_project->status) === "Pending") {{ 'selected' }} @endif>Pending</option>
-                    <option value="Terminated" @if (old('status', $employee_project->status) === "Terminated") {{ 'selected' }} @endif>Terminated</option>
+                    <option disabled value="Initiated" @if (old('status', $employee_project->status) === "Initiated") {{ 'selected' }} @endif>Initiated</option>
+                    <option disabled value="Approved" @if (old('status', $employee_project->status) === "Approved") {{ 'selected' }} @endif>Approved</option>
+                    <option disabled value="Disapproved" @if (old('status', $employee_project->status) === "Disapproved") {{ 'selected' }} @endif>Disapproved</option>
+                    <option disabled value="Terminated" @if (old('status', $employee_project->status) === "Terminated") {{ 'selected' }} @endif>Terminated</option>
                 </select>
                 @if ($errors->has('status'))
                 <span class="help-block">
@@ -32,7 +37,7 @@
             </div>
 
             <div style="margin-top: 3%">
-                <button id="button" type="submit" class="btn btn-success " >Update</button>
+                <button id="button" type="submit" class="btn btn-success " style="margin-right: 10px;" >Update</button><a href="{{ URL::previous() }}" class="btn btn-warning" >Back</a>
             </div>
         </form> 
     </div>

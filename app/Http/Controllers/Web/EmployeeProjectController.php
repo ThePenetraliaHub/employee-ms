@@ -167,6 +167,7 @@ class EmployeeProjectController extends Controller
             $employee_project->update([
                 'project_id' => $request->project_id,
                 'details' => $request->details,
+                'supervisor_remark' => $request->details,
                 'document_url' => $path,
                 'document_name' => $request->document_url->getClientOriginalName(),
                 'start_date' => $request->start_date,
@@ -177,6 +178,7 @@ class EmployeeProjectController extends Controller
             $employee_project->update([
                 'project_id' => $request->project_id,
                 'details' => $request->details,
+                'supervisor_remark' => $request->supervisor_remark,
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
                 'status' => $request->status,
