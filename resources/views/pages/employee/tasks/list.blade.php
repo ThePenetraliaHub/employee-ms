@@ -50,9 +50,9 @@
                                                             </span>
                                                         </a>
                                                         <br>
-                                                        <span class="inline-block text-muted">{{ $task->project->status }} </span><br>
+                                                        <span class="inline-block text-muted">{{-- $task->project->status --}} </span><br>
                                                         <span class="inline-block text-muted">
-                                                            {{ date("F jS, Y", strtotime($task->project->start_date)) }} - {{ date("F jS, Y", strtotime($task->project->end_date)) }}
+                                                            {{-- date("F jS, Y", strtotime($task->project->start_date)) --}}  {{-- date("F jS, Y", strtotime($task->project->end_date)) --}}
                                                         </span>
                                                     @else
                                                         <span class="inline-block text-muted text-danger">

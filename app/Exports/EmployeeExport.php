@@ -21,7 +21,7 @@ class EmployeeExport implements FromCollection , WithHeadings
     {
 
         return [
-//		'id',
+		'id',
 		"supervisor_id",
 		"department_id",
 		"pay_grade_id",
@@ -41,6 +41,7 @@ class EmployeeExport implements FromCollection , WithHeadings
 		"office_phone",
 		"private_email",
 		"office_email",
+		"avatar",
 		"created_at",
 		"updated_at",
 

@@ -15,7 +15,7 @@
                 <div class="box">
                     <div class="box-body">
                         <div class="box box-primary">
-                            <div class="box-header with-border">
+                            <!-- <div class="box-header with-border">
                                 <h3 class="box-title">Filter by:</h3>
                                 <button type="button" class="btn btn-default pull-right"><i class="fa fa-print"></i> Print Report</button>
                             </div>
@@ -47,7 +47,7 @@
                                                 </label>
                                             </div>
                                         </div> --}}
-                                    </div>
+                                    </div> -->
                                 </form>
                             </div>
                           </div>

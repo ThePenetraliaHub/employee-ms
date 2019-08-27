@@ -1,7 +1,7 @@
 <div class="form-row">
     <div class="form-group {{ $errors->has('NIN') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="NIN">National Identity Number(NIN)</label>
-        <input id="NIN" type="text" class="form-control" name="NIN" value="{{ old('NIN', $employee->NIN ) }}" required="" placeholder="">
+        <input @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif id="NIN" type="text" class="form-control" name="NIN" value="{{ old('NIN', $employee->NIN ) }}" required="" placeholder="">
         @if ($errors->has('NIN'))
             <span class="help-block">
                 <strong>{{ $errors->first('NIN') }}</strong>
@@ -11,7 +11,7 @@
 
     <div class="form-group {{ $errors->has('employee_number') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="employee_number">Employee Number</label>
-        <input id="employee_number" type="text" class="form-control" name="employee_number" value="{{ old('employee_number', $employee->employee_number) }}" required placeholder="">
+        <input @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif id="employee_number" type="text" class="form-control" name="employee_number" value="{{ old('employee_number', $employee->employee_number) }}" required placeholder="">
         @if ($errors->has('employee_number'))
             <span class="help-block">
                 <strong>{{ $errors->first('employee_number') }}</strong>
@@ -21,7 +21,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('department_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="department_id">Employee Department</label>
-        <select class="form-control" id="department_id" name="department_id">
+        <select @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control" id="department_id" name="department_id">
             <option value=""></option>
             @foreach($departments as $department)
                 <option value="{{$department->id}}" @if (old('department_id', $employee->department->id) == $department->id) {{ 'selected' }} @endif>{{$department->name}}</option>
@@ -66,7 +66,7 @@
 
     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }} col-xs-11 mb-0 mt-3">
         <label for="name">Full Name</label>
-        <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $employee->name) }}" required="" placeholder="">
+        <input @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif id="name" type="text" class="form-control" name="name" value="{{ old('name', $employee->name) }}" required="" placeholder="">
         @if ($errors->has('name'))
         <span class="help-block">
             <strong>{{ $errors->first('name') }}</strong>
@@ -76,7 +76,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('gender') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="gender">Gender</label>
-        <select class="form-control" id="gender" name="gender">
+        <select @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control" id="gender" name="gender">
             <option value=""></option>
             <option value="male" @if (old('gender', $employee->gender) === "male") {{ 'selected' }} @endif>Male</option>
             <option value="female" @if (old('gender', $employee->gender) === "female") {{ 'selected' }} @endif>Female</option>
@@ -90,7 +90,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('date_of_birth') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="date_of_birth">Date of Birth</label>
-        <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth', $employee->date_of_birth->format("Y-m-d")) }}" required>
+        <input @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif id="date_of_birth" type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth', $employee->date_of_birth->format("Y-m-d")) }}" required>
         @if ($errors->has('date_of_birth'))
         <span class="help-block">
             <strong>{{ $errors->first('date_of_birth') }}</strong>
@@ -186,7 +186,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('job_title_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="job_title_id">Job Title</label>
-        <select class="form-control" id="job_title_id" name="job_title_id">
+        <select @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control" id="job_title_id" name="job_title_id">
             <option value=""></option>
             @foreach($job_titles as $job_title)
                 <option value="{{ $job_title->id }}" @if (old('job_title_id', $employee->job_title->id) == $job_title->id) {{ 'selected' }} @endif>{{$job_title->title}}</option>
@@ -201,7 +201,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('pay_grade_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="pay_grade_id">Employee Pay Grade</label>
-        <select class="form-control" id="pay_grade_id" name="pay_grade_id">
+        <select @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control" id="pay_grade_id" name="pay_grade_id">
             <option value=""></option>
              <option value="Grade 1">Grade 1</option>   <!-- for testing sake -->
             @foreach($pay_grades as $pay_grade)
@@ -217,7 +217,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('employee_status_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="employee_status_id">Employement Status</label>
-        <select class="form-control" id="employee_status_id" name="employee_status_id">
+        <select @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control" id="employee_status_id" name="employee_status_id">
             <option value=""></option>
             @foreach($employment_statuses as $employment_status)
                 <option value="{{ $employment_status->id }}" @if (old('employee_status_id', $employee->employee_status->id) == $employment_status->id) {{ 'selected' }} @endif> {{$employment_status->title}}</option>
@@ -232,7 +232,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('supervisor_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="supervisor_id">Supervisor</label>
-        <select class="form-control" id="supervisor_id" name="supervisor_id">
+        <select @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control" id="supervisor_id" name="supervisor_id">
             <option value=""></option>
             @foreach($employees as $employee)
                 @if($employee->supervisor)
@@ -251,7 +251,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('joined_date') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="joined_date">Date Employee Joined</label>
-        <input id="joined_date" type="date" class="form-control" name="joined_date" value="{{ old('joined_date', $employee->joined_date->format('Y-m-d')) }}" required>
+        <input @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif id="joined_date" type="date" class="form-control" name="joined_date" value="{{ old('joined_date', $employee->joined_date->format('Y-m-d')) }}" required>
         @if ($errors->has('joined_date'))
             <span class="help-block">
                 <strong>{{ $errors->first('joined_date') }}</strong>

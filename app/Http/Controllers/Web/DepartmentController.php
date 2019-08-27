@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Department;
+use App\Exports\DepartmentExport;
+use App\Imports\DepartmentImport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Session; 
 use Illuminate\Validation\Rule;
@@ -87,6 +90,28 @@ class DepartmentController extends Controller
             notify()->success("Successfully Deleted!","","bottomRight");
             return redirect('department');
         }
+    }
+
+    public function importdata(Request $request) 
+    {
+            $this->validate($request, [
+                  'file'  => 'required|mimes:xls,xlsx'
+                 ]);
+
+        $path = $request->file('file')->getRealPath();
+
+        $data = Excel::import(new DepartmentImport, $path);
+
+        notify()->success("Excel Data Imported successfully!","","bottomRight");
+
+        return back();
+
+    }
+
+    public function exportdata()
+
+    {
+        return Excel::download(new DepartmentExport, 'department.xlsx');
     }
 }
 

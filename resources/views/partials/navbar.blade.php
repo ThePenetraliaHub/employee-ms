@@ -44,6 +44,13 @@
 
           <!-- Menu Footer-->
           <li class="user-footer">
+          @if(auth()->user()->owner instanceof \App\SuperAdmin)
+            <a class="btn btn-default btn-flat" href="{{ route("admin.show", auth()->user()->owner->id) }}" class="btn btn-primary px-5">Edit Profile</a>
+            @elseif(auth()->user()->owner instanceof \App\Employee)
+            <a class="btn btn-default btn-flat" href="{{ route("employee.show", auth()->user()->owner->id) }}" class="btn btn-primary px-5">Edit Profile</a>
+            @endif
+          </li>
+          <li class="user-footer">
                 <a 
                     class="btn btn-default btn-flat"
                     href="{{ route('logout') }}" 

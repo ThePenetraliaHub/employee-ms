@@ -2,14 +2,12 @@
                         @csrf
                 <div class="profile-img {{ $errors->has('avatar') ? ' has-error' : '' }} mb-0 mt-3">
                     <img src="{{asset('storage/'.$employee->avatar) }}" alt="profile image"/>
-                    @if(auth()->user()->can('edit_employee'))
+                   @if(auth()->user()->can('edit_employee') || auth()->user()->owner)
                      <div class="file btn btn-lg btn-primary">
                         Change Photo
                         <input type="file" name="avatar"/>
                     </div>
-                    @endif
                 </div>
-                @if(auth()->user()->can('edit_employee'))
                 <div >
                 <button class="form-control" id="button" type="submit" class="btn btn-success">Upload Photo</button>
                 </div>

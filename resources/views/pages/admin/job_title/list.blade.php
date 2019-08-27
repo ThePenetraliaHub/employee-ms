@@ -18,6 +18,24 @@
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create job title
                     </a>
+                    <div class="box-body">
+                            <div class="row">
+                                <form action="{{ route('import.jobtitle') }}" method="POST" enctype="multipart/form-data">
+
+                                    @csrf
+
+                                    <input type="file" name="file" class="form-control">
+
+                                    <br>
+
+                                    <button class="btn btn-success" type="submit">Import Job Title</button>
+
+                                    <a class="btn btn-warning" href="{{ route('export.jobtitle') }}">Export Job Title</a>
+
+                                </form>
+               
+                            </div>
+                    </div>
                     @endif
                 @endif
                 <div class="box">

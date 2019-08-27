@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\JobTitle;
+use App\Exports\JobTitleExport;
+use App\Imports\JobTitleImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
@@ -94,5 +97,27 @@ class JobTitleController extends Controller
             notify()->success("Successfully Deleted!","","bottomRight");
             return redirect('job-title');
         }
+    }
+
+    public function importdata(Request $request) 
+    {
+            $this->validate($request, [
+                  'file'  => 'required|mimes:xls,xlsx'
+                 ]);
+
+        $path = $request->file('file')->getRealPath();
+
+        $data = Excel::import(new JobTitleImport, $path);
+
+        notify()->success("Excel Data Imported successfully!","","bottomRight");
+
+        return back();
+
+    }
+
+    public function exportdata()
+
+    {
+        return Excel::download(new JobTitleExport, 'jobtitle.xlsx');
     }
 }

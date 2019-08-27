@@ -48,12 +48,12 @@
                                     <label class="control-label viewLabel2">{{$employee_project->end_date}}</label>
                                 </div>
 
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <label class="control-label viewLabel3">Days Left</label>
                                 </div>
                                 <div class="col-md-8"> 
                                     <label class="control-label viewLabel2">5 days</label>
-                                </div>
+                                </div> -->
 
                                 <div class="col-md-4">
                                     <label class="control-label viewLabel3">Task Status</label>
@@ -61,20 +61,20 @@
                                 <div class="col-md-8"> 
                                     <label class="control-label viewLabel2">{{$employee_project->status}}</label>
                                 </div>
-
+                                {{--
                                 <div class="col-md-4">
                                     <label class="control-label viewLabel3">Team Members</label>
                                 </div>
-                           {{-- <div class="col-md-8"> 
+                                 <div class="col-md-8"> 
                                     @foreach($employee_project as $employee_project )
                                     <li class="control-label viewLabel2"><a href="{{ route('employee.profile' ,$employee_project->employee->id) }}" >{{$employee_project->employee->name}} </a></li>
                                     @endforeach
-                                </div> --}}
+                                </div> 
 
                                 <div class="col-md-4">
                                     <label class="control-label viewLabel3">Team Leader</label>
-                                </div>
-                                {{-- <div class="col-md-8"> 
+                                </div> 
+                                 <div class="col-md-8"> 
                                     <b><a class="control-label viewLabel2" href="{{ route('employee.profile' ,$employee_project->employee->id) }}" >{{$employee_projects[0]->employee->name}} </a></b>
                                 </div> --}}
 

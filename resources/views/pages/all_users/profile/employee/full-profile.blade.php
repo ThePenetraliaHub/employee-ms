@@ -56,7 +56,7 @@
             </div>
         @endif -->
 
-        @if(auth()->user()->can('edit_employee'))
+        @if(auth()->user()->can('edit_employee') || auth()->user()->owner)
             <div class="col-md-2">
                 <a href="{{ route("employee.show", $employee->id) }}" class="btn btn-primary px-5">Edit Profile</a>
             </div> 

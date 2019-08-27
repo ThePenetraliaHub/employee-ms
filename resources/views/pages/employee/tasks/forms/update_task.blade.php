@@ -12,9 +12,11 @@
                 <label for="status" class="control-label viewLabel3 ">Task Status</label>
             </div>
             <div class="form-group col-md-12{{ $errors->has('status') ? ' has-error' : '' }} mb-0 mt-3 viewLabel2">
-            @if($employee_project->status==="Approved"||"Terminated")
-            <select disabled class="form-control" id="status" name="status" style="width: 100%">@else
-            <select class="form-control" id="status" name="status" style="width: 100%"> @endif
+            @if($employee_project->status =="Approved"||$employee_project->status =="Terminated")
+            <select disabled class="form-control" id="status" name="status" style="width: 100%">
+            @else
+            <select class="form-control" id="status" name="status" style="width: 100%"> 
+            @endif
                     <option value="Processing" @if (old('status', $employee_project->status) === "Processing") {{ 'selected' }} @endif>Processing</option>
                     <option value="Rounding-up" @if (old('status', $employee_project->status) === "Rounding-up") {{ 'selected' }} @endif>Rounding-up</option>
                     <option value="Completed" @if (old('status', $employee_project->status) === "Completed") {{ 'selected' }} @endif>Completed</option>
@@ -31,13 +33,22 @@
             </div>
 
             <div>
-               <textarea rows="3" id="details" type="textarea" class="form-control" name="employee_remark" required placeholder="Employee's Remark here....">{{ $employee_project->employee_remark }}
-</textarea>
+               @if($employee_project->status =="Approved"||$employee_project->status =="Terminated")
+                <textarea disabled rows="3" id="details" type="textarea" class="form-control" name="employee_remark" required placeholder="Employee's Remark here....">{{ $employee_project->employee_remark }}
+                </textarea>
+                @else<textarea rows="3" id="details" type="textarea" class="form-control" name="employee_remark" required placeholder="Employee's Remark here....">{{ $employee_project->employee_remark }}
+                </textarea>
+                @endif
 
             </div>
 
             <div style="margin-top: 3%">
-                <button id="button" type="submit" class="btn btn-success " style="margin-right: 10px;" >Update</button><a href="{{ URL::previous() }}" class="btn btn-warning" >Back</a>
+                @if($employee_project->status =="Approved"||$employee_project->status =="Terminated")
+                <button disabled id="button" type="submit" class="btn btn-success " style="margin-right: 10px;" >Update</button>
+                @else
+                <button id="button" type="submit" class="btn btn-success " style="margin-right: 10px;" >Update</button>
+                @endif
+                <a href="{{ URL::previous() }}" class="btn btn-warning" >Back</a>
             </div>
         </form> 
     </div>

@@ -18,6 +18,24 @@
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new department
                     </a>
+                    <div class="box-body">
+                            <div class="row">
+                                <form action="{{ route('import.department') }}" method="POST" enctype="multipart/form-data">
+
+                                    @csrf
+
+                                    <input type="file" name="file" class="form-control">
+
+                                    <br>
+
+                                    <button class="btn btn-success" type="submit">Import Department</button>
+
+                                    <a class="btn btn-warning" href="{{ route('export.department') }}">Export Department</a>
+
+                                </form>
+               
+                            </div>
+                    </div>
                     @endif
                 @endif
                 <div class="box">

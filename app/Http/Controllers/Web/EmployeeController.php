@@ -26,7 +26,7 @@ class EmployeeController extends Controller
 
          $this->middleware('permission:browse_employee', ['only' => 'index']); //index func. if cant browse then you cant access the rest
          $this->middleware('permission:add_employee', ['only' => 'create']);
-         $this->middleware('permission:edit_employee', ['only' => 'show']);
+         //$this->middleware('permission:edit_employee', ['only' => 'show']);
  
 
     }
@@ -120,13 +120,21 @@ class EmployeeController extends Controller
         $pay_grades = PayGrade::all();
         $employment_statuses = EmployeeStatus::all();
         $job_titles = JobTitle::all();
+//prevent employee from editing other employees info from url
+        if(auth()->user()->can('edit_employee') || auth()->user()->owner->id == $employee->id){
+            return view('pages.admin.employees.edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
+          }
+          else{
+            return abort('403');
+          }
 
-        return view('pages.admin.employees.edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
+        
     }
     
     public function update(Request $request, Employee $employee)
     {
         $rules = [
+            //'supervisor_id' => 'required',
             'department_id' => 'required',
             'NIN' => [
                 'required',
@@ -142,9 +150,10 @@ class EmployeeController extends Controller
             'marital_status' => 'required',
             'joined_date' => 'required',
             'addressline1' => 'required',
+            // 'zip_code' => 'required',
             'home_phone' => [
                 'required',
-                Rule::unique('employees', 'home_phone')->ignore($employee),
+                Rule::unique('employees')->ignore($employee->home_phone, "home_phone"),
             ],
             //'office_phone' => 'required',
             'private_email' => [
@@ -217,7 +226,6 @@ class EmployeeController extends Controller
         $employee->delete();
 
         notify()->success("Successfully Deleted!","","bottomRight");
-        
         return redirect('employee');
     }
 

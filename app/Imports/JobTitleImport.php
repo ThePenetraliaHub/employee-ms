@@ -2,13 +2,13 @@
 
 namespace App\Imports;
 
-use App\WorkDay;
+use App\JobTitle;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 //use Illuminate\Support\Facades\Validator;
 
-class WorkDayImport implements ToCollection,WithStartRow
+class JobTitleImport implements ToCollection,WithStartRow
 {
     /**
     * @param array $row
@@ -21,12 +21,11 @@ class WorkDayImport implements ToCollection,WithStartRow
 
             foreach ($rows as $row)
             {
-                WorkDay::create([
-                    "id"=>               $row[0],
-                    "date" =>            $row[1],
-                    "start_time" =>      $row[2],
-                    "end_time"=>         $row[3],
-                    "day_type"=>         $row[4],
+                JobTitle::create([
+                    "id"=>     $row[0],
+                    "code"=>     $row[1],
+                    "title"=>     $row[2],
+                    "description"=>     $row[3],
                 ]);
             }
         }

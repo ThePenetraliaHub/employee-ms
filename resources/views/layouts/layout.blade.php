@@ -143,7 +143,7 @@
 
                             @if(auth()->user()->hasAnyPermission(['browse_projects','add_projects',
                                                             'edit_projects','delete_projects','browse_employee_tasks',
-                                                            'read_employee_tasks','add_employee_tasks','edit_employee_tasks',
+                                                            'add_employee_tasks','edit_employee_tasks',
                                                             'delete_employee_tasks','download_employee_tasks']))
 
                             <li class="treeview">
@@ -153,7 +153,7 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                @if(auth()->user()->hasAnyPermission(['browse_projects','read_projects','add_projects',
+                                @if(auth()->user()->hasAnyPermission(['browse_projects','add_projects',
                                                             'edit_projects','delete_projects']))
                                     <li>
                                         <a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> Projects
@@ -175,11 +175,13 @@
                         </ul>
                     </li>
 
-                    @if(!auth()->user()->hasAnyPermission(['edit_employee_tasks','delete_employee_tasks','download_employee_tasks']))<li>
+                    @if(auth()->user()->typeable_type <> 'App\SuperAdmin')
+                    <li>
                         <a href="{{ route('task.index') }}">
                             <i class="fa fa-tasks"></i><span> Tasks</span>
                         </a>
-                     @endif</li>
+                     </li>
+                     @endif
 
                     <li>
                         <a href="{{ route('profile') }}">

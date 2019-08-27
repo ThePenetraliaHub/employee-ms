@@ -93,11 +93,15 @@ Route::middleware('auth')->group(function () {
 
     	Route::prefix('export')->group(function () {
             Route::get('/employees', 'Web\EmployeeController@exportdata')->name('export.excel');
+            Route::get('/department', 'Web\DepartmentController@exportdata')->name('export.department');
+            Route::get('/jobtitle', 'Web\JobTitleController@exportdata')->name('export.jobtitle');
         });
 
         Route::prefix('import')->group(function () {
            Route::post('/employees', 'Web\EmployeeController@importdata')->name('import.excel');
            Route::post('/workdays', 'Web\WorkDayController@importdata')->name('import.workday');
+           Route::post('/department', 'Web\DepartmentController@importdata')->name('import.department');
+           Route::post('/jobtitle', 'Web\JobTitleController@importdata')->name('import.jobtitle');
         });
 
     	Route::prefix('download')->group(function () {

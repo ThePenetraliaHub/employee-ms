@@ -65,6 +65,7 @@ class EmployeeImport implements ToCollection,WithStartRow
                     "office_phone"=>      $row[16],
                     "private_email"=>     $row[17],
                     "office_email"=>      $row[18],
+                    "avatar"=>            $row[19],
                 ]);
             }
         }

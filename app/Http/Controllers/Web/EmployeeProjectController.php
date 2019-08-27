@@ -15,16 +15,16 @@ use Illuminate\Validation\ValidationException;
 
 class EmployeeProjectController extends Controller
 {
-    // function __construct()
+    function __construct()
 
-    // {
+    {
         
-    //         $this->middleware('permission:browse_employee_tasks');
-    //         $this->middleware('permission:add_employee_tasks', ['only' => 'create']);
-    //         $this->middleware('permission:read_employee_tasks', ['only' => ['task_info']]);
-    //         $this->middleware('permission:edit_employee_tasks', ['only' => 'show']);  
+            $this->middleware('permission:browse_employee_tasks', ['only' => 'index']);
+            $this->middleware('permission:add_employee_tasks', ['only' => 'create']);
+            $this->middleware('permission:read_employee_tasks', ['only' => ['task_info']]);
+            $this->middleware('permission:edit_employee_tasks', ['only' => 'show']);  
 
-    // }
+    }
     public function index()
     {
         $employee_projects = EmployeeProject::orderBy('id', 'desc')->paginate(10);
@@ -215,7 +215,13 @@ class EmployeeProjectController extends Controller
 
     public function task_info(EmployeeProject $employee_project)
     {
+        // restrict users from accessing other users tasks via url
+        if(auth()->user()->can('read_employee_tasks') && auth()->user()->owner->id == $employee_project->employee_id){
         return view('pages.employee.tasks.show', compact('employee_project'));
+         }
+          else{
+            return abort('403');
+          }
     }
 
     public function update_task(Request $request, EmployeeProject $employee_project)
