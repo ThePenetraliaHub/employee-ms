@@ -41,7 +41,4 @@ class AjaxResourceController extends Controller
 
         return response()->json($arrData);
     }
-
-  
-   
 }
