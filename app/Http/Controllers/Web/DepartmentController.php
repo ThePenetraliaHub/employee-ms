@@ -14,13 +14,13 @@ use Illuminate\Validation\Rule;
 class DepartmentController extends Controller
 {
     function __construct()
-
     {
         $this->middleware('permission:browse_departments'); //index func. if cant browse then you cant access the rest
         $this->middleware('permission:add_departments', ['only' => 'create']);
         $this->middleware('permission:edit_departments', ['only' => 'show']);
 
     }
+
     public function index()
     {
         $departments = Department::orderBy('id', 'desc')->paginate(10);
@@ -57,7 +57,8 @@ class DepartmentController extends Controller
         return view('pages.admin.departments.edit', ['department' => $department]);
     }
 
-    public function update(Request $request, Department $department){
+    public function update(Request $request, Department $department)
+    {
         $rules = [
             'name' => [
                 'required',
@@ -94,9 +95,9 @@ class DepartmentController extends Controller
 
     public function importdata(Request $request) 
     {
-            $this->validate($request, [
-                  'file'  => 'required|mimes:xls,xlsx'
-                 ]);
+        $this->validate($request, [
+            'file'  => 'required|mimes:xls,xlsx'
+        ]);
 
         $path = $request->file('file')->getRealPath();
 
@@ -105,11 +106,9 @@ class DepartmentController extends Controller
         notify()->success("Excel Data Imported successfully!","","bottomRight");
 
         return back();
-
     }
 
     public function exportdata()
-
     {
         return Excel::download(new DepartmentExport, 'department.xlsx');
     }
