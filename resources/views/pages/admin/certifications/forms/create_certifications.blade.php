@@ -64,7 +64,7 @@
         </div>
     </div>
 
- <div class="form-group col-xs-11 mb-0 mt-3">
+    <div class="form-group col-xs-11 mb-0 mt-3">
         <label for="document_url">Document</label><br>
         <label class="btn btn-default" id="">
             <i class="{{ $errors->has('document_url') ? 'has-error' : '' }}"></i><input name="document_url" id='document_url' type="file">
