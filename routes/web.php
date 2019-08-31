@@ -24,8 +24,6 @@ Route::get('deactivated', function () {
         redirect('/');
     }
 
-	Route::resource('/user', 'Web\UserController');
-    Route::get('/user/{user}/active', 'Web\UserController@active')->name('user.active');
     if (auth()->user()->isActive()) {
         return redirect(route('home'));
     }
