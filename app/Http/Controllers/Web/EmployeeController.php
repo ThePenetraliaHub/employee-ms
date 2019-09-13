@@ -32,7 +32,7 @@ class EmployeeController extends Controller
     }
     public function index()
     {
-        $employees = Employee::orderBy('id', 'desc')->paginate(10);
+        $employees = Employee::orderBy('id', 'desc')->paginate();
         $pay_grades = PayGrade::all();
         $employment_statuses = EmployeeStatus::all();
         $job_titles = JobTitle::all();

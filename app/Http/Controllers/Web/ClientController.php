@@ -24,13 +24,15 @@ class ClientController extends Controller
 
     public function index()
     {
-       $clients = Client::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.clients.list', compact('clients'));
+       $clients = Client::orderBy('id', 'desc')->paginate();
+        // return view('pages.admin.clients.list', compact('clients'));
+        return view('pages.admin.clients.gen-list', compact('clients'));
     }
 
     public function create()
     {
-         return view('pages.admin.clients.create');
+        //  return view('pages.admin.clients.create');
+         return view('pages.admin.clients.gen-create');
     }
                                         
     public function store(Request $request)
@@ -58,6 +60,7 @@ class ClientController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessages);
+        //dd($request->first_contact_date);
 
         Client::create($request->all());
 
@@ -67,12 +70,14 @@ class ClientController extends Controller
 
     public function show(Client $client)
     {
-        return view('pages.admin.clients.edit', compact('client'));
+       // return view('pages.admin.clients.edit', compact('client'));
+        return view('pages.admin.clients.gen-edit', compact('client'));
     }
 
     public function client_details($id){
         $details = Client::find($id);
-        return view('pages.admin.clients.client_details', compact('details'));
+       // return view('pages.admin.clients.client_details', compact('details'));
+        return view('pages.admin.clients.gen-client_details', compact('details'));
     }
 
     public function update(Request $request, Client $client)

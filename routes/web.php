@@ -157,6 +157,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/states', 'Web\AjaxResourceController@getStates')->name('ajax.states');
         Route::post('/countries', 'Web\AjaxResourceController@getCountries')->name('ajax.countries');
     });
+
+    Route::get('gentellela', function () {
+       return view('pages/gentellela');
+    });
 });
 
 Auth::routes();

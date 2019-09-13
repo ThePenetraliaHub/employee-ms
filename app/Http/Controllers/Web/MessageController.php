@@ -74,7 +74,7 @@ class MessageController extends Controller
                                     'message_id'=> $message->id,
                                     'user_id'=> $user->id,
                                 ]);
-                                Mail::to($user->email)->queue(new BroadcastMail($request->subject,$request->content,auth()->user()->email, auth()->user()->name));
+                              //  Mail::to($user->email)->queue(new BroadcastMail($request->subject,$request->content,auth()->user()->email, auth()->user()->name));
                             }
                         }
                     }, 2);
@@ -112,7 +112,7 @@ class MessageController extends Controller
                             ]);
 
                             $user = User::find($user);
-                            Mail::to($user->email)->queue(new BroadcastMail($request->subject, $request->content, auth()->user()->email, auth()->user()->name));
+                           // Mail::to($user->email)->queue(new BroadcastMail($request->subject, $request->content, auth()->user()->email, auth()->user()->name));
                         }
                     }, 2);
 

@@ -21,14 +21,16 @@ class PayGradeController extends Controller
     }
     public function index()
     {
-        $pay_grades = PayGrade::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.pay_grade.list', compact('pay_grades'));
+        $pay_grades = PayGrade::orderBy('id', 'desc')->paginate();
+        // return view('pages.admin.pay_grade.list', compact('pay_grades'));
+        return view('pages.admin.pay_grade.gen-list', compact('pay_grades'));
     }
 
 
     public function create()
     {
-        return view('pages.admin.pay_grade.create'); 
+        // return view('pages.admin.pay_grade.create'); 
+        return view('pages.admin.pay_grade.gen-create'); 
     }
 
     public function store(Request $request)
@@ -69,7 +71,8 @@ class PayGradeController extends Controller
    
     public function show(PayGrade $pay_grade)
     {
-        return view('pages.admin.pay_grade.edit',compact('pay_grade'));
+        // return view('pages.admin.pay_grade.edit',compact('pay_grade'));
+        return view('pages.admin.pay_grade.gen-edit',compact('pay_grade'));
     }
 
     public function update(Request $request, PayGrade $pay_grade){

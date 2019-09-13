@@ -19,14 +19,16 @@ class EmployeeStatusController extends Controller
     }
     public function index()
     {
-        $employee_statuses = EmployeeStatus::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.employee_status.list', compact('employee_statuses'));
+        $employee_statuses = EmployeeStatus::orderBy('id', 'desc')->paginate();
+        // return view('pages.admin.employee_status.list', compact('employee_statuses'));
+        return view('pages.admin.employee_status.gen-list', compact('employee_statuses'));
     }
 
 
     public function create()
     {
-        return view('pages.admin.employee_status.create'); 
+        // return view('pages.admin.employee_status.create'); 
+        return view('pages.admin.employee_status.gen-create'); 
     }
 
     public function store(Request $request)
@@ -53,7 +55,8 @@ class EmployeeStatusController extends Controller
    
     public function show(EmployeeStatus $employee_status)
     {
-         return view('pages.admin.employee_status.edit',compact('employee_status'));   
+        //  return view('pages.admin.employee_status.edit',compact('employee_status'));  
+        return view('pages.admin.employee_status.gen-edit',compact('employee_status'));    
     }
 
     public function update(Request $request, EmployeeStatus $employee_status){

@@ -24,12 +24,14 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.departments.list', ['departments' => $departments]);
+        //return view('pages.admin.departments.list', ['departments' => $departments]);
+        return view('pages/admin.departments.gen-list', ['departments' => $departments]);
     }
 
     public function create()
     {
-        return view('pages.admin.departments.create');
+        // return view('pages.admin.departments.create');
+       return view('pages.admin.departments.gen-create');
     }
 
     public function store(Request $request)
@@ -54,7 +56,8 @@ class DepartmentController extends Controller
 
     public function show(Department $department)
     {
-        return view('pages.admin.departments.edit', ['department' => $department]);
+        // return view('pages.admin.departments.edit', ['department' => $department]);
+        return view('pages.admin.departments.gen-edit', ['department' => $department]);
     }
 
     public function update(Request $request, Department $department){

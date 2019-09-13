@@ -24,14 +24,16 @@ class JobTitleController extends Controller
 
     public function index()
     {
-        $job_titles = JobTitle::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.job_title.list', compact('job_titles'));
+        $job_titles = JobTitle::orderBy('id', 'desc')->paginate();
+        // return view('pages.admin.job_title.list', compact('job_titles'));
+        return view('pages.admin.job_title.gen-list', compact('job_titles'));
     }
 
 
     public function create()
     {
-        return view('pages.admin.job_title.create'); 
+        // return view('pages.admin.job_title.create'); 
+        return view('pages.admin.job_title.gen-create');
     }
 
     public function store(Request $request)
@@ -61,7 +63,8 @@ class JobTitleController extends Controller
    
     public function show(JobTitle $job_title)
     {
-        return view('pages.admin.job_title.edit',compact('job_title'));
+        // return view('pages.admin.job_title.edit',compact('job_title'));
+        return view('pages.admin.job_title.gen-edit',compact('job_title'));
     }
 
     public function update(Request $request, JobTitle $job_title){
