@@ -84,7 +84,7 @@
                                         <ul class="nav child_menu">
                                           @if(auth()->user()->hasAnyPermission(['browse_job_titles','add_job_titles','edit_job_titles',
                                                                           'delete_job_titles']))
-                                          <li class="sub_menu"><a href="{{ route('job-title.index') }}">Job Titles</a></li>
+                                          <li class="sub_menu"><a href="{{ route('job-title.index') }}"><i class="fa fa-users"></i>Job Titles</a></li>
                                           @endif
 
                                           @if(auth()->user()->hasAnyPermission(['browse_pay_grades','add_pay_grades',
