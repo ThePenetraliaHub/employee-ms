@@ -5,6 +5,8 @@
 <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}"  rel="stylesheet">
 <!-- NProgress -->
 <link href="{{ asset('vendors/nprogress/nprogress.css') }}"  rel="stylesheet">
+  <!-- Select2 -->
+  <link href="{{ asset('vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">
 <!-- bootstrap-daterangepicker -->
 <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 <!-- bootstrap-datetimepicker -->

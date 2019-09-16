@@ -37,7 +37,8 @@ class EmployeeController extends Controller
         $employment_statuses = EmployeeStatus::all();
         $job_titles = JobTitle::all();
 
-        return view('pages.admin.employees.list', compact("employees", "employment_statuses", "pay_grades", "job_titles"));
+        // return view('pages.admin.employees.list', compact("employees", "employment_statuses", "pay_grades", "job_titles"));
+        return view('pages.admin.employees.gen-list', compact("employees", "employment_statuses", "pay_grades", "job_titles"));
     }
 
     public function create()
@@ -48,7 +49,8 @@ class EmployeeController extends Controller
         $employment_statuses = EmployeeStatus::all();
         $job_titles = JobTitle::all();
 
-        return view('pages.admin.employees.create' , compact('departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
+        // return view('pages.admin.employees.create' , compact('departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
+        return view('pages.admin.employees.gen-create' , compact('departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
     }
 
     public function store(Request $request)
@@ -122,7 +124,8 @@ class EmployeeController extends Controller
         $job_titles = JobTitle::all();
 //prevent employee from editing other employees info from url
         if(auth()->user()->can('edit_employee') || auth()->user()->owner->id == $employee->id){
-            return view('pages.admin.employees.edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
+            // return view('pages.admin.employees.edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
+            return view('pages.admin.employees.gen-edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
           }
           else{
             return abort('403');

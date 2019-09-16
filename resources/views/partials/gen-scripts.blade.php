@@ -11,6 +11,8 @@
 <!-- <script src="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script> -->
 <!-- bootstrap-datetimepicker -->    
 <script src="{{ asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+<!-- select2 -->
+<script src="{{ asset('vendors/select2/dist/js/select2.full.min.js') }}"></script>
 <!-- Parsley -->
 <!-- <script src="{{ asset('vendors/parsleyjs/dist/parsley.min.js') }}"></script> -->
 <!-- validator -->
