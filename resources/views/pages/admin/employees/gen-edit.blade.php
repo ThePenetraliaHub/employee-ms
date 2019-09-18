@@ -44,7 +44,7 @@
     $('#job_title_id').select2();
     $('#marital_status').select2();
     $('#gender').select2();
-    $('#department_id').attr('disabled',true);
+   
 });
 
 </script>

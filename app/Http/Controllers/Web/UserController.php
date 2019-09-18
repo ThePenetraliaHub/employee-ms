@@ -26,6 +26,7 @@ class UserController extends Controller
          $this->middleware('permission:browse_employee_user', ['only' => 'index']); 
          $this->middleware('permission:add_employee_user', ['only' => 'create']);
          $this->middleware('permission:edit_employee_user', ['only' => 'show']);
+         
     }
     public function index()
     {
@@ -129,11 +130,11 @@ class UserController extends Controller
             $certifications = Certification::where('employee_id', auth()->user()->owner->id)->get();
             $skills = Skill::where('employee_id', auth()->user()->owner->id)->get();
 
-            return view('pages.all_users.profile.employee.full-profile', compact('employee','educations','certifications','skills'));
+            // return view('pages.all_users.profile.employee.full-profile', compact('employee','educations','certifications','skills'));
+            return view('pages.all_users.profile.employee.gen-full-profile', compact('employee','educations','certifications','skills'));
         }elseif(auth()->user()->owner instanceof SuperAdmin){
             $admin = auth()->user()->owner;
-
-            return view('pages.all_users.profile.admin.short-profile', compact('admin'));
+            return view('pages.all_users.profile.admin.profile', compact('admin'));
         }else{
             abort(403, 'Unauthorized action.');
         }
@@ -144,9 +145,12 @@ class UserController extends Controller
         if($admin == auth()->user()->owner){
             return redirect("profile");
         }else{
-            if(auth()->user()->can('read_admin_user')){
-                return view('pages.all_users.profile.admin.short-profile', compact('admin'));
-            }else{
+            if(auth()->user()->can('edit_admin_user')){
+                return view('pages.all_users.profile.admin.profile', compact('admin')); 
+            }elseif(auth()->user()->can('read_admin_user')){
+                return view('pages.all_users.profile.admin.gen-short-profile', compact('admin'));
+            }
+            else{
                 abort(403, 'Unauthorized action.');
             }
         }
@@ -162,9 +166,11 @@ class UserController extends Controller
                 $certifications = Certification::where('employee_id', $employee->id)->get();
                 $skills = Skill::where('employee_id', $employee->id)->get();
 
-                return view('pages.all_users.profile.employee.full-profile', compact('employee','educations','certifications','skills'));
+                // return view('pages.all_users.profile.employee.full-profile', compact('employee','educations','certifications','skills'));
+                return view('pages.all_users.profile.employee.gen-full-profile', compact('employee','educations','certifications','skills'));
             }elseif(auth()->user()->can('read_employee')){
-                return view('pages.all_users.profile.employee.short-profile', compact('employee'));
+                // return view('pages.all_users.profile.employee.short-profile', compact('employee'));
+                return view('pages.all_users.profile.employee.gen-short-profile', compact('employee'));
             }else{
                 abort(403, 'Unauthorized action.');
             }

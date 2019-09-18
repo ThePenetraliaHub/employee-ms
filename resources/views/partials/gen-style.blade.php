@@ -20,3 +20,4 @@
 
 <!-- Custom Theme Style -->
 <link href="{{ asset('build/css/custom.min.css') }}" rel="stylesheet">
+<link href="{{ asset('build/css/profile-img.css') }}" rel="stylesheet">
