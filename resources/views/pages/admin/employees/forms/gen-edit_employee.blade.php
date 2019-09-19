@@ -31,6 +31,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="department_id">Employee Department<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
+        
         <select @if(!auth()->user()->can('edit_employee')){!!'readonly'!!}@endif class="form-control col-md-7 col-xs-12" id="department_id" name="department_id" required="required">
        
                 @foreach($departments as $department)
@@ -96,12 +97,15 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="marital_status">Marital Status<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="marital_status" name="marital_status"required="required">
+    
+
+    <select class="form-control col-md-7 col-xs-12" id="marital_status" name="marital_status" required="required">
             <option value="single" @if (old('marital_status', $employee->marital_status) === "single") {{ 'selected' }} @endif>Single</option>
             <option value="married" @if (old('marital_status', $employee->marital_status) === "married") {{ 'selected' }} @endif>Married</option>
             <option value="divorced" @if (old('marital_status', $employee->marital_status) === "divorced") {{ 'selected' }} @endif>Divorced</option>
             <option value="others" @if (old('marital_status', $employee->marital_status) === "others") {{ 'selected' }} @endif>Others</option>
         </select>
+
         @if ($errors->has('marital_status'))
             <span class="help-block">
                 <strong>{{ $errors->first('marital_status') }}</strong>
