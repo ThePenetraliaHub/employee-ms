@@ -18,7 +18,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="employee_number">Employee Number<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <input @if(!auth()->user()->can('edit_employee')){!!'readonly'!!}@endif type="text" id="employee_number"  name="employee_number" value="{{ old('employee_number', $employee->employee_number) }}" required="required" class="form-control col-md-7 col-xs-12">
+        <input @if(!auth()->user()->can('edit_employee')){!!'readonly'!!} @endif type="text" id="employee_number"  name="employee_number" value="{{ old('employee_number', $employee->employee_number) }}" required="required" class="form-control col-md-7 col-xs-12">
         @if ($errors->has('employee_number'))
             <span class="help-block">
                 <strong>{{ $errors->first('employee_number') }}</strong>
@@ -27,17 +27,17 @@
     </div>
     </div>
 
+    @if(auth()->user()->can('edit_employee'))
     <div class="item form-group {{ $errors->has('department_id') ? ' has-error' : '' }}">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="department_id">Employee Department<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        
-        <select @if(!auth()->user()->can('edit_employee')){!!'readonly'!!}@endif class="form-control col-md-7 col-xs-12" id="department_id" name="department_id" required="required">
+    <select class="form-control col-md-7 col-xs-12" id="department_id" name="department_id" required="required">
        
-                @foreach($departments as $department)
-                <option value="{{$department->id}}" @if (old('department_id', $employee->department->id) == $department->id) {{ 'selected' }} @endif>{{$department->name}}</option>
-                @endforeach
-        </select>
+       @foreach($departments as $department)
+       <option value="{{$department->id}}" @if (old('department_id', $employee->department->id) == $department->id) {{ 'selected' }} @endif>{{$department->name}}</option>
+       @endforeach
+    </select>
         @if ($errors->has('department_id'))
             <span class="help-block">
                 <strong>{{ $errors->first('department_id') }}</strong>
@@ -45,7 +45,10 @@
         @endif
     </div>
     </div>
-
+    @else
+    <input type ="hidden" name="department_id" value="{{$employee->department->id}}" >
+    @endif
+    
     <div class="item form-group {{ $errors->has('name') ? ' has-error' : '' }}">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Full Name <span class="required">*</span>
     </label>
@@ -63,8 +66,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Gender<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select @if(!auth()->user()->can('edit_employee')){!!'readonly'!!}@endif class="form-control col-md-7 col-xs-12" id="status" name="gender"required="required">
-        <option value=""></option>
+        <select  class="form-control col-md-7 col-xs-12" id="status" name="gender"required="required">
         <option value="male" @if (old('gender', $employee->gender) === "male") {{ 'selected' }} @endif>Male</option>
         <option value="female" @if (old('gender', $employee->gender) === "female") {{ 'selected' }} @endif>Female</option>
         </select>
@@ -81,7 +83,7 @@
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12 ">
                     <div class="form-group has-feedback">
-                        <input @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif type="text" name="date_of_birth"  value="{{ old('date_of_birth', $employee->date_of_birth->format("Y-m-d")) }}" class="form-control col-md-7 col-xs-12 has-feedback-left " id="single_cal4"  aria-describedby="inputSuccess2Status4">
+                        <input @if(!auth()->user()->can('edit_employee')){!!'readonly'!!}@endif type="text" name="date_of_birth"  value="{{ old('date_of_birth', $employee->date_of_birth->format("Y-m-d")) }}" class="form-control col-md-7 col-xs-12 has-feedback-left " id="single_cal4"  aria-describedby="inputSuccess2Status4">
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         <span id="inputSuccess2Status4" class="sr-only">(success)</span>
                     </div>
@@ -205,11 +207,13 @@
     </div>
     </div>
 
-    <div class="item form-group {{ $errors->has('job_title_id') ? ' has-error' : '' }}">
+    <!-- multi policy -->
+    @if(auth()->user()->can('edit_employee'))
+     <div class="item form-group {{ $errors->has('job_title_id') ? ' has-error' : '' }}">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="job_title_id">Job Title<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select  @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif  class="form-control col-md-7 col-xs-12" id="job_title_id" name="job_title_id"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="job_title_id" name="job_title_id"required="required">
                 @foreach($job_titles as $job_title)
                 <option value="{{ $job_title->id }}" @if (old('job_title_id', $employee->job_title->id) == $job_title->id) {{ 'selected' }} @endif>{{$job_title->title}}</option>
                 @endforeach
@@ -226,7 +230,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pay_grade_id">Employee Pay Grade<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select  @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control col-md-7 col-xs-12" id="pay_grade_id" name="pay_grade_id"required="required">
+        <select  class="form-control col-md-7 col-xs-12" id="pay_grade_id" name="pay_grade_id"required="required">
                 @foreach($pay_grades as $pay_grade)
         <option value="{{ $pay_grade->id }}" @if (old('pay_grade_id', $employee->pay_grade->id) == $pay_grade->id) {{ 'selected' }} @endif>{{$pay_grade->title}}</option>
                 @endforeach
@@ -243,7 +247,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="employee_status_id">Employement Status<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select  @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control col-md-7 col-xs-12" id="employee_status_id" name="employee_status_id" value="{{ old('employee_status_id') }} required="required">
+        <select class="form-control col-md-7 col-xs-12" id="employee_status_id" name="employee_status_id" value="{{ old('employee_status_id') }} required="required">
                 @foreach($employment_statuses as $employment_status)
          <option value="{{ $employment_status->id }}" @if (old('employee_status_id', $employee->employee_status->id) == $employment_status->id) {{ 'selected' }} @endif> {{$employment_status->title}}</option>
                 @endforeach
@@ -260,7 +264,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supervisor_id">Supervisor<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select  @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control col-md-7 col-xs-12" id="supervisor_id" name="supervisor_id"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="supervisor_id" name="supervisor_id"required="required">
         @foreach($employees as $employee)
         @if($employee->supervisor)
                     <option value="{{$employee->id}}" @if (old('supervisor_id', $employee->supervisor->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->name }}</option>
@@ -275,14 +279,23 @@
             </span>
         @endif
     </div>
-    </div>
+    </div> 
+    @else
+    <input type ="hidden" name="department_id" value="{{$employee->department->id}}" >
+    <input type ="hidden" name="job_title_id" value="{{$employee->job_title->id}}" >
+    <input type ="hidden" name="pay_grade_id" value="{{$employee->pay_grade->id}}" >
+    <input type ="hidden" name="employee_status_id" value="{{$employee->employee_status->id}}" >
+    <input type ="hidden" name="supervisor_id" value="{{$employee->supervisor->id}}" >
+    @endif
+    <!-- end of multi policy -->
+
 
     <div class="item form-group {{ $errors->has('joined_date') ? ' has-error' : '' }}">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="joined_date">Date Employee Joined<span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12 ">
                     <div class="form-group has-feedback">
-                        <input  @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif type="text" name="joined_date" value="{{ old('joined_date', $employee->joined_date->format('Y-m-d')) }}" class="form-control col-md-7 col-xs-12 has-feedback-left " id="single_cal5"  aria-describedby="inputSuccess2Status4">
+                        <input  @if(!auth()->user()->can('edit_employee')){!!'readonly'!!}@endif type="text" name="joined_date" value="{{ old('joined_date', $employee->joined_date->format('Y-m-d')) }}" class="form-control col-md-7 col-xs-12 has-feedback-left " id="single_cal5"  aria-describedby="inputSuccess2Status4">
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         <span id="inputSuccess2Status4" class="sr-only">(success)</span>
                     </div>

@@ -8,13 +8,13 @@
 </section>
 
 <section class="content">
-    <div class="row">
+    <div class="row ">
         <div class="col-md-2">
         @include('pages.all_users.profile.profile_image')
         </div>
 
-        <div class="col-md-8 ">
-            <div class="profile-head">
+        <div class="col-md-8  ">
+            <div class="profile-head " >
                 <h2>
                     {{ $employee->name }}
                 </h2>

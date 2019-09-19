@@ -21,7 +21,7 @@
 
     <div class="form-group col-xs-11{{ $errors->has('department_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="department_id">Employee Department</label>
-        <select @if(!auth()->user()->can('edit_employee')){!!'disabled'!!}@endif class="form-control" id="department_id" name="department_id">
+        <select class="form-control" id="department_id" name="department_id">
             <option value=""></option>
             @foreach($departments as $department)
                 <option value="{{$department->id}}" @if (old('department_id', $employee->department->id) == $department->id) {{ 'selected' }} @endif>{{$department->name}}</option>

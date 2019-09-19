@@ -122,7 +122,7 @@ class EmployeeController extends Controller
         $pay_grades = PayGrade::all();
         $employment_statuses = EmployeeStatus::all();
         $job_titles = JobTitle::all();
-//prevent employee from editing other employees info from url
+        //prevent employee from editing other employees info from url
         if(auth()->user()->can('edit_employee') || auth()->user()->owner->id == $employee->id){
             // return view('pages.admin.employees.edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
             return view('pages.admin.employees.gen-edit', compact('employee', 'departments', 'employees', "employment_statuses", "pay_grades", "job_titles"));
