@@ -24,18 +24,21 @@ class ProjectController extends Controller
     public function index()
     {
        $projects = Project::orderBy('id', 'desc')->paginate(200);
-        return view('pages.admin.projects.list', compact('projects'));
+        // return view('pages.admin.projects.list', compact('projects'));
+        return view('pages.admin.projects.gen-list', compact('projects'));
     }
 
      public function projectById($id){
         $details = Project::find($id);
-        return view('pages.admin.projects.project_details', compact('details'));
+        // return view('pages.admin.projects.project_details', compact('details'));
+        return view('pages.admin.projects.gen-project_details', compact('details'));
     }
 
     public function create()
     {
        $clients = Client::all();
-       return view('pages.admin.projects.create',compact("clients"));
+    //    return view('pages.admin.projects.create',compact("clients"));
+    return view('pages.admin.projects.gen-create',compact("clients"));
     }
 
     public function store(Request $request)
@@ -77,7 +80,8 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $clients = Client::all();
-        return view('pages.admin.projects.edit', compact('project','clients'));
+        // return view('pages.admin.projects.edit', compact('project','clients'));
+        return view('pages.admin.projects.gen-edit', compact('project','clients'));
     }
 
     public function update(Request $request, Project $project)
