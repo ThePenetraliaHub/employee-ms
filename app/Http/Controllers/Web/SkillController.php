@@ -23,13 +23,16 @@ class SkillController extends Controller
     public function index()
      {
         $skills = Skill::all();
-        return view('pages.admin.skills.list',  compact("skills"));
+        // return view('pages.admin.skills.list',  compact("skills"));
+        return view('pages.admin.skills.gen-list',  compact("skills"));
     }
 
     public function create()
     {
         $employees = Employee::all();
-        return view('pages.admin.skills.create', compact("employees"));
+        // return view('pages.admin.skills.create', compact("employees"));
+        return view('pages.admin.skills.gen-create', compact("employees"));
+
     }
 
     public function store(Request $request)
@@ -83,7 +86,8 @@ class SkillController extends Controller
     public function edit(Skill $skill)
     {
         $employees = Employee::all();
-        return view('pages.admin.skills.edit', compact('skill','employees'));
+        // return view('pages.admin.skills.edit', compact('skill','employees'));
+        return view('pages.admin.skills.gen-edit', compact('skill','employees'));
     }
 
     public function destroy(Skill $skill)
