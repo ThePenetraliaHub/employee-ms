@@ -210,7 +210,8 @@ class EmployeeProjectController extends Controller
     {
         $tasks = auth()->user()->owner->tasks();
 
-        return view('pages.employee.tasks.list', compact('tasks'));
+        // return view('pages.employee.tasks.list', compact('tasks'));
+        return view('pages.employee.tasks.gen-list', compact('tasks'));
     }
 
     public function task_info(EmployeeProject $employee_project)

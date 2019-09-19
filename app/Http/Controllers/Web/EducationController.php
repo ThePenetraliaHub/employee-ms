@@ -24,13 +24,15 @@ class EducationController extends Controller
     public function index()
     {
         $educations = Education::all();
-        return view('pages.admin.educations.list',  compact("educations"));
+        // return view('pages.admin.educations.list',  compact("educations"));
+        return view('pages.admin.educations.gen-list',  compact("educations"));
     }
 
     public function create()
     {
         $employees = Employee::all();
-        return view('pages.admin.educations.create', compact("employees"));
+        // return view('pages.admin.educations.create', compact("employees"));
+        return view('pages.admin.educations.gen-create', compact("employees"));
     }
 
     public function store(Request $request)
@@ -85,7 +87,8 @@ class EducationController extends Controller
     public function edit(Education $education)
     {
         $employees = Employee::all();
-        return view('pages.admin.educations.edit', compact('education','employees'));
+        // return view('pages.admin.educations.edit', compact('education','employees'));
+        return view('pages.admin.educations.gen-edit', compact('education','employees'));
     }
 
     public function update(Request $request, Education $education)
