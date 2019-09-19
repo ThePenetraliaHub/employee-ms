@@ -24,13 +24,15 @@ class CertificationController extends Controller
     public function index()
     {
         $certifications = Certification::all();
-        return view('pages.admin.certifications.list',  compact("certifications"));
+        // return view('pages.admin.certifications.list',  compact("certifications"));
+        return view('pages.admin.certifications.gen-list',  compact("certifications"));
     }
 
     public function create()
     {
         $employees = Employee::all();
-        return view('pages.admin.certifications.create', compact("employees"));
+        // return view('pages.admin.certifications.create', compact("employees"));
+        return view('pages.admin.certifications.gen-create', compact("employees"));
     }
 
     public function store(Request $request)
@@ -91,12 +93,13 @@ class CertificationController extends Controller
     public function edit(Certification $certification)
     {
         $employees = Employee::all();
-        return view('pages.admin.certifications.edit', compact('certification','employees'));
+        // return view('pages.admin.certifications.edit', compact('certification','employees'));
+        return view('pages.admin.certifications.gen-edit', compact('certification','employees'));
     }
 
     public function update(Request $request, Certification $certification)
     {
-        dd($certification);
+       // dd($certification);
         $rules = [
             'certification' => 'required',
             'institution' => 'required',

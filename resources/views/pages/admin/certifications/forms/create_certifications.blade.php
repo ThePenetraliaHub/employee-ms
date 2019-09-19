@@ -40,9 +40,10 @@
         </div>
     </div>
 
-     <div class="form-row">
+
+    <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('granted_on') ? ' has-error' : '' }} mb-0 mt-3">
-            <label for="granted_on">Awarded On</label>
+            <label for="granted_on">Awardd On</label>
             <input id="granted_on" type="date" class="form-control" name="granted_on" value="{{ old('granted_on') }}" required>
             @if ($errors->has('granted_on'))
                 <span class="help-block">
@@ -51,6 +52,7 @@
             @endif
         </div>
     </div>
+
 
     <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('valid_on') ? ' has-error' : '' }} mb-0 mt-3">
@@ -63,6 +65,7 @@
             @endif
         </div>
     </div>
+
 
  <div class="form-group col-xs-11 mb-0 mt-3">
         <label for="document_url">Document</label><br>
