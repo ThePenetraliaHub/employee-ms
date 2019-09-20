@@ -64,6 +64,7 @@
                                 <td>{{ $loop->iteration}} </td>
                                 <td>
                                     <a href="{{ route('employee.profile' ,$employee->id) }}">
+                                    <img class="img-rounded" style="width: 40px; height: 40px:" src="{{ asset('storage/'.$employee->avatar) }}">
                                         {{ $employee->name }}
                                     </a>
                                 </td>

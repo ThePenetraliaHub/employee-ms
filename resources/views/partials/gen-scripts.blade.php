@@ -19,6 +19,7 @@
 <script src="{{ asset('vendors/validator/validator.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="{{ asset('js/iziToast.js') }}"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- iCheck -->
 <script src="../vendors/iCheck/icheck.min.js"></script>

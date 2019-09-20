@@ -37,12 +37,14 @@ class RoleController extends Controller
 
     public function create_employee()
     {
-        return view('pages.all_users.role.create_employee');
+        // return view('pages.all_users.role.create_employee');
+        return view('pages.all_users.role.gen-create_employee');
     }
 
     public function create_admin()
     {
-        return view('pages.all_users.role.create_admin');
+        // return view('pages.all_users.role.create_admin');
+        return view('pages.all_users.role.gen-create_admin');
     }
 
     public function store(Request $request)
@@ -82,12 +84,14 @@ class RoleController extends Controller
 
     public function show_employee(Role $role)
     {
-        return view('pages.all_users.role.edit_employee', compact('role'));
+        // return view('pages.all_users.role.edit_employee', compact('role'));
+        return view('pages.all_users.role.gen-edit_employee', compact('role'));
     }
 
     public function show_admin(Role $role)
     {
-        return view('pages.all_users.role.edit_admin', compact('role'));
+        // return view('pages.all_users.role.edit_admin', compact('role'));
+        return view('pages.all_users.role.gen-edit_admin', compact('role'));
     }
 
     public function update(Request $request, Role $role){
