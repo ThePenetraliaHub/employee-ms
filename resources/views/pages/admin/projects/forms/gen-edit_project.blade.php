@@ -32,7 +32,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="client_id">Project Client<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="client_id" name="client_id"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="client_id" name="client_id"required="required" style="width: 100%;">
             <option value="{{$project->client_id}}">{{$project->client->name}}</option>
             @foreach($clients as $client)
             <option value="{{$client->id}}" @if (old('client_id') == $client->id) {{ 'selected' }} @endif>{{$client->name}}</option>
@@ -84,7 +84,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Project Status<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="status" name="status"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="status" name="status"required="required" style="width: 100%;">
         <option value="{{$project->status}}" @if (old('status',$project->status) === $project->status) {{ 'selected' }} @endif>{{$project->status}}</option>
         <option value="Initiated" @if (old('status') === "Initiated") {{ 'selected' }} @endif>Initiated</option>
         <option value="Completed" @if (old('status') === "Completed") {{ 'selected' }} @endif>Completed</option>

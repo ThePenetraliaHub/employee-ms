@@ -30,7 +30,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="department_id">Employee Department<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="department_id" name="department_id" required="required">
+        <select class="form-control col-md-7 col-xs-12" id="department_id" name="department_id" required="required" style="width: 100%;">
         <option value=""></option>
                 @foreach($departments as $department)
                     <option value="{{$department->id}}" @if (old('department_id') == $department->id) {{ 'selected' }} @endif>{{$department->name}}</option>
@@ -61,7 +61,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Gender<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="status" name="gender"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="status" name="gender"required="required" style="width: 100%;">
         <option value=""></option>
                 <option value="Male" @if (old('gender') === "Male") {{ 'selected' }} @endif>Male</option>
                 <option value="Female" @if (old('gender') === "Female") {{ 'selected' }} @endif>Female</option>
@@ -95,7 +95,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="marital_status">Marital Status<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="marital_status" name="marital_status"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="marital_status" name="marital_status"required="required" style="width: 100%;">
            <option value=""></option>
                 <option value="Single" @if (old('marital_status') === "Single") {{ 'selected' }} @endif>Single</option>
                 <option value="Married" @if (old('marital_status') === "Married") {{ 'selected' }} @endif>Married</option>
@@ -205,7 +205,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="job_title_id">Job Title<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="job_title_id" name="job_title_id"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="job_title_id" name="job_title_id"required="required" style="width: 100%;">
             <option value=""></option>
                 @foreach($job_titles as $job_title)
             <option value="{{ $job_title->id }}" @if (old('job_title_id') == $job_title->id) {{ 'selected' }} @endif>{{$job_title->title}}</option>
@@ -223,7 +223,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pay_grade_id">Employee Pay Grade<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="pay_grade_id" name="pay_grade_id"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="pay_grade_id" name="pay_grade_id"required="required" style="width: 100%;">
         <option value=""></option>
                 @foreach($pay_grades as $pay_grade)
         <option value="{{ $pay_grade->id }}" @if (old('pay_grade_id') == $pay_grade->id) {{ 'selected' }} @endif>{{$pay_grade->title}}</option>
@@ -241,7 +241,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="employee_status_id">Employement Status<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="employee_status_id" name="employee_status_id" value="{{ old('employee_status_id') }} required="required">
+        <select class="form-control col-md-7 col-xs-12" id="employee_status_id" name="employee_status_id" value="{{ old('employee_status_id') }} required="required" style="width: 100%;">
         <option value=""></option>
                 @foreach($employment_statuses as $employment_status)
         <option value="{{ $employment_status->id }}" @if (old('employee_status_id') == $employment_status->id) {{ 'selected' }} @endif> {{$employment_status->title}}</option>
@@ -259,7 +259,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supervisor_id">Supervisor<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="supervisor_id" name="supervisor_id"required="required">
+        <select class="form-control col-md-7 col-xs-12" id="supervisor_id" name="supervisor_id"required="required" style="width: 100%;">
         <option value=""></option>
         @foreach($employees as $employee)
         <option value="{{$employee->id}}" @if (old('supervisor_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->name}}</option>
