@@ -15,6 +15,19 @@ use App\Role;
 
 class SuperAdminController extends Controller
 {
+    function __construct()
+    {
+
+         $this->middleware('permission:browse_admin_user'); //index func. if cant browse then you cant access the rest
+         $this->middleware('permission:add_admin_user', ['only' => 'create']);
+         $this->middleware('permission:read_admin_user', ['only' => 'show']);
+         $this->middleware('permission:edit_admin_user', ['only' => 'edit']);
+         $this->middleware('permission:activate_deactivate_admin_user', ['only' => 'active']);
+         $this->middleware('permission:delete_admin_user', ['only' => 'destroy']);
+ 
+
+    }
+
     public function index()
     {
         $users = User::where('typeable_type', 'App\SuperAdmin')->paginate(10);
@@ -26,12 +39,13 @@ class SuperAdminController extends Controller
     {
         $roles = Role::admin_roles();
 
-        return view('pages.admin.super_admin.create', compact('roles'));
+        // return view('pages.admin.super_admin.create', compact('roles'));
+        return view('pages.admin.super_admin.gen-create', compact('roles'));
     }
 
     public function store(Request $request)
     {
-        if(auth()->user()->hasRole('super admin')){
+        // if(auth()->user()->hasRole('super admin')){
             $rules = [
                 'name' => 'required',
                 'email' => 'required|email',
@@ -87,9 +101,9 @@ class SuperAdminController extends Controller
             notify()->success("Successfully created!","","bottomRight");
 
             return redirect()->route("admin.index");
-        }else{
-            abort(403, 'Unauthorized action.');
-        }
+        // }else{
+        //     abort(403, 'Unauthorized action.');
+        // }
     }
 
     public function show(User $admin)
@@ -101,7 +115,7 @@ class SuperAdminController extends Controller
 
     public function update(Request $request, SuperAdmin $admin)
     {
-        if(auth()->user()->hasRole('super admin')){
+        // if(auth()->user()->hasRole('super admin')){
             $rules = [
                 'name' => 'required',
                 'email' => 'required|email',
@@ -147,9 +161,9 @@ class SuperAdminController extends Controller
             notify()->success("Successfully updated!","","bottomRight");
 
             return redirect('admin');
-        }else{
-            abort(403, 'Unauthorized action.');
-        }
+        // }else{
+        //     abort(403, 'Unauthorized action.');
+        // }
     }
 
     public function destroy($user)

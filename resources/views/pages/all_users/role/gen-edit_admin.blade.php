@@ -16,7 +16,8 @@
 
                         <div class="x_content">
                             <form id="submit_form" novalidate class="form-horizontal form-label-left" method="POST"action="{{ route('role.update', $role->id)  }}">
-                                @csrf
+                            {{csrf_field()}}  
+                            {{method_field('PUT')}} 
                                 @include('pages.all_users.role.forms.gen-create_edit_admin_role')
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
