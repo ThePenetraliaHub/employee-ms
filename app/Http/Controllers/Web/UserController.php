@@ -31,7 +31,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where("typeable_type", "App\Employee")->get();
-        return view('pages.admin.users.list',  compact("users"));
+        // return view('pages.admin.users.list',  compact("users"));
+        return view('pages.admin.users.gen-list',  compact("users"));
     }
 
     public function create()

@@ -46,7 +46,8 @@
 
 @section('script')
 	<script>
-	    $(document).ready(function () {
+    $(document).ready(function () {
+              
 	        //Code to hide and show user selection field based on message type selection
 	        const day_type = document.getElementById('day_type');
 	        if(day_type != null){
@@ -67,7 +68,8 @@
 	                    $("#end_time_div").show();
 	                }
 	            });
-	        }
+            }
+           
 	    });
 	</script>
 @endsection

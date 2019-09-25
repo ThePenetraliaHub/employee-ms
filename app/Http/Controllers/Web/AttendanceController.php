@@ -26,7 +26,8 @@ class AttendanceController extends Controller
     {
         $work_day = WorkDay::where('date', date_create('now')->format('Y-m-d'))->get()->first();
 
-        return view('pages.all_users.attendance.list_signed_in_staff', compact('work_day'));
+        // return view('pages.all_users.attendance.list_signed_in_staff', compact('work_day'));
+        return view('pages.all_users.attendance.gen-list_signed_in_staff', compact('work_day'));
     }
 
     public function sign_in(WorkDay $work_day)
