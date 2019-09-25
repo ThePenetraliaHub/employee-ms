@@ -43,7 +43,7 @@
      <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('granted_on') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="granted_on">Awarded On</label>
-            <input id="granted_on" type="date" class="form-control" name="granted_on" value="{{ old('granted_on',$certification->granted_on->format("Y-m-d")) }}" required>
+            <input id="granted_on" type="date" class="form-control" name="granted_on" value="{{ old('granted_on',$certification->granted_on->format('Y-m-d')) }}" required>
             @if ($errors->has('granted_on'))
                 <span class="help-block">
                     <strong>{{ $errors->first('granted_on') }}</strong>
@@ -55,7 +55,7 @@
     <div class="form-row">
         <div class="form-group col-xs-11{{ $errors->has('valid_on') ? ' has-error' : '' }} mb-0 mt-3">
             <label for="valid_on">Valid Through</label>
-            <input id="valid_on" type="date" class="form-control" name="valid_on" value="{{ old('valid_on',$certification->valid_on->format("Y-m-d")) }}" required>
+            <input id="valid_on" type="date" class="form-control" name="valid_on" value="{{ old('valid_on',$certification->valid_on->format('Y-m-d')) }}" required>
             @if ($errors->has('valid_on'))
                 <span class="help-block">
                     <strong>{{ $errors->first('valid_on') }}</strong>

@@ -25,7 +25,8 @@ class RoleController extends Controller
     {
         $roles = Role::employee_roles();
 
-        return view('pages.all_users.role.list_employee', compact('roles'));
+        // return view('pages.all_users.role.list_employee', compact('roles'));
+        return view('pages.all_users.role.gen-list_employee', compact('roles'));
     }
 
     public function index_admin()
