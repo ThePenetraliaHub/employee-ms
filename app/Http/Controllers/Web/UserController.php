@@ -40,7 +40,8 @@ class UserController extends Controller
         $employees = Employee::all();
         $roles = Role::employee_roles();
 
-        return view('pages.admin.users.create', compact("employees", 'roles'));
+        // return view('pages.admin.users.create', compact("employees", 'roles'));
+        return view('pages.admin.users.gen-create', compact("employees", 'roles'));
     }
 
     public function store(Request $request)
@@ -92,7 +93,8 @@ class UserController extends Controller
         $employees = Employee::all();
         $roles = Role::employee_roles();
 
-        return view('pages.admin.users.edit', compact('user', 'roles'));
+        // return view('pages.admin.users.edit', compact('user', 'roles'));
+        return view('pages.admin.users.gen-edit', compact('user', 'roles'));
     }
 
 

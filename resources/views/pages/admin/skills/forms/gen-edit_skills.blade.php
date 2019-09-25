@@ -6,7 +6,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="employee_id">Employee<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select  disabled class="form-control col-md-7 col-xs-12" id="employee_id" name="employee_id"required="required">
+        <select  disabled class="form-control col-md-7 col-xs-12" id="employee_id" name="employee_id"required="required" style="width: 100%;">
             @foreach($employees as $employee)
             <option value="{{$skill->employee_id}}" @if (old('$skill->employee_id', $skill->employee->id) == $employee->id) {{ 'selected' }} @endif>{{$employee->name}}</option>
             @endforeach

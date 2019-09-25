@@ -23,13 +23,15 @@ class WorkDayController extends Controller
     }
     public function index()
     {
-        $work_days = WorkDay::orderBy('date', 'desc')->paginate(10);
-        return view('pages.all_users.attendance.list_work_day', compact('work_days'));
+        $work_days = WorkDay::orderBy('date', 'desc')->paginate();
+        // return view('pages.all_users.attendance.list_work_day', compact('work_days'));
+        return view('pages.all_users.attendance.gen-list_work_day', compact('work_days'));
     }
 
     public function create()
     {
-        return view('pages.all_users.attendance.create_work_day');
+        // return view('pages.all_users.attendance.create_work_day');
+        return view('pages.all_users.attendance.gen-create_work_day');
     }
 
     public function store(Request $request)
@@ -77,12 +79,14 @@ class WorkDayController extends Controller
 
     public function show(WorkDay $work_day)
     {
-        return view('pages.all_users.attendance.daily_report', compact('work_day'));
+        // return view('pages.all_users.attendance.daily_report', compact('work_day'));
+        return view('pages.all_users.attendance.gen-daily_report', compact('work_day'));
     }
 
     public function edit(WorkDay $work_day)
     {
-        return view('pages.all_users.attendance.edit_work_day', compact('work_day'));
+        // return view('pages.all_users.attendance.edit_work_day', compact('work_day'));
+        return view('pages.all_users.attendance.gen-edit_work_day', compact('work_day'));
     }
 
     public function update(Request $request, WorkDay $work_day){

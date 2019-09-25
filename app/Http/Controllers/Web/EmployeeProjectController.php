@@ -27,15 +27,17 @@ class EmployeeProjectController extends Controller
     }
     public function index()
     {
-        $employee_projects = EmployeeProject::orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.employee_project.list', compact('employee_projects'));
+        $employee_projects = EmployeeProject::orderBy('id', 'desc')->paginate();
+        // return view('pages.admin.employee_project.list', compact('employee_projects'));
+        return view('pages.admin.employee_project.gen-list', compact('employee_projects'));
     }
 
     public function create()
     {
         $projects = Project::all();
         $employees = Employee::all();
-        return view('pages.admin.employee_project.create', compact("projects", "employees"));
+        // return view('pages.admin.employee_project.create', compact("projects", "employees"));
+        return view('pages.admin.employee_project.gen-create', compact("projects", "employees"));
     }
 
     public function store(Request $request)
@@ -70,7 +72,7 @@ class EmployeeProjectController extends Controller
             ]);
         } 
 
-        $employee_ids = $request->input('employee_id');
+        // $employee_ids = $request->input('employee_id');
         // $names = array();
 
         // foreach($employee_ids as $employee_id){
@@ -88,13 +90,14 @@ class EmployeeProjectController extends Controller
         //     ]);
         // }
 
-        foreach($employee_ids as $employee_id){
+        // foreach($employee_ids as $employee_id){
             if($request->document_url){
                 $path = $request->file('document_url')->store('project', 'public');
                 
                 EmployeeProject::create([
                     'project_id' => $request->project_id,
-                    'employee_id' => $employee_id,
+                    // 'employee_id' => $employee_id,
+                    'employee_id' => $request->employee_id,
                     'details' => $request->details,
                     'document_url' => $path,
                     'document_name' => $request->document_url->getClientOriginalName(),
@@ -107,16 +110,18 @@ class EmployeeProjectController extends Controller
             }else{
                 EmployeeProject::create([
                     'project_id' => $request->project_id,
-                    'employee_id' => $employee_id,
+                    // 'employee_id' => $employee_id,
+                    'employee_id' => $request->employee_id,
                     'details' => $request->details,
                     'start_date' => $request->start_date,
                     'end_date' => $request->end_date,
                     'status' => $request->status,
                     'employee_remark'=>null,
                 ]);
-            }
+            // }
 
-             $employee = Employee::find($employee_id);
+            //  $employee = Employee::find($employee_id);
+            $employee = Employee::find($request->employee_id);
              $project = Project::findorfail($request->project_id);
 
              Mail::to($employee->office_email)->queue(new SendTaskMail($message_headline,$employee->name,$project->name, $request->details, $request->start_date,$request->end_date));
@@ -130,7 +135,8 @@ class EmployeeProjectController extends Controller
     {
         $projects = Project::all();
         $employees = Employee::all();
-        return view('pages.admin.employee_project.edit', compact("projects", "employees", "employee_project"));
+        // return view('pages.admin.employee_project.edit', compact("projects", "employees", "employee_project"));
+        return view('pages.admin.employee_project.gen-edit', compact("projects", "employees", "employee_project"));
     }
 
     public function update(Request $request, EmployeeProject $employee_project){
@@ -210,8 +216,7 @@ class EmployeeProjectController extends Controller
     {
         $tasks = auth()->user()->owner->tasks();
 
-        // return view('pages.employee.tasks.list', compact('tasks'));
-        return view('pages.employee.tasks.gen-list', compact('tasks'));
+        return view('pages.employee.tasks.list', compact('tasks'));
     }
 
     public function task_info(EmployeeProject $employee_project)
