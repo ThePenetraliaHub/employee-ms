@@ -47,13 +47,15 @@
                                     
                                         @if(auth()->user()->hasAnyPermission(['edit_employee_roles','delete_employee_roles']))
                                         <td class="text-center">
-                                            @if(auth()->user()->can('edit_employee_roles'))
-                                            <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('role.employee.edit' , $role->id) }}" role="button"></a>
-                                            @endif
+                                            <div class ="btn-group"> 
+                                                @if(auth()->user()->can('edit_employee_roles'))
+                                                <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('role.employee.edit' , $role->id) }}" role="button"></a>
+                                                @endif
 
-                                        @if(auth()->user()->can('delete_employee_roles')) 
-                                        <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-roleId="{{ $role->id }}"></a>
-                                        @endif
+                                            @if(auth()->user()->can('delete_employee_roles')) 
+                                            <a class="delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-roleId="{{ $role->id }}"></a>
+                                            @endif
+                                            </div>
                                     </td>
                                     @endif
                                 </tr>
