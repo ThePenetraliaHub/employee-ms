@@ -111,7 +111,8 @@ class SuperAdminController extends Controller
     {
         $roles = Role::admin_roles();
 
-        return view('pages.admin.super_admin.edit', ['user' => $admin, 'roles' => $roles]);
+        // return view('pages.admin.super_admin.edit', ['user' => $admin, 'roles' => $roles]);
+        return view('pages.admin.super_admin.gen-edit', ['user' => $admin, 'roles' => $roles]);
     }
 
     public function update(Request $request, SuperAdmin $admin)

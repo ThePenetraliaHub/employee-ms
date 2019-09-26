@@ -216,14 +216,18 @@ class EmployeeProjectController extends Controller
     {
         $tasks = auth()->user()->owner->tasks();
 
-        return view('pages.employee.tasks.list', compact('tasks'));
+        // return view('pages.employee.tasks.list', compact('tasks'));
+        return view('pages.employee.tasks.gen-list', compact('tasks'));
     }
 
     public function task_info(EmployeeProject $employee_project)
     {
+        $team_members = EmployeeProject::all();
+        // dd($team_member[0]->employee->name);
         // restrict users from accessing other users tasks via url
-        if(auth()->user()->can('read_employee_tasks') && auth()->user()->owner->id == $employee_project->employee_id){
-        return view('pages.employee.tasks.show', compact('employee_project'));
+        if(auth()->user()->can('read_employee_tasks') && auth()->user()->owner->id == $employee_project->employee->id){
+        // return view('pages.employee.tasks.show', compact('employee_project'));
+        return view('pages.employee.tasks.gen-show', compact('employee_project','team_members'));
          }
           else{
             return abort('403');
