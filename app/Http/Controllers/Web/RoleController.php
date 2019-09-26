@@ -33,7 +33,8 @@ class RoleController extends Controller
     {
         $roles = Role::admin_roles();
 
-        return view('pages.all_users.role.list_admin', compact('roles'));
+        //return view('pages.all_users.role.list_admin', compact('roles'));
+        return view('pages.all_users.role.gen-list_admin', compact('roles'));
     }
 
     public function create_employee()

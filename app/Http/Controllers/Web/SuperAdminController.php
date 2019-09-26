@@ -32,7 +32,8 @@ class SuperAdminController extends Controller
     {
         $users = User::where('typeable_type', 'App\SuperAdmin')->paginate(10);
 
-        return view('pages.admin.super_admin.list', compact("users"));
+        // return view('pages.admin.super_admin.list', compact("users"));
+        return view('pages.admin.super_admin.gen-list', compact("users"));
     }
 
     public function create()
