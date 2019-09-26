@@ -16,7 +16,7 @@
 
                   @if(count($users) > 0)
                     @if(auth()->user()->can('add_employee_user'))
-                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm my-2">
+                    <a href="{{ route('user.create') }}" class="btn btn-success btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Add employee user
                     </a>

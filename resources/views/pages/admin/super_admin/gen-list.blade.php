@@ -85,10 +85,10 @@
 
                                         {{-- Use the user active/inactive status to detect which icon to show --}}
                                         @if($user->is_active == 1 && $user->id != auth()->user()->id && auth()->user()->can('activate_deactivate_admin_user'))
-                                            <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="active btn-sm btn btn-warning glyphicon glyphicon-lock text-danger pointer" data-userId="{{ $user->id }}">
+                                            <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="activate btn-sm btn btn-warning glyphicon glyphicon-lock text-danger pointer" data-userId="{{ $user->id }}">
                                             </a>
                                         @elseif($user->is_active == 0 && $user->id != auth()->user()->id && auth()->user()->can('activate_deactivate_admin_user'))
-                                            <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="active btn-sm btn btn-success fa fa-unlock text-success pointer" data-userId="{{ $user->id }}" style='padding-top:6px; padding-bottom: 7px;'>
+                                            <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="activate btn-sm btn btn-success fa fa-unlock text-success pointer" data-userId="{{ $user->id }}" style='padding-top:6px; padding-bottom: 7px;'>
                                             </a>
                                         @endif
 
@@ -164,7 +164,7 @@
             })
 
             //Code that handles the activation and deactivation of administrator account
-            $(".active").on('click',(function(e) {
+            $(".activate").on('click',(function(e) {
                 e.preventDefault()
 
                 var user_id = $(this).attr("data-userId");
