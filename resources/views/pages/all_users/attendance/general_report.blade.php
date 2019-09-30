@@ -100,13 +100,14 @@
                                             <th scope="col">Early Leaving</th>
                                             <th scope="col">Over Time</th>
                                             <th scope="col">Work Hour</th>
+                                            <!-- <th scope="col">Day</th> -->
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         @foreach($work_days as $work_day)
-                                            <tr>
+                                           <tr>
                                                 <td class="text-center text-primary" colspan="9">
                                                     {{ $work_day->date->format('F jS, Y') }}
                                                 </td>
@@ -174,6 +175,9 @@
                                                             <p class="text-danger">-- : -- : --</p>
                                                         @endif
                                                     </td>
+                                                   {{-- <td class="text-center text-primary">
+                                                        {{ $work_day->date->format('F jS, Y') }}
+                                                    </td>--}}
 
                                                     <td class="text-center">
                                                         @if($attendance->present == 0 || $attendance->work_day_id == null)

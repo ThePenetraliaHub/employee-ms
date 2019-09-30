@@ -120,7 +120,8 @@ class AttendanceController extends Controller
     }
 
     public function sign_out_ind(Attendance $attendance){
-        return view('pages.all_users.attendance.create_sign_out_ind', compact('attendance'));
+        // return view('pages.all_users.attendance.create_sign_out_ind', compact('attendance'));
+        return view('pages.all_users.attendance.gen-create_sign_out_ind', compact('attendance'));
     }
 
     public function sign_out_store_ind(Request $request, Attendance $attendance){
@@ -147,7 +148,8 @@ class AttendanceController extends Controller
     public function sign_out(WorkDay $work_day){
         $unsigned_out_employees = $work_day->unsigned_out_employees();
 
-        return view('pages.all_users.attendance.create_sign_out', compact('work_day', 'unsigned_out_employees'));
+        // return view('pages.all_users.attendance.create_sign_out', compact('work_day', 'unsigned_out_employees'));
+        return view('pages.all_users.attendance.gen-create_sign_out', compact('work_day', 'unsigned_out_employees'));
     }
 
     public function sign_out_store(Request $request){
@@ -185,9 +187,10 @@ class AttendanceController extends Controller
     public function general_report()
     {
         $employees = Employee::all();
-        $work_days = WorkDay::all();
+        $work_days = WorkDay::orderBy('date', 'desc')->paginate();
         
-        return view('pages.all_users.attendance.general_report', compact('work_days', 'employees'));
+        // return view('pages.all_users.attendance.general_report', compact('work_days', 'employees'));
+        return view('pages.all_users.attendance.gen-general_report', compact('work_days', 'employees'));
     }
 
     public function filter_attendance_by_status(Request $request, WorkDay $work_day)
@@ -208,7 +211,8 @@ class AttendanceController extends Controller
         if(auth()->user()->can('browse_self_attendance')){
             $attendances = auth()->user()->owner->attendances_present_and_absent();
 
-            return view('pages.all_users.attendance.list_self_attendance', compact('attendances'));
+            // return view('pages.all_users.attendance.list_self_attendance', compact('attendances'));
+            return view('pages.all_users.attendance.gen-list_self_attendance', compact('attendances'));
         }else{
             abort(403, 'Unauthorized action.');
         }  

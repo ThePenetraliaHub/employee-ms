@@ -70,30 +70,33 @@
 
                                 <td>{{ $user->created_at->diffForHumans() }} </td>
                                     @if(auth()->user()->hasAnyPermission(['edit_admin_user','read_admin_user','delete_admin_user','activate_deactivate_admin_user']))
-                                    <td class="text-center"> 
-                                        @if(auth()->user()->can('edit_admin_user'))
-                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('admin.show' , $user->id) }}" role="button"></a>
-                                        @endif
+                                        <td class="text-center"> 
+                                            @if(auth()->user()->can('edit_admin_user'))
+                                        <div class="btn-group">
+                                            <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('admin.show' , $user->id) }}" role="button"></a>
+                                            @endif
 
-                                        @if(auth()->user()->can('read_admin_user'))
-                                        <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('admin.profile', $user->owner->id) }}" role="button" ></a>
-                                        @endif
+                                            @if(auth()->user()->can('read_admin_user'))
+                                            <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('admin.profile', $user->owner->id) }}" role="button" ></a>
+                                            @endif
 
-                                        @if($user->id != auth()->user()->id && auth()->user()->can('delete_admin_user'))
-                                            <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
-                                        @endif
+                                            @if($user->id != auth()->user()->id && auth()->user()->can('delete_admin_user'))
+                                                <a class=" delete-btn btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-userId="{{ $user->id }}"></a>
+                                            @endif
 
-                                        {{-- Use the user active/inactive status to detect which icon to show --}}
-                                        @if($user->is_active == 1 && $user->id != auth()->user()->id && auth()->user()->can('activate_deactivate_admin_user'))
-                                            <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="activate btn-sm btn btn-warning glyphicon glyphicon-lock text-danger pointer" data-userId="{{ $user->id }}">
-                                            </a>
-                                        @elseif($user->is_active == 0 && $user->id != auth()->user()->id && auth()->user()->can('activate_deactivate_admin_user'))
-                                            <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="activate btn-sm btn btn-success fa fa-unlock text-success pointer" data-userId="{{ $user->id }}" style='padding-top:6px; padding-bottom: 7px;'>
-                                            </a>
-                                        @endif
+                                            {{-- Use the user active/inactive status to detect which icon to show --}}
+                                            @if($user->is_active == 1 && $user->id != auth()->user()->id && auth()->user()->can('activate_deactivate_admin_user'))
+                                                <a data-toggle="tooltip" data-placement="top" title="Deactivate Employee Account" class="activate btn-sm btn btn-warning glyphicon glyphicon-lock text-danger pointer" data-userId="{{ $user->id }}">
+                                                </a>
+                                            @elseif($user->is_active == 0 && $user->id != auth()->user()->id && auth()->user()->can('activate_deactivate_admin_user'))
+                                                <a data-toggle="tooltip" data-placement="top" title="Activate Employee Account" class="activate btn-sm btn btn-success fa fa-unlock text-success pointer" data-userId="{{ $user->id }}" style='padding-top:6px; padding-bottom: 7px;'>
+                                                </a>
+                                            @endif
+                                            </div>
 
-                                    @endif
-                                    </td>
+                                        @endif
+                                        </td>
+                                    
                             </tr>
                         @endforeach
                       </tbody>

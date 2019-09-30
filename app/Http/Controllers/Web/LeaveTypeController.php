@@ -21,13 +21,15 @@ class LeaveTypeController extends Controller
     }
     public function index()
     {
-        $leave_types = LeaveType::orderBy('id', 'desc')->paginate(10);
-        return view('pages.all_users.leave.list_leave_type', compact('leave_types'));
+        $leave_types = LeaveType::orderBy('id', 'desc')->paginate();
+        // return view('pages.all_users.leave.list_leave_type', compact('leave_types'));
+        return view('pages.all_users.leave.gen-list_leave_type', compact('leave_types'));
     }
 
     public function create()
     {
-        return view('pages.all_users.leave.create_leave_type');
+        // return view('pages.all_users.leave.create_leave_type');
+        return view('pages.all_users.leave.gen-create_leave_type');
     }
 
     public function store(Request $request)
@@ -70,12 +72,14 @@ class LeaveTypeController extends Controller
 
     public function show(LeaveType $leave_type)
     {
-        return view('pages.all_users.leave.leave_type_details', compact('leave_type'));
+        // return view('pages.all_users.leave.leave_type_details', compact('leave_type'));
+        return view('pages.all_users.leave.gen-leave_type_details', compact('leave_type'));
     }
 
     public function edit(LeaveType $leave_type)
     {
-        return view('pages.all_users.leave.edit_leave_type', compact('leave_type'));
+        // return view('pages.all_users.leave.edit_leave_type', compact('leave_type'));
+        return view('pages.all_users.leave.gen-edit_leave_type', compact('leave_type'));
     }
 
     public function update(Request $request, LeaveType $leave_type)
@@ -120,6 +124,7 @@ class LeaveTypeController extends Controller
     {
         if($leave_type->approved_leave_requests()->count() > 0){
             notify()->warning("Leave already approved for some employees, can't be removed!","","bottomRight");
+            return redirect('leave-type');
         }else{
             $leave_type->delete();
 
