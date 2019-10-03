@@ -78,7 +78,7 @@
 
                         <div class="box-footer">
                             <div class="pull-right">
-                                <button name="submit_content" value="send" type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Send</button>
+                                <button name="submit_contents" value="sends" type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Send</button>
                             </div>
                             <a href="{{ route('message.compose') }}" class="btn btn-default"><i class="fa fa-times"></i> Discard</a>
                         </div>

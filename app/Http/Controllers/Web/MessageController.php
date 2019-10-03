@@ -23,32 +23,38 @@ class MessageController extends Controller
     public function inbox()
     {
         $messages = auth()->user()->inbox_message();
-        return view('pages.all_users.messages.inbox', compact('messages'));
+        // return view('pages.all_users.messages.inbox', compact('messages'));
+        return view('pages.all_users.messages.gen-inbox', compact('messages'));
     }
 
     public function sent()
     {
         $messages = auth()->user()->sent_message();
-        return view('pages.all_users.messages.sent', compact('messages'));
+        // return view('pages.all_users.messages.sent', compact('messages'));
+        return view('pages.all_users.messages.gen-sent', compact('messages'));
     }
 
     public function compose()
     {
-        return view('pages.all_users.messages.compose');
+        // return view('pages.all_users.messages.compose');
+        return view('pages.all_users.messages.gen-compose');
     }
 
     public function trash()
     {
         $messages = auth()->user()->trash_message();
-        return view('pages.all_users.messages.trash', compact('messages'));
+        // return view('pages.all_users.messages.trash', compact('messages'));
+        return view('pages.all_users.messages.gen-trash', compact('messages'));
     }
 
 
     public function store(Request $request)
     {
-        switch ($request->input('submit_content')) {
-            // case 'draft':
-            case 'send':
+        
+        // switch ($request->input('submit_content')) {
+        //     // case 'draft':
+        //     case 'sends':
+           
                 if($request->type == "Broadcast"){
                     $rules = [
                         'content' => 'required',
@@ -120,7 +126,7 @@ class MessageController extends Controller
 
                     return redirect()->route('message.sent');
                 }
-        }
+        // }
     }
 
     public function show(Message $message)
@@ -128,7 +134,8 @@ class MessageController extends Controller
         if(!$message->is_read()){
             $message->mark_read();
         }
-        return view('pages.all_users.messages.read', compact('message'));
+        // return view('pages.all_users.messages.read', compact('message'));
+        return view('pages.all_users.messages.gen-read', compact('message'));
     }
 
     public function delete_to_trash(Message $message)
@@ -145,7 +152,8 @@ class MessageController extends Controller
 
         notify()->success("Message Trashed!","","bottomRight");
 
-        return redirect()->back();
+        // return redirect()->back();
+        return redirect()->route('message.inbox');
     }
 
     public function delete_permernently(Message $message)
