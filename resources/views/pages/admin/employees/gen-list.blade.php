@@ -105,10 +105,12 @@
                                 @endif
                             </tr>
                             @endforeach
+                            
                         </tbody>
                     </table>
 
                   </div>
+                  {{-- {{ $employees->links() }} --}}
                   @else
                       <div class="empty-state text-center my-3">
                           @include('icons.empty')

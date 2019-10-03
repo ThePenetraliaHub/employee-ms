@@ -22,7 +22,8 @@ class LeaveRequestController extends Controller
             $leave_requests = auth()->user()->owner->all_leave_request;
             $compulsory_leaves = auth()->user()->owner->cumpolsory_leaves();
 
-            return view('pages.all_users.leave.list_leave_request',compact('leave_requests', 'compulsory_leaves'));
+            // return view('pages.all_users.leave.list_leave_request',compact('leave_requests', 'compulsory_leaves'));
+            return view('pages.all_users.leave.gen-list_leave_request',compact('leave_requests', 'compulsory_leaves'));
         }else{
             abort(403, 'Unauthorized action.');
         }  
@@ -34,7 +35,8 @@ class LeaveRequestController extends Controller
             $leave_types = auth()->user()->owner->available_leave_types();
             $compulsory_leaves = auth()->user()->owner->cumpolsory_leaves();
 
-            return view('pages.all_users.leave.create_leave_request',compact('leave_types', 'compulsory_leaves'));
+            // return view('pages.all_users.leave.create_leave_request',compact('leave_types', 'compulsory_leaves'));
+             return view('pages.all_users.leave.gen-create_leave_request',compact('leave_types', 'compulsory_leaves'));
         }else{
             abort(403, 'Unauthorized action.');
         }  
@@ -45,7 +47,7 @@ class LeaveRequestController extends Controller
         if(auth()->user()->can('request_leave')){
             $rules = [
                 'leave_type_id' => 'required',
-                'leave_request_content' => "max:1000",
+                'leave_request_content' => "required|max:1000",
                 'start_date' => 'required|date|after:yesterday',
                 'end_date' => 'required|date|after_or_equal:start_date',
                 'support_doc_url' => "|file|mimes:jpeg,png,docx,pdf|max:1000",
