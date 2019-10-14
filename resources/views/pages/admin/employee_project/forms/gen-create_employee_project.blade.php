@@ -23,7 +23,8 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="project_id">Project<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="project_id" name="project_id"required="required" style="width: 100%;">
+        <select class="form-control col-md-7 col-xs-12" id="project_id" name="project_id" style="width: 100%;">
+        <option></option>
         @foreach($projects as $project)
             <option value="{{$project->id}}" @if (old('project_id') == $project->id) {{ 'selected' }} @endif>{{$project->name}}</option>
         @endforeach
@@ -95,9 +96,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="details">Details <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <textarea id="details"  name="details" required="required" class="form-control col-md-7 col-xs-12">
-        {{ old('details') }}
-        </textarea>
+        <textarea id="details"  name="details" required="required" class="form-control col-md-7 col-xs-12">{{ old('details') }}</textarea>
         @if ($errors->has('details'))
             <span class="help-block">
                 <strong>{{ $errors->first('details') }}</strong>

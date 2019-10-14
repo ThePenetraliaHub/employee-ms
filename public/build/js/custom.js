@@ -2178,36 +2178,36 @@ if (typeof NProgress != 'undefined') {
 				
 			  // Bar chart
 			  
-			if ($('#mybarChart').length ){ 
+			// if ($('#mybarChart').length ){ 
 			  
-			  var ctx = document.getElementById("mybarChart");
-			  var mybarChart = new Chart(ctx, {
-				type: 'bar',
-				data: {
-				  labels: ["January", "February", "March", "April", "May", "June", "July"],
-				  datasets: [{
-					label: '# of Votes',
-					backgroundColor: "#26B99A",
-					data: [51, 30, 40, 28, 92, 50, 45]
-				  }, {
-					label: '# of Votes',
-					backgroundColor: "#03586A",
-					data: [41, 56, 25, 48, 72, 34, 12]
-				  }]
-				},
+			//   var ctx = document.getElementById("mybarChart");
+			//   var mybarChart = new Chart(ctx, {
+			// 	type: 'bar',
+			// 	data: {
+			// 	  labels: ["January", "February", "March", "April", "May", "June", "July"],
+			// 	  datasets: [{
+			// 		label: '# of Votes',
+			// 		backgroundColor: "#26B99A",
+			// 		data: [51, 30, 40, 28, 92, 50, 45]
+			// 	  }, {
+			// 		label: '# of Votes',
+			// 		backgroundColor: "#03586A",
+			// 		data: [41, 56, 25, 48, 72, 34, 12]
+			// 	  }]
+			// 	},
 
-				options: {
-				  scales: {
-					yAxes: [{
-					  ticks: {
-						beginAtZero: true
-					  }
-					}]
-				  }
-				}
-			  });
+			// 	options: {
+			// 	  scales: {
+			// 		yAxes: [{
+			// 		  ticks: {
+			// 			beginAtZero: true
+			// 		  }
+			// 		}]
+			// 	  }
+			// 	}
+			//   });
 			  
-			} 
+			// } 
 			  
 
 			  // Doughnut chart
@@ -4192,98 +4192,99 @@ if (typeof NProgress != 'undefined') {
 			} 
 			  
 			   //echart Pie
+			   
 			  
-			if ($('#echart_pie').length ){  
+			// if ($('#echart_pie').length ){  
 			  
-			  var echartPie = echarts.init(document.getElementById('echart_pie'), theme);
+			//   var echartPie = echarts.init(document.getElementById('echart_pie'), theme);
 
-			  echartPie.setOption({
-				tooltip: {
-				  trigger: 'item',
-				  formatter: "{a} <br/>{b} : {c} ({d}%)"
-				},
-				legend: {
-				  x: 'center',
-				  y: 'bottom',
-				  data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
-				},
-				toolbox: {
-				  show: true,
-				  feature: {
-					magicType: {
-					  show: true,
-					  type: ['pie', 'funnel'],
-					  option: {
-						funnel: {
-						  x: '25%',
-						  width: '50%',
-						  funnelAlign: 'left',
-						  max: 1548
-						}
-					  }
-					},
-					restore: {
-					  show: true,
-					  title: "Restore"
-					},
-					saveAsImage: {
-					  show: true,
-					  title: "Save Image"
-					}
-				  }
-				},
-				calculable: true,
-				series: [{
-				  name: '访问来源',
-				  type: 'pie',
-				  radius: '55%',
-				  center: ['50%', '48%'],
-				  data: [{
-					value: 335,
-					name: 'Direct Access'
-				  }, {
-					value: 310,
-					name: 'E-mail Marketing'
-				  }, {
-					value: 234,
-					name: 'Union Ad'
-				  }, {
-					value: 135,
-					name: 'Video Ads'
-				  }, {
-					value: 1548,
-					name: 'Search Engine'
-				  }]
-				}]
-			  });
+			//   echartPie.setOption({
+			// 	tooltip: {
+			// 	  trigger: 'item',
+			// 	  formatter: "{a} <br/>{b} : {c} ({d}%)"
+			// 	},
+			// 	legend: {
+			// 	  x: 'center',
+			// 	  y: 'bottom',
+			// 	  data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
+			// 	},
+			// 	toolbox: {
+			// 	  show: true,
+			// 	  feature: {
+			// 		magicType: {
+			// 		  show: true,
+			// 		  type: ['pie', 'funnel'],
+			// 		  option: {
+			// 			funnel: {
+			// 			  x: '25%',
+			// 			  width: '50%',
+			// 			  funnelAlign: 'left',
+			// 			  max: 1548
+			// 			}
+			// 		  }
+			// 		},
+			// 		restore: {
+			// 		  show: true,
+			// 		  title: "Restore"
+			// 		},
+			// 		saveAsImage: {
+			// 		  show: true,
+			// 		  title: "Save Image"
+			// 		}
+			// 	  }
+			// 	},
+			// 	calculable: true,
+			// 	series: [{
+			// 	  name: '访问来源',
+			// 	  type: 'pie',
+			// 	  radius: '55%',
+			// 	  center: ['50%', '48%'],
+			// 	  data: [{
+			// 		value: 335,
+			// 		name: 'Direct Access'
+			// 	  }, {
+			// 		value: 310,
+			// 		name: 'E-mail Marketing'
+			// 	  }, {
+			// 		value: 234,
+			// 		name: 'Union Ad'
+			// 	  }, {
+			// 		value: 135,
+			// 		name: 'Video Ads'
+			// 	  }, {
+			// 		value: 1548,
+			// 		name: 'Search Engine'
+			// 	  }]
+			// 	}]
+			//   });
 
-			  var dataStyle = {
-				normal: {
-				  label: {
-					show: false
-				  },
-				  labelLine: {
-					show: false
-				  }
-				}
-			  };
+			//   var dataStyle = {
+			// 	normal: {
+			// 	  label: {
+			// 		show: false
+			// 	  },
+			// 	  labelLine: {
+			// 		show: false
+			// 	  }
+			// 	}
+			//   };
 
-			  var placeHolderStyle = {
-				normal: {
-				  color: 'rgba(0,0,0,0)',
-				  label: {
-					show: false
-				  },
-				  labelLine: {
-					show: false
-				  }
-				},
-				emphasis: {
-				  color: 'rgba(0,0,0,0)'
-				}
-			  };
+			//   var placeHolderStyle = {
+			// 	normal: {
+			// 	  color: 'rgba(0,0,0,0)',
+			// 	  label: {
+			// 		show: false
+			// 	  },
+			// 	  labelLine: {
+			// 		show: false
+			// 	  }
+			// 	},
+			// 	emphasis: {
+			// 	  color: 'rgba(0,0,0,0)'
+			// 	}
+			//   };
 
-			} 
+			// } 
 			  
 			   //echart Mini Pie
 			  

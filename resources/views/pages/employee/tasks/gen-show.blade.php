@@ -17,17 +17,21 @@
                         <div class="x_content">
                         <div class="panel panel-default col-md-4">
                             <div class="panel-body">
-                                Task/Project Details
+                                Task/Project Details  {{$employee_project->employee->name}}
                             </div>
                             <div class="panel-footer">
                                         <table class="table table-striped  success">
                                         <thead>
                                             <tr class="info">
                                                 <td colspan="2" class="text-center">
+                                                    @if($employee_project->project_id)
                                                     <h2 align="center" class="mb-0"><a href="{{ route('project.details',$employee_project->project->id) }}">{{$employee_project->project->name}}</a></h2>
-                                                   
+                                                    @else
+                                                   <h2 align="center" class="mb-0">Task is not from a Project</h2>
+                                                    @endif
                                                 </td>
                                             </tr>
+                                            @if($employee_project->project_id)
                                             <tr>
                                                 <th class="info">Task</th>
                                                 <td>
@@ -38,6 +42,7 @@
                                                 <th class="info">Client Company</th>
                                                 <td><a href="{{ route('client.details',$employee_project->project->client->id) }}">{{$employee_project->project->client->name}}</a></td>
                                             </tr>
+                                            @endif
                                             <tr>
                                                 <th class="info">Assigned on</th>
                                                 <td>{{$employee_project->start_date}}</td>
@@ -54,6 +59,7 @@
                                                 <th class="info">Task Status</th>
                                                 <td>{{$employee_project->status}}</td>
                                             </tr>
+                                            @if($employee_project->project_id)
                                             <tr>
                                                 <th class="info">Project Leader</th>
                                                 <td> 
@@ -67,12 +73,13 @@
                                                 <th class="info">Team Members</th>
                                                 <td>
                                                  @foreach($team_members as $team_member )
-                                                    @if($team_member->project->id === $employee_project->project->id)
+                                                    @if($team_member->projectid === $employee_project->project_id)
                                                     <li><a href="{{ route('employee.profile' ,$team_member->employee->id) }}" >{{$team_member->employee->name}} </a></li>
                                                     @endif
                                                 @endforeach
                                                 </td>
                                             </tr>
+                                            @endif
                                           
                                     </thead>
                                 </table>
@@ -88,7 +95,7 @@
                                         <thead>
                                             <tr class="info">
                                                 <td colspan="2" class="text-center">
-                                                <h2>Project Details</h2>
+                                                <h2>Task Details</h2>
                                                    
                                                 </td>
                                             </tr>

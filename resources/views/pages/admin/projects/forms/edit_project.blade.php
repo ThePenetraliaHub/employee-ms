@@ -58,7 +58,7 @@
         <label for="status">Project status</label>
         <select class="form-control" id="status" name="status">
             <option value="{{$project->status}}" @if (old('status',$project->status) === $project->status) {{ 'selected' }} @endif>{{$project->status}}</option>
-            <option value="Initiated" @if (old('status') === "Initiated") {{ 'selected' }} @endif>Initiated</option>
+            <!-- <option value="Initiated" @if (old('status') === "Initiated") {{ 'selected' }} @endif>Initiated</option> -->
             <option value="Completed" @if (old('status') === "Completed") {{ 'selected' }} @endif>Completed</option>
             <option value="Pending" @if (old('status') === "Pending") {{ 'selected' }} @endif>Pending</option>
             <option value="Terminated" @if (old('status') === "Terminated") {{ 'selected' }} @endif>Terminated</option>

@@ -122,9 +122,9 @@ class EmployeeProjectController extends Controller
 
             //  $employee = Employee::find($employee_id);
             $employee = Employee::find($request->employee_id);
-             $project = Project::findorfail($request->project_id);
+             $project = Project::find($request->project_id);
 
-             Mail::to($employee->office_email)->queue(new SendTaskMail($message_headline,$employee->name,$project->name, $request->details, $request->start_date,$request->end_date));
+             //Mail::to($employee->office_email)->queue(new SendTaskMail($message_headline,$employee->name,$project->name, $request->details, $request->start_date,$request->end_date));
         }
 
         notify()->success("Successfully created!","","bottomRight");
