@@ -2,7 +2,7 @@
 
 @section('content')
  <div class="right_col" role="main">
-    <div class="col-md-6">
+    <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="row top_tiles">
 
             @if(auth()->user()->hasAnyPermission(['browse_employee_user','add_employee_user','read_employee_user',
@@ -124,13 +124,13 @@
     </div>
 
  
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div id="echart_pie" style=" width:100%; height:420px;"></div>
     </div>
 
     @if(auth()->user()->hasAnyPermission(['browse_projects','add_projects',
                                                             'edit_projects','delete_projects']))
-    <div class="col-md-12 col-sm-6">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="">Projects Status</div>
          <canvas id="mybarChart" style="width:100%; height:600px;"></canvas>
     </div> 
@@ -270,13 +270,13 @@ if ($('#echart_pie').length )
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         title: {
-                text: 'Departments',
-                subtext: 'Chart',
-                x:'center'
+                // text: 'Departments',
+                // subtext: 'Chart',
+                // x:'center'
             },
         legend: {
             x: 'center',
-            y: 'bottom',
+            y: 'top',
             data: departments,
         },
         toolbox: {

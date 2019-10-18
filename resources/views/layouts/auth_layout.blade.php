@@ -8,6 +8,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   @include("partials.style")
+  <link rel="icon" href="{{ asset("img/penetralia_logo2.png") }}" type="image" sizes="">
 </head>
 <body class="hold-transition login-page">
 
@@ -17,6 +18,7 @@
             <a href="{{ route("home") }}" class="logo">
                 <img src="{{ asset("img/penetralia_logo2.png") }}" height="60" alt="">
             </a>
+            <h4>EMPLOYEE MANAGEMENT SYSTEM</h4>
         </div>
 
         @yield("form-body")

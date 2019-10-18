@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset("img/penetralia_logo2.png") }}" type="image" sizes="">
     @include('partials.gen-style')
   </head>
   <body class="nav-md">
