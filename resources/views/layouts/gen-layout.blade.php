@@ -58,6 +58,11 @@
                         </h3>
                         <ul class="nav side-menu">
                             <li>
+                                <a href="{{ route('home') }}" >
+                                <i class="fa fa-dashboard"></i><span> Dashboard</span>
+                                </a>
+                              </li>
+                            <li>
                               <a>
                               @if(auth()->user()->typeable_type == "App\SuperAdmin")
                               <i class="fa fa-home"></i> {{ auth()->user()->user_type() }} <span class="fa fa-chevron-down"></span>
