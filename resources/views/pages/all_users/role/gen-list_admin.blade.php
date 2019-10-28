@@ -16,7 +16,7 @@
 
                   @if(count($roles) > 0)
                     @if(auth()->user()->can('add_administrator_roles'))
-                    <a href="{{ route('admin.create') }}" class="btn btn-success btn-sm my-2">
+                    <a href="{{ route('role.admin.create') }}" class="btn btn-success btn-sm my-2">
                         <span class="fa fa-plus-circle mr-2"></span>
                         Create new admin role
                     </a>
