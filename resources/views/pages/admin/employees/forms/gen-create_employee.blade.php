@@ -259,7 +259,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supervisor_id">Supervisor<span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12 ">
-        <select class="form-control col-md-7 col-xs-12" id="supervisor_id" name="supervisor_id"required="required" style="width: 100%;">
+        <select class="form-control col-md-7 col-xs-12" id="supervisor_id" name="supervisor_id" style="width: 100%;">
         <option value=""></option>
         @foreach($employees as $employee)
         <option value="{{$employee->id}}" @if (old('supervisor_id') == $employee->id) {{ 'selected' }} @endif>{{$employee->name}}</option>
