@@ -27,6 +27,7 @@ class UserController extends Controller
          $this->middleware('permission:add_employee_user', ['only' => 'create']);
          $this->middleware('permission:edit_employee_user', ['only' => 'show']);
     }
+
     public function index()
     {
         $users = User::where("typeable_type", "App\Employee")->get();
@@ -92,7 +93,6 @@ class UserController extends Controller
 
         return view('pages.admin.users.edit', compact('user', 'roles'));
     }
-
 
     public function edit(Certification $certification)
     {
