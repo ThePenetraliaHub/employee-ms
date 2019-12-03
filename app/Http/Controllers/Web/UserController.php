@@ -18,6 +18,7 @@ use App\Education;
 use App\Skill;
 use App\SuperAdmin;
 use App\Role;
+use Redirect,Response,DB,Config;
 
 class UserController extends Controller
 {

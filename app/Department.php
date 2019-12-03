@@ -12,4 +12,16 @@ class Department extends Model
     {
         return $this->hasMany('App\Employee');
     }
+
+    public function histories()
+    {
+        return $this->hasMany('App\History');
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\employee');
+    }
+
+
 }

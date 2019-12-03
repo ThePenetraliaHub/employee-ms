@@ -10,6 +10,11 @@
 <script src="{{ asset('js/iziToast.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+ <!-- bootstrap-daterangepicker -->
+ <script src="{{ asset('vendors/moment/min/moment.min.js') }}"></script>
+ <!-- <script src="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script> -->
+ <!-- bootstrap-datetimepicker -->    
+ <script src="{{ asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 
 <script type="text/javascript">
 	$(document).ready (function(){

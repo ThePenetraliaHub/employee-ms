@@ -216,4 +216,14 @@ class Employee extends Model
 
         return $clashing_approved_requests;
     }
+
+    public function histories()
+    {
+        return $this->hasMany('App\History');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo('App\Department', 'unit_id');
+    }
 }

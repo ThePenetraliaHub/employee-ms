@@ -155,6 +155,15 @@ Route::middleware('auth')->group(function () {
         Route::post('/states', 'Web\AjaxResourceController@getStates')->name('ajax.states');
         Route::post('/countries', 'Web\AjaxResourceController@getCountries')->name('ajax.countries');
     });
+
+    Route::get('gentellela', function () {
+       return view('pages/gentellela');
+    });
+
+    Route::resource('/files', 'Web\FileController');
+    Route::get('/histories/returnedfiles', 'Web\HistoryController@returned')->name('returnedfiles');
+    Route::get('/histories/duefiles', 'Web\HistoryController@due')->name('duefiles');
+    Route::resource('/histories', 'Web\HistoryController');
 });
 
 Auth::routes();
